@@ -1,0 +1,41 @@
+---
+---
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    {% include head.html %}
+  </head>
+
+  <header>
+    {% include header.html %}
+  </header>
+
+  <div class="container">
+  {% include warning.html%}
+    {% for post in site.categories.linux_forensic %}
+    <div class="card">
+      <div class="card-block">
+        <article class="index-post post row">
+          <div class="small-12 medium-9 large-10 columns post-single">
+              <header class="post-header">
+                  <h3 class="post-title">
+                      <a href="{{ site.url }}{{ post.url }}">
+                          {{ post.title }}
+                      </a>
+                  </h3>
+              </header>
+              <section class="post-excerpt">
+                  <p>{{ post.content | strip_html | truncatewords:20 }}</p>
+              </section>
+          </div>
+        </article>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  <footer>
+    {% include footer.html %}
+  </footer>
+</html>
