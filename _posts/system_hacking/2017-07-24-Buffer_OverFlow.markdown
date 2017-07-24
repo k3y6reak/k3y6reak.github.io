@@ -34,15 +34,15 @@ int main(void)
 {% highlight bash %}
 gdb-peda$ Dump of assembler code for function main:
 0x0804843d <+0>:	push	ebp
-0x0804843e <+0>:	mov 	ebp,esp
-0x08048440 <+0>:	sub 	esp,0x10
-0x08048443 <+0>:	lea 	eax,[ebp-0x8]
-0x08048446 <+0>:	mov	DWORD PTR [esp+0x4],eax
-0x0804844a <+0>:	mov	DWORD PTR [esp], 0x80484f0
-0x08048451 <+0>:	call	0x80484330 <__isoc99_scanf@plt>
-0x08048456 <+0>:	mov	eax,0x0
-0x0804845b <+0>:	leave
-0x0804845c <+0>:	ret
+0x0804843e <+1>:	mov 	ebp,esp
+0x08048440 <+3>:	sub 	esp,0x10
+0x08048443 <+6>:	lea 	eax,[ebp-0x8]
+0x08048446 <+9>:	mov	DWORD PTR [esp+0x4],eax
+0x0804844a <+13>:	mov	DWORD PTR [esp], 0x80484f0
+0x08048451 <+20>:	call	0x80484330 <__isoc99_scanf@plt>
+0x08048456 <+25>:	mov	eax,0x0
+0x0804845b <+30>:	leave
+0x0804845c <+31>:	ret
 End of assembler dump.
 {% endhighlight %}
 
@@ -51,9 +51,9 @@ End of assembler dump.
 
 
 {% highlight bash %}
-0x08048446 <+0>:	mov	DWORD PTR [esp+0x4],eax
-0x0804844a <+0>:	mov	DWORD PTR [esp], 0x80484f0
-0x08048451 <+0>:	call	0x80484330 <__isoc99_scanf@plt>
+0x08048446 <+9>:	mov	DWORD PTR [esp+0x4],eax
+0x0804844a <+13>:	mov	DWORD PTR [esp], 0x80484f0
+0x08048451 <+20>:	call	0x80484330 <__isoc99_scanf@plt>
 {% endhighlight %}
 
 스택 구조에 대해서 설명을 붙이자면 위 어셈블리 코드를 보면 scanf가 실행되기 전 `esp`와 `esp+0x4`에 값을 넣고 있는 것을 알 수 있습니다. 
