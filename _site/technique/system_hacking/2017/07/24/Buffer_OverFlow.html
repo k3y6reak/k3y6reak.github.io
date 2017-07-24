@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/css/cs_style.css">
+<link rel="stylesheet" href="/assets/css/post.css">
+<link rel="stylesheet" href="/assets/css/syntax.css">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+  <body>
+
+    <div class="container">
+  <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">K3Y6REAK</a>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="containerNavbar">
+    <ul class="navbar-nav my-2 my-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/about.html">About</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programming</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/programming/c">C</a>
+          <a class="dropdown-item" href="/programming/cpp">C++</a>
+          <a class="dropdown-item" href="/programming/python">Python</a>
+          <a class="dropdown-item" href="/programming/ruby">Ruby</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">High Level Technique</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/technique/reversing">Reversing</a>
+          <a class="dropdown-item" href="/technique/system_hacking">System Hacking</a>
+          <a class="dropdown-item" href="/technique/web_hacking">Web Hacking</a>
+          <a class="dropdown-item" href="/technique/shellcoding">Shellcoding</a>
+          <a class="dropdown-item" href="/technique/windows_system">Windows System</a>
+          <a class="dropdown-item" href="/technique/windows_forensic">Windows Forensic</a>
+          <a class="dropdown-item" href="/technique/linux_forensic">Linux Forensic</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wargame</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/wargame/reversing_kr">reversing.kr</a>
+          <a class="dropdown-item" href="/wargame/pwnable_kr">pwnable.kr</a>
+          <a class="dropdown-item" href="/wargame/wargame_kr">wargame.kr</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/ctfs">CTFs</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+</div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Buffer Overflow</h1>
+    <p class="post-meta">
+      <time datetime="2017-07-24T15:03:00+09:00" itemprop="datePublished">
+        
+        Jul 24, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><br /><br /></p>
+<h3 id="개념">개념</h3>
+
+<p>Buffer Overflow (이하 bof)는 크기가 정해진 배열에 해당 크기 만큼 입력해야 하지만 <code class="highlighter-rouge">버퍼보다 큰 값</code>
+을 넣을 수 있는 취약점을 말합니다.</p>
+
+<p>예를들어, <code class="highlighter-rouge">char buf[10]</code>로 선언했다면 buf는 총 10개의 공간을 갖게 됩니다. 하지만 프로그램이 실행 되면서 buf에 10개가 아닌 11개, 12개 혹은 그 이상의 값이 들어가는 것을 확인하지 않고 실행 하므로서 발생하는 취약점을 뜻 합니다.</p>
+
+<p>그래서 bof는 stack corruption으로도 불립니다.</p>
+
+<p><br /><br /></p>
+<h3 id="설명">설명</h3>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+	<span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>위 소스코드를 보면 buf라는 char 배열에 총 8개의 값을 넣을 수 있고, scanf를 이용해서 buf에 값을 넣어줍니다. <code class="highlighter-rouge">scanf()</code>는 <code class="highlighter-rouge">크기 제한</code>이 없기 때문에 해당 부분에서 취약점이 발생할 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>Dump of assembler code <span class="k">for function </span>main:
+0x0804843d &lt;+0&gt;:	push	ebp
+0x0804843e &lt;+0&gt;:	mov 	ebp,esp
+0x08048440 &lt;+0&gt;:	sub 	esp,0x10
+0x08048443 &lt;+0&gt;:	lea 	eax,[ebp-0x8]
+0x08048446 &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x4],eax
+0x0804844a &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp], 0x80484f0
+0x08048451 &lt;+0&gt;:	call	0x80484330 &lt;__isoc99_scanf@plt&gt;
+0x08048456 &lt;+0&gt;:	mov	eax,0x0
+0x0804845b &lt;+0&gt;:	leave
+0x0804845c &lt;+0&gt;:	ret
+End of assembler dump.</code></pre></figure>
+
+<p>위 코드에서 <code class="highlighter-rouge">push ebp</code> <code class="highlighter-rouge">mov ebp,esp</code>가 함수의 프롤로그가 되며, <code class="highlighter-rouge">leave</code>, <code class="highlighter-rouge">ret</code>이 함수의 에필로그가 됩니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">0x08048446 &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x4],eax
+0x0804844a &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp], 0x80484f0
+0x08048451 &lt;+0&gt;:	call	0x80484330 &lt;__isoc99_scanf@plt&gt;</code></pre></figure>
+
+<p>스택 구조에 대해서 설명을 붙이자면 위 어셈블리 코드를 보면 scanf가 실행되기 전 <code class="highlighter-rouge">esp</code>와 <code class="highlighter-rouge">esp+0x4</code>에 값을 넣고 있는 것을 알 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">scanf</code>함수는 보통 <code class="highlighter-rouge">scanf("%s", buf)</code> 형태로 코드를 작성합니다.</p>
+
+<p>여기서 <code class="highlighter-rouge">%s</code>와 <code class="highlighter-rouge">buf</code>가 <code class="highlighter-rouge">인자 값</code>이 되기 때문에 <code class="highlighter-rouge">esp</code>와 <code class="highlighter-rouge">esp+0x4</code>에 값을 넣어주게 됩니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/2wx <span class="nv">$esp</span>
+0xbffff148:	0x080484f0	0xbffff150
+<span class="gp">gdb-peda$ </span>x/s 0x80484f0
+0x80484f0:	<span class="s2">"%s"</span></code></pre></figure>
+
+<p>esp 위치부터 2개가 값을 확인해 보면 <code class="highlighter-rouge">0x80484f0</code>와 <code class="highlighter-rouge">0xbffff150</code>이 있습니다. scanf가 필요한 인자 값이 2개 이므로 각각 <code class="highlighter-rouge">%s</code>와 <code class="highlighter-rouge">buf</code>를 뜻하게 됩니다.</p>
+
+<p>scanf를 실행한 뒤에 buf의 주소를 확인해 보면 값이 쌓여있는 것을 알 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx 0xbffff150
+0xbffff150:	0x34333231	0x00000000	0x00000000	0xb7e1fa83
+0xbffff160:	0x00000001	0xbffff1f4	0xbffff1fc	0xb7feccea
+0xbffff170:	0x00000001	0xbffff1f4</code></pre></figure>
+
+<p><code class="highlighter-rouge">1234</code>라는 값을 입력했더니 <code class="highlighter-rouge">0x34333231</code>라는 값이 저장되었습니다. 1234라는 값이 각각 hex 값으로 저장된 것입니다. 하지만 ascii 코드를 살펴보면 4321 순으로 저장된 것을 볼 수 있습니다.</p>
+
+<p>이는 <code class="highlighter-rouge">리틀엔디안과 빅엔디안</code>차이에 따라서 결정됩니다.</p>
+
+<p>코드를 하나씩 살펴보면서 값이 어떻게 저장되는지 확인해 봤습니다. <code class="highlighter-rouge">scanf</code>함수에서 취약점이 발생한다고 했으니 어떻게 되는지 알아보도록 하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/4wx 0xbffff150
+0xbffff150:	0x34333231	0x38373635	0x00000000	0xb7e1fa83</code></pre></figure>
+
+<p>이번에는 <code class="highlighter-rouge">12345678</code>을 입력했습니다. 위 스택을 살펴보면 <code class="highlighter-rouge">4321 8765</code> 순으로 쌓인 것을 알 수 있으며 buf의 크기가 8인데 8자리를 모두 사용했습니다.</p>
+
+<p>여기서 <code class="highlighter-rouge">scanf 함수는 크기를 제한하지 않으므로</code> 값을 더 입력해 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/4wx 0xbffff150
+0xbffff150:	0x34333231	0x38373635	0x32313039	0x36353433</code></pre></figure>
+
+<p>값을 더 입력했더니 뒤에 존재했던 값들이 모두 덮어 씌워졌습니다.</p>
+
+<p>이 상태에서 프로그램을 진행 시키면 <code class="highlighter-rouge">0x36353433 in ?? ()</code> 과 같이 나타납니다. 이 말은 <code class="highlighter-rouge">0x36353433 주소로 이동</code>을 했다는 것 입니다.</p>
+
+<p>이제 여기서 <code class="highlighter-rouge">Save Frame Pointer</code>와 <code class="highlighter-rouge">Return</code>을 알아야 합니다.</p>
+
+<p>Save Frame Pointer는 <code class="highlighter-rouge">이전함수에서의 ebp 값을 저장</code>해 둡니다. 해당 함수가 실행되고 난 후에 다시 돌아가야 할 때 이 값을 기준으로 돌아가게 됩니다.</p>
+
+<p>Return은 해당 주소로 이동하는 것입니다.</p>
+
+<p><img src="/img/system_hacking/bof/stack.png" alt="stack" /></p>
+
+<p>Stack의 구조는 위와 같이 이루어져 있기 때문에 앞서 값을 넘치게 입력했을 경우 0x36353433로 이동하게 된 것입니다.</p>
+
+<p>이러한 방법으로 <code class="highlighter-rouge">RET 값을 조작해서 system 함수를 호출하거나 프로그램 상에서 호출되지 않는 함수에도 접근이 가능</code>하게 됩니다.</p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    
+
+
+
+<div class="container">
+	<hr>
+	<section class="float-left">
+		&copy; 2017. SAHONG PAK all rights reserved.
+	</section>
+	<section class="float-right">
+		<a href="http://blog.rebforpwn.com">
+			<img src="/assets/img/rebforpwn.png" alt="RebForPwn" height="32" width="100">
+		</a>
+
+		<a href="http://">
+		<img src="/assets/img/github.svg" alt="github" height="32" width="32">
+		</a>
+
+		<a href="mailto:k3y6reak@naver.com">
+		<img src="/assets/img/mail.svg" alt="mail" height="32" width="32">
+		</a>
+	</section>
+</div>
+
+  </body>
+
+</html>

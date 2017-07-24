@@ -26,6 +26,10 @@
 .main-title {
 	font-size:50pt;
 }
+.page-content  p img{
+	margin:auto;
+}
+
 
 .page-content{position:relative;margin-left:auto;margin-right:auto;padding-right:15px;padding-left:15px}@media (min-width:576px){.page-content{padding-right:15px;padding-left:15px}}@media (min-width:768px){.page-content{padding-right:15px;padding-left:15px}}@media (min-width:992px){.page-content{padding-right:15px;padding-left:15px}}@media (min-width:1200px){.page-content{padding-right:15px;padding-left:15px}}@media (min-width:576px){.page-content{width:540px;max-width:100%}}@media (min-width:768px){.page-content{width:720px;max-width:100%}}@media (min-width:992px){.page-content{width:960px;max-width:100%}}@media (min-width:1200px){.page-content{width:1140px;max-width:100%}}.page-content-fluid{position:relative;margin-left:auto;margin-right:auto;padding-right:15px;padding-left:15px}@media (min-width:576px){.page-content-fluid{padding-right:15px;padding-left:15px}}@media (min-width:768px){.page-content-fluid{padding-right:15px;padding-left:15px}}@media (min-width:992px){.page-content-fluid{padding-right:15px;padding-left:15px}}@media (min-width:1200px){.page-content-fluid{padding-right:15px;padding-left:15px}}
 
