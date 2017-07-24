@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-07-24T16:44:56+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-07-24T17:50:08+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">Buffer Overflow</title><link href="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html" rel="alternate" type="text/html" title="Buffer Overflow" /><published>2017-07-24T15:03:00+09:00</published><updated>2017-07-24T15:03:00+09:00</updated><id>http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow</id><content type="html" xml:base="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
 
@@ -25,22 +25,22 @@
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
 0x0804843d &amp;lt;+0&amp;gt;:	push	ebp
-0x0804843e &amp;lt;+0&amp;gt;:	mov 	ebp,esp
-0x08048440 &amp;lt;+0&amp;gt;:	sub 	esp,0x10
-0x08048443 &amp;lt;+0&amp;gt;:	lea 	eax,[ebp-0x8]
-0x08048446 &amp;lt;+0&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-0x0804844a &amp;lt;+0&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
-0x08048451 &amp;lt;+0&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;
-0x08048456 &amp;lt;+0&amp;gt;:	mov	eax,0x0
-0x0804845b &amp;lt;+0&amp;gt;:	leave
-0x0804845c &amp;lt;+0&amp;gt;:	ret
+0x0804843e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
+0x08048440 &amp;lt;+3&amp;gt;:	sub 	esp,0x10
+0x08048443 &amp;lt;+6&amp;gt;:	lea 	eax,[ebp-0x8]
+0x08048446 &amp;lt;+9&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
+0x0804844a &amp;lt;+13&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
+0x08048451 &amp;lt;+20&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;
+0x08048456 &amp;lt;+25&amp;gt;:	mov	eax,0x0
+0x0804845b &amp;lt;+30&amp;gt;:	leave
+0x0804845c &amp;lt;+31&amp;gt;:	ret
 End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;위 코드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;push ebp&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;mov ebp,esp&lt;/code&gt;가 함수의 프롤로그가 되며, &lt;code class=&quot;highlighter-rouge&quot;&gt;leave&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ret&lt;/code&gt;이 함수의 에필로그가 됩니다.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;0x08048446 &amp;lt;+0&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-0x0804844a &amp;lt;+0&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
-0x08048451 &amp;lt;+0&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;0x08048446 &amp;lt;+9&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
+0x0804844a &amp;lt;+13&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
+0x08048451 &amp;lt;+20&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;스택 구조에 대해서 설명을 붙이자면 위 어셈블리 코드를 보면 scanf가 실행되기 전 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp+0x4&lt;/code&gt;에 값을 넣고 있는 것을 알 수 있습니다.&lt;/p&gt;
 

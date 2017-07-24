@@ -111,22 +111,22 @@
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>Dump of assembler code <span class="k">for function </span>main:
 0x0804843d &lt;+0&gt;:	push	ebp
-0x0804843e &lt;+0&gt;:	mov 	ebp,esp
-0x08048440 &lt;+0&gt;:	sub 	esp,0x10
-0x08048443 &lt;+0&gt;:	lea 	eax,[ebp-0x8]
-0x08048446 &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x4],eax
-0x0804844a &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp], 0x80484f0
-0x08048451 &lt;+0&gt;:	call	0x80484330 &lt;__isoc99_scanf@plt&gt;
-0x08048456 &lt;+0&gt;:	mov	eax,0x0
-0x0804845b &lt;+0&gt;:	leave
-0x0804845c &lt;+0&gt;:	ret
+0x0804843e &lt;+1&gt;:	mov 	ebp,esp
+0x08048440 &lt;+3&gt;:	sub 	esp,0x10
+0x08048443 &lt;+6&gt;:	lea 	eax,[ebp-0x8]
+0x08048446 &lt;+9&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x4],eax
+0x0804844a &lt;+13&gt;:	mov	DWORD PTR <span class="o">[</span>esp], 0x80484f0
+0x08048451 &lt;+20&gt;:	call	0x80484330 &lt;__isoc99_scanf@plt&gt;
+0x08048456 &lt;+25&gt;:	mov	eax,0x0
+0x0804845b &lt;+30&gt;:	leave
+0x0804845c &lt;+31&gt;:	ret
 End of assembler dump.</code></pre></figure>
 
 <p>위 코드에서 <code class="highlighter-rouge">push ebp</code> <code class="highlighter-rouge">mov ebp,esp</code>가 함수의 프롤로그가 되며, <code class="highlighter-rouge">leave</code>, <code class="highlighter-rouge">ret</code>이 함수의 에필로그가 됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">0x08048446 &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x4],eax
-0x0804844a &lt;+0&gt;:	mov	DWORD PTR <span class="o">[</span>esp], 0x80484f0
-0x08048451 &lt;+0&gt;:	call	0x80484330 &lt;__isoc99_scanf@plt&gt;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">0x08048446 &lt;+9&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x4],eax
+0x0804844a &lt;+13&gt;:	mov	DWORD PTR <span class="o">[</span>esp], 0x80484f0
+0x08048451 &lt;+20&gt;:	call	0x80484330 &lt;__isoc99_scanf@plt&gt;</code></pre></figure>
 
 <p>스택 구조에 대해서 설명을 붙이자면 위 어셈블리 코드를 보면 scanf가 실행되기 전 <code class="highlighter-rouge">esp</code>와 <code class="highlighter-rouge">esp+0x4</code>에 값을 넣고 있는 것을 알 수 있습니다.</p>
 
