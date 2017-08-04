@@ -1,5 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-03T15:27:22+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">PowerShell 기초</title><link href="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html" rel="alternate" type="text/html" title="PowerShell 기초" /><published>2017-08-03T14:28:00+09:00</published><updated>2017-08-03T14:28:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-04T17:57:45+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Cmdlet</title><link href="http://localhost:4000/technique/powershell/2017/08/04/cmdlet.html" rel="alternate" type="text/html" title="Cmdlet" /><published>2017-08-04T17:06:00+09:00</published><updated>2017-08-04T17:06:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/04/cmdlet</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/04/cmdlet.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이번에는 PowerShell에서 사용되는 cmdlet에 대해서 알아 보도록 하겠습니다.&lt;/p&gt;
+
+&lt;p&gt;PowerShell에서 명령어를 사용하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Command&lt;/code&gt;를 입력하면 아래와 같이 많은 명령어들이 출력되는 것을 볼 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Command
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Add-ProvisionedAppxPackage                         3.0        Dism
+Alias           Apply-WindowsUnattend                              3.0        Dism
+Alias           Disable-PhysicalDiskIndication                     2.0.0.0    Storage
+Alias           Disable-StorageDiagnosticLog                       2.0.0.0    Storage
+Alias           Enable-PhysicalDiskIndication                      2.0.0.0    Storage
+Alias           Enable-StorageDiagnosticLog                        2.0.0.0    Storage
+Alias           Flush-Volume                                       2.0.0.0    Storage
+Alias           Get-DiskSNV                                        2.0.0.0    Storage
+Alias           Get-PhysicalDiskSNV                                2.0.0.0    Storage
+Alias           Get-ProvisionedAppxPackage                         3.0        Dism
+Alias           Get-StorageEnclosureSNV                            2.0.0.0    Storage
+Alias           Initialize-Volume                                  2.0.0.0    Storage
+Alias           Move-SmbClient                                     2.0.0.0    SmbWitness
+Alias           Remove-ProvisionedAppxPackage                      3.0        Dism
+Alias           Write-FileSystemCache                              2.0.0.0    Storage
+Function        A:
+Function        Add-BCDataCacheExtension                           1.0.0.0    BranchCache
+Function        Add-BitLockerKeyProtector                          1.0.0.0    BitLocker
+Function        Add-DnsClientNrptRule                              1.0.0.0    DnsClient
+Function        Add-DtcClusterTMMapping                            1.0.0.0    MsDtc
+Function        Add-EtwTraceProvider                               1.0.0.0    EventTracingManagement
+Function        Add-InitiatorIdToMaskingSet                        2.0.0.0    Storage
+...(생략)&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이 중에서 알아볼 명령어는 cmdlet에 대한 명령어인데 해당 명령어만 출력하도록 해보겠습니다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Command -CommandType cmdlet&lt;/code&gt;을 실행합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Command -CommandType cmdlet
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Add-AppvClientConnectionGroup                      1.0.0.0    AppvClient
+Cmdlet          Add-AppvClientPackage                              1.0.0.0    AppvClient
+Cmdlet          Add-AppvPublishingServer                           1.0.0.0    AppvClient
+Cmdlet          Add-AppxPackage                                    2.0.0.0    Appx
+Cmdlet          Add-AppxProvisionedPackage                         3.0        Dism
+Cmdlet          Add-AppxVolume                                     2.0.0.0    Appx
+Cmdlet          Add-BitsFile                                       2.0.0.0    BitsTransfer
+Cmdlet          Add-CertificateEnrollmentPolicyServer              1.0.0.0    PKI
+Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Add-Content                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Add-History                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Add-JobTrigger                                     1.1.0.0    PSScheduledJob
+Cmdlet          Add-KdsRootKey                                     1.0.0.0    Kds
+Cmdlet          Add-LocalGroupMember                               1.0.0.0    Microsoft.PowerShell.LocalAccounts
+Cmdlet          Add-Member                                         3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Add-PSSnapin                                       3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Add-SignerRule                                     1.0        ConfigCI
+Cmdlet          Add-Type                                           3.1.0.0    Microsoft.PowerShell.Utility&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;cmdlet에 대한 명령어 목록이 출력된 것을 확인할 수 있습니다. 이 중에서 process와 관련된 명령어를 찾고자 한다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Command -CommandType cmdlet -Name *process&lt;/code&gt; 을 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Command -CommandType cmdlet -Name *process
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Debug-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Enter-PSHostProcess                                3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Exit-PSHostProcess                                 3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-Process                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Start-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Stop-Process                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Wait-Process                                       3.1.0.0    Microsoft.PowerShell.Management&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;여기서 Start-Process를 이용하여 notepad.exe를 실행시켜 보도록 하겠습니다. 그 전에 Start-Process를 어떻게 사용해야 하는지 알고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help Start-Process -example&lt;/code&gt;를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help Start-Process -example
+
+이름
+    Start-Process
+
+개요
+    Starts one or more processes on the local computer.
+
+
+    Example 1: Start a process that uses default values
+
+    PS C:\&amp;gt;Start-Process -FilePath &quot;sort.exe&quot;
+
+    This command starts a process that uses the Sort.exe file in the current folder. The command uses all of the default values, including the default window style, working folder, and credentials.
+    Example 2: Print a text file
+
+    PS C:\&amp;gt;Start-Process -FilePath &quot;myfile.txt&quot; -WorkingDirectory &quot;C:\PS-Test&quot; -Verb Print
+
+    This command starts a process that prints the C:\PS-Test\MyFile.txt file.
+    Example 3: Start a process to sort items to a new file
+
+    PS C:\&amp;gt;Start-Process -FilePath &quot;Sort.exe&quot; -RedirectStandardInput &quot;Testsort.txt&quot; -RedirectStandardOutput &quot;Sorted.txt&quot; -RedirectStandardError &quot;SortError.txt&quot; -UseNewEnvironment
+
+    This command starts a process that sorts items in the Testsort.txt file and returns the sorted items in the Sorted.txt files. Any errors are written to the SortError.txt file.
+
+    The UseNewEnvironment parameter specifies that the process runs with its own environment variables.
+    Example 4: Start a process in a maximized window
+
+    PS C:\&amp;gt;Start-Process -FilePath &quot;notepad&quot; -Wait -WindowStyle Maximized
+
+    This command starts the Notepad process. It maximizes the window and retains the window until the process completes.
+    Example 5: Start Windows Powershell as an administrator
+
+    PS C:\&amp;gt;Start-Process -FilePath &quot;powershell&quot; -Verb runAs
+
+    This command starts Windows PowerShell by using the Run as administrator option.
+    Example 6: Using different verbs to start a process
+
+    PS C:\&amp;gt;$startExe = New-Object System.Diagnostics.ProcessStartInfo -Args PowerShell.exe
+    PS C:\&amp;gt; $startExe.verbs
+    open
+    runas
+
+    # Starts a PowerShell process in a new console window.
+
+    PS C:\&amp;gt; Start-Process -FilePath &quot;powershell.exe&quot; -Verb open
+
+    # Starts a PowerShell process with &quot;Run as Administrator&quot; permissions.
+
+    PS C:\&amp;gt; Start-Process -FilePath &quot;powershell.exe&quot; -Verb runas
+
+    These commands show how to find the verbs that can be used when starting a process, and the effect of using the verbs to start the process.
+
+    The available verbs are determined by the file name extension of the file that runs in the process. To find the verbs for a process, create a System.Diagnostics.ProcessStartInfo object for the process file
+     and look in the Verbs property of the object. This example uses the PowerShell.exe file that runs in the PowerShell process.
+
+    The first command uses New-Object to create a System.Diagnostics.ProcessStartInfo object for PowerShell.exe, the file that runs in the PowerShell process. The command saves the ProcessStartInfo object in t
+    he $startExe variable.
+
+    The second command displays the values in the Verbs property of the ProcessStartInfo object in the $startExe variable. The results show that you can use the Open and Runas verbs with PowerShell.exe, or wit
+    h any process that runs a .exe file.
+
+    The third command starts a PowerShell process with the Open verb. The Open verb starts the process in a new console window.
+
+    The fourth command starts a PowerShell process with the RunAs verb. The RunAs verb starts the process with permissions of a member of the Administrators group on the computer. This is the same as starting
+    Windows PowerShell by using the Run as administrator option.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Start-Process notepad.exe&lt;/code&gt;를 입력하면 아래와 같이 notepad.exe가 실행된 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/powershell/cmdlet/start_process.png&quot; alt=&quot;powershell_start_process&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;반대로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Stop-Process notepad.exe&lt;/code&gt;를 입력하면 아래와 같이 에러가 발생합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Stop-Process notepad.exe
+Stop-Process : 'InputObject' 매개 변수를 바인딩할 수 없습니다. &quot;System.String&quot; 유형의 &quot;notepad.exe&quot; 값을 &quot;System.Diagnostics.Process&quot; 유형으로 변환할 수 없습니다.
+위치 줄:1 문자:14
++ Stop-Process notepad.exe
++              ~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Stop-Process], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.StopProcessCommand&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help&lt;/code&gt;를 이용해서 Stop-Proces에 대한 예시를 살펴봅니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help Stop-Process -example
+
+이름
+    Stop-Process
+
+개요
+    Stops one or more running processes.
+
+
+    Example 1: Stop all instances of a process
+
+    PS C:\&amp;gt;Stop-Process -Name &quot;notepad&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;-Name&lt;/code&gt;이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">PowerShell 기초</title><link href="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html" rel="alternate" type="text/html" title="PowerShell 기초" /><published>2017-08-03T14:28:00+09:00</published><updated>2017-08-03T14:28:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
 
 &lt;p&gt;Linux에서 터미널을 이용하여 ls, pwd 등과 같은 명령어를 사용하는 것 처럼 Windows에서도 명령어들을 이용하여 사용할 수 있도록 하는 것이 PowerShell 입니다.&lt;/p&gt;

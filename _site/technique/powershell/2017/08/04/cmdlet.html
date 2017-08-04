@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/css/cs_style.css">
+<link rel="stylesheet" href="/assets/css/post.css">
+<link rel="stylesheet" href="/assets/css/syntax.css">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+  <body>
+
+    <div class="container">
+  <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">K3Y6REAK</a>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="containerNavbar">
+    <ul class="navbar-nav my-2 my-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/about.html">About</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programming</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/programming/c">C</a>
+          <a class="dropdown-item" href="/programming/cpp">C++</a>
+          <a class="dropdown-item" href="/programming/python">Python</a>
+          <a class="dropdown-item" href="/programming/ruby">Ruby</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">High Level Technique</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/technique/reversing">Reversing</a>
+          <a class="dropdown-item" href="/technique/system_hacking">System Hacking</a>
+          <a class="dropdown-item" href="/technique/powershell">PowerShell</a>
+          <a class="dropdown-item" href="/technique/web_hacking">Web Hacking</a>
+          <a class="dropdown-item" href="/technique/shellcoding">Shellcoding</a>
+          <a class="dropdown-item" href="/technique/windows_system">Windows System</a>
+          <a class="dropdown-item" href="/technique/windows_forensic">Windows Forensic</a>
+          <a class="dropdown-item" href="/technique/linux_forensic">Linux Forensic</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wargame</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/wargame/reversing_kr">reversing.kr</a>
+          <a class="dropdown-item" href="/wargame/pwnable_kr">pwnable.kr</a>
+          <a class="dropdown-item" href="/wargame/wargame_kr">wargame.kr</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/ctfs">CTFs</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+</div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Cmdlet</h1>
+    <p class="post-meta">
+      <time datetime="2017-08-04T17:06:00+09:00" itemprop="datePublished">
+        
+        Aug 4, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><br /><br /></p>
+
+<p>이번에는 PowerShell에서 사용되는 cmdlet에 대해서 알아 보도록 하겠습니다.</p>
+
+<p>PowerShell에서 명령어를 사용하기 위해서 <code class="highlighter-rouge">Get-Command</code>를 입력하면 아래와 같이 많은 명령어들이 출력되는 것을 볼 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Get-Command
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Add-ProvisionedAppxPackage                         3.0        Dism
+Alias           Apply-WindowsUnattend                              3.0        Dism
+Alias           Disable-PhysicalDiskIndication                     2.0.0.0    Storage
+Alias           Disable-StorageDiagnosticLog                       2.0.0.0    Storage
+Alias           Enable-PhysicalDiskIndication                      2.0.0.0    Storage
+Alias           Enable-StorageDiagnosticLog                        2.0.0.0    Storage
+Alias           Flush-Volume                                       2.0.0.0    Storage
+Alias           Get-DiskSNV                                        2.0.0.0    Storage
+Alias           Get-PhysicalDiskSNV                                2.0.0.0    Storage
+Alias           Get-ProvisionedAppxPackage                         3.0        Dism
+Alias           Get-StorageEnclosureSNV                            2.0.0.0    Storage
+Alias           Initialize-Volume                                  2.0.0.0    Storage
+Alias           Move-SmbClient                                     2.0.0.0    SmbWitness
+Alias           Remove-ProvisionedAppxPackage                      3.0        Dism
+Alias           Write-FileSystemCache                              2.0.0.0    Storage
+Function        A:
+Function        Add-BCDataCacheExtension                           1.0.0.0    BranchCache
+Function        Add-BitLockerKeyProtector                          1.0.0.0    BitLocker
+Function        Add-DnsClientNrptRule                              1.0.0.0    DnsClient
+Function        Add-DtcClusterTMMapping                            1.0.0.0    MsDtc
+Function        Add-EtwTraceProvider                               1.0.0.0    EventTracingManagement
+Function        Add-InitiatorIdToMaskingSet                        2.0.0.0    Storage
+...(생략)</code></pre></figure>
+
+<p>이 중에서 알아볼 명령어는 cmdlet에 대한 명령어인데 해당 명령어만 출력하도록 해보겠습니다.
+<code class="highlighter-rouge">Get-Command -CommandType cmdlet</code>을 실행합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Get-Command -CommandType cmdlet
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Add-AppvClientConnectionGroup                      1.0.0.0    AppvClient
+Cmdlet          Add-AppvClientPackage                              1.0.0.0    AppvClient
+Cmdlet          Add-AppvPublishingServer                           1.0.0.0    AppvClient
+Cmdlet          Add-AppxPackage                                    2.0.0.0    Appx
+Cmdlet          Add-AppxProvisionedPackage                         3.0        Dism
+Cmdlet          Add-AppxVolume                                     2.0.0.0    Appx
+Cmdlet          Add-BitsFile                                       2.0.0.0    BitsTransfer
+Cmdlet          Add-CertificateEnrollmentPolicyServer              1.0.0.0    PKI
+Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Add-Content                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Add-History                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Add-JobTrigger                                     1.1.0.0    PSScheduledJob
+Cmdlet          Add-KdsRootKey                                     1.0.0.0    Kds
+Cmdlet          Add-LocalGroupMember                               1.0.0.0    Microsoft.PowerShell.LocalAccounts
+Cmdlet          Add-Member                                         3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Add-PSSnapin                                       3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Add-SignerRule                                     1.0        ConfigCI
+Cmdlet          Add-Type                                           3.1.0.0    Microsoft.PowerShell.Utility</code></pre></figure>
+
+<p>cmdlet에 대한 명령어 목록이 출력된 것을 확인할 수 있습니다. 이 중에서 process와 관련된 명령어를 찾고자 한다면 <code class="highlighter-rouge">Get-Command -CommandType cmdlet -Name *process</code> 을 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Get-Command -CommandType cmdlet -Name *process
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Debug-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Enter-PSHostProcess                                3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Exit-PSHostProcess                                 3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-Process                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Start-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Stop-Process                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Wait-Process                                       3.1.0.0    Microsoft.PowerShell.Management</code></pre></figure>
+
+<p>여기서 Start-Process를 이용하여 notepad.exe를 실행시켜 보도록 하겠습니다. 그 전에 Start-Process를 어떻게 사용해야 하는지 알고 싶다면 <code class="highlighter-rouge">Get-Help Start-Process -example</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Get-Help Start-Process -example
+
+이름
+    Start-Process
+
+개요
+    Starts one or more processes on the local computer.
+
+
+    Example 1: Start a process that uses default values
+
+    PS C:\&gt;Start-Process -FilePath "sort.exe"
+
+    This command starts a process that uses the Sort.exe file in the current folder. The command uses all of the default values, including the default window style, working folder, and credentials.
+    Example 2: Print a text file
+
+    PS C:\&gt;Start-Process -FilePath "myfile.txt" -WorkingDirectory "C:\PS-Test" -Verb Print
+
+    This command starts a process that prints the C:\PS-Test\MyFile.txt file.
+    Example 3: Start a process to sort items to a new file
+
+    PS C:\&gt;Start-Process -FilePath "Sort.exe" -RedirectStandardInput "Testsort.txt" -RedirectStandardOutput "Sorted.txt" -RedirectStandardError "SortError.txt" -UseNewEnvironment
+
+    This command starts a process that sorts items in the Testsort.txt file and returns the sorted items in the Sorted.txt files. Any errors are written to the SortError.txt file.
+
+    The UseNewEnvironment parameter specifies that the process runs with its own environment variables.
+    Example 4: Start a process in a maximized window
+
+    PS C:\&gt;Start-Process -FilePath "notepad" -Wait -WindowStyle Maximized
+
+    This command starts the Notepad process. It maximizes the window and retains the window until the process completes.
+    Example 5: Start Windows Powershell as an administrator
+
+    PS C:\&gt;Start-Process -FilePath "powershell" -Verb runAs
+
+    This command starts Windows PowerShell by using the Run as administrator option.
+    Example 6: Using different verbs to start a process
+
+    PS C:\&gt;$startExe = New-Object System.Diagnostics.ProcessStartInfo -Args PowerShell.exe
+    PS C:\&gt; $startExe.verbs
+    open
+    runas
+
+    # Starts a PowerShell process in a new console window.
+
+    PS C:\&gt; Start-Process -FilePath "powershell.exe" -Verb open
+
+    # Starts a PowerShell process with "Run as Administrator" permissions.
+
+    PS C:\&gt; Start-Process -FilePath "powershell.exe" -Verb runas
+
+    These commands show how to find the verbs that can be used when starting a process, and the effect of using the verbs to start the process.
+
+    The available verbs are determined by the file name extension of the file that runs in the process. To find the verbs for a process, create a System.Diagnostics.ProcessStartInfo object for the process file
+     and look in the Verbs property of the object. This example uses the PowerShell.exe file that runs in the PowerShell process.
+
+    The first command uses New-Object to create a System.Diagnostics.ProcessStartInfo object for PowerShell.exe, the file that runs in the PowerShell process. The command saves the ProcessStartInfo object in t
+    he $startExe variable.
+
+    The second command displays the values in the Verbs property of the ProcessStartInfo object in the $startExe variable. The results show that you can use the Open and Runas verbs with PowerShell.exe, or wit
+    h any process that runs a .exe file.
+
+    The third command starts a PowerShell process with the Open verb. The Open verb starts the process in a new console window.
+
+    The fourth command starts a PowerShell process with the RunAs verb. The RunAs verb starts the process with permissions of a member of the Administrators group on the computer. This is the same as starting
+    Windows PowerShell by using the Run as administrator option.</code></pre></figure>
+
+<p><code class="highlighter-rouge">Start-Process notepad.exe</code>를 입력하면 아래와 같이 notepad.exe가 실행된 것을 알 수 있습니다.</p>
+
+<p><img src="/img/powershell/cmdlet/start_process.png" alt="powershell_start_process" /></p>
+
+<p>반대로 <code class="highlighter-rouge">Stop-Process notepad.exe</code>를 입력하면 아래와 같이 에러가 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Stop-Process notepad.exe
+Stop-Process : 'InputObject' 매개 변수를 바인딩할 수 없습니다. "System.String" 유형의 "notepad.exe" 값을 "System.Diagnostics.Process" 유형으로 변환할 수 없습니다.
+위치 줄:1 문자:14
++ Stop-Process notepad.exe
++              ~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Stop-Process], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.StopProcessCommand</code></pre></figure>
+
+<p><code class="highlighter-rouge">Get-Help</code>를 이용해서 Stop-Proces에 대한 예시를 살펴봅니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Get-Help Stop-Process -example
+
+이름
+    Stop-Process
+
+개요
+    Stops one or more running processes.
+
+
+    Example 1: Stop all instances of a process
+
+    PS C:\&gt;Stop-Process -Name "notepad"</code></pre></figure>
+
+<p>위와 같이 <code class="highlighter-rouge">-Name</code>이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.</p>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    
+
+
+
+<div class="container">
+	<hr>
+	<section class="float-left">
+		&copy; 2017. SAHONG PAK all rights reserved.
+	</section>
+	<section class="float-right">
+		<a href="http://blog.rebforpwn.com">
+			<img src="/assets/img/rebforpwn.png" alt="RebForPwn" height="32" width="100">
+		</a>
+
+		<a href="http://">
+		<img src="/assets/img/github.svg" alt="github" height="32" width="32">
+		</a>
+
+		<a href="mailto:k3y6reak@naver.com">
+		<img src="/assets/img/mail.svg" alt="mail" height="32" width="32">
+		</a>
+	</section>
+</div>
+
+  </body>
+
+</html>
