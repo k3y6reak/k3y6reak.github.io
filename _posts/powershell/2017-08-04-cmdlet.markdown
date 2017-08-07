@@ -9,9 +9,6 @@ categories: ['technique', 'powershell']
 
 이번에는 PowerShell에서 사용되는 cmdlet에 대해서 알아 보도록 하겠습니다.
 
-{% highlight ps %}
-{% endhighlight %}
-
 
 PowerShell에서 명령어를 사용하기 위해서 `Get-Command`를 입력하면 아래와 같이 많은 명령어들이 출력되는 것을 볼 수 있습니다.
 
