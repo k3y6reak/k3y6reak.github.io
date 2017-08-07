@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "SHA2017 Suspect File 1 (100)"
-date:   2017-08-07 15:33:00 +0900
+title:  "SHA2017 Suspect File1 (100)"
+date:   2017-08-07 14:14:00 +0900
 categories: ['ctfs']
 ---
 
@@ -100,4 +100,3 @@ root@ubuntu:/home/k3y6reak/Desktop#
 {% endhighlight %}
 
 따라서 `flag{57201791ea24f3acd852cee3271333a8}`가 된다.
-
