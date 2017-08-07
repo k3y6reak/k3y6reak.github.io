@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "PowerShell 기초"
-date:   2017-08-03 14:28:00 +0900
+date:   2017-08-03 13:20:00 +0900
 categories: ['technique', 'powershell']
 ---
 

@@ -9,11 +9,29 @@
 }
 
 .language-cmd {
-	color:white;
+	color: white;
 }
+
+.language-ida {
+	color: white;
+}
+
 .language-dbg {
-	color:white;
+	color: white;
 }
+
+.highlight .o {
+	color: white;
+}
+
+.highlight .err {
+	color: white;
+}
+
+.highlight .mh {
+	color: white;
+}
+
 .highlight .cp {
 	color: #FF8000;
 }

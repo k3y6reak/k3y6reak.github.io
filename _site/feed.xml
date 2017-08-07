@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-07T12:43:52+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-07T13:45:45+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">Cmdlet</title><link href="http://localhost:4000/technique/powershell/2017/08/04/cmdlet.html" rel="alternate" type="text/html" title="Cmdlet" /><published>2017-08-04T17:06:00+09:00</published><updated>2017-08-04T17:06:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/04/cmdlet</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/04/cmdlet.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이번에는 PowerShell에서 사용되는 cmdlet에 대해서 알아 보도록 하겠습니다.&lt;/p&gt;
@@ -171,7 +171,7 @@ Stop-Process : 'InputObject' 매개 변수를 바인딩할 수 없습니다. &qu
 
     PS C:\&amp;gt;Stop-Process -Name &quot;notepad&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;-Name&lt;/code&gt;이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">PowerShell 기초</title><link href="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html" rel="alternate" type="text/html" title="PowerShell 기초" /><published>2017-08-03T14:28:00+09:00</published><updated>2017-08-03T14:28:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;-Name&lt;/code&gt;이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">PowerShell 기초</title><link href="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html" rel="alternate" type="text/html" title="PowerShell 기초" /><published>2017-08-03T13:20:00+09:00</published><updated>2017-08-03T13:20:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
 
 &lt;p&gt;Linux에서 터미널을 이용하여 ls, pwd 등과 같은 명령어를 사용하는 것 처럼 Windows에서도 명령어들을 이용하여 사용할 수 있도록 하는 것이 PowerShell 입니다.&lt;/p&gt;
@@ -614,7 +614,87 @@ esp 	0xbffff146 	0xbffff146&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;그 후 0xbffff146에 있는 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;pop eip&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;jmp eip&lt;/code&gt;하면서 해당 위치로 이동하게 됩니다.&lt;/p&gt;
 
-&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;|shellcode 주소|\x90*n|shellcode|stack 주소 - 0x4|&lt;/code&gt;와 같은 payload를 사용할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry><entry><title type="html">Buffer Overflow</title><link href="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html" rel="alternate" type="text/html" title="Buffer Overflow" /><published>2017-07-24T15:03:00+09:00</published><updated>2017-07-24T15:03:00+09:00</updated><id>http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow</id><content type="html" xml:base="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;|shellcode 주소|\x90*n|shellcode|stack 주소 - 0x4|&lt;/code&gt;와 같은 payload를 사용할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry><entry><title type="html">SHA2017 Suspect File 1 (100)</title><link href="http://localhost:4000/ctfs/2017/07/24/SHA2017_suspect_file_1.html" rel="alternate" type="text/html" title="SHA2017 Suspect File 1 (100)" /><published>2017-07-24T15:33:00+09:00</published><updated>2017-07-24T15:33:00+09:00</updated><id>http://localhost:4000/ctfs/2017/07/24/SHA2017_suspect_file_1</id><content type="html" xml:base="http://localhost:4000/ctfs/2017/07/24/SHA2017_suspect_file_1.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;문제&quot;&gt;문제&lt;/h3&gt;
+
+&lt;p&gt;Suspect File 1 (100)&lt;/p&gt;
+
+&lt;p&gt;We found some software on our suspects development server, it looks like they created some different versions, are you able to crack the software?&lt;/p&gt;
+
+&lt;p&gt;Challenge created by the Digital and Biometric Traces division of the Netherlands Forensic Institute.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;풀이&quot;&gt;풀이&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;./100
+Sorry
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;./100 a
+Sorry&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;해당 바이너리를 실행하면 위와같이 Sorry만 출력한다.&lt;/p&gt;
+
+&lt;p&gt;IDA를 이용해서 디컴파일하여 소스코드를 보게 되면 아래와 같이 do~while()로 시작하는 것을 알 수 있으며 v10 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;0xc9702e05&lt;/code&gt;되어야만 Yes!를 출력한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;	&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;p&quot;&gt;...(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;생략&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+			&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc9702e05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;가장 처음 비교하는 부분인 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x8048977&lt;/code&gt;에 Breakpoint를 걸어두고 &lt;code class=&quot;highlighter-rouge&quot;&gt;finish&lt;/code&gt; 명령을 계속해서 실행한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ida&quot; data-lang=&quot;ida&quot;&gt;.text:08048977                 cmp     eax, 96C8ACCAh
+.text:0804897C                 jg      short loc_8048990
+.text:0804897E                 cmp     eax, 8FD5472Dh
+.text:08048983                 jnz     short loc_8048977
+.text:08048985                 jmp     short loc_8048940&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;----------------------------------registers-----------------------------------]
+EAX: 0x5c4742c2
+EBX: 0x8048164 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;lt;_init&amp;gt;:	push   ebx&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ECX: 0x80ed5e8 --&amp;gt; 0x0
+EDX: 0xe6cbc1fb
+ESI: 0x80ea0c4 --&amp;gt; 0x8068270 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;lt;__strcpy_sse2&amp;gt;:	mov    edx,DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4]&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+EDI: 0x46 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'F'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+EBP: 0xffffd4f8 --&amp;gt; 0x1000
+ESP: 0xffffd370 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;flag{57201791ea24f3acd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+EIP: 0x8048977 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;lt;main+263&amp;gt;:	cmp    eax,0x96c8acca&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+EFLAGS: 0x246 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;carry PARITY adjust ZERO sign &lt;span class=&quot;nb&quot;&gt;trap &lt;/span&gt;INTERRUPT direction overflow&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-------------------------------------code-------------------------------------]
+   0x804896d &amp;lt;main+253&amp;gt;:	or     cl,al
+   0x804896f &amp;lt;main+255&amp;gt;:	mov    eax,0x6b8a9776
+   0x8048974 &amp;lt;main+260&amp;gt;:	cmovne eax,edx
+&lt;span class=&quot;gp&quot;&gt;=&amp;gt; &lt;/span&gt;0x8048977 &amp;lt;main+263&amp;gt;:	cmp    eax,0x96c8acca
+   0x804897c &amp;lt;main+268&amp;gt;:	jg     0x8048990 &amp;lt;main+288&amp;gt;
+   0x804897e &amp;lt;main+270&amp;gt;:	cmp    eax,0x8fd5472d
+   0x8048983 &amp;lt;main+275&amp;gt;:	jne    0x8048977 &amp;lt;main+263&amp;gt;
+   0x8048985 &amp;lt;main+277&amp;gt;:	jmp    0x8048940 &amp;lt;main+208&amp;gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;------------------------------------stack-------------------------------------]
+0000| 0xffffd370 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;flag{57201791ea24f3acd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0004| 0xffffd374 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{57201791ea24f3acd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0008| 0xffffd378 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;01791ea24f3acd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0012| 0xffffd37c &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1ea24f3acd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0016| 0xffffd380 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;4f3acd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0020| 0xffffd384 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;cd852cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0024| 0xffffd388 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2cee3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+0028| 0xffffd38c &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;3271333a8}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;02&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+
+Breakpoint 1, 0x08048977 &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;main &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+gdb-peda&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;finish&lt;/code&gt;명령을 계속해서 실행하면 위와같이 stack에 flag에 대한 정보가 나오게 된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;./100 flag&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;57201791ea24f3acd852cee3271333a8&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+Yes!
+root@ubuntu:/home/k3y6reak/Desktop#&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;flag{57201791ea24f3acd852cee3271333a8}&lt;/code&gt;가 된다.&lt;/p&gt;</content><author><name></name></author><summary type="html">문제</summary></entry><entry><title type="html">Buffer Overflow</title><link href="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html" rel="alternate" type="text/html" title="Buffer Overflow" /><published>2017-07-24T15:03:00+09:00</published><updated>2017-07-24T15:03:00+09:00</updated><id>http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow</id><content type="html" xml:base="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
 
 &lt;p&gt;Buffer Overflow (이하 bof)는 크기가 정해진 배열에 해당 크기 만큼 입력해야 하지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;버퍼보다 큰 값&lt;/code&gt;

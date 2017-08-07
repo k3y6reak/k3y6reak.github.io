@@ -1,0 +1,103 @@
+---
+layout: post
+title:  "SHA2017 Suspect File 1 (100)"
+date:   2017-07-24 15:33:00 +0900
+categories: ['ctfs']
+---
+
+<br/><br/>
+### 문제
+
+Suspect File 1 (100)
+
+We found some software on our suspects development server, it looks like they created some different versions, are you able to crack the software?
+
+Challenge created by the Digital and Biometric Traces division of the Netherlands Forensic Institute.
+
+
+
+<br/><br/>
+### 풀이
+{% highlight bash %}
+root@ubuntu:/home/k3y6reak/Desktop# ./100
+Sorry
+root@ubuntu:/home/k3y6reak/Desktop# ./100 a
+Sorry
+{% endhighlight %}
+
+해당 바이너리를 실행하면 위와같이 Sorry만 출력한다.
+
+IDA를 이용해서 디컴파일하여 소스코드를 보게 되면 아래와 같이 do~while()로 시작하는 것을 알 수 있으며 v10 값이 `0xc9702e05`되어야만 Yes!를 출력한다.
+
+
+{% highlight c %}
+	do{
+		while(1)
+		{
+			while(1)
+			{
+				...(생략)
+			}
+		}
+	}while(v10 != 0xc9702e05)
+{% endhighlight %}
+
+
+가장 처음 비교하는 부분인 `0x8048977`에 Breakpoint를 걸어두고 `finish` 명령을 계속해서 실행한다.
+
+{% highlight ida %}
+.text:08048977                 cmp     eax, 96C8ACCAh
+.text:0804897C                 jg      short loc_8048990
+.text:0804897E                 cmp     eax, 8FD5472Dh
+.text:08048983                 jnz     short loc_8048977
+.text:08048985                 jmp     short loc_8048940
+{% endhighlight %}
+
+
+{% highlight bash %}
+[----------------------------------registers-----------------------------------]
+EAX: 0x5c4742c2
+EBX: 0x8048164 (<_init>:	push   ebx)
+ECX: 0x80ed5e8 --> 0x0
+EDX: 0xe6cbc1fb
+ESI: 0x80ea0c4 --> 0x8068270 (<__strcpy_sse2>:	mov    edx,DWORD PTR [esp+0x4])
+EDI: 0x46 ('F')
+EBP: 0xffffd4f8 --> 0x1000
+ESP: 0xffffd370 ("flag{57201791ea24f3acd852cee3271333a8}\002\002")
+EIP: 0x8048977 (<main+263>:	cmp    eax,0x96c8acca)
+EFLAGS: 0x246 (carry PARITY adjust ZERO sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x804896d <main+253>:	or     cl,al
+   0x804896f <main+255>:	mov    eax,0x6b8a9776
+   0x8048974 <main+260>:	cmovne eax,edx
+=> 0x8048977 <main+263>:	cmp    eax,0x96c8acca
+   0x804897c <main+268>:	jg     0x8048990 <main+288>
+   0x804897e <main+270>:	cmp    eax,0x8fd5472d
+   0x8048983 <main+275>:	jne    0x8048977 <main+263>
+   0x8048985 <main+277>:	jmp    0x8048940 <main+208>
+[------------------------------------stack-------------------------------------]
+0000| 0xffffd370 ("flag{57201791ea24f3acd852cee3271333a8}\002\002")
+0004| 0xffffd374 ("{57201791ea24f3acd852cee3271333a8}\002\002")
+0008| 0xffffd378 ("01791ea24f3acd852cee3271333a8}\002\002")
+0012| 0xffffd37c ("1ea24f3acd852cee3271333a8}\002\002")
+0016| 0xffffd380 ("4f3acd852cee3271333a8}\002\002")
+0020| 0xffffd384 ("cd852cee3271333a8}\002\002")
+0024| 0xffffd388 ("2cee3271333a8}\002\002")
+0028| 0xffffd38c ("3271333a8}\002\002")
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+
+Breakpoint 1, 0x08048977 in main ()
+gdb-peda$
+{% endhighlight %}
+
+`finish`명령을 계속해서 실행하면 위와같이 stack에 flag에 대한 정보가 나오게 된다.
+
+{% highlight bash%}
+root@ubuntu:/home/k3y6reak/Desktop# ./100 flag{57201791ea24f3acd852cee3271333a8}
+Yes!
+root@ubuntu:/home/k3y6reak/Desktop#
+{% endhighlight %}
+
+따라서 `flag{57201791ea24f3acd852cee3271333a8}`가 된다.
+
