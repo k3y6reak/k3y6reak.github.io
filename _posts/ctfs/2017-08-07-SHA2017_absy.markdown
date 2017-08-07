@@ -1,0 +1,103 @@
+---
+layout: post
+title:  "SHA2017 asby (100)"
+date:   2017-07-24 15:03:00 +0900
+categories: ['ctfs']
+---
+
+<br/><br/>
+### 문제
+
+asby (100)
+
+Eindbazen team member asby has by far been putting the most energy and time in creating the SHA2017 CTF. To honor his dedication and all his effort we created this challenge as an ode to him.
+
+You can choose to reverse engineer this challenge or you can "asby" it. Good luck with the option you choose.
+
+
+
+<br/><br/>
+### 풀이
+{% highlight cmd %}
+What is the flag? k3y6reak
+Checking char 1:WRONG!
+What is the flag?
+{% endhighlight %}
+
+asby.exe 파일을 실행하면 위와 같이 What is the flag? 라는 문자열이 나타나며 입력을 하면 각 자리마다 값을 비교한다.
+
+{% highlight dbg %}
+0040179B | 89 D0                    | MOV EAX, EDX                                     |
+0040179D | 0F B6 44 05 C9           | MOVZX EAX, BYTE PTR SS:[EBP + EAX - 37]          |
+004017A2 | 31 C8                    | XOR EAX, ECX                                     |
+004017A4 | 83 F0 2A                 | XOR EAX, 2A                                      |
+004017A7 | 38 45 80                 | CMP BYTE PTR SS:[EBP - 80], AL                   |
+004017AA | 0F 94 C0                 | SETE AL                                          |
+004017AD | 84 C0                    | TEST AL, AL                                      |
+004017AF | 74 16                    | JE asby.4017C7                                   |
+004017B1 | C7 44 24 04 4F 90 48 00  | MOV DWORD PTR SS:[ESP + 4], asby.48904F          | 48904F:"CORRECT!\n"
+004017B9 | C7 04 24 40 81 48 00     | MOV DWORD PTR SS:[ESP], asby.488140              |
+004017C0 | E8 4B 9F 07 00           | CALL asby.47B710                                 |
+004017C5 | EB 1D                    | JMP asby.4017E4                                  |
+004017C7 | C7 44 24 04 59 90 48 00  | MOV DWORD PTR SS:[ESP + 4], asby.489059          | 489059:"WRONG!\n"
+004017CF | C7 04 24 40 81 48 00     | MOV DWORD PTR SS:[ESP], asby.488140              |
+004017D6 | C7 45 88 02 00 00 00     | MOV DWORD PTR SS:[EBP - 78], 2                   |
+004017DD | E8 2E 9F 07 00           | CALL asby.47B710                                 |
+004017E2 | EB 29                    | JMP asby.40180D                                  |
+
+{% endhighlight %}
+
+각 자리를 비교하는 부분은 `0x004017a7` 에서 비교를 하는데 `0x004017a4`에서 입력한 값과 `0x2a를 xor 연산한 값`을 비교하게 된다.
+
+여기서 `WRONG!`이 출력되면 다시 flag를 입력해야 하기 때문에 값이 틀려도 `CORRECT!`가 나오도록 하기 위해서 바이너리를 패치한다.
+
+`004017AF | 74 16                    | JE asby.4017C7` 이 부분을 `NOP`으로 패치한 뒤에 비교하는 값을 모두 찾아내면 된다.
+
+
+{% highlight cmd %}
+C:\Users\k3y6reak\Desktop>asby.exe
+What is the flag? flag{024baa8ac03ef22fdde61c0f11069f2f}
+Checking char 1:CORRECT!
+Checking char 2:CORRECT!
+Checking char 3:CORRECT!
+Checking char 4:CORRECT!
+Checking char 5:CORRECT!
+Checking char 6:CORRECT!
+Checking char 7:CORRECT!
+Checking char 8:CORRECT!
+Checking char 9:CORRECT!
+Checking char 10:CORRECT!
+Checking char 11:CORRECT!
+Checking char 12:CORRECT!
+Checking char 13:CORRECT!
+Checking char 14:CORRECT!
+Checking char 15:CORRECT!
+Checking char 16:CORRECT!
+Checking char 17:CORRECT!
+Checking char 18:CORRECT!
+Checking char 19:CORRECT!
+Checking char 20:CORRECT!
+Checking char 21:CORRECT!
+Checking char 22:CORRECT!
+Checking char 23:CORRECT!
+Checking char 24:CORRECT!
+Checking char 25:CORRECT!
+Checking char 26:CORRECT!
+Checking char 27:CORRECT!
+Checking char 28:CORRECT!
+Checking char 29:CORRECT!
+Checking char 30:CORRECT!
+Checking char 31:CORRECT!
+Checking char 32:CORRECT!
+Checking char 33:CORRECT!
+Checking char 34:CORRECT!
+Checking char 35:CORRECT!
+Checking char 36:CORRECT!
+Checking char 37:CORRECT!
+Checking char 38:CORRECT!
+
+Congrats, it seems you asby'ed the flag out of the challenge!
+{% endhighlight %}
+
+
+각 자리를 모두 찾아내면 `flag{024baa8ac03ef22fdde61c0f11069f2f}`가 나오게 된다.
