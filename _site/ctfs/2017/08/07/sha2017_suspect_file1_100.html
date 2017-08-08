@@ -117,7 +117,7 @@ Sorry</code></pre></figure>
 		<span class="p">}</span>
 	<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">v10</span> <span class="o">!=</span> <span class="mh">0xc9702e05</span><span class="p">)</span></code></pre></figure>
 
-<p>가장 처음 비교하는 부분인 <code class="highlighter-rouge">0x8048977</code>에 Breakpoint를 걸어두고 <code class="highlighter-rouge">finish</code> 명령을 계속해서 실행한다.</p>
+<p>가장 처음 비교하는 부분인 <code class="highlighter-rouge">0x8048977</code>에 Breakpoint를 걸어두고 <code class="highlighter-rouge">r aaaaaaaaa</code>로 실행한 뒤 <code class="highlighter-rouge">finish</code> 명령을 계속해서 실행한다.</p>
 
 <figure class="highlight"><pre><code class="language-ida" data-lang="ida">.text:08048977                 cmp     eax, 96C8ACCAh
 .text:0804897C                 jg      short loc_8048990

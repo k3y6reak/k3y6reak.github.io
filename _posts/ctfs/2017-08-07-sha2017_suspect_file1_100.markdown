@@ -43,7 +43,7 @@ IDA를 이용해서 디컴파일하여 소스코드를 보게 되면 아래와 �
 {% endhighlight %}
 
 
-가장 처음 비교하는 부분인 `0x8048977`에 Breakpoint를 걸어두고 `finish` 명령을 계속해서 실행한다.
+가장 처음 비교하는 부분인 `0x8048977`에 Breakpoint를 걸어두고 `r aaaaaaaaa`로 실행한 뒤 `finish` 명령을 계속해서 실행한다.
 
 {% highlight ida %}
 .text:08048977                 cmp     eax, 96C8ACCAh
