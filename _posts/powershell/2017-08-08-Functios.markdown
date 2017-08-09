@@ -1,0 +1,424 @@
+---
+layout: post
+title:  "Functions"
+date:   2017-08-08 20:29:00 +0900
+categories: ['technique', 'powershell']
+---
+
+<br/><br/>
+
+PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.
+
+먼저 스크립트를 작성할 때 `PowerShell ISE`를 이용하여 작성하는 방법이 있고, 앞서 Execution Policy에서 설명한 것 처럼 `에디터`를 이용하는 방법이 있습니다.
+
+PowerShell ISE에서 스크립트를 작성할 때 아래 그림의 `스크립트`를 누른 후 스크립트를 작성할 수 있습니다.
+
+![powershell_ise](/img/powershell/functions/powershell_ise.png)
+
+마찬가지로 `관리자 권한`에서 `Set-Execution Byass`를 실행해야 스크립트를 실행할 수 있습니다.
+
+스크립트를 작성하는 방법에 대해서 알았으니 함수에 대해서 알아보겠습니다.
+
+PowerShell에서 함수를 작성하는 방법은 `function Name () {}` 꼴로 작성합니다.
+
+<br/><br/>
+#### Dot Sourcing
+
+{% highlight ps %}
+
+function add()
+{
+  1+3
+}
+{% endhighlight %}
+
+위와 같이 코드를 작성한 후 ISE에서 실행을 하면 아래와 같이 에러가 발생합니다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> .\add.ps1
+
+PS C:\Users\k3y6reak\Desktop> add
+add : 'add' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로
+가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ add
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (add:String) [], CommandNotFoundExcept 
+   ion
+    + FullyQualifiedErrorId : CommandNotFoundException
+{% endhighlight %} 
+
+스크립트 파일 자체를 실행하면 아무런 결과도 나오지 않고 함수명을 바로 호출하면 에러가 발생합니다.
+
+여기서 에러를 발생하지 않고 실행하는 방법이 `Dot Sourcing`입니다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\add.ps1
+
+PS C:\Users\k3y6reak\Desktop> add
+4
+{% endhighlight %} 
+
+`Dot Sourcing`은 위 코드를 살펴보면 실행하고자 스크립트 앞에 `.`을 붙여 한 번 실행한 뒤 함수명으로 바로 실행이 가능하도록 하는 것 입니다.
+
+쉽게 말하면 `해당 스크립트의 내용을 현재 쉘에 로드해 둔 것`이라 생각하면 됩니다.
+
+자 이제, 함수를 작성하는 방법은 알았으니 함수의 본질로 넘어가 보도록 하겠습니다.
+
+함수를 사용하는 건 `인자 값`을 넘겨 `연산`을 하는 것 입니다.
+
+
+<br/><br/>
+#### Parameter
+
+{% highlight ps %}
+function paramadd ($num1, $num2){
+    $num1 + $num2
+}
+{% endhighlight %} 
+
+위와 같이 paramadd 라는 함수를 작성 한 후 아래와 같이 실행해 봅시다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramadd.ps1
+
+PS C:\Users\k3y6reak\Desktop> paramadd 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop> paramadd 1 "2"
+3
+
+PS C:\Users\k3y6reak\Desktop> paramadd 1 "b"
+값 "b"을(를) "System.Int32" 유형으로 변환할 수 없습니다. 오류: "입력 문자열의 형식이 잘못되었습니다."
+위치 C:\Users\k3y6reak\Desktop\paramadd.ps1:2 문자:5
++     $num1 + $num2
++     ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvalidCastFromStringToInteger
+{% endhighlight %} 
+
+인자 값으로 1과 2를 넣어 실행한 경우 정상적으로 3이라는 결과를 출력해 줍니다.
+
+여기서 2를 문자열 "2"로 변환하여 넣은 경우도 신기하게 3이라는 결과를 출력해줍니다.
+
+`숫자 형태로 이루어진 문자`는 PowerShell에서 숫자로 변환하여 실행을 해줍니다.
+
+진짜 문자형태인 "b"를 넣었을 경우에는 에러를 발생합니다. 에러의 내용을 살펴보면 `"b"를 "System.Int32"유형으로 변환할 수 없습니다.` 라고 출력하는 것을 보아 앞의 `$num1의 형태가 Int32이기 때문에 이에 맞춰 변환하는 과정`에서 에러가 발생한 것입니다.
+
+반대로 "1"과 2를 넣은 경우에는 정상적으로 실행됩니다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> paramadd "1" 2
+12
+{% endhighlight %} 
+
+어떤 연산을 하는 경우 앞의 변수의 형태에 따라 뒤의 변수 형태를 변환하는 것을 알 수 있습니다.
+
+또한 인자 값을 지정하여 함수를 실행할 수도 있습니다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> paramadd -num1 1 -num2 2
+3
+
+PS C:\Users\k3y6reak\Desktop> paramadd -num2 1 -num1 2
+3
+{% endhighlight %} 
+
+함수에서 사용하는 변수를 `-`과 함께 사용하여 `순서에 상관없이` 사용할 수 있습니다.
+
+
+다음으로 함수의 인자 개수에 대해서 설명하겠습니다.
+
+{% highlight ps %}
+function overparam ($num1, $num2)
+{
+    $num1 + $num2
+}
+{% endhighlight %} 
+
+위와 같이 overparam 함수를 작성합니다. overparam에서 사용하는 인자 값의 개수는 2개 인데 아래 실행 예제를 살펴보면 3개의 인자 값을 넣어도 에러를 발생하지 않습니다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> overparam 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop> overparam 1 2 3
+3
+{% endhighlight %} 
+
+
+보통 다른 언어에서는 인자 값을 맞춰 코딩을 하기 때문에 에러가 발생하는데 PowerShell의 경우 에러를 출력하지 않습니다.
+
+
+{% highlight ps %}
+function overparam2 ($num1, $num2){
+    $num1 + $num2
+    $args
+}
+{% endhighlight %}
+
+위와 같이 스크립트를 작성한 후 아래와 같이 실행해 봅시다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\overparam2.ps1
+
+PS C:\Users\k3y6reak\Desktop> overparam2 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop> overparam2 1 2 3
+3
+3
+
+PS C:\Users\k3y6reak\Desktop> overparam2 1 2 3 4
+3
+3
+4
+
+PS C:\Users\k3y6reak\Desktop> overparam2 1 2 3 4 5
+3
+3
+4
+5
+{% endhighlight %} 
+
+위 실행예제를 보면 인자 개수가 2개이지만 값을 3개, 4개 넣었을 때 `$args`를 통해 출력 된 다는 것을 알 수 있습니다.
+
+
+<br/><br/>
+#### Default Value
+
+c++에서 함수의 `Default value(기본 값)`을 지정할 수 있는데, PowerShell에서도 기본 값을 사용할 수 있습니다.
+
+
+{% highlight ps %}
+function defaultvalue($num1 = 11, $num2){
+    $num1 + $num2
+}
+{% endhighlight %}
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\defaultvalue.ps1
+
+PS C:\Users\k3y6reak\Desktop> defaultvalue 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop> defaultvalue 2
+2
+
+PS C:\Users\k3y6reak\Desktop> defaultvalue -num2 2
+13
+{% endhighlight %}
+
+$num1의 값을 11로 기본 값으로 선언하고 실행합니다. 인자 값이 있는 경우에는 해당 값을 이용해 연산을 하지만 없는 경우 기본 값을 이용해 연산을 합니다.
+
+추가적으로 함수 내에서 사용하는 변수는 `지역변수`입니다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> $num1 = 11
+PS C:\Users\k3y6reak\Desktop> function add($num1 = 2, $num2) {
+>> $num1 + $num2
+>> }
+PS C:\Users\k3y6reak\Desktop> $num1
+11
+PS C:\Users\k3y6reak\Desktop> add 1 2
+3
+PS C:\Users\k3y6reak\Desktop> add -num2 2
+4
+{% endhighlight %}
+
+
+
+<br/><br/>
+#### Mandatory
+
+다음으로는 함수의 인자의 조건에 대해서 알아보겠습니다. PowreShell에서는 인자 값에 대한 조건을 줄 수 있는데 `param([parameter () ], [parameter () ])`과 같은 형식을 사용합니다. 아래 예제를 보겠습니다.
+
+
+{% highlight ps %}
+function paramcheck
+{
+    param([parameter (Mandatory = $true)]$val1, [Parameter()]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}
+{% endhighlight %}
+
+소스코드를 보면 `Mandatory = $true`가 작성된 것을 볼 수 있는데, `Mandatory`는 `의무적인`이라는 뜻으로 해당 변수에 대해서는 무조건 값이 필요하다는 것을 뜻합니다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop> paramcheck 1 2
+val1 is 1
+val2 is 2
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val1 1 -val2 2
+val1 is 1
+val2 is 2
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val1 1
+val1 is 1
+val2 is 
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val2 2
+cmdlet paramcheck(명령 파이프라인 위치 1)
+다음 매개 변수에 대한 값을 제공하십시오.
+val1: 1
+val1 is 1
+val2 is 2
+{% endhighlight %}
+
+위 실행 예제를 보면 알 수 있듯이 `val2`에 대한 값만 전달하는 경우 사용자마다 다르지만 에러를 발생하거나 위 경우처럼 val1에 대한 값을 요구하게 됩니다.
+
+
+
+<br/><br/>
+#### Position
+`Position`에 대해서 알아보겠습니다.
+
+{% highlight ps %}
+function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 1)]$val1, [Parameter(Position = 0)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}
+{% endhighlight %}
+
+`Position`은 각 인자 값에 대한 `순서`를 지정하는 것 입니다. 아래 실행 예제를 보도록 하겠습니다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop> paramcheck 1 2
+val1 is 2
+val2 is 1
+{% endhighlight %}
+
+두 번째 인자 값인 `val2`는 `Posiotion = 0`으로 되어있고 `val1`은 `Position = 1`로 되어있기 때문에 순서 상 val2가 먼저 값을 받게 됩니다.
+
+<br/><br/>
+#### ValueFromPipeline
+
+`ValueFromPipeline`에 대해서 알아보겠습니다.
+
+{% highlight ps %}
+function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}
+{% endhighlight %}
+
+`ValueFromPipeline`은 Pipeline을 통해 함수의 인자 값을 넣어줄 수 있는 방법을 말합니다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop> 33 | paramcheck
+val1 is 33
+val2 is 
+
+{% endhighlight %}
+
+
+
+<br/><br/>
+#### AllowNull
+
+`AllowNull`에 대해서 알아보겠습니다.
+
+{% highlight ps %}
+function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}
+{% endhighlight %}
+
+위 예제에서 `val1`에 대한 값을 `NULL`로 하고 실행하면 아래와 같이 에러가 발생합니다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val1 $NULL -val2 2
+paramcheck : 'val1' 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.
+위치 줄:1 문자:18
++ paramcheck -val1 $NULL -val2 2
++                  ~~~~~
+    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,paramch 
+   eck
+{% endhighlight %}
+
+{% highlight ps %}
+function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [AllowNull()]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}
+{% endhighlight %}
+
+위와 같이 `[AllowNull()]`를 작성한 후 실행하면 아래와 같이 에러가 발생하지 않는 것을 볼 수 있습니다.
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val1 $NULL -val2 2
+val1 is 
+val2 is 2
+{% endhighlight %}
+
+
+<br/><br/>
+#### ValidateSet
+
+`ValidateSet`에 대해서 알아보겠습니다.
+
+{% highlight ps %}
+function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [ValidateSet(1,2,3)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}
+{% endhighlight %}
+
+`paramcheck -val1`을 입력한 뒤, `tab`을 누르면 사용할 수 있는 값을 출력해 줍니다.
+
+이 외의 값을 사용하면 에러를 발생합니다.
+
+
+{% highlight ps %}
+PS C:\Users\k3y6reak\Desktop> . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val1 3 -val2 4
+val1 is 3
+val2 is 4
+
+PS C:\Users\k3y6reak\Desktop> paramcheck -val1 33 -val2 4
+paramcheck : 'val1' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. "33" 인수가 ValidateSet 특성에 지정된 "1,2,
+3" 집합에 속하지 않습니다. 집합에 속한 인수를 제공하고 명령을 다시 시도하십시오.
+위치 줄:1 문자:18
++ paramcheck -val1 33 -val2 4
++                  ~~
+    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,paramcheck
+{% endhighlight %}

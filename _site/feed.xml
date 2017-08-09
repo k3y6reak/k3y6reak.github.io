@@ -1,5 +1,346 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-08T18:13:47+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Execution Policy</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy.html" rel="alternate" type="text/html" title="Execution Policy" /><published>2017-08-08T17:59:00+09:00</published><updated>2017-08-08T17:59:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-09T13:47:19+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Functions</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Functios.html" rel="alternate" type="text/html" title="Functions" /><published>2017-08-08T20:29:00+09:00</published><updated>2017-08-08T20:29:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Functios</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Functios.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;먼저 스크립트를 작성할 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;PowerShell ISE&lt;/code&gt;를 이용하여 작성하는 방법이 있고, 앞서 Execution Policy에서 설명한 것 처럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;에디터&lt;/code&gt;를 이용하는 방법이 있습니다.&lt;/p&gt;
+
+&lt;p&gt;PowerShell ISE에서 스크립트를 작성할 때 아래 그림의 &lt;code class=&quot;highlighter-rouge&quot;&gt;스크립트&lt;/code&gt;를 누른 후 스크립트를 작성할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/powershell/functions/powershell_ise.png&quot; alt=&quot;powershell_ise&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;마찬가지로 &lt;code class=&quot;highlighter-rouge&quot;&gt;관리자 권한&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Set-Execution Byass&lt;/code&gt;를 실행해야 스크립트를 실행할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;스크립트를 작성하는 방법에 대해서 알았으니 함수에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;PowerShell에서 함수를 작성하는 방법은 &lt;code class=&quot;highlighter-rouge&quot;&gt;function Name () {}&lt;/code&gt; 꼴로 작성합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;dot-sourcing&quot;&gt;Dot Sourcing&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function add()
+{
+  1+3
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 코드를 작성한 후 ISE에서 실행을 하면 아래와 같이 에러가 발생합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; .\add.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; add
+add : 'add' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로
+가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ add
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (add:String) [], CommandNotFoundExcept 
+   ion
+    + FullyQualifiedErrorId : CommandNotFoundException&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;스크립트 파일 자체를 실행하면 아무런 결과도 나오지 않고 함수명을 바로 호출하면 에러가 발생합니다.&lt;/p&gt;
+
+&lt;p&gt;여기서 에러를 발생하지 않고 실행하는 방법이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Dot Sourcing&lt;/code&gt;입니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\add.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; add
+4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Dot Sourcing&lt;/code&gt;은 위 코드를 살펴보면 실행하고자 스크립트 앞에 &lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;을 붙여 한 번 실행한 뒤 함수명으로 바로 실행이 가능하도록 하는 것 입니다.&lt;/p&gt;
+
+&lt;p&gt;쉽게 말하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;해당 스크립트의 내용을 현재 쉘에 로드해 둔 것&lt;/code&gt;이라 생각하면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;자 이제, 함수를 작성하는 방법은 알았으니 함수의 본질로 넘어가 보도록 하겠습니다.&lt;/p&gt;
+
+&lt;p&gt;함수를 사용하는 건 &lt;code class=&quot;highlighter-rouge&quot;&gt;인자 값&lt;/code&gt;을 넘겨 &lt;code class=&quot;highlighter-rouge&quot;&gt;연산&lt;/code&gt;을 하는 것 입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;parameter&quot;&gt;Parameter&lt;/h4&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramadd ($num1, $num2){
+    $num1 + $num2
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 paramadd 라는 함수를 작성 한 후 아래와 같이 실행해 봅시다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramadd.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd 1 &quot;2&quot;
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd 1 &quot;b&quot;
+값 &quot;b&quot;을(를) &quot;System.Int32&quot; 유형으로 변환할 수 없습니다. 오류: &quot;입력 문자열의 형식이 잘못되었습니다.&quot;
+위치 C:\Users\k3y6reak\Desktop\paramadd.ps1:2 문자:5
++     $num1 + $num2
++     ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvalidCastFromStringToInteger&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;인자 값으로 1과 2를 넣어 실행한 경우 정상적으로 3이라는 결과를 출력해 줍니다.&lt;/p&gt;
+
+&lt;p&gt;여기서 2를 문자열 “2”로 변환하여 넣은 경우도 신기하게 3이라는 결과를 출력해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;숫자 형태로 이루어진 문자&lt;/code&gt;는 PowerShell에서 숫자로 변환하여 실행을 해줍니다.&lt;/p&gt;
+
+&lt;p&gt;진짜 문자형태인 “b”를 넣었을 경우에는 에러를 발생합니다. 에러의 내용을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;b&quot;를 &quot;System.Int32&quot;유형으로 변환할 수 없습니다.&lt;/code&gt; 라고 출력하는 것을 보아 앞의 &lt;code class=&quot;highlighter-rouge&quot;&gt;$num1의 형태가 Int32이기 때문에 이에 맞춰 변환하는 과정&lt;/code&gt;에서 에러가 발생한 것입니다.&lt;/p&gt;
+
+&lt;p&gt;반대로 “1”과 2를 넣은 경우에는 정상적으로 실행됩니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd &quot;1&quot; 2
+12&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;어떤 연산을 하는 경우 앞의 변수의 형태에 따라 뒤의 변수 형태를 변환하는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;또한 인자 값을 지정하여 함수를 실행할 수도 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd -num1 1 -num2 2
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd -num2 1 -num1 2
+3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;함수에서 사용하는 변수를 &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;과 함께 사용하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;순서에 상관없이&lt;/code&gt; 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;다음으로 함수의 인자 개수에 대해서 설명하겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function overparam ($num1, $num2)
+{
+    $num1 + $num2
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 overparam 함수를 작성합니다. overparam에서 사용하는 인자 값의 개수는 2개 인데 아래 실행 예제를 살펴보면 3개의 인자 값을 넣어도 에러를 발생하지 않습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; overparam 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; overparam 1 2 3
+3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;보통 다른 언어에서는 인자 값을 맞춰 코딩을 하기 때문에 에러가 발생하는데 PowerShell의 경우 에러를 출력하지 않습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function overparam2 ($num1, $num2){
+    $num1 + $num2
+    $args
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 스크립트를 작성한 후 아래와 같이 실행해 봅시다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\overparam2.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2 3
+3
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2 3 4
+3
+3
+4
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2 3 4 5
+3
+3
+4
+5&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 실행예제를 보면 인자 개수가 2개이지만 값을 3개, 4개 넣었을 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;$args&lt;/code&gt;를 통해 출력 된 다는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;default-value&quot;&gt;Default Value&lt;/h4&gt;
+
+&lt;p&gt;c++에서 함수의 &lt;code class=&quot;highlighter-rouge&quot;&gt;Default value(기본 값)&lt;/code&gt;을 지정할 수 있는데, PowerShell에서도 기본 값을 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function defaultvalue($num1 = 11, $num2){
+    $num1 + $num2
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\defaultvalue.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; defaultvalue 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; defaultvalue 2
+2
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; defaultvalue -num2 2
+13&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;$num1의 값을 11로 기본 값으로 선언하고 실행합니다. 인자 값이 있는 경우에는 해당 값을 이용해 연산을 하지만 없는 경우 기본 값을 이용해 연산을 합니다.&lt;/p&gt;
+
+&lt;p&gt;추가적으로 함수 내에서 사용하는 변수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;지역변수&lt;/code&gt;입니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; $num1 = 11
+PS C:\Users\k3y6reak\Desktop&amp;gt; function add($num1 = 2, $num2) {
+&amp;gt;&amp;gt; $num1 + $num2
+&amp;gt;&amp;gt; }
+PS C:\Users\k3y6reak\Desktop&amp;gt; $num1
+11
+PS C:\Users\k3y6reak\Desktop&amp;gt; add 1 2
+3
+PS C:\Users\k3y6reak\Desktop&amp;gt; add -num2 2
+4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;mandatory&quot;&gt;Mandatory&lt;/h4&gt;
+
+&lt;p&gt;다음으로는 함수의 인자의 조건에 대해서 알아보겠습니다. PowreShell에서는 인자 값에 대한 조건을 줄 수 있는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;param([parameter () ], [parameter () ])&lt;/code&gt;과 같은 형식을 사용합니다. 아래 예제를 보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
+{
+    param([parameter (Mandatory = $true)]$val1, [Parameter()]$val2)
+
+    Write-Output &quot;val1 is $val1&quot;
+    Write-Output &quot;val2 is $val2&quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;소스코드를 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Mandatory = $true&lt;/code&gt;가 작성된 것을 볼 수 있는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;Mandatory&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;의무적인&lt;/code&gt;이라는 뜻으로 해당 변수에 대해서는 무조건 값이 필요하다는 것을 뜻합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck 1 2
+val1 is 1
+val2 is 2
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 1 -val2 2
+val1 is 1
+val2 is 2
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 1
+val1 is 1
+val2 is 
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val2 2
+cmdlet paramcheck(명령 파이프라인 위치 1)
+다음 매개 변수에 대한 값을 제공하십시오.
+val1: 1
+val1 is 1
+val2 is 2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 실행 예제를 보면 알 수 있듯이 &lt;code class=&quot;highlighter-rouge&quot;&gt;val2&lt;/code&gt;에 대한 값만 전달하는 경우 사용자마다 다르지만 에러를 발생하거나 위 경우처럼 val1에 대한 값을 요구하게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;position&quot;&gt;Position&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 1)]$val1, [Parameter(Position = 0)]$val2)
+
+    Write-Output &quot;val1 is $val1&quot;
+    Write-Output &quot;val2 is $val2&quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt;은 각 인자 값에 대한 &lt;code class=&quot;highlighter-rouge&quot;&gt;순서&lt;/code&gt;를 지정하는 것 입니다. 아래 실행 예제를 보도록 하겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck 1 2
+val1 is 2
+val2 is 1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;두 번째 인자 값인 &lt;code class=&quot;highlighter-rouge&quot;&gt;val2&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Posiotion = 0&lt;/code&gt;으로 되어있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;val1&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Position = 1&lt;/code&gt;로 되어있기 때문에 순서 상 val2가 먼저 값을 받게 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;valuefrompipeline&quot;&gt;ValueFromPipeline&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ValueFromPipeline&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output &quot;val1 is $val1&quot;
+    Write-Output &quot;val2 is $val2&quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ValueFromPipeline&lt;/code&gt;은 Pipeline을 통해 함수의 인자 값을 넣어줄 수 있는 방법을 말합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; 33 | paramcheck
+val1 is 33
+val2 is &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;allownull&quot;&gt;AllowNull&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AllowNull&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output &quot;val1 is $val1&quot;
+    Write-Output &quot;val2 is $val2&quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 예제에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;val1&lt;/code&gt;에 대한 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;로 하고 실행하면 아래와 같이 에러가 발생합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 $NULL -val2 2
+paramcheck : 'val1' 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.
+위치 줄:1 문자:18
++ paramcheck -val1 $NULL -val2 2
++                  ~~~~~
+    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,paramch 
+   eck&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [AllowNull()]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output &quot;val1 is $val1&quot;
+    Write-Output &quot;val2 is $val2&quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;[AllowNull()]&lt;/code&gt;를 작성한 후 실행하면 아래와 같이 에러가 발생하지 않는 것을 볼 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 $NULL -val2 2
+val1 is 
+val2 is 2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;validateset&quot;&gt;ValidateSet&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ValidateSet&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [ValidateSet(1,2,3)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output &quot;val1 is $val1&quot;
+    Write-Output &quot;val2 is $val2&quot;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;paramcheck -val1&lt;/code&gt;을 입력한 뒤, &lt;code class=&quot;highlighter-rouge&quot;&gt;tab&lt;/code&gt;을 누르면 사용할 수 있는 값을 출력해 줍니다.&lt;/p&gt;
+
+&lt;p&gt;이 외의 값을 사용하면 에러를 발생합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 3 -val2 4
+val1 is 3
+val2 is 4
+
+PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 33 -val2 4
+paramcheck : 'val1' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. &quot;33&quot; 인수가 ValidateSet 특성에 지정된 &quot;1,2,
+3&quot; 집합에 속하지 않습니다. 집합에 속한 인수를 제공하고 명령을 다시 시도하십시오.
+위치 줄:1 문자:18
++ paramcheck -val1 33 -val2 4
++                  ~~
+    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,paramcheck&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Execution Policy</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy.html" rel="alternate" type="text/html" title="Execution Policy" /><published>2017-08-08T17:59:00+09:00</published><updated>2017-08-08T17:59:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;PowerShell에서 Script를 바로 실행할 수 없습니다.&lt;/p&gt;
 
@@ -1336,97 +1677,4 @@ esp 	0xbffff146 	0xbffff146&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;그 후 0xbffff146에 있는 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;pop eip&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;jmp eip&lt;/code&gt;하면서 해당 위치로 이동하게 됩니다.&lt;/p&gt;
 
-&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;|shellcode 주소|\x90*n|shellcode|stack 주소 - 0x4|&lt;/code&gt;와 같은 payload를 사용할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry><entry><title type="html">Buffer Overflow</title><link href="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html" rel="alternate" type="text/html" title="Buffer Overflow" /><published>2017-07-24T15:03:00+09:00</published><updated>2017-07-24T15:03:00+09:00</updated><id>http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow</id><content type="html" xml:base="http://localhost:4000/technique/system_hacking/2017/07/24/Buffer_OverFlow.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
-
-&lt;p&gt;Buffer Overflow (이하 bof)는 크기가 정해진 배열에 해당 크기 만큼 입력해야 하지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;버퍼보다 큰 값&lt;/code&gt;
-을 넣을 수 있는 취약점을 말합니다.&lt;/p&gt;
-
-&lt;p&gt;예를들어, &lt;code class=&quot;highlighter-rouge&quot;&gt;char buf[10]&lt;/code&gt;로 선언했다면 buf는 총 10개의 공간을 갖게 됩니다. 하지만 프로그램이 실행 되면서 buf에 10개가 아닌 11개, 12개 혹은 그 이상의 값이 들어가는 것을 확인하지 않고 실행 하므로서 발생하는 취약점을 뜻 합니다.&lt;/p&gt;
-
-&lt;p&gt;그래서 bof는 stack corruption으로도 불립니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;설명&quot;&gt;설명&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 소스코드를 보면 buf라는 char 배열에 총 8개의 값을 넣을 수 있고, scanf를 이용해서 buf에 값을 넣어줍니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf()&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;크기 제한&lt;/code&gt;이 없기 때문에 해당 부분에서 취약점이 발생할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
-0x0804843d &amp;lt;+0&amp;gt;:	push	ebp
-0x0804843e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-0x08048440 &amp;lt;+3&amp;gt;:	sub 	esp,0x10
-0x08048443 &amp;lt;+6&amp;gt;:	lea 	eax,[ebp-0x8]
-0x08048446 &amp;lt;+9&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-0x0804844a &amp;lt;+13&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
-0x08048451 &amp;lt;+20&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;
-0x08048456 &amp;lt;+25&amp;gt;:	mov	eax,0x0
-0x0804845b &amp;lt;+30&amp;gt;:	leave
-0x0804845c &amp;lt;+31&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 코드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;push ebp&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;mov ebp,esp&lt;/code&gt;가 함수의 프롤로그가 되며, &lt;code class=&quot;highlighter-rouge&quot;&gt;leave&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ret&lt;/code&gt;이 함수의 에필로그가 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;0x08048446 &amp;lt;+9&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-0x0804844a &amp;lt;+13&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
-0x08048451 &amp;lt;+20&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;스택 구조에 대해서 설명을 붙이자면 위 어셈블리 코드를 보면 scanf가 실행되기 전 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp+0x4&lt;/code&gt;에 값을 넣고 있는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scanf&lt;/code&gt;함수는 보통 &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf(&quot;%s&quot;, buf)&lt;/code&gt; 형태로 코드를 작성합니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;buf&lt;/code&gt;가 &lt;code class=&quot;highlighter-rouge&quot;&gt;인자 값&lt;/code&gt;이 되기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp+0x4&lt;/code&gt;에 값을 넣어주게 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/2wx &lt;span class=&quot;nv&quot;&gt;$esp&lt;/span&gt;
-0xbffff148:	0x080484f0	0xbffff150
-&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/s 0x80484f0
-0x80484f0:	&lt;span class=&quot;s2&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;esp 위치부터 2개가 값을 확인해 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x80484f0&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;0xbffff150&lt;/code&gt;이 있습니다. scanf가 필요한 인자 값이 2개 이므로 각각 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;buf&lt;/code&gt;를 뜻하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;scanf를 실행한 뒤에 buf의 주소를 확인해 보면 값이 쌓여있는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx 0xbffff150
-0xbffff150:	0x34333231	0x00000000	0x00000000	0xb7e1fa83
-0xbffff160:	0x00000001	0xbffff1f4	0xbffff1fc	0xb7feccea
-0xbffff170:	0x00000001	0xbffff1f4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1234&lt;/code&gt;라는 값을 입력했더니 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x34333231&lt;/code&gt;라는 값이 저장되었습니다. 1234라는 값이 각각 hex 값으로 저장된 것입니다. 하지만 ascii 코드를 살펴보면 4321 순으로 저장된 것을 볼 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;이는 &lt;code class=&quot;highlighter-rouge&quot;&gt;리틀엔디안과 빅엔디안&lt;/code&gt;차이에 따라서 결정됩니다.&lt;/p&gt;
-
-&lt;p&gt;코드를 하나씩 살펴보면서 값이 어떻게 저장되는지 확인해 봤습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf&lt;/code&gt;함수에서 취약점이 발생한다고 했으니 어떻게 되는지 알아보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/4wx 0xbffff150
-0xbffff150:	0x34333231	0x38373635	0x00000000	0xb7e1fa83&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;이번에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;12345678&lt;/code&gt;을 입력했습니다. 위 스택을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;4321 8765&lt;/code&gt; 순으로 쌓인 것을 알 수 있으며 buf의 크기가 8인데 8자리를 모두 사용했습니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf 함수는 크기를 제한하지 않으므로&lt;/code&gt; 값을 더 입력해 보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/4wx 0xbffff150
-0xbffff150:	0x34333231	0x38373635	0x32313039	0x36353433&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;값을 더 입력했더니 뒤에 존재했던 값들이 모두 덮어 씌워졌습니다.&lt;/p&gt;
-
-&lt;p&gt;이 상태에서 프로그램을 진행 시키면 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x36353433 in ?? ()&lt;/code&gt; 과 같이 나타납니다. 이 말은 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x36353433 주소로 이동&lt;/code&gt;을 했다는 것 입니다.&lt;/p&gt;
-
-&lt;p&gt;이제 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Save Frame Pointer&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;Return&lt;/code&gt;을 알아야 합니다.&lt;/p&gt;
-
-&lt;p&gt;Save Frame Pointer는 &lt;code class=&quot;highlighter-rouge&quot;&gt;이전함수에서의 ebp 값을 저장&lt;/code&gt;해 둡니다. 해당 함수가 실행되고 난 후에 다시 돌아가야 할 때 이 값을 기준으로 돌아가게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;Return은 해당 주소로 이동하는 것입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/system_hacking/bof/stack.png&quot; alt=&quot;stack&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Stack의 구조는 위와 같이 이루어져 있기 때문에 앞서 값을 넘치게 입력했을 경우 0x36353433로 이동하게 된 것입니다.&lt;/p&gt;
-
-&lt;p&gt;이러한 방법으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;RET 값을 조작해서 system 함수를 호출하거나 프로그램 상에서 호출되지 않는 함수에도 접근이 가능&lt;/code&gt;하게 됩니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry></feed>
+&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;|shellcode 주소|\x90*n|shellcode|stack 주소 - 0x4|&lt;/code&gt;와 같은 payload를 사용할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry></feed>

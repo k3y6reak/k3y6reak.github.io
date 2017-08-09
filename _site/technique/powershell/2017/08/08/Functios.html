@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/css/cs_style.css">
+<link rel="stylesheet" href="/assets/css/post.css">
+<link rel="stylesheet" href="/assets/css/syntax.css">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+  <body>
+
+    <div class="container">
+  <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">K3Y6REAK</a>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="containerNavbar">
+    <ul class="navbar-nav my-2 my-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/about.html">About</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programming</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/programming/c">C</a>
+          <a class="dropdown-item" href="/programming/cpp">C++</a>
+          <a class="dropdown-item" href="/programming/python">Python</a>
+          <a class="dropdown-item" href="/programming/ruby">Ruby</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">High Level Technique</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/technique/reversing">Reversing</a>
+          <a class="dropdown-item" href="/technique/system_hacking">System Hacking</a>
+          <a class="dropdown-item" href="/technique/powershell">PowerShell</a>
+          <a class="dropdown-item" href="/technique/web_hacking">Web Hacking</a>
+          <a class="dropdown-item" href="/technique/shellcoding">Shellcoding</a>
+          <a class="dropdown-item" href="/technique/windows_system">Windows System</a>
+          <a class="dropdown-item" href="/technique/windows_forensic">Windows Forensic</a>
+          <a class="dropdown-item" href="/technique/linux_forensic">Linux Forensic</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wargame</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/wargame/reversing_kr">reversing.kr</a>
+          <a class="dropdown-item" href="/wargame/pwnable_kr">pwnable.kr</a>
+          <a class="dropdown-item" href="/wargame/wargame_kr">wargame.kr</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/ctfs">CTFs</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+</div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Functions</h1>
+    <p class="post-meta">
+      <time datetime="2017-08-08T20:29:00+09:00" itemprop="datePublished">
+        
+        Aug 8, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><br /><br /></p>
+
+<p>PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.</p>
+
+<p>먼저 스크립트를 작성할 때 <code class="highlighter-rouge">PowerShell ISE</code>를 이용하여 작성하는 방법이 있고, 앞서 Execution Policy에서 설명한 것 처럼 <code class="highlighter-rouge">에디터</code>를 이용하는 방법이 있습니다.</p>
+
+<p>PowerShell ISE에서 스크립트를 작성할 때 아래 그림의 <code class="highlighter-rouge">스크립트</code>를 누른 후 스크립트를 작성할 수 있습니다.</p>
+
+<p><img src="/img/powershell/functions/powershell_ise.png" alt="powershell_ise" /></p>
+
+<p>마찬가지로 <code class="highlighter-rouge">관리자 권한</code>에서 <code class="highlighter-rouge">Set-Execution Byass</code>를 실행해야 스크립트를 실행할 수 있습니다.</p>
+
+<p>스크립트를 작성하는 방법에 대해서 알았으니 함수에 대해서 알아보겠습니다.</p>
+
+<p>PowerShell에서 함수를 작성하는 방법은 <code class="highlighter-rouge">function Name () {}</code> 꼴로 작성합니다.</p>
+
+<p><br /><br /></p>
+<h4 id="dot-sourcing">Dot Sourcing</h4>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function add()
+{
+  1+3
+}</code></pre></figure>
+
+<p>위와 같이 코드를 작성한 후 ISE에서 실행을 하면 아래와 같이 에러가 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; .\add.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; add
+add : 'add' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로
+가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ add
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (add:String) [], CommandNotFoundExcept 
+   ion
+    + FullyQualifiedErrorId : CommandNotFoundException</code></pre></figure>
+
+<p>스크립트 파일 자체를 실행하면 아무런 결과도 나오지 않고 함수명을 바로 호출하면 에러가 발생합니다.</p>
+
+<p>여기서 에러를 발생하지 않고 실행하는 방법이 <code class="highlighter-rouge">Dot Sourcing</code>입니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\add.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; add
+4</code></pre></figure>
+
+<p><code class="highlighter-rouge">Dot Sourcing</code>은 위 코드를 살펴보면 실행하고자 스크립트 앞에 <code class="highlighter-rouge">.</code>을 붙여 한 번 실행한 뒤 함수명으로 바로 실행이 가능하도록 하는 것 입니다.</p>
+
+<p>쉽게 말하면 <code class="highlighter-rouge">해당 스크립트의 내용을 현재 쉘에 로드해 둔 것</code>이라 생각하면 됩니다.</p>
+
+<p>자 이제, 함수를 작성하는 방법은 알았으니 함수의 본질로 넘어가 보도록 하겠습니다.</p>
+
+<p>함수를 사용하는 건 <code class="highlighter-rouge">인자 값</code>을 넘겨 <code class="highlighter-rouge">연산</code>을 하는 것 입니다.</p>
+
+<p><br /><br /></p>
+<h4 id="parameter">Parameter</h4>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramadd ($num1, $num2){
+    $num1 + $num2
+}</code></pre></figure>
+
+<p>위와 같이 paramadd 라는 함수를 작성 한 후 아래와 같이 실행해 봅시다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramadd.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; paramadd 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; paramadd 1 "2"
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; paramadd 1 "b"
+값 "b"을(를) "System.Int32" 유형으로 변환할 수 없습니다. 오류: "입력 문자열의 형식이 잘못되었습니다."
+위치 C:\Users\k3y6reak\Desktop\paramadd.ps1:2 문자:5
++     $num1 + $num2
++     ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvalidCastFromStringToInteger</code></pre></figure>
+
+<p>인자 값으로 1과 2를 넣어 실행한 경우 정상적으로 3이라는 결과를 출력해 줍니다.</p>
+
+<p>여기서 2를 문자열 “2”로 변환하여 넣은 경우도 신기하게 3이라는 결과를 출력해줍니다.</p>
+
+<p><code class="highlighter-rouge">숫자 형태로 이루어진 문자</code>는 PowerShell에서 숫자로 변환하여 실행을 해줍니다.</p>
+
+<p>진짜 문자형태인 “b”를 넣었을 경우에는 에러를 발생합니다. 에러의 내용을 살펴보면 <code class="highlighter-rouge">"b"를 "System.Int32"유형으로 변환할 수 없습니다.</code> 라고 출력하는 것을 보아 앞의 <code class="highlighter-rouge">$num1의 형태가 Int32이기 때문에 이에 맞춰 변환하는 과정</code>에서 에러가 발생한 것입니다.</p>
+
+<p>반대로 “1”과 2를 넣은 경우에는 정상적으로 실행됩니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; paramadd "1" 2
+12</code></pre></figure>
+
+<p>어떤 연산을 하는 경우 앞의 변수의 형태에 따라 뒤의 변수 형태를 변환하는 것을 알 수 있습니다.</p>
+
+<p>또한 인자 값을 지정하여 함수를 실행할 수도 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; paramadd -num1 1 -num2 2
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; paramadd -num2 1 -num1 2
+3</code></pre></figure>
+
+<p>함수에서 사용하는 변수를 <code class="highlighter-rouge">-</code>과 함께 사용하여 <code class="highlighter-rouge">순서에 상관없이</code> 사용할 수 있습니다.</p>
+
+<p>다음으로 함수의 인자 개수에 대해서 설명하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function overparam ($num1, $num2)
+{
+    $num1 + $num2
+}</code></pre></figure>
+
+<p>위와 같이 overparam 함수를 작성합니다. overparam에서 사용하는 인자 값의 개수는 2개 인데 아래 실행 예제를 살펴보면 3개의 인자 값을 넣어도 에러를 발생하지 않습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; overparam 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; overparam 1 2 3
+3</code></pre></figure>
+
+<p>보통 다른 언어에서는 인자 값을 맞춰 코딩을 하기 때문에 에러가 발생하는데 PowerShell의 경우 에러를 출력하지 않습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function overparam2 ($num1, $num2){
+    $num1 + $num2
+    $args
+}</code></pre></figure>
+
+<p>위와 같이 스크립트를 작성한 후 아래와 같이 실행해 봅시다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\overparam2.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; overparam2 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; overparam2 1 2 3
+3
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; overparam2 1 2 3 4
+3
+3
+4
+
+PS C:\Users\k3y6reak\Desktop&gt; overparam2 1 2 3 4 5
+3
+3
+4
+5</code></pre></figure>
+
+<p>위 실행예제를 보면 인자 개수가 2개이지만 값을 3개, 4개 넣었을 때 <code class="highlighter-rouge">$args</code>를 통해 출력 된 다는 것을 알 수 있습니다.</p>
+
+<p><br /><br /></p>
+<h4 id="default-value">Default Value</h4>
+
+<p>c++에서 함수의 <code class="highlighter-rouge">Default value(기본 값)</code>을 지정할 수 있는데, PowerShell에서도 기본 값을 사용할 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function defaultvalue($num1 = 11, $num2){
+    $num1 + $num2
+}</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\defaultvalue.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; defaultvalue 1 2
+3
+
+PS C:\Users\k3y6reak\Desktop&gt; defaultvalue 2
+2
+
+PS C:\Users\k3y6reak\Desktop&gt; defaultvalue -num2 2
+13</code></pre></figure>
+
+<p>$num1의 값을 11로 기본 값으로 선언하고 실행합니다. 인자 값이 있는 경우에는 해당 값을 이용해 연산을 하지만 없는 경우 기본 값을 이용해 연산을 합니다.</p>
+
+<p>추가적으로 함수 내에서 사용하는 변수는 <code class="highlighter-rouge">지역변수</code>입니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; $num1 = 11
+PS C:\Users\k3y6reak\Desktop&gt; function add($num1 = 2, $num2) {
+&gt;&gt; $num1 + $num2
+&gt;&gt; }
+PS C:\Users\k3y6reak\Desktop&gt; $num1
+11
+PS C:\Users\k3y6reak\Desktop&gt; add 1 2
+3
+PS C:\Users\k3y6reak\Desktop&gt; add -num2 2
+4</code></pre></figure>
+
+<p><br /><br /></p>
+<h4 id="mandatory">Mandatory</h4>
+
+<p>다음으로는 함수의 인자의 조건에 대해서 알아보겠습니다. PowreShell에서는 인자 값에 대한 조건을 줄 수 있는데 <code class="highlighter-rouge">param([parameter () ], [parameter () ])</code>과 같은 형식을 사용합니다. 아래 예제를 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramcheck
+{
+    param([parameter (Mandatory = $true)]$val1, [Parameter()]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}</code></pre></figure>
+
+<p>소스코드를 보면 <code class="highlighter-rouge">Mandatory = $true</code>가 작성된 것을 볼 수 있는데, <code class="highlighter-rouge">Mandatory</code>는 <code class="highlighter-rouge">의무적인</code>이라는 뜻으로 해당 변수에 대해서는 무조건 값이 필요하다는 것을 뜻합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck 1 2
+val1 is 1
+val2 is 2
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 1 -val2 2
+val1 is 1
+val2 is 2
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 1
+val1 is 1
+val2 is 
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val2 2
+cmdlet paramcheck(명령 파이프라인 위치 1)
+다음 매개 변수에 대한 값을 제공하십시오.
+val1: 1
+val1 is 1
+val2 is 2</code></pre></figure>
+
+<p>위 실행 예제를 보면 알 수 있듯이 <code class="highlighter-rouge">val2</code>에 대한 값만 전달하는 경우 사용자마다 다르지만 에러를 발생하거나 위 경우처럼 val1에 대한 값을 요구하게 됩니다.</p>
+
+<p><br /><br /></p>
+<h4 id="position">Position</h4>
+<p><code class="highlighter-rouge">Position</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 1)]$val1, [Parameter(Position = 0)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}</code></pre></figure>
+
+<p><code class="highlighter-rouge">Position</code>은 각 인자 값에 대한 <code class="highlighter-rouge">순서</code>를 지정하는 것 입니다. 아래 실행 예제를 보도록 하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck 1 2
+val1 is 2
+val2 is 1</code></pre></figure>
+
+<p>두 번째 인자 값인 <code class="highlighter-rouge">val2</code>는 <code class="highlighter-rouge">Posiotion = 0</code>으로 되어있고 <code class="highlighter-rouge">val1</code>은 <code class="highlighter-rouge">Position = 1</code>로 되어있기 때문에 순서 상 val2가 먼저 값을 받게 됩니다.</p>
+
+<p><br /><br /></p>
+<h4 id="valuefrompipeline">ValueFromPipeline</h4>
+
+<p><code class="highlighter-rouge">ValueFromPipeline</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}</code></pre></figure>
+
+<p><code class="highlighter-rouge">ValueFromPipeline</code>은 Pipeline을 통해 함수의 인자 값을 넣어줄 수 있는 방법을 말합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; 33 | paramcheck
+val1 is 33
+val2 is </code></pre></figure>
+
+<p><br /><br /></p>
+<h4 id="allownull">AllowNull</h4>
+
+<p><code class="highlighter-rouge">AllowNull</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}</code></pre></figure>
+
+<p>위 예제에서 <code class="highlighter-rouge">val1</code>에 대한 값을 <code class="highlighter-rouge">NULL</code>로 하고 실행하면 아래와 같이 에러가 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 $NULL -val2 2
+paramcheck : 'val1' 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.
+위치 줄:1 문자:18
++ paramcheck -val1 $NULL -val2 2
++                  ~~~~~
+    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,paramch 
+   eck</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [AllowNull()]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}</code></pre></figure>
+
+<p>위와 같이 <code class="highlighter-rouge">[AllowNull()]</code>를 작성한 후 실행하면 아래와 같이 에러가 발생하지 않는 것을 볼 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 $NULL -val2 2
+val1 is 
+val2 is 2</code></pre></figure>
+
+<p><br /><br /></p>
+<h4 id="validateset">ValidateSet</h4>
+
+<p><code class="highlighter-rouge">ValidateSet</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function paramcheck
+{
+    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [ValidateSet(1,2,3)]$val1, [Parameter(Position = 1)]$val2)
+
+    Write-Output "val1 is $val1"
+    Write-Output "val2 is $val2"
+}</code></pre></figure>
+
+<p><code class="highlighter-rouge">paramcheck -val1</code>을 입력한 뒤, <code class="highlighter-rouge">tab</code>을 누르면 사용할 수 있는 값을 출력해 줍니다.</p>
+
+<p>이 외의 값을 사용하면 에러를 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Desktop&gt; . .\paramcheck.ps1
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 3 -val2 4
+val1 is 3
+val2 is 4
+
+PS C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 33 -val2 4
+paramcheck : 'val1' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. "33" 인수가 ValidateSet 특성에 지정된 "1,2,
+3" 집합에 속하지 않습니다. 집합에 속한 인수를 제공하고 명령을 다시 시도하십시오.
+위치 줄:1 문자:18
++ paramcheck -val1 33 -val2 4
++                  ~~
+    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,paramcheck</code></pre></figure>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    
+
+
+
+<div class="container">
+	<hr>
+	<section class="float-left">
+		&copy; 2017. SAHONG PAK all rights reserved.
+	</section>
+	<section class="float-right">
+		<a href="http://blog.rebforpwn.com">
+			<img src="/assets/img/rebforpwn.png" alt="RebForPwn" height="32" width="100">
+		</a>
+
+		<a href="http://">
+		<img src="/assets/img/github.svg" alt="github" height="32" width="32">
+		</a>
+
+		<a href="mailto:k3y6reak@naver.com">
+		<img src="/assets/img/mail.svg" alt="mail" height="32" width="32">
+		</a>
+	</section>
+</div>
+
+  </body>
+
+</html>
