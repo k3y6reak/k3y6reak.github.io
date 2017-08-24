@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/css/cs_style.css">
+<link rel="stylesheet" href="/assets/css/post.css">
+<link rel="stylesheet" href="/assets/css/syntax.css">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+  <body>
+
+    <div class="container">
+  <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">K3Y6REAK</a>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="containerNavbar">
+    <ul class="navbar-nav my-2 my-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/about.html">About</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programming</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/programming/c">C</a>
+          <a class="dropdown-item" href="/programming/cpp">C++</a>
+          <a class="dropdown-item" href="/programming/python">Python</a>
+          <a class="dropdown-item" href="/programming/ruby">Ruby</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">High Level Technique</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/technique/reversing">Reversing</a>
+          <a class="dropdown-item" href="/technique/system_hacking">System Hacking</a>
+          <a class="dropdown-item" href="/technique/powershell">PowerShell</a>
+          <a class="dropdown-item" href="/technique/web_hacking">Web Hacking</a>
+          <a class="dropdown-item" href="/technique/shellcoding">Shellcoding</a>
+          <a class="dropdown-item" href="/technique/windows_system">Windows System</a>
+          <a class="dropdown-item" href="/technique/windows_forensic">Windows Forensic</a>
+          <a class="dropdown-item" href="/technique/linux_forensic">Linux Forensic</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wargame</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/wargame/reversing_kr">reversing.kr</a>
+          <a class="dropdown-item" href="/wargame/pwnable_kr">pwnable.kr</a>
+          <a class="dropdown-item" href="/wargame/wargame_kr">wargame.kr</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/ctfs">CTFs</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+</div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Modules</h1>
+    <p class="post-meta">
+      <time datetime="2017-08-22T20:23:00+09:00" itemprop="datePublished">
+        
+        Aug 22, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><br /><br /></p>
+
+<p>PowerShell에서 Module에 관한 명령어를 알아보기 위해서 <code class="highlighter-rouge">Get-Help *module*</code>을 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; Get-Help *module*
+
+Name                              Category  Module                    Synopsis
+----                              --------  ------                    --------
+ImportSystemModules               Function                            ...
+Export-ModuleMember               Cmdlet    Microsoft.PowerShell.Core Specifies the module members that are exported.
+Get-Module                        Cmdlet    Microsoft.PowerShell.Core Gets the modules that have been imported or that can be imported into the current session.
+Import-Module                     Cmdlet    Microsoft.PowerShell.Core Adds modules to the current session.
+New-Module                        Cmdlet    Microsoft.PowerShell.Core Creates a new dynamic module that exists only in memory.
+New-ModuleManifest                Cmdlet    Microsoft.PowerShell.Core Creates a new module manifest.
+Remove-Module                     Cmdlet    Microsoft.PowerShell.Core Removes modules from the current session.
+Test-ModuleManifest               Cmdlet    Microsoft.PowerShell.Core Verifies that a module manifest file accurately describes the contents of a module.
+InModuleScope                     Function  Pester                    ...
+Uninstall-Module                  Function  PowerShellGet             ...
+Install-Module                    Function  PowerShellGet             ...
+Publish-Module                    Function  PowerShellGet             ...
+Update-ModuleManifest             Function  PowerShellGet             ...
+Save-Module                       Function  PowerShellGet             ...
+Update-Module                     Function  PowerShellGet             ...
+Get-InstalledModule               Function  PowerShellGet             ...
+Find-Module                       Function  PowerShellGet             ...
+about_Modules                     HelpFile                            Explains how to install, import, and use Windows PowerShell modules.</code></pre></figure>
+
+<p>주로 사용하게 될 명령어는 <code class="highlighter-rouge">Import-module</code>과 <code class="highlighter-rouge">Remove-module</code> 입니다. 모듈을 사용하고자 할 때는 Import-module을 사용하고 모듈을 해제 하고자할 때는 Remove-module을 사용합니다.</p>
+
+<p>PowerShell에서 모듈을 사용하기 위해서 <code class="highlighter-rouge">$env:PSModulePath</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; $env:PSModulePath
+C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules</code></pre></figure>
+
+<p>위 결과를 보면 모듈에 대한 경로가 나타나게 된다. 여기서 <code class="highlighter-rouge">C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules</code>로 이동하면 WindowsPowerShell 폴더가 없다는 에러 메시지가 나타난다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak&gt; cd C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+cd : 'C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules' 경로는 존재하지 않으므로 찾을 수 없습니다.
+위치 줄:1 문자:1
++ cd C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\k3y6re...erShell\Modules:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\k3y6reak&gt; cd C:\Users\k3y6reak\Documents\
+PS C:\Users\k3y6reak\Documents&gt; mkdir WindowsPowerShell
+
+
+    디렉터리: C:\Users\k3y6reak\Documents
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----   2017. 8. 24.  오전 11:23                WindowsPowerShell
+
+
+PS C:\Users\k3y6reak\Documents&gt; cd WindowsPowerShell
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell&gt; mkdir Modules
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----   2017. 8. 24.  오전 11:24                Modules</code></pre></figure>
+
+<p>위와 같이 해당 디렉토리를 생성하고 <code class="highlighter-rouge">Modules 디렉토리</code>에서 모듈을 저장하면 된다.</p>
+
+<p>그렇다면 PowerShell에서 사용하는 모듈을 한번 만들어 보겠습니다.</p>
+
+<p>PowerShell script는 <code class="highlighter-rouge">.ps1</code> 확장자를 갖고있고, PowerShell module은 <code class="highlighter-rouge">.psm1</code> 확장자를 갖고 있습니다.</p>
+
+<p>아래 <code class="highlighter-rouge">DelFile.psm1</code> 코드를 작성합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">function DelFile
+{
+    [CmdletBinding( SupportsShouldProcess = $true )] 
+    param ([Parameter()]$FilePath)
+
+    Write-Verbose "Delete $FilePath"
+    
+    if($PSCmdlet.ShouldProcess("$FilePath", "Deleting File permanently"))
+    {
+        Remove-Item $FilePath
+    }
+
+}</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; cp C:\Users\k3y6reak\Desktop\DelFile.psm1 .
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1</code></pre></figure>
+
+<p>Modules 디렉토리에 DelFile.psm1을 복사합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Import-Module .\DelFile.psm1
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Get-Command -Module DelFile
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        DelFile                                            0.0        DelFile
+
+
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Get-Module
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     0.0        DelFile                             DelFile
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Content...}
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
+Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}</code></pre></figure>
+
+<p><code class="highlighter-rouge">Import-Module</code>을 이용하여 모듈을 추가할 수 있고 <code class="highlighter-rouge">Get-Module</code>을 이용하여 사용되는 모듈을 확인할 수 있습니다.</p>
+
+<p>해당 디렉토리에 <code class="highlighter-rouge">test.txt</code>파일을 생성한 후 추가한 DelFile 모듈을 사용해 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
+-a----   2017. 8. 24.   오후 1:45              0 test.txt
+
+
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; DelFile C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules\test.txt
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
+
+
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Remove-Module DelFile
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Get-Module
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Content...}
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
+Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}</code></pre></figure>
+
+<p><code class="highlighter-rouge">DelFile 파일경로</code>를 이용하여 test.txt가 삭제된 것을 확인할 수 있으며, 해당 모듈을 사용하지 않을 때는 <code class="highlighter-rouge">Remove-Module 모듈명</code>을 이용해 제거할 수 있습니다.</p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    
+
+
+
+<div class="container">
+	<hr>
+	<section class="float-left">
+		&copy; 2017. SAHONG PAK all rights reserved.
+	</section>
+	<section class="float-right">
+		<a href="http://blog.rebforpwn.com">
+			<img src="/assets/img/rebforpwn.png" alt="RebForPwn" height="32" width="100">
+		</a>
+
+		<a href="http://">
+		<img src="/assets/img/github.svg" alt="github" height="32" width="32">
+		</a>
+
+		<a href="mailto:k3y6reak@naver.com">
+		<img src="/assets/img/mail.svg" alt="mail" height="32" width="32">
+		</a>
+	</section>
+</div>
+
+  </body>
+
+</html>

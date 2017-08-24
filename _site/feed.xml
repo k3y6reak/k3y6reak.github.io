@@ -1,5 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-09T13:47:19+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Functions</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Functios.html" rel="alternate" type="text/html" title="Functions" /><published>2017-08-08T20:29:00+09:00</published><updated>2017-08-08T20:29:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Functios</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Functios.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-24T14:40:19+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Modules</title><link href="http://localhost:4000/technique/powershell/2017/08/22/modules.html" rel="alternate" type="text/html" title="Modules" /><published>2017-08-22T20:23:00+09:00</published><updated>2017-08-22T20:23:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/22/modules</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/22/modules.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;PowerShell에서 Module에 관한 명령어를 알아보기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help *module*&lt;/code&gt;을 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help *module*
+
+Name                              Category  Module                    Synopsis
+----                              --------  ------                    --------
+ImportSystemModules               Function                            ...
+Export-ModuleMember               Cmdlet    Microsoft.PowerShell.Core Specifies the module members that are exported.
+Get-Module                        Cmdlet    Microsoft.PowerShell.Core Gets the modules that have been imported or that can be imported into the current session.
+Import-Module                     Cmdlet    Microsoft.PowerShell.Core Adds modules to the current session.
+New-Module                        Cmdlet    Microsoft.PowerShell.Core Creates a new dynamic module that exists only in memory.
+New-ModuleManifest                Cmdlet    Microsoft.PowerShell.Core Creates a new module manifest.
+Remove-Module                     Cmdlet    Microsoft.PowerShell.Core Removes modules from the current session.
+Test-ModuleManifest               Cmdlet    Microsoft.PowerShell.Core Verifies that a module manifest file accurately describes the contents of a module.
+InModuleScope                     Function  Pester                    ...
+Uninstall-Module                  Function  PowerShellGet             ...
+Install-Module                    Function  PowerShellGet             ...
+Publish-Module                    Function  PowerShellGet             ...
+Update-ModuleManifest             Function  PowerShellGet             ...
+Save-Module                       Function  PowerShellGet             ...
+Update-Module                     Function  PowerShellGet             ...
+Get-InstalledModule               Function  PowerShellGet             ...
+Find-Module                       Function  PowerShellGet             ...
+about_Modules                     HelpFile                            Explains how to install, import, and use Windows PowerShell modules.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;주로 사용하게 될 명령어는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Import-module&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;Remove-module&lt;/code&gt; 입니다. 모듈을 사용하고자 할 때는 Import-module을 사용하고 모듈을 해제 하고자할 때는 Remove-module을 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;PowerShell에서 모듈을 사용하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;$env:PSModulePath&lt;/code&gt;를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $env:PSModulePath
+C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 결과를 보면 모듈에 대한 경로가 나타나게 된다. 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&lt;/code&gt;로 이동하면 WindowsPowerShell 폴더가 없다는 에러 메시지가 나타난다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; cd C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+cd : 'C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules' 경로는 존재하지 않으므로 찾을 수 없습니다.
+위치 줄:1 문자:1
++ cd C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\Users\k3y6re...erShell\Modules:String) [Set-Location], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\k3y6reak&amp;gt; cd C:\Users\k3y6reak\Documents\
+PS C:\Users\k3y6reak\Documents&amp;gt; mkdir WindowsPowerShell
+
+
+    디렉터리: C:\Users\k3y6reak\Documents
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----   2017. 8. 24.  오전 11:23                WindowsPowerShell
+
+
+PS C:\Users\k3y6reak\Documents&amp;gt; cd WindowsPowerShell
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell&amp;gt; mkdir Modules
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----   2017. 8. 24.  오전 11:24                Modules&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 해당 디렉토리를 생성하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Modules 디렉토리&lt;/code&gt;에서 모듈을 저장하면 된다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 PowerShell에서 사용하는 모듈을 한번 만들어 보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;PowerShell script는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.ps1&lt;/code&gt; 확장자를 갖고있고, PowerShell module은 &lt;code class=&quot;highlighter-rouge&quot;&gt;.psm1&lt;/code&gt; 확장자를 갖고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;아래 &lt;code class=&quot;highlighter-rouge&quot;&gt;DelFile.psm1&lt;/code&gt; 코드를 작성합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function DelFile
+{
+    [CmdletBinding( SupportsShouldProcess = $true )] 
+    param ([Parameter()]$FilePath)
+
+    Write-Verbose &quot;Delete $FilePath&quot;
+    
+    if($PSCmdlet.ShouldProcess(&quot;$FilePath&quot;, &quot;Deleting File permanently&quot;))
+    {
+        Remove-Item $FilePath
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; cp C:\Users\k3y6reak\Desktop\DelFile.psm1 .
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Modules 디렉토리에 DelFile.psm1을 복사합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Import-Module .\DelFile.psm1
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Get-Command -Module DelFile
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        DelFile                                            0.0        DelFile
+
+
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Get-Module
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     0.0        DelFile                             DelFile
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Content...}
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
+Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Import-Module&lt;/code&gt;을 이용하여 모듈을 추가할 수 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Module&lt;/code&gt;을 이용하여 사용되는 모듈을 확인할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;해당 디렉토리에 &lt;code class=&quot;highlighter-rouge&quot;&gt;test.txt&lt;/code&gt;파일을 생성한 후 추가한 DelFile 모듈을 사용해 보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
+-a----   2017. 8. 24.   오후 1:45              0 test.txt
+
+
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; DelFile C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules\test.txt
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
+
+
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Remove-Module DelFile
+PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Get-Module
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Content...}
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
+Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DelFile 파일경로&lt;/code&gt;를 이용하여 test.txt가 삭제된 것을 확인할 수 있으며, 해당 모듈을 사용하지 않을 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Remove-Module 모듈명&lt;/code&gt;을 이용해 제거할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Functions</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Functios.html" rel="alternate" type="text/html" title="Functions" /><published>2017-08-08T20:29:00+09:00</published><updated>2017-08-08T20:29:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Functios</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Functios.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.&lt;/p&gt;
 
@@ -1414,267 +1570,4 @@ Alias           ls -&amp;gt; Get-ChildItem
     The command uses the Scope parameter to apply the command in the global scope. This is useful in scripts when you w
     ant to get the aliases in the session.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;위와 같이 해당 명령어에 대한 예제들도 출력하는 것을 볼 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry><entry><title type="html">Save Frame Pointer Overwrite</title><link href="http://localhost:4000/technique/system_hacking/2017/07/25/Save_Frame_Pointer_Overwrite.html" rel="alternate" type="text/html" title="Save Frame Pointer Overwrite" /><published>2017-07-25T10:05:00+09:00</published><updated>2017-07-25T10:05:00+09:00</updated><id>http://localhost:4000/technique/system_hacking/2017/07/25/Save_Frame_Pointer_Overwrite</id><content type="html" xml:base="http://localhost:4000/technique/system_hacking/2017/07/25/Save_Frame_Pointer_Overwrite.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
-
-&lt;p&gt;Buffer Overflow가 발생하는 프로그램의 취약점을 이용하여 Save Frame Pinter를 덮어씌워 원하는 주소로 이동하는 방법을 말합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;설명&quot;&gt;설명&lt;/h3&gt;
-
-&lt;p&gt;Buffer Overflow에서 잠깐 언급했던 Save Frame Pointer(SFP)는 &lt;code class=&quot;highlighter-rouge&quot;&gt;이전 함수의 ebp&lt;/code&gt;를 저장해 두고 함수의 실행이 끝나면 돌아가는 역할을 했습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Main Func&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;sub_func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sub_func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 소스코드를 보면 main 함수에서는 출력과 sub_func()을 호출하고 sub_func 함수에서는 buf가 8개의 공간이 할당되었고 scanf를 이용해 buf에 값을 저장합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
-0x0804846d &amp;lt;+0&amp;gt;:	push	ebp
-0x0804846e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-0x08048470 &amp;lt;+3&amp;gt;:	sub 	esp,0x4
-0x08048473 &amp;lt;+6&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],0x8048540
-0x0804847a &amp;lt;+13&amp;gt;:	call	0x8048330 &amp;lt;puts@plt&amp;gt;
-0x0804847f &amp;lt;+18&amp;gt;:	call	0x804848b &amp;lt;sub_func&amp;gt;
-0x08048484 &amp;lt;+23&amp;gt;:	mov	eax,0
-0x08048489 &amp;lt;+28&amp;gt;:	leave
-0x0804848a &amp;lt;+29&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 어셈블리 코드에서 puts와 sub_func의 호출을 볼 수 있으며 puts를 호출하기 전 esp에 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x8048540&lt;/code&gt; 값을 저장하고 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/s 0x8048540
-0x8048540:	&lt;span class=&quot;s2&quot;&gt;&quot;Main Func&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;0x804847f&lt;/code&gt;에 Breakpoint를 걸고 해당 주소까지 실행해 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
-	0x0804846d &amp;lt;+0&amp;gt;:	push	ebp
-	0x0804846e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x08048470 &amp;lt;+3&amp;gt;:	sub 	esp,0x4
-	0x08048473 &amp;lt;+6&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],0x8048540
-	0x0804847a &amp;lt;+13&amp;gt;:	call	0x8048330 &amp;lt;puts@plt&amp;gt;
-&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;	0x0804847f &amp;lt;+18&amp;gt;:	call	0x804848b &amp;lt;sub_func&amp;gt;
-	0x08048484 &amp;lt;+23&amp;gt;:	mov	eax,0
-	0x08048489 &amp;lt;+28&amp;gt;:	leave
-	0x0804848a &amp;lt;+29&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;해당 위치에서 esp 부터 10개의 값은 아래와 같습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx &lt;span class=&quot;nv&quot;&gt;$esp&lt;/span&gt;
-0xbffff154:	0x08048540	0x00000000	0xb7e2fa83	0x00000001
-0xbffff164:	0xbffff1f4	0xbffff1fc	0xb7feccea	0x00000001
-0xbffff174:	0xbffff1f4	0xbffff194&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;이제 여기서 sub_func 함수 안으로 들어가 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;sub_func:
-&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;	0x0804848b &amp;lt;+0&amp;gt;:	push	ebp
-	0x0804848c &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x0804848e &amp;lt;+3&amp;gt;:	sub 	esp,0x10
-	0x08048491 &amp;lt;+6&amp;gt;:	lea	eax,[ebp-0x8]
-	0x08048494 &amp;lt;+9&amp;gt;:	mov	DWORD PTR[esp+0x4],eax
-	0x08048498 &amp;lt;+13&amp;gt;:	mov	DWORD PTR[esp],0x804854b
-	0x0804849f &amp;lt;+20&amp;gt;:	call	0x8048360 &amp;lt;__isoc99_scanf@plt&amp;gt;
-	0x080484a4 &amp;lt;+25&amp;gt;:	leave
-	0x080484a5 &amp;lt;+26&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;sub_func 함수 내로 들어온 후 esp 값을 확인해보면 아래와 같습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx &lt;span class=&quot;nv&quot;&gt;$esp&lt;/span&gt;
-0xbffff150:	0x08048484	0x08048540	0x00000000	0xb7e2fa83
-0xbffff160:	0x00000001	0xbffff1f4	0xbffff1fc	0xb7feccea
-0xbffff170:	0x00000001	0xbffff1f4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;스택에 쌓여진 값을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x8048484&lt;/code&gt;라는 값을 확인할 수 있는데 이 값은 main함수에서 sub_func이 있는 곳의 다음 주소를 나타냅니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;다음 주소를 쌓아두는 이유는 sub_func 함수가 끝나면 main에서 다음 코드를 실행해야 하기 때문에 쌓아둔 것&lt;/code&gt;이며 이 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Return&lt;/code&gt;값이 됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;0x804849f&lt;/code&gt;에 Breakpoint를 걸고 해당 주소까지 실행 후 스택을 확인해 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;sub_func:
-	0x0804848b &amp;lt;+0&amp;gt;:	push	ebp
-	0x0804848c &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x0804848e &amp;lt;+3&amp;gt;:	sub 	esp,0x10
-	0x08048491 &amp;lt;+6&amp;gt;:	lea	eax,[ebp-0x8]
-	0x08048494 &amp;lt;+9&amp;gt;:	mov	DWORD PTR[esp+0x4],eax
-	0x08048498 &amp;lt;+13&amp;gt;:	mov	DWORD PTR[esp],0x804854b
-&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;	0x0804849f &amp;lt;+20&amp;gt;:	call	0x8048360 &amp;lt;__isoc99_scanf@plt&amp;gt;
-	0x080484a4 &amp;lt;+25&amp;gt;:	leave
-	0x080484a5 &amp;lt;+26&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx &lt;span class=&quot;nv&quot;&gt;$esp&lt;/span&gt;
-0xbffff13c:	0x0804854b	0xbffff144	0x00000000	0x00000000
-0xbffff14c:	0xbffff158	0x08048484	0x08048540	0x00000000
-0xbffff15c:	0xb7e2fa83	0x00000001&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;scanf 함수가 사용하는 인자 값은 2개이기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x804854b&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;0xbffff144&lt;/code&gt;가 인자 값이 됩니다.
-0x804854b는 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;가 되며 0xbffff144는 &lt;code class=&quot;highlighter-rouge&quot;&gt;buf의 주소&lt;/code&gt;가 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx 0xbffff144
-0xbffff144:	0x00000000	0x00000000	0xbffff158	0x08048484
-0xbffff154:	0x08048540	0x00000000	0xb7e2fa83	0x00000001
-0xbffff164:	0xbffff1f4	0xbffff1fc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;0xbffff144의 스택을 살펴보면 아직 scanf가 실행되지 않았기 때문에 값이 0x00000000로 되어있는 것을 알 수 있습니다. scanf가 실행되고 난 뒤를 실펴보기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;ni&lt;/code&gt;명령으로 실행 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;12345678&lt;/code&gt;값을 입력하고 다시 스택을 살펴보면 아래와 같습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx 0xbffff144
-0xbffff144:	0x34333231	0x38373635	0xbffff100	0x08048484
-0xbffff154:	0x08048540	0x00000000	0xb7e2fa83	0x00000001
-0xbffff164:	0xbffff1f4	0xbffff1fc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;buf의 다음은 Save Frame Pointer 이므로 0xbffff100이 Save Frame Pointer가 됩니다.&lt;/p&gt;
-
-&lt;p&gt;값을 입력하기 전에 SFP의 값은 0xbffff158 이었는데 0xbffff100으로 바뀐 이유는 문자열을 입력하면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;마지막에 Null이 포함&lt;/code&gt;된 것입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;이해&quot;&gt;이해&lt;/h3&gt;
-&lt;p&gt;LOB의 golem 소소코드를 이용하여 SFP를 실습해 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;proglem_child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;strncpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;41&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;argv error&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;prolem_child&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;main 함수에서 argv로 인자 값을 받아오고 해당 값을 problem_child 함수에서 src로 받습니다.
-src로 받은 값을 buffer에 41개 만큼 저장합니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 중요한 것은 &lt;code class=&quot;highlighter-rouge&quot;&gt;buffer의 크기는 40인데 strncpy를 이용해 41개를 넣어주는 것입니다.&lt;/code&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;pdisas main
-Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
-	0x080484aa &amp;lt;+0&amp;gt;:	push	ebp
-	0x080484ab &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x080484ad &amp;lt;+3&amp;gt;:	sub 	esp,0x4
-	0x080484b0 &amp;lt;+6&amp;gt;:	cmp	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+0x8],0x1
-	0x080484b4 &amp;lt;+10&amp;gt;:	jg	0x80484ce &amp;lt;main+36&amp;gt;
-	0x080484b6 &amp;lt;+12&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],0x8048570
-	0x080484bd &amp;lt;+19&amp;gt;:	call	0x8048330 &amp;lt;puts@plt&amp;gt;
-	0x080484c2 &amp;lt;+24&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],0x0
-	0x080484c9 &amp;lt;+31&amp;gt;:	call	0x8048350 &amp;lt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;@plt&amp;gt;
-	0x080484ce &amp;lt;+36&amp;gt;:	mov	eax, DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+0xc]
-	0x080484d1 &amp;lt;+39&amp;gt;:	add 	eax,0x4
-	0x080484d4 &amp;lt;+42&amp;gt;:	mov	eax,DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;eax]
-	0x080484d6 &amp;lt;+44&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],eax
-	0x080484d9 &amp;lt;+47&amp;gt;:	call	0x804847d &amp;lt;problem_child&amp;gt;
-	0x080484de &amp;lt;+52&amp;gt;:	leave
-	0x080484df &amp;lt;+53&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;problem_child 위치에 Breakpoint를 걸고 `python -c ‘print “A”*40 + “B”’`를 이용해 argv[1]에 값을 넣고 problem_child 함수 안으로 들어갑니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;problem_child:
-&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;	0x0804847d &amp;lt;+0&amp;gt;:	push	ebp
-	0x0804847e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x08048480 &amp;lt;+3&amp;gt;:	sub 	esp,0x34
-	0x08048483 &amp;lt;+6&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x8],0x29
-	0x0804848b &amp;lt;+14&amp;gt;:	mov	eax,DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+0x8]
-	0x0804848e &amp;lt;+17&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-	0x08048492 &amp;lt;+21&amp;gt;:	lea 	eax,[ebp-0x28]
-	0x08048495 &amp;lt;+24&amp;gt;:	mov 	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],eax
-	0x08048498 &amp;lt;+27&amp;gt;:	call 	0x8048370 &amp;lt;strncpy@plt&amp;gt;
-	0x0804849d &amp;lt;+32&amp;gt;:	lea 	eax,[ebp-0x28]
-	0x080484a0 &amp;lt;+35&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],eax
-	0x080484a3 &amp;lt;+38&amp;gt;:	call	0x8048330 &amp;lt;puts@plt&amp;gt;
-	0x080484a8 &amp;lt;+43&amp;gt;:	leave
-	0x080484a9 &amp;lt;+44&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;0x804849d&lt;/code&gt;에 Breakpoint를 걸고 buf의 값을 확인해 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;problem_child:
-	0x0804847d &amp;lt;+0&amp;gt;:	push	ebp
-	0x0804847e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x08048480 &amp;lt;+3&amp;gt;:	sub 	esp,0x34
-	0x08048483 &amp;lt;+6&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x8],0x29
-	0x0804848b &amp;lt;+14&amp;gt;:	mov	eax,DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+0x8]
-	0x0804848e &amp;lt;+17&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-	0x08048492 &amp;lt;+21&amp;gt;:	lea 	eax,[ebp-0x28]
-	0x08048495 &amp;lt;+24&amp;gt;:	mov 	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],eax
-	0x08048498 &amp;lt;+27&amp;gt;:	call 	0x8048370 &amp;lt;strncpy@plt&amp;gt;
-	0x0804849d &amp;lt;+32&amp;gt;:	lea 	eax,[ebp-0x28]
-	0x080484a0 &amp;lt;+35&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],eax
-	0x080484a3 &amp;lt;+38&amp;gt;:	call	0x8048330 &amp;lt;puts@plt&amp;gt;
-	0x080484a8 &amp;lt;+43&amp;gt;:	leave
-	0x080484a9 &amp;lt;+44&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;x/10wx &lt;span class=&quot;nv&quot;&gt;$ebp&lt;/span&gt;-0x28
-0xbffff0f4:	0x41414141	0x41414141	0x41414141	0x41414141
-0xbffff104:	0x41414141	0x41414141	0x41414141	0x41414141
-0xbffff114:	0x41414141	0x41414141	0xbffff142 	0x080484de
-0xbffff124:	0xbffff39f	0x00000000 	0xb7e2fa83 	0x00000002
-0xbffff134:	0xbffff1c4	0xbffff1d0	0xb7feccea	0x00000002&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;40개의 A와 B를 넣었더니 위와 같이 buf에 값이 채워졌습니다. 그리고 SFP의 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;0xbffff142&lt;/code&gt;로 변조된 것도 확인할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;이 변조된 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;함수의 에필로그&lt;/code&gt;를 이용하여 리턴 값을 조작할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;함수의 에필로그는 &lt;code class=&quot;highlighter-rouge&quot;&gt;leave&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;ret&lt;/code&gt;이 있는데 이 어셈블리어는 각각 &lt;code class=&quot;highlighter-rouge&quot;&gt;mov esp, ebp&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;pop ebp&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;pop eip&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;jmp eip&lt;/code&gt;가 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;pdisas main
-Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
-	0x080484aa &amp;lt;+0&amp;gt;:	push	ebp
-	0x080484ab &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-	0x080484ad &amp;lt;+3&amp;gt;:	sub 	esp,0x4
-	0x080484b0 &amp;lt;+6&amp;gt;:	cmp	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+0x8],0x1
-	0x080484b4 &amp;lt;+10&amp;gt;:	jg	0x80484ce &amp;lt;main+36&amp;gt;
-	0x080484b6 &amp;lt;+12&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],0x8048570
-	0x080484bd &amp;lt;+19&amp;gt;:	call	0x8048330 &amp;lt;puts@plt&amp;gt;
-	0x080484c2 &amp;lt;+24&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],0x0
-	0x080484c9 &amp;lt;+31&amp;gt;:	call	0x8048350 &amp;lt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;@plt&amp;gt;
-	0x080484ce &amp;lt;+36&amp;gt;:	mov	eax, DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+0xc]
-	0x080484d1 &amp;lt;+39&amp;gt;:	add 	eax,0x4
-	0x080484d4 &amp;lt;+42&amp;gt;:	mov	eax,DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;eax]
-	0x080484d6 &amp;lt;+44&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp],eax
-	0x080484d9 &amp;lt;+47&amp;gt;:	call	0x804847d &amp;lt;problem_child&amp;gt;
-&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;	0x080484de &amp;lt;+52&amp;gt;:	leave
-	0x080484df &amp;lt;+53&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;main에서 leave 위치까지 실행한 뒤에 ebp와 esp를 확인하면 아래와 같습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;i r ebp
-ebp 	0xbffff142 	0xbffff142&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;ebp를 확인한 결과 조작된 0xbffff142가 되었습니다. 여기서 leave 명령을 실행하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;mov esp,ebp&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;pop ebp&lt;/code&gt; 이므로 ebp의 값을 esp로 옮기고 pop하여 ebp에 저장합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;gdb-peda$ &lt;/span&gt;i r ebp esp
-ebp 	0xf1c40000 	0xf1c40000
-esp 	0xbffff146 	0xbffff146&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;변조 된 ebp 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;mov esp, ebp&lt;/code&gt;를 통해서 esp에 저장이 되었고 &lt;code class=&quot;highlighter-rouge&quot;&gt;pop ebp&lt;/code&gt;를 하면서 +4 만큼 증가되었습니다.&lt;/p&gt;
-
-&lt;p&gt;그래서 esp의 값이 0xbffff146이 됩니다. (0xbffff142 + 0x4)&lt;/p&gt;
-
-&lt;p&gt;그 후 0xbffff146에 있는 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;pop eip&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;jmp eip&lt;/code&gt;하면서 해당 위치로 이동하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;|shellcode 주소|\x90*n|shellcode|stack 주소 - 0x4|&lt;/code&gt;와 같은 payload를 사용할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry></feed>
+&lt;p&gt;위와 같이 해당 명령어에 대한 예제들도 출력하는 것을 볼 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry></feed>
