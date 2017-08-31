@@ -1,5 +1,221 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-24T14:40:19+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Modules</title><link href="http://localhost:4000/technique/powershell/2017/08/22/modules.html" rel="alternate" type="text/html" title="Modules" /><published>2017-08-22T20:23:00+09:00</published><updated>2017-08-22T20:23:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/22/modules</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/22/modules.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-31T17:32:38+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Remote</title><link href="http://localhost:4000/technique/powershell/2017/08/31/remote.html" rel="alternate" type="text/html" title="Remote" /><published>2017-08-31T17:32:00+09:00</published><updated>2017-08-31T17:32:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/31/remote</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/31/remote.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;PowerShell을 이용해서 다른 컴퓨터의 정보를 가져올 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help *remote*&lt;/code&gt;를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-Help *remote*
+
+Name                              Category  Module                    Synopsis
+----                              --------  ------                    --------
+Enable-VMRemoteFXPhysicalVideo... Cmdlet    Hyper-V                   Enable-VMRemoteFXPhysicalVideoAdapter...
+Add-VMRemoteFx3dVideoAdapter      Cmdlet    Hyper-V                   Add-VMRemoteFx3dVideoAdapter...
+Remove-VMRemoteFx3dVideoAdapter   Cmdlet    Hyper-V                   Remove-VMRemoteFx3dVideoAdapter...
+Set-VMRemoteFx3dVideoAdapter      Cmdlet    Hyper-V                   Set-VMRemoteFx3dVideoAdapter...
+Get-VMRemoteFXPhysicalVideoAda... Cmdlet    Hyper-V                   Get-VMRemoteFXPhysicalVideoAdapter...
+Disable-VMRemoteFXPhysicalVide... Cmdlet    Hyper-V                   Disable-VMRemoteFXPhysicalVideoAdapter...
+Get-VMRemoteFx3dVideoAdapter      Cmdlet    Hyper-V                   Get-VMRemoteFx3dVideoAdapter...
+about_Remote                      HelpFile                            Describes how to run remote commands in Windows PowerShell.
+about_Remote_Disconnected_Sess... HelpFile                            Explains how to disconnect from and reconnect to a PSSession
+about_Remote_FAQ                  HelpFile                            Contains questions and answers about running remote commands
+about_Remote_Jobs                 HelpFile                            Describes how to run background jobs on remote computers.
+about_Remote_Output               HelpFile                            Describes how to interpret and format the output of remote commands.
+about_Remote_Requirements         HelpFile                            Describes the system requirements and configuration requirements for
+about_Remote_Troubleshooting      HelpFile                            Describes how to troubleshoot remote operations in Windows PowerShell.
+about_Remote_Variables            HelpFile                            Explains how to use local and remote variables in remote&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;cmdlet에서 인자 값으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;computername&lt;/code&gt;을 사용하는 명령어를 찾아봅시다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-Command -CommandType cmdlet -ParameterName Computername
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Clear-EventLog                                     3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Connect-PSSession                                  3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Connect-WSMan                                      3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Disconnect-WSMan                                   3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Enter-PSSession                                    3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-EventLog                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-HotFix                                         3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-Process                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-PSSession                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-Service                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-WmiObject                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Invoke-Command                                     3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Invoke-WmiMethod                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Invoke-WSManAction                                 3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Limit-EventLog                                     3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          New-EventLog                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          New-PSSession                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          New-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Receive-Job                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Receive-PSSession                                  3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Register-WmiEvent                                  3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-Computer                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-EventLog                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-PSSession                                   3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Remove-WmiObject                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-WSManInstance                               3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Rename-Computer                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Restart-Computer                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Send-MailMessage                                   3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-Service                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-WmiInstance                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Show-EventLog                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Stop-Computer                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Test-Connection                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Test-WSMan                                         3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Write-EventLog                                     3.1.0.0    Microsoft.PowerShell.Management&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;여기서 현재 컴퓨터의 HotFix 내용을 알고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-HotFix&lt;/code&gt;를 입력하면 결과가 나타납니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-HotFix
+
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+K3Y6REAK9778  Update           KB4022405     NT AUTHORITY\SYSTEM  2017. 8. 7. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034662     NT AUTHORITY\SYSTEM  2017. 8. 9. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034674     NT AUTHORITY\SYSTEM  2017. 8. 13. 오전 12:0...&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;windows 7&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;windows 10&lt;/code&gt;의 HotFix 내용을 가져와 출력하는 방법을 알아보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;먼저 &lt;code class=&quot;highlighter-rouge&quot;&gt;windows 10&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-HotFix&lt;/code&gt;를 하면 아래와 같이 출력됩니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;* Windows 10 *
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+K3Y6REAK9778  Update           KB4022405     NT AUTHORITY\SYSTEM  2017. 8. 7. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034662     NT AUTHORITY\SYSTEM  2017. 8. 9. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034674     NT AUTHORITY\SYSTEM  2017. 8. 13. 오전 12:0...&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;그리고 다른 컴퓨터에서 원격으로 가져오는 것이기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;관리자 권한&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Set-Item WSMAN:\localhost\client\trustedhosts -Value *&lt;/code&gt;를 입력한 뒤 명령을 실행합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Set-Item WSMAN:\localhost\client\trustedhosts -Value *
+
+WinRM 보안 구성
+이 명령에서 WinRM 클라이언트에 대한 TrustedHosts 목록을 수정합니다. TrustedHosts 목록에 있는 컴퓨터가 인증되지 않을 수 있으며 클라이언트에서 자격 증명 정보를 이러한 컴퓨터에 보낼 수도 있습니다. 이 목록을
+수정하시겠습니까?
+[Y] 예(Y)  [N] 아니요(N)  [S] 일시 중단(S)  [?] 도움말 (기본값은 &quot;Y&quot;): Y&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;windows 7&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-HotFix -Computername [Windows 10 Computer 이름] -Credential [Windows 10 계정]&lt;/code&gt;를 입력해 줍니다. 그러면 &lt;code class=&quot;highlighter-rouge&quot;&gt;자격 증명 요청&lt;/code&gt;이 나오면 해당 명령어를 실행하는 계정의 비밀번호를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;* Windows 7 *
+PS C:\Users\k3y6reak&amp;gt; Get-HotFix -Computername [Windows 10 Computer 이름] -Credential [Windows 10 계정]
+
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+K3Y6REAK9778  Update           KB4022405     NT AUTHORITY\SYSTEM  2017-08-07 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034662     NT AUTHORITY\SYSTEM  2017-08-09 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034674     NT AUTHORITY\SYSTEM  2017-08-13 오전 12:00:00&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;반대로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Windows 10&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Windows 7&lt;/code&gt;의 실행되고 있는 프로세스 목록을 가져오도록 하겠습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Invoke-Command -ScriptBlock {Get-Process} -ComputerName [Windows 7 Computer 이름] -Credential [Windows 7 계정]&lt;/code&gt;를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;* Windows 10 *
+PS C:\WINDOWS\system32&amp;gt; Invoke-Command -ScriptBlock {$env:computername} -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+[WIN-J9KO348JQVU] 다음 오류 때문에 원격 서버 WIN-J9KO348JQVU에 연결하지 못했습니다. 클라이언트가 요청에 지정된 대상에 연결할 수 없습니다. 대상에서 서비스가 실행되고 요청을 수락하고 있는지 확인하십시오. 대상에서
+ 실행 중인 WS-Management 서비스에 대한 로그 및 설명서를 참조하십시오. 대부분의 경우 IIS 또는 WinRM입니다. 대상이 WinRM 서비스인 경우 대상에서 &quot;winrm quickconfig&quot; 명령을 사용하여 WinRM 서비스를 분석하고 구성하십
+시오. 자세한 내용은 about_Remote_Troubleshooting 도움말 항목을 참조하십시오.
+    + CategoryInfo          : OpenError: (WIN-J9KO348JQVU:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : CannotConnect,PSSessionStateBroken&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같은 에러 메시지가 출력된다면 Windows 7에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;관리자 권한&lt;/code&gt;으로 PowerShell을 실행시킨 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enable-PSRemoting -force&lt;/code&gt;를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;* Windows 7 *
+PS C:\Windows\system32&amp;gt; Enable-PSRemoting -force
+이 컴퓨터에서 요청을 수신하도록 WinRM이 이미 설정되었습니다.
+원격 관리를 위한 WinRM이 업데이트되었습니다.
+이 컴퓨터에서 모든 IP 주소로 WS-Man 요청을 수락하려면 HTTP://*에서 WinRM 수신기를 만드십시오.
+WinRM 방화벽 예외를 사용합니다.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;그 후 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;Invoke-Command -ScriptBlock {Get-Process} -ComputerName WIN-J9KO348JQVU -Credential k3y6reak&lt;/code&gt;를 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;* Windows 10 *
+PS C:\WINDOWS\system32&amp;gt; Invoke-Command -ScriptBlock {Get-Process} -ComputerName [Windows 7 Computer 이름] -Credential [Windows 7 계정]
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                                  PSComputerName
+-------  ------    -----      -----     ------     --  -- -----------                                                                  --------------
+    126       5    14996      13952              2504     audiodg                                                                      WIN-J9KO348JQVU
+     89       5     4328      10484      0.530   1572     conhost                                                                      WIN-J9KO348JQVU
+     89       5     4292      10356      0.047   3980     conhost                                                                      WIN-J9KO348JQVU
+    579       6     1288       3012      1.076    360     csrss                                                                        WIN-J9KO348JQVU
+    257       8     9716       7684     11.934   3336     csrss                                                                        WIN-J9KO348JQVU
+     83       4      912       3624      0.031   1916     dllhost                                                                      WIN-J9KO348JQVU
+    188       8     3076       9080      0.031   3128     dllhost                                                                      WIN-J9KO348JQVU
+    116       6    42392      49896      1.404   3608     dwm                                                                          WIN-J9KO348JQVU
+    840      27    30936      61676     13.416   3620     explorer                                                                     WIN-J9KO348JQVU
+      0       0        0         24                 0     Idle                                                                         WIN-J9KO348JQVU
+    881      10     2952       6820      3.697    508     lsass                                                                        WIN-J9KO348JQVU
+    144       4     1264       2112      0.000    516     lsm                                                                          WIN-J9KO348JQVU
+    146       9     2400       3392      1.170   2188     msdtc                                                                        WIN-J9KO348JQVU
+    688      50    33608      43892      0.780    492     powershell                                                                   WIN-J9KO348JQVU
+    600      15    27680      46684      0.905    856     powershell                                                                   WIN-J9KO348JQVU
+    764      18    22384      23768      4.711   1864     SearchIndexer                                                                WIN-J9KO348JQVU
+    212       7     3792       6352      2.558    500     services                                                                     WIN-J9KO348JQVU
+     29       1      220        528      0.156    280     smss                                                                         WIN-J9KO348JQVU
+    325      12     5036       5032      0.936   1408     spoolsv                                                                      WIN-J9KO348JQVU
+    152       4     6100       7480      2.933   3152     sppsvc                                                                       WIN-J9KO348JQVU
+    100       7     1192       4244      0.062    352     svchost                                                                      WIN-J9KO348JQVU
+    371       7     3252       6096     14.539    652     svchost                                                                      WIN-J9KO348JQVU
+    298       9     2968       5904      0.733    744     svchost                                                                      WIN-J9KO348JQVU
+    536      14    14200      12192      1.872    796     svchost                                                                      WIN-J9KO348JQVU
+    364      10     3232       5308      7.457    916     svchost                                                                      WIN-J9KO348JQVU
+   1206      31    21624      32616     45.318    960     svchost                                                                      WIN-J9KO348JQVU
+    820      21     6752      12672      1.248   1104     svchost                                                                      WIN-J9KO348JQVU
+    658      75    57968      33608      4.524   1176     svchost                                                                      WIN-J9KO348JQVU
+    333      25     9308       8308      0.920   1468     svchost                                                                      WIN-J9KO348JQVU
+    280      13     3908       7924      0.312   3064     svchost                                                                      WIN-J9KO348JQVU
+    368      35   149724      58524    181.273   3188     svchost                                                                      WIN-J9KO348JQVU
+    541       0       48       1076                 4     System                                                                       WIN-J9KO348JQVU
+    214      10     6772       6664      1.201   3560     taskhost                                                                     WIN-J9KO348JQVU
+     85       5     4960       2788      0.234   1752     VGAuthService                                                                WIN-J9KO348JQVU
+     54       3      824       1952      0.031    712     vmacthlp                                                                     WIN-J9KO348JQVU
+    286      12     8268       8920     29.578   1812     vmtoolsd                                                                     WIN-J9KO348JQVU
+    210      10     8064      12108     20.389   3724     vmtoolsd                                                                     WIN-J9KO348JQVU
+     76       5      988       1832      0.452    412     wininit                                                                      WIN-J9KO348JQVU
+    117       5     1724       3628      0.452   3360     winlogon                                                                     WIN-J9KO348JQVU
+    203       7     7328      10260      4.930    860     WmiPrvSE                                                                     WIN-J9KO348JQVU
+    207       7     2628       3580      0.265   3424     wmpnetwk                                                                     WIN-J9KO348JQVU
+    218      11    23216      32516      4.992   2392     wsmprovhost                                                                  WIN-J9KO348JQVU&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이렇게 다른 컴퓨터의 정보를 가져올 수 있습니다. 또한 SSH 처럼 사용할 수 있는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;PSSession&lt;/code&gt;을 사용합니다.&lt;/p&gt;
+
+&lt;p&gt;먼저 새로운 PSSession을 만들어야 합니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;New-PSSession&lt;/code&gt;명령어를 사용합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; New-PSSession -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+
+ Id Name            ComputerName    ComputerType    State         ConfigurationName     Availability
+ -- ----            ------------    ------------    -----         -----------------     ------------
+  1 WinRM1          WIN-J9KO348JQVU RemoteMachine   Opened        Microsoft.PowerShell     Available&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위와 같이 연결이 된 후에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Enter-PSSession&lt;/code&gt;을 이용하여 접속합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Enter-PSSession -id 1
+[WIN-J9KO348JQVU]: PS C:\Users\k3y6reak\Documents&amp;gt; cd \
+[WIN-J9KO348JQVU]: PS C:\&amp;gt; ls
+
+
+    디렉터리: C:\
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----        2009-07-14  오전 11:37            PerfLogs
+
+d-r--        2017-08-25   오후 1:30            Program Files
+
+d-r--        2017-08-30   오후 8:16            Users
+
+d----        2017-08-25   오후 1:31            Windows
+
+-a---        2009-06-11   오전 6:42         24 autoexec.bat
+
+-a---        2009-06-11   오전 6:42         10 config.sys&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Enter-PSSession&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;-id&lt;/code&gt; 옵션 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;New-PSSession&lt;/code&gt;을 통해서 만들어진 &lt;code class=&quot;highlighter-rouge&quot;&gt;Id&lt;/code&gt;값입니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Modules</title><link href="http://localhost:4000/technique/powershell/2017/08/22/modules.html" rel="alternate" type="text/html" title="Modules" /><published>2017-08-22T20:23:00+09:00</published><updated>2017-08-22T20:23:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/22/modules</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/22/modules.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;PowerShell에서 Module에 관한 명령어를 알아보기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help *module*&lt;/code&gt;을 입력합니다.&lt;/p&gt;
 
@@ -1390,184 +1606,4 @@ Stop-Process : 'InputObject' 매개 변수를 바인딩할 수 없습니다. &qu
 
     PS C:\&amp;gt;Stop-Process -Name &quot;notepad&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;-Name&lt;/code&gt;이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">PowerShell 기초</title><link href="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html" rel="alternate" type="text/html" title="PowerShell 기초" /><published>2017-08-03T13:20:00+09:00</published><updated>2017-08-03T13:20:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/03/PowerShell_basic.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
-
-&lt;p&gt;Linux에서 터미널을 이용하여 ls, pwd 등과 같은 명령어를 사용하는 것 처럼 Windows에서도 명령어들을 이용하여 사용할 수 있도록 하는 것이 PowerShell 입니다.&lt;/p&gt;
-
-&lt;p&gt;물론 Windows에서는 cmd라고 하는 것도 있지만 이보다 더 많은 명령어들이 포함되어 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/powershell/basic/ps_cmd.png&quot; alt=&quot;powershell_and_cmd&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;설명&quot;&gt;설명&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; ls
-
-
-    디렉터리: C:\Users\k3y6reak
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
-d-r---   2017. 7. 31.   오후 8:13                Contacts
-d-r---    2017. 8. 2.   오후 2:33                Desktop
-d-r---    2017. 8. 2.   오후 2:09                Documents
-d-r---    2017. 8. 2.   오후 2:33                Downloads
-d-r---   2017. 7. 31.   오후 8:13                Favorites
-d-r---   2017. 7. 31.   오후 8:13                Links
-d-r---   2017. 7. 31.   오후 8:13                Music
-d-r---   2017. 7. 31.   오후 5:35                OneDrive
-d-r---   2017. 7. 31.   오후 8:13                Pictures
-d-r---   2017. 7. 31.   오후 8:13                Saved Games
-d-r---   2017. 7. 31.   오후 8:13                Searches
-d-r---   2017. 7. 31.   오후 8:13                Videos
-
-
-PS C:\Users\k3y6reak&amp;gt; dir
-
-
-    디렉터리: C:\Users\k3y6reak
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
-d-r---   2017. 7. 31.   오후 8:13                Contacts
-d-r---    2017. 8. 2.   오후 2:33                Desktop
-d-r---    2017. 8. 2.   오후 2:09                Documents
-d-r---    2017. 8. 2.   오후 2:33                Downloads
-d-r---   2017. 7. 31.   오후 8:13                Favorites
-d-r---   2017. 7. 31.   오후 8:13                Links
-d-r---   2017. 7. 31.   오후 8:13                Music
-d-r---   2017. 7. 31.   오후 5:35                OneDrive
-d-r---   2017. 7. 31.   오후 8:13                Pictures
-d-r---   2017. 7. 31.   오후 8:13                Saved Games
-d-r---   2017. 7. 31.   오후 8:13                Searches
-d-r---   2017. 7. 31.   오후 8:13                Videos
-
-
-PS C:\Users\k3y6reak&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;PowerShell에서는 PowerShell에서만 사용할 수 있는 명령어도 있지만 기존에 사용하던 Windows 명령어도 사용이 가능하고, Linux에서 사용하던 명령어도 사용할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;Linux에서 명령어를 사용할 때 alias라는 명령어가 있는데 이는 명령어의 별칭을 붙여서 사용할 수 있습니다. 즉, a라고 입력을 하면 ls가 실행이 되도록 하는 것이죠.&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서도 ls, dir이 모두 같은 결과값을 출력하는데 alias를 통해서 같은 명령어를 실행할 것입니다.&lt;/p&gt;
-
-&lt;p&gt;alias에 대한 명령어가 어떤것이 있는지 확인하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help *alias&lt;/code&gt;를 입력합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help *alias
-
-Name                              Category  Module                    Synopsis
-----                              --------  ------                    --------
-Export-Alias                      Cmdlet    Microsoft.PowerShell.U... ...
-Get-Alias                         Cmdlet    Microsoft.PowerShell.U... ...
-Import-Alias                      Cmdlet    Microsoft.PowerShell.U... ...
-New-Alias                         Cmdlet    Microsoft.PowerShell.U... ...
-Set-Alias                         Cmdlet    Microsoft.PowerShell.U... ...&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 결과값에서 Get-Alias라는 명령어를 볼 수 있는데 모든 명령어를 확인 하기위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Alias *&lt;/code&gt;를 입력합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Alias *
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-...
-Alias           dir -&amp;gt; Get-ChildItem
-...
-Alias           ls -&amp;gt; Get-ChildItem
-...&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; 명령어와 &lt;code class=&quot;highlighter-rouge&quot;&gt;dir&lt;/code&gt; 명령어는 PowerShell에서 Get-ChildItem 명령어가 실행되도록 되어있는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서는 명령어에 대한 예시들을 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help&lt;/code&gt;를 통해서 알 수 있습니다. 사용하는 OS의 환경에 따라, Get-Help 명령어가 안 될 수도 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help Get-Alias
-
-이름
-    Get-Alias
-
-구문
-    Get-Alias [[-Name] &amp;lt;string[]&amp;gt;]  [&amp;lt;CommonParameters&amp;gt;]
-
-    Get-Alias  [&amp;lt;CommonParameters&amp;gt;]
-
-
-별칭
-    gal
-
-
-설명
-    Get-Help가 이 컴퓨터에서 이 cmdlet에 대한 도움말 파일을 찾을 수 없습니다. 일부 도움말만 표시합니다.
-        -- 이 cmdlet을 포함하는 모듈에 대한 도움말 파일을 다운로드하여 설치하려면 Update-Help를 사용하십시오.
-        -- 이 cmdlet에 대한 도움말 항목을 온라인으로 보려면 &quot;Get-Help Get-Alias -Online&quot;을 입력하거나
-           http://go.microsoft.com/fwlink/?LinkID=113306(으)로 이동하십시오.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;설명&lt;/code&gt; 부분을 보면 일부 도움말만 표시한다고 되어있는데 Update-Help를 통해서 도움말을 다운로드 합니다. 여기서 중요한 것은 반드시 &lt;code class=&quot;highlighter-rouge&quot;&gt;관리자 권한&lt;/code&gt;으로 실행해야 합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/powershell/basic/update_help.png&quot; alt=&quot;powershell_and_cmd&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;설치가 완료되면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help Get-Alias -examples&lt;/code&gt;를 입력해 봅니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help Get-Alias -examples
-
-이름
-    Get-Alias
-
-개요
-    Gets the aliases for the current session.
-
-
-    Example 1: Get all aliases in the current session
-
-    PS C:\&amp;gt;Get-Alias
-    CommandType     Name
-    -----------     ----
-    Alias           % -&amp;gt; ForEach-Object
-    Alias           ? -&amp;gt; Where-Object
-    Alias           ac -&amp;gt; Add-Content
-    Alias           asnp -&amp;gt; Add-PSSnapin
-    Alias           cat -&amp;gt; Get-Content
-    Alias           cd -&amp;gt; Set-Location
-    Alias           chdir -&amp;gt; Set-Location
-    Alias           clc -&amp;gt; Clear-Content
-    Alias           clear -&amp;gt; Clear-Host
-    Alias           clhy -&amp;gt; Clear-History â€¦
-
-    This command gets all aliases in the current session.
-
-    The output shows the &amp;lt;alias&amp;gt; -&amp;gt; &amp;lt;definition&amp;gt; format that was introduced in Windows PowerShell 3.0. This format is u
-    sed only for aliases that do not include hyphens, because aliases with hyphens are typically preferred names for cm
-    dlets and functions, rather than nicknames.
-    Example 2: Get aliases by name
-
-    PS C:\&amp;gt;Get-Alias -Name g*, s* -Exclude Get-*
-
-    This command gets all aliases that begin with g or s, except for aliases that begin with Get-.
-    Example 3: Get aliases for a cmdlet
-
-    PS C:\&amp;gt;Get-Alias -Definition Get-ChildItem
-
-    This command gets the aliases for the Get-ChildItem cmdlet.
-
-    By default, the Get-Alias cmdlet gets the item name when you know the alias. The Definition parameter gets the alia
-    s when you know the item name.
-    Example 4: Get aliases by property
-
-    PS C:\&amp;gt;Get-Alias | Where-Object {$_.Options -Match &quot;ReadOnly&quot;}
-
-    This command gets all aliases in which the value of the Options property is ReadOnly. This command provides a quick
-     way to find the aliases that are built into Windows PowerShell, because they have the ReadOnly option.
-
-    Options is just one property of the AliasInfo objects that Get-Alias gets. To find all properties and methods of Al
-    iasInfo objects, type `Get-Alias | get-member`.
-    Example 5: Get aliases by name and filter by beginning letter
-
-    PS C:\&amp;gt;Get-Alias -Definition &quot;*-PSSession&quot; -Exclude e* -Scope Global
-
-    This example gets aliases for commands that have names that end in -PSSession, except for those that begin with e.
-
-    The command uses the Scope parameter to apply the command in the global scope. This is useful in scripts when you w
-    ant to get the aliases in the session.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 해당 명령어에 대한 예제들도 출력하는 것을 볼 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">개념</summary></entry></feed>
+&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;-Name&lt;/code&gt;이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

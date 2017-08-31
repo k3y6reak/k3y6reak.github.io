@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/assets/css/cs_style.css">
+<link rel="stylesheet" href="/assets/css/post.css">
+<link rel="stylesheet" href="/assets/css/syntax.css">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+  <body>
+
+    <div class="container">
+  <nav class="navbar navbar-default navbar-toggleable-md navbar-light bg-white">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">K3Y6REAK</a>
+
+  <div class="collapse navbar-collapse flex-row-reverse" id="containerNavbar">
+    <ul class="navbar-nav my-2 my-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/about.html">About</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Programming</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/programming/c">C</a>
+          <a class="dropdown-item" href="/programming/cpp">C++</a>
+          <a class="dropdown-item" href="/programming/python">Python</a>
+          <a class="dropdown-item" href="/programming/ruby">Ruby</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">High Level Technique</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/technique/reversing">Reversing</a>
+          <a class="dropdown-item" href="/technique/system_hacking">System Hacking</a>
+          <a class="dropdown-item" href="/technique/powershell">PowerShell</a>
+          <a class="dropdown-item" href="/technique/web_hacking">Web Hacking</a>
+          <a class="dropdown-item" href="/technique/shellcoding">Shellcoding</a>
+          <a class="dropdown-item" href="/technique/windows_system">Windows System</a>
+          <a class="dropdown-item" href="/technique/windows_forensic">Windows Forensic</a>
+          <a class="dropdown-item" href="/technique/linux_forensic">Linux Forensic</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wargame</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="/wargame/reversing_kr">reversing.kr</a>
+          <a class="dropdown-item" href="/wargame/pwnable_kr">pwnable.kr</a>
+          <a class="dropdown-item" href="/wargame/wargame_kr">wargame.kr</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/ctfs">CTFs</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+</div>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Remote</h1>
+    <p class="post-meta">
+      <time datetime="2017-08-31T17:32:00+09:00" itemprop="datePublished">
+        
+        Aug 31, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><br /><br /></p>
+
+<p>PowerShell을 이용해서 다른 컴퓨터의 정보를 가져올 수 있습니다. <code class="highlighter-rouge">Get-Help *remote*</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\WINDOWS\system32&gt; Get-Help *remote*
+
+Name                              Category  Module                    Synopsis
+----                              --------  ------                    --------
+Enable-VMRemoteFXPhysicalVideo... Cmdlet    Hyper-V                   Enable-VMRemoteFXPhysicalVideoAdapter...
+Add-VMRemoteFx3dVideoAdapter      Cmdlet    Hyper-V                   Add-VMRemoteFx3dVideoAdapter...
+Remove-VMRemoteFx3dVideoAdapter   Cmdlet    Hyper-V                   Remove-VMRemoteFx3dVideoAdapter...
+Set-VMRemoteFx3dVideoAdapter      Cmdlet    Hyper-V                   Set-VMRemoteFx3dVideoAdapter...
+Get-VMRemoteFXPhysicalVideoAda... Cmdlet    Hyper-V                   Get-VMRemoteFXPhysicalVideoAdapter...
+Disable-VMRemoteFXPhysicalVide... Cmdlet    Hyper-V                   Disable-VMRemoteFXPhysicalVideoAdapter...
+Get-VMRemoteFx3dVideoAdapter      Cmdlet    Hyper-V                   Get-VMRemoteFx3dVideoAdapter...
+about_Remote                      HelpFile                            Describes how to run remote commands in Windows PowerShell.
+about_Remote_Disconnected_Sess... HelpFile                            Explains how to disconnect from and reconnect to a PSSession
+about_Remote_FAQ                  HelpFile                            Contains questions and answers about running remote commands
+about_Remote_Jobs                 HelpFile                            Describes how to run background jobs on remote computers.
+about_Remote_Output               HelpFile                            Describes how to interpret and format the output of remote commands.
+about_Remote_Requirements         HelpFile                            Describes the system requirements and configuration requirements for
+about_Remote_Troubleshooting      HelpFile                            Describes how to troubleshoot remote operations in Windows PowerShell.
+about_Remote_Variables            HelpFile                            Explains how to use local and remote variables in remote</code></pre></figure>
+
+<p>cmdlet에서 인자 값으로 <code class="highlighter-rouge">computername</code>을 사용하는 명령어를 찾아봅시다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\WINDOWS\system32&gt; Get-Command -CommandType cmdlet -ParameterName Computername
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Clear-EventLog                                     3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Connect-PSSession                                  3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Connect-WSMan                                      3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Disconnect-WSMan                                   3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Enter-PSSession                                    3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-EventLog                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-HotFix                                         3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-Process                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-PSSession                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-Service                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-WmiObject                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Get-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Invoke-Command                                     3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Invoke-WmiMethod                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Invoke-WSManAction                                 3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Limit-EventLog                                     3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          New-EventLog                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          New-PSSession                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          New-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Receive-Job                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Receive-PSSession                                  3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Register-WmiEvent                                  3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-Computer                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-EventLog                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-PSSession                                   3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Remove-WmiObject                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Remove-WSManInstance                               3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Rename-Computer                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Restart-Computer                                   3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Send-MailMessage                                   3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-Service                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-WmiInstance                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Set-WSManInstance                                  3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Show-EventLog                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Stop-Computer                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Test-Connection                                    3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Test-WSMan                                         3.0.0.0    Microsoft.WSMan.Management
+Cmdlet          Write-EventLog                                     3.1.0.0    Microsoft.PowerShell.Management</code></pre></figure>
+
+<p>여기서 현재 컴퓨터의 HotFix 내용을 알고 싶다면 <code class="highlighter-rouge">Get-HotFix</code>를 입력하면 결과가 나타납니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\WINDOWS\system32&gt; Get-HotFix
+
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+K3Y6REAK9778  Update           KB4022405     NT AUTHORITY\SYSTEM  2017. 8. 7. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034662     NT AUTHORITY\SYSTEM  2017. 8. 9. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034674     NT AUTHORITY\SYSTEM  2017. 8. 13. 오전 12:0...</code></pre></figure>
+
+<p><code class="highlighter-rouge">windows 7</code>에서 <code class="highlighter-rouge">windows 10</code>의 HotFix 내용을 가져와 출력하는 방법을 알아보겠습니다.</p>
+
+<p>먼저 <code class="highlighter-rouge">windows 10</code>에서 <code class="highlighter-rouge">Get-HotFix</code>를 하면 아래와 같이 출력됩니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">* Windows 10 *
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+K3Y6REAK9778  Update           KB4022405     NT AUTHORITY\SYSTEM  2017. 8. 7. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034662     NT AUTHORITY\SYSTEM  2017. 8. 9. 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034674     NT AUTHORITY\SYSTEM  2017. 8. 13. 오전 12:0...</code></pre></figure>
+
+<p>그리고 다른 컴퓨터에서 원격으로 가져오는 것이기 때문에 <code class="highlighter-rouge">관리자 권한</code>에서 <code class="highlighter-rouge">Set-Item WSMAN:\localhost\client\trustedhosts -Value *</code>를 입력한 뒤 명령을 실행합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\WINDOWS\system32&gt; Set-Item WSMAN:\localhost\client\trustedhosts -Value *
+
+WinRM 보안 구성
+이 명령에서 WinRM 클라이언트에 대한 TrustedHosts 목록을 수정합니다. TrustedHosts 목록에 있는 컴퓨터가 인증되지 않을 수 있으며 클라이언트에서 자격 증명 정보를 이러한 컴퓨터에 보낼 수도 있습니다. 이 목록을
+수정하시겠습니까?
+[Y] 예(Y)  [N] 아니요(N)  [S] 일시 중단(S)  [?] 도움말 (기본값은 "Y"): Y</code></pre></figure>
+
+<p><code class="highlighter-rouge">windows 7</code>에서 <code class="highlighter-rouge">Get-HotFix -Computername [Windows 10 Computer 이름] -Credential [Windows 10 계정]</code>를 입력해 줍니다. 그러면 <code class="highlighter-rouge">자격 증명 요청</code>이 나오면 해당 명령어를 실행하는 계정의 비밀번호를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">* Windows 7 *
+PS C:\Users\k3y6reak&gt; Get-HotFix -Computername [Windows 10 Computer 이름] -Credential [Windows 10 계정]
+
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+K3Y6REAK9778  Update           KB4022405     NT AUTHORITY\SYSTEM  2017-08-07 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034662     NT AUTHORITY\SYSTEM  2017-08-09 오전 12:00:00
+K3Y6REAK9778  Security Update  KB4034674     NT AUTHORITY\SYSTEM  2017-08-13 오전 12:00:00</code></pre></figure>
+
+<p>반대로 <code class="highlighter-rouge">Windows 10</code>에서 <code class="highlighter-rouge">Windows 7</code>의 실행되고 있는 프로세스 목록을 가져오도록 하겠습니다.</p>
+
+<p><code class="highlighter-rouge">Invoke-Command -ScriptBlock {Get-Process} -ComputerName [Windows 7 Computer 이름] -Credential [Windows 7 계정]</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">* Windows 10 *
+PS C:\WINDOWS\system32&gt; Invoke-Command -ScriptBlock {$env:computername} -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+[WIN-J9KO348JQVU] 다음 오류 때문에 원격 서버 WIN-J9KO348JQVU에 연결하지 못했습니다. 클라이언트가 요청에 지정된 대상에 연결할 수 없습니다. 대상에서 서비스가 실행되고 요청을 수락하고 있는지 확인하십시오. 대상에서
+ 실행 중인 WS-Management 서비스에 대한 로그 및 설명서를 참조하십시오. 대부분의 경우 IIS 또는 WinRM입니다. 대상이 WinRM 서비스인 경우 대상에서 "winrm quickconfig" 명령을 사용하여 WinRM 서비스를 분석하고 구성하십
+시오. 자세한 내용은 about_Remote_Troubleshooting 도움말 항목을 참조하십시오.
+    + CategoryInfo          : OpenError: (WIN-J9KO348JQVU:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : CannotConnect,PSSessionStateBroken</code></pre></figure>
+
+<p>위와 같은 에러 메시지가 출력된다면 Windows 7에서 <code class="highlighter-rouge">관리자 권한</code>으로 PowerShell을 실행시킨 후 <code class="highlighter-rouge">Enable-PSRemoting -force</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">* Windows 7 *
+PS C:\Windows\system32&gt; Enable-PSRemoting -force
+이 컴퓨터에서 요청을 수신하도록 WinRM이 이미 설정되었습니다.
+원격 관리를 위한 WinRM이 업데이트되었습니다.
+이 컴퓨터에서 모든 IP 주소로 WS-Man 요청을 수락하려면 HTTP://*에서 WinRM 수신기를 만드십시오.
+WinRM 방화벽 예외를 사용합니다.</code></pre></figure>
+
+<p>그 후 다시 <code class="highlighter-rouge">Invoke-Command -ScriptBlock {Get-Process} -ComputerName WIN-J9KO348JQVU -Credential k3y6reak</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">* Windows 10 *
+PS C:\WINDOWS\system32&gt; Invoke-Command -ScriptBlock {Get-Process} -ComputerName [Windows 7 Computer 이름] -Credential [Windows 7 계정]
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                                  PSComputerName
+-------  ------    -----      -----     ------     --  -- -----------                                                                  --------------
+    126       5    14996      13952              2504     audiodg                                                                      WIN-J9KO348JQVU
+     89       5     4328      10484      0.530   1572     conhost                                                                      WIN-J9KO348JQVU
+     89       5     4292      10356      0.047   3980     conhost                                                                      WIN-J9KO348JQVU
+    579       6     1288       3012      1.076    360     csrss                                                                        WIN-J9KO348JQVU
+    257       8     9716       7684     11.934   3336     csrss                                                                        WIN-J9KO348JQVU
+     83       4      912       3624      0.031   1916     dllhost                                                                      WIN-J9KO348JQVU
+    188       8     3076       9080      0.031   3128     dllhost                                                                      WIN-J9KO348JQVU
+    116       6    42392      49896      1.404   3608     dwm                                                                          WIN-J9KO348JQVU
+    840      27    30936      61676     13.416   3620     explorer                                                                     WIN-J9KO348JQVU
+      0       0        0         24                 0     Idle                                                                         WIN-J9KO348JQVU
+    881      10     2952       6820      3.697    508     lsass                                                                        WIN-J9KO348JQVU
+    144       4     1264       2112      0.000    516     lsm                                                                          WIN-J9KO348JQVU
+    146       9     2400       3392      1.170   2188     msdtc                                                                        WIN-J9KO348JQVU
+    688      50    33608      43892      0.780    492     powershell                                                                   WIN-J9KO348JQVU
+    600      15    27680      46684      0.905    856     powershell                                                                   WIN-J9KO348JQVU
+    764      18    22384      23768      4.711   1864     SearchIndexer                                                                WIN-J9KO348JQVU
+    212       7     3792       6352      2.558    500     services                                                                     WIN-J9KO348JQVU
+     29       1      220        528      0.156    280     smss                                                                         WIN-J9KO348JQVU
+    325      12     5036       5032      0.936   1408     spoolsv                                                                      WIN-J9KO348JQVU
+    152       4     6100       7480      2.933   3152     sppsvc                                                                       WIN-J9KO348JQVU
+    100       7     1192       4244      0.062    352     svchost                                                                      WIN-J9KO348JQVU
+    371       7     3252       6096     14.539    652     svchost                                                                      WIN-J9KO348JQVU
+    298       9     2968       5904      0.733    744     svchost                                                                      WIN-J9KO348JQVU
+    536      14    14200      12192      1.872    796     svchost                                                                      WIN-J9KO348JQVU
+    364      10     3232       5308      7.457    916     svchost                                                                      WIN-J9KO348JQVU
+   1206      31    21624      32616     45.318    960     svchost                                                                      WIN-J9KO348JQVU
+    820      21     6752      12672      1.248   1104     svchost                                                                      WIN-J9KO348JQVU
+    658      75    57968      33608      4.524   1176     svchost                                                                      WIN-J9KO348JQVU
+    333      25     9308       8308      0.920   1468     svchost                                                                      WIN-J9KO348JQVU
+    280      13     3908       7924      0.312   3064     svchost                                                                      WIN-J9KO348JQVU
+    368      35   149724      58524    181.273   3188     svchost                                                                      WIN-J9KO348JQVU
+    541       0       48       1076                 4     System                                                                       WIN-J9KO348JQVU
+    214      10     6772       6664      1.201   3560     taskhost                                                                     WIN-J9KO348JQVU
+     85       5     4960       2788      0.234   1752     VGAuthService                                                                WIN-J9KO348JQVU
+     54       3      824       1952      0.031    712     vmacthlp                                                                     WIN-J9KO348JQVU
+    286      12     8268       8920     29.578   1812     vmtoolsd                                                                     WIN-J9KO348JQVU
+    210      10     8064      12108     20.389   3724     vmtoolsd                                                                     WIN-J9KO348JQVU
+     76       5      988       1832      0.452    412     wininit                                                                      WIN-J9KO348JQVU
+    117       5     1724       3628      0.452   3360     winlogon                                                                     WIN-J9KO348JQVU
+    203       7     7328      10260      4.930    860     WmiPrvSE                                                                     WIN-J9KO348JQVU
+    207       7     2628       3580      0.265   3424     wmpnetwk                                                                     WIN-J9KO348JQVU
+    218      11    23216      32516      4.992   2392     wsmprovhost                                                                  WIN-J9KO348JQVU</code></pre></figure>
+
+<p>이렇게 다른 컴퓨터의 정보를 가져올 수 있습니다. 또한 SSH 처럼 사용할 수 있는데, <code class="highlighter-rouge">PSSession</code>을 사용합니다.</p>
+
+<p>먼저 새로운 PSSession을 만들어야 합니다. <code class="highlighter-rouge">New-PSSession</code>명령어를 사용합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\WINDOWS\system32&gt; New-PSSession -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+
+ Id Name            ComputerName    ComputerType    State         ConfigurationName     Availability
+ -- ----            ------------    ------------    -----         -----------------     ------------
+  1 WinRM1          WIN-J9KO348JQVU RemoteMachine   Opened        Microsoft.PowerShell     Available</code></pre></figure>
+
+<p>위와 같이 연결이 된 후에 <code class="highlighter-rouge">Enter-PSSession</code>을 이용하여 접속합니다.</p>
+
+<figure class="highlight"><pre><code class="language-ps" data-lang="ps">PS C:\WINDOWS\system32&gt; Enter-PSSession -id 1
+[WIN-J9KO348JQVU]: PS C:\Users\k3y6reak\Documents&gt; cd \
+[WIN-J9KO348JQVU]: PS C:\&gt; ls
+
+
+    디렉터리: C:\
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----        2009-07-14  오전 11:37            PerfLogs
+
+d-r--        2017-08-25   오후 1:30            Program Files
+
+d-r--        2017-08-30   오후 8:16            Users
+
+d----        2017-08-25   오후 1:31            Windows
+
+-a---        2009-06-11   오전 6:42         24 autoexec.bat
+
+-a---        2009-06-11   오전 6:42         10 config.sys</code></pre></figure>
+
+<p><code class="highlighter-rouge">Enter-PSSession</code>에서 <code class="highlighter-rouge">-id</code> 옵션 값은 <code class="highlighter-rouge">New-PSSession</code>을 통해서 만들어진 <code class="highlighter-rouge">Id</code>값입니다.</p>
+
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    
+
+
+
+<div class="container">
+	<hr>
+	<section class="float-left">
+		&copy; 2017. SAHONG PAK all rights reserved.
+	</section>
+	<section class="float-right">
+		<a href="http://blog.rebforpwn.com">
+			<img src="/assets/img/rebforpwn.png" alt="RebForPwn" height="32" width="100">
+		</a>
+
+		<a href="http://">
+		<img src="/assets/img/github.svg" alt="github" height="32" width="32">
+		</a>
+
+		<a href="mailto:k3y6reak@naver.com">
+		<img src="/assets/img/mail.svg" alt="mail" height="32" width="32">
+		</a>
+	</section>
+</div>
+
+  </body>
+
+</html>
