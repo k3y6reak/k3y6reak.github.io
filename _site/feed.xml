@@ -1,5 +1,477 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-31T17:32:38+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Remote</title><link href="http://localhost:4000/technique/powershell/2017/08/31/remote.html" rel="alternate" type="text/html" title="Remote" /><published>2017-08-31T17:32:00+09:00</published><updated>2017-08-31T17:32:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/31/remote</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/31/remote.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-05T18:27:40+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">WMI</title><link href="http://localhost:4000/technique/powershell/2017/09/04/WMI.html" rel="alternate" type="text/html" title="WMI" /><published>2017-09-04T20:01:00+09:00</published><updated>2017-09-04T20:01:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/09/04/WMI</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/09/04/WMI.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;WMI&lt;/code&gt;는 Windows Management Instrumentation으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;윈도우 관리 도구&lt;/code&gt;다. 이를 PowerShell에서 사용할 수 있는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject&lt;/code&gt;명령을 이용한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -Namespace &quot;root&quot; -Class &quot;__Namespace&quot;
+
+
+__GENUS          : 2
+__CLASS          : __NAMESPACE
+__SUPERCLASS     : __SystemClass
+__DYNASTY        : __SystemClass
+__RELPATH        : __NAMESPACE.Name=&quot;subscription&quot;
+__PROPERTY_COUNT : 1
+__DERIVATION     : {__SystemClass}
+__SERVER         : K3Y6REAK9778
+__NAMESPACE      : ROOT
+__PATH           : \\K3Y6REAK9778\ROOT:__NAMESPACE.Name=&quot;subscription&quot;
+Name             : subscription
+PSComputerName   : K3Y6REAK9778
+
+__GENUS          : 2
+__CLASS          : __NAMESPACE
+__SUPERCLASS     : __SystemClass
+__DYNASTY        : __SystemClass
+__RELPATH        : __NAMESPACE.Name=&quot;DEFAULT&quot;
+__PROPERTY_COUNT : 1
+__DERIVATION     : {__SystemClass}
+__SERVER         : K3Y6REAK9778
+__NAMESPACE      : ROOT
+__PATH           : \\K3Y6REAK9778\ROOT:__NAMESPACE.Name=&quot;DEFAULT&quot;
+Name             : DEFAULT
+PSComputerName   : K3Y6REAK9778&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;여기서 이름에 대한 내용만 가져오고 싶은 경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;| Select-Object Name&lt;/code&gt;를 붙여주면 된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -Namespace &quot;root&quot; -Class &quot;__Namespace&quot; | Select-Object Name
+
+Name
+----
+subscription
+DEFAULT
+CIMV2
+msdtc
+Cli
+SECURITY
+SecurityCenter2
+RSOP
+PEH
+StandardCimv2
+WMI
+directory
+Policy
+Interop
+Hardware
+ServiceModel
+SecurityCenter
+Microsoft
+aspnet
+Appv&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Wmi-Object 중에서 CIMV2에 대한 내용을 살펴보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -NameSpace &quot;root/cimv2&quot; -List&lt;/code&gt;를 입력하면 아래와 같은 수많은 항목을 볼 수 있다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -NameSpace &quot;root/cimv2&quot; -List
+
+
+   NameSpace: ROOT\CIMV2
+
+Name                                Methods              Properties
+----                                -------              ----------
+__SystemClass                       {}                   {}
+__thisNAMESPACE                     {}                   {SECURITY_DESCRIPTOR}
+__Provider                          {}                   {Name}
+__Win32Provider                     {}                   {ClientLoadableCLSID, CLSID, Concurrency, DefaultMachineName...}
+__ProviderRegistration              {}                   {provider}
+__EventProviderRegistration         {}                   {EventQueryList, provider}
+__ObjectProviderRegistration        {}                   {InteractionType, provider, QuerySupportLevels, SupportsBatching...}
+__ClassProviderRegistration         {}                   {CacheRefreshInterval, InteractionType, PerUserSchema, provider...}
+__InstanceProviderRegistration      {}                   {InteractionType, provider, QuerySupportLevels, SupportsBatching...}
+
+...(생략)&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;여기서 Win32에 대한 항목을 보고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;| Where-Object {$_.Name -match &quot;Win32}&lt;/code&gt;를 붙여주면 된다. 마찬가지로 많은 항목이 출력된다. 이 중 Win32_Process을 사용해 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Class Win32_Process&lt;/code&gt;를 실행하면 이 또한 많은 항목이 출력된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;__GENUS                    : 2
+__CLASS                    : Win32_Process
+__SUPERCLASS               : CIM_Process
+__DYNASTY                  : CIM_ManagedSystemElement
+__RELPATH                  : Win32_Process.Handle=&quot;604&quot;
+__PROPERTY_COUNT           : 45
+__DERIVATION               : {CIM_Process, CIM_LogicalElement, CIM_ManagedSystemElement}
+__SERVER                   : K3Y6REAK9778
+__NAMESPACE                : root\cimv2
+__PATH                     : \\K3Y6REAK9778\root\cimv2:Win32_Process.Handle=&quot;604&quot;
+Caption                    : wininit.exe
+CommandLine                :
+CreationClassName          : Win32_Process
+CreationDate               : 20170813174441.546153+540
+CSCreationClassName        : Win32_ComputerSystem
+CSName                     : K3Y6REAK9778
+Description                : wininit.exe
+ExecutablePath             :
+ExecutionState             :
+Handle                     : 604
+HandleCount                : 152
+InstallDate                :
+KernelModeTime             : 12343750
+MaximumWorkingSetSize      :
+MinimumWorkingSetSize      :
+Name                       : wininit.exe
+OSCreationClassName        : Win32_OperatingSystem
+OSName                     : Microsoft Windows 10 Education|C:\WINDOWS|\Device\Harddisk0\Partition4
+OtherOperationCount        : 17201
+OtherTransferCount         : 4702606
+PageFaults                 : 6127
+PageFileUsage              : 1704
+ParentProcessId            : 500
+PeakPageFileUsage          : 2200
+PeakVirtualSize            : 2199082618880
+PeakWorkingSetSize         : 7188
+Priority                   : 13
+PrivatePageCount           : 1744896
+ProcessId                  : 604
+QuotaNonPagedPoolUsage     : 12
+QuotaPagedPoolUsage        : 120
+QuotaPeakNonPagedPoolUsage : 15
+QuotaPeakPagedPoolUsage    : 122
+ReadOperationCount         : 22
+ReadTransferCount          : 56320
+SessionId                  : 0
+Status                     :
+TerminationDate            :
+ThreadCount                : 1
+UserModeTime               : 0
+VirtualSize                : 2199078547456
+WindowsVersion             : 10.0.15063
+WorkingSetSize             : 4096
+WriteOperationCount        : 0
+WriteTransferCount         : 0
+PSComputerName             : K3Y6REAK9778
+ProcessName                : wininit.exe
+Handles                    : 152
+VM                         : 2199078547456
+WS                         : 4096
+Path                       :&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이름만 출력하고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;| select Name&lt;/code&gt;을 붙여주면 된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -Class Win32_Process | Select Name
+
+Name
+----
+System Idle Process
+System
+smss.exe
+csrss.exe
+wininit.exe
+services.exe
+lsass.exe
+svchost.exe
+svchost.exe
+fontdrvhost.exe
+svchost.exe
+svchost.exe
+svchost.exe
+svchost.exe
+WUDFHost.exe
+...(생략)&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이 명령어을 이용해서 Win7의 정보를 가져올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Class Win32_Process -ComputerName [Win7 컴퓨터이름] -Credential [Win7 계정] | select Name&lt;/code&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -Class Win32_Process -ComputerName WIN-J9KO348JQVU -Credential k3y6reak | select Name
+
+Name
+----
+System Idle Process
+System
+smss.exe
+csrss.exe
+wininit.exe
+csrss.exe
+winlogon.exe
+services.exe
+lsass.exe
+lsm.exe
+svchost.exe
+vmacthlp.exe
+svchost.exe
+svchost.exe
+svchost.exe
+svchost.exe
+audiodg.exe
+svchost.exe
+svchost.exe
+spoolsv.exe
+svchost.exe
+VGAuthService.exe
+vmtoolsd.exe
+svchost.exe
+dllhost.exe
+dllhost.exe
+WmiPrvSE.exe
+msdtc.exe
+taskhost.exe
+dwm.exe
+explorer.exe
+vmtoolsd.exe
+VSSVC.exe
+SearchIndexer.exe
+wmpnetwk.exe
+svchost.exe
+SearchProtocolHost.exe
+SearchFilterHost.exe
+WmiPrvSE.exe
+WmiApSrv.exe
+powershell.exe
+conhost.exe
+sppsvc.exe
+svchost.exe&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;여러 프로세스 중 특정 한 프로세스만 출력하고 싶은 경우 여러가지 방법이 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;-eq&quot;&gt;-eq&lt;/h4&gt;
+
+&lt;p&gt;eq는 equal로 같은 문자열이 있는 것을 찾는다. 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Class Win32_Process | Where-Object {$_.Name -eq &quot;powershell.exe&quot;}&lt;/code&gt;를 이용해 powershell.exe를 찾게된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;-filter&quot;&gt;-Filter&lt;/h4&gt;
+
+&lt;p&gt;필터 또한 찾고자 하는 문자열을 찾아주는 기능을 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Class Win32_Process -Filter {Name = &quot;powershell.exe&quot;}&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;-query&quot;&gt;-Query&lt;/h4&gt;
+
+&lt;p&gt;쿼리는 쿼리문을 이용하여 찾는 방법을 말한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Query {Select * from Win32_Process where name = &quot;powershell.exe&quot;}&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;eq, filter, query&lt;/code&gt; 모두 동일한 결과를 출력한다.&lt;/p&gt;
+
+&lt;p&gt;WMI을 이용해서 프로세스를 실행시킬 수 있다. 먼저 Win32_Process에서 사용할 수 있는 Method를 살펴보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Class Win32_Process -List&lt;/code&gt;를 입력한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -Class Win32_Process -List
+
+
+   NameSpace: ROOT\cimv2
+
+Name                                Methods              Properties
+----                                -------              ----------
+Win32_Process                       {Create, Terminat... {Caption, CommandLine, CreationClassName, CreationDate...}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Methods 항목에 Create, Termiat… 를 볼 수 있는데 사용할 수 있는 Method를 모두 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-WmiObject -Class Win32_Process -List | Select-Object -ExpandProterty Methods&lt;/code&gt;를 입력해 보자.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-WmiObject -Class Win32_Process -List | Select-Object -ExpandProperty Methods
+
+
+Name          : Create
+InParameters  : System.Management.ManagementBaseObject
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Constructor, Implemented, MappingStrings, Privileges...}
+
+Name          : Terminate
+InParameters  : System.Management.ManagementBaseObject
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Destructor, Implemented, MappingStrings, Privileges...}
+
+Name          : GetOwner
+InParameters  :
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Implemented, MappingStrings, ValueMap}
+
+Name          : GetOwnerSid
+InParameters  :
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Implemented, MappingStrings, ValueMap}
+
+Name          : SetPriority
+InParameters  : System.Management.ManagementBaseObject
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Implemented, MappingStrings, ValueMap}
+
+Name          : AttachDebugger
+InParameters  :
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Implemented, ValueMap}
+
+Name          : GetAvailableVirtualSize
+InParameters  :
+OutParameters : System.Management.ManagementBaseObject
+Origin        : Win32_Process
+Qualifiers    : {Implemented, ValueMap}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 출력결과를 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Create, Terminate, GetOwner, GetOwnerSid, SetPriority, AttachDebugger, GetAvailableVirtualSize&lt;/code&gt;를 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Invoke-WmiMethod&lt;/code&gt; 명령어를 통해서 notepad.exe를 실행해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList &quot;notepad.exe&quot;&lt;/code&gt;를 입력해 보자.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList &quot;notepad.exe&quot;
+
+
+__GENUS          : 2
+__CLASS          : __PARAMETERS
+__SUPERCLASS     :
+__DYNASTY        : __PARAMETERS
+__RELPATH        :
+__PROPERTY_COUNT : 2
+__DERIVATION     : {}
+__SERVER         :
+__NAMESPACE      :
+__PATH           :
+ProcessId        : 2940
+ReturnValue      : 0
+PSComputerName   :&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Invoke-WmiMethod&lt;/code&gt; 또한 Win7에 notepad.exe를 실행할 수 있다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList &quot;notepad.exe&quot; -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+
+
+__GENUS          : 2
+__CLASS          : __PARAMETERS
+__SUPERCLASS     :
+__DYNASTY        : __PARAMETERS
+__RELPATH        :
+__PROPERTY_COUNT : 2
+__DERIVATION     : {}
+__SERVER         :
+__NAMESPACE      :
+__PATH           :
+ProcessId        : 2420
+ReturnValue      : 0
+PSComputerName   :&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;실행 결과를 보면 실행이 된 것을 볼 수 있는데 실제 Win7에서 확인해보면 실행되지 않는다.&lt;/p&gt;
+
+&lt;p&gt;실행시킬 수 있는 방법에 대해서 알아봐야겠다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Jobs</title><link href="http://localhost:4000/technique/powershell/2017/09/01/jobs.html" rel="alternate" type="text/html" title="Jobs" /><published>2017-09-01T10:34:00+09:00</published><updated>2017-09-01T10:34:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/09/01/jobs</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/09/01/jobs.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;job&lt;/code&gt;은 PowerShell에서 사용되는 것으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Background&lt;/code&gt;로 실행하는 것을 말합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; Help *job*
+
+
+
+
+
+
+Remove-Job                        Cmdlet    Microsoft.PowerShell.Core Deletes a Windows PowerShell background job.
+Start-Job                         Cmdlet    Microsoft.PowerShell.Core Starts a Windows PowerShell background job.
+Stop-Job                          Cmdlet    Microsoft.PowerShell.Core Stops a Windows PowerShell background job.
+Wait-Job                          Cmdlet    Microsoft.PowerShell.Core Suppresses the command prompt until one or all of the Windows PowerShell background jobs running in the session are completed.
+Resume-Job                        Cmdlet    Microsoft.PowerShell.Core Restarts a suspended job.
+Suspend-Job                       Cmdlet    Microsoft.PowerShell.Core Temporarily stops workflow jobs.
+Add-JobTrigger                    Cmdlet    PSScheduledJob            Adds job triggers to scheduled jobs.
+Disable-JobTrigger                Cmdlet    PSScheduledJob            Disables the job triggers of scheduled jobs.
+Disable-ScheduledJob              Cmdlet    PSScheduledJob            Disables a scheduled job.
+Enable-JobTrigger                 Cmdlet    PSScheduledJob            Enables the job triggers of scheduled jobs.
+Enable-ScheduledJob               Cmdlet    PSScheduledJob            Enables a scheduled job.
+Get-JobTrigger                    Cmdlet    PSScheduledJob            Gets the job triggers of scheduled jobs.
+Get-ScheduledJob                  Cmdlet    PSScheduledJob            Gets scheduled jobs on the local computer.
+Get-ScheduledJobOption            Cmdlet    PSScheduledJob            Gets the job options of scheduled jobs.
+New-JobTrigger                    Cmdlet    PSScheduledJob            Creates a job trigger for a scheduled job.
+New-ScheduledJobOption            Cmdlet    PSScheduledJob            Creates an object that contains advanced options for a scheduled job.
+Register-ScheduledJob             Cmdlet    PSScheduledJob            Creates a scheduled job.
+Remove-JobTrigger                 Cmdlet    PSScheduledJob            Delete job triggers from scheduled jobs.
+Set-JobTrigger                    Cmdlet    PSScheduledJob            Changes the job trigger of a scheduled job.
+Set-ScheduledJob                  Cmdlet    PSScheduledJob            Changes scheduled jobs.
+Set-ScheduledJobOption            Cmdlet    PSScheduledJob            Changes the job options of a scheduled job.
+Unregister-ScheduledJob           Cmdlet    PSScheduledJob            Deletes scheduled jobs on the local computer.
+Resume-PrintJob                   Function  PrintManagement           ...
+Suspend-PrintJob                  Function  PrintManagement           ...
+Restart-PrintJob                  Function  PrintManagement           ...
+Get-PrintJob                      Function  PrintManagement           ...
+Remove-PrintJob                   Function  PrintManagement           ...
+Stop-StorageJob                   Function  Storage                   ...
+Get-StorageJob                    Function  Storage                   ...
+about_Jobs                        HelpFile                            Provides information about how Windows PowerShell background jobs run a
+about_Job_Details                 HelpFile                            Provides details about background jobs on local and remote computers.
+about_Remote_Jobs                 HelpFile                            Describes how to run background jobs on remote computers.
+about_Scheduled_Jobs              HelpFile                            Describes scheduled jobs and explains how to use and manage
+about_Scheduled_Jobs_Advanced     HelpFile                            Explains advanced scheduled job topics, including the file structure
+about_Scheduled_Jobs_Basics       HelpFile                            Explains how to create and manage scheduled jobs.
+about_Scheduled_Jobs_Troublesh... HelpFile                            Explains how to resolve problems with scheduled jobs
+about_Scheduled_Jobs              HelpFile                            Describes scheduled jobs and explains how to use and manage
+about_Scheduled_Jobs_Advanced     HelpFile                            Explains advanced scheduled job topics, including the file structure
+about_Scheduled_Jobs_Basics       HelpFile                            Explains how to create and manage scheduled jobs.
+about_Scheduled_Jobs_Troublesh... HelpFile                            Explains how to resolve problems with scheduled jobs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Job&lt;/code&gt;에 관한 내용을 찾아보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Start-Job&lt;/code&gt; 명령어가 있는데 이 명령어를 통해서 실행할 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Start-Job -ScriptBlock {whoami}
+
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command
+--     ----            -------------   -----         -----------     --------             -------
+1      Job1            BackgroundJob   Running       True            localhost            whoami&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Background&lt;/code&gt; 상태로 &lt;code class=&quot;highlighter-rouge&quot;&gt;whoami&lt;/code&gt;명령이 실행된 것을 볼 수 있습니다. 해당 명령의 실행결과를 출력하고자 할 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Receive-Job&lt;/code&gt;을 이용하면 됩니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Get-Job -Id 1 | Receive-Job
+k3y6reak9778\k3y6reak&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이번에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Windows7&lt;/code&gt;에서 Job을 실행시킨 후 해당 결과를 출력해 보도록 하겠습니다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;$se&lt;/code&gt;라는 변수를 이용하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;PSSession&lt;/code&gt;을 이용해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$se = New-PSSession -ComputerName [Windows7 컴퓨터 이름] -Credential [Windows7 계정]&lt;/code&gt;을 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; $se = New-PSSession -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+PS C:\WINDOWS\system32&amp;gt; Invoke-Command -ScriptBlock {Start-Job -ScriptBlock {ps}} -Session $se
+
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command                   PSComputerName
+--     ----            -------------   -----         -----------     --------             -------                   --------------
+1      Job1                            Running       True            localhost            ps                        WIN-J9KO348JQVU&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Invoke-Command -ScriptBlock { Get-Job | Receive-Job } -Session $se&lt;/code&gt;를 입력하면 Windows7에서 실행되는 프로세스의 목록을 가져올 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\WINDOWS\system32&amp;gt; Invoke-Command -ScriptBlock { Get-Job | Receive-Job } -Session $se
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                                 PSComputerName
+-------  ------    -----      -----     ------     --  -- -----------                                                                 --------------
+     30       2      660       2256      0.000   3488     conhost                                                                     WIN-J9KO348JQVU
+    538       6     1264       4224      6.552    332     csrss                                                                       WIN-J9KO348JQVU
+    204       7     9900       7844     22.558    396     csrss                                                                       WIN-J9KO348JQVU
+    188       8     2928       8648     11.560   1908     dllhost                                                                     WIN-J9KO348JQVU
+    116       6    36584      35968  8,268.271   2208     dwm                                                                         WIN-J9KO348JQVU
+    807      28    32868      59380     62.166   2240     explorer                                                                    WIN-J9KO348JQVU
+      0       0        0         24                 0     Idle                                                                        WIN-J9KO348JQVU
+    622      10     2988       8188      5.257    500     lsass                                                                       WIN-J9KO348JQVU
+    139       4     1216       3020      0.281    508     lsm                                                                         WIN-J9KO348JQVU
+    143       9     2440       6252      0.265   2016     msdtc                                                                       WIN-J9KO348JQVU
+    253      11    22232      32532      1.856   2748     powershell                                                                  WIN-J9KO348JQVU
+    602      16    22056      25588      6.614   2536     SearchIndexer                                                               WIN-J9KO348JQVU
+    208       7     3804       6736      9.656    492     services                                                                    WIN-J9KO348JQVU
+     29       1      220        736      0.343    256     smss                                                                        WIN-J9KO348JQVU
+    323      12     5056      11128      0.499   1256     spoolsv                                                                     WIN-J9KO348JQVU
+    150       4     4228       8000     11.060   3240     sppsvc                                                                      WIN-J9KO348JQVU
+    353       7     2688       7004      2.371    600     svchost                                                                     WIN-J9KO348JQVU
+    265       9     2684       6100      1.654    700     svchost                                                                     WIN-J9KO348JQVU
+    528      14    14144      14924      9.656    748     svchost                                                                     WIN-J9KO348JQVU
+    343       9     2932       8364      2.293    848     svchost                                                                     WIN-J9KO348JQVU
+    972      26    13888      25536     47.284    892     svchost                                                                     WIN-J9KO348JQVU
+    814      19     7412      14292     16.505   1036     svchost                                                                     WIN-J9KO348JQVU
+    454      18     9064      12392     23.369   1160     svchost                                                                     WIN-J9KO348JQVU
+    304      25     8100       9572      2.418   1292     svchost                                                                     WIN-J9KO348JQVU
+     97       7     1196       4272      0.187   1808     svchost                                                                     WIN-J9KO348JQVU
+    285      13     4120       8752      7.301   2752     svchost                                                                     WIN-J9KO348JQVU
+    348      35   145304      38772     20.967   3276     svchost                                                                     WIN-J9KO348JQVU
+    525       0       44       1000                 4     System                                                                      WIN-J9KO348JQVU
+    200      10     6784       7512      0.686   2152     taskhost                                                                    WIN-J9KO348JQVU
+     85       5     4960       8936      0.250   1440     VGAuthService                                                               WIN-J9KO348JQVU
+     53       3      816       3232      0.078    660     vmacthlp                                                                    WIN-J9KO348JQVU
+    288      12     9316      16732    837.429   1492     vmtoolsd                                                                    WIN-J9KO348JQVU
+    175       9     6904      15524    220.117   2340     vmtoolsd                                                                    WIN-J9KO348JQVU
+     78       5      984       3764      0.359    384     wininit                                                                     WIN-J9KO348JQVU
+    115       4     1656       5116      0.671    432     winlogon                                                                    WIN-J9KO348JQVU
+    202       7     7184      11924     24.383    376     WmiPrvSE                                                                    WIN-J9KO348JQVU
+    238       8     3636       4360     14.134   2624     wmpnetwk                                                                    WIN-J9KO348JQVU
+    266      12    21748      31724      0.530   1144     wsmprovhost                                                                 WIN-J9KO348JQVU&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Remote</title><link href="http://localhost:4000/technique/powershell/2017/08/31/remote.html" rel="alternate" type="text/html" title="Remote" /><published>2017-08-31T17:32:00+09:00</published><updated>2017-08-31T17:32:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/31/remote</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/31/remote.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;PowerShell을 이용해서 다른 컴퓨터의 정보를 가져올 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help *remote*&lt;/code&gt;를 입력합니다.&lt;/p&gt;
 
@@ -1349,261 +1821,4 @@ gdb-peda&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt
 Yes!
 root@ubuntu:/home/k3y6reak/Desktop#&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;flag{57201791ea24f3acd852cee3271333a8}&lt;/code&gt;가 된다.&lt;/p&gt;</content><author><name></name></author><summary type="html">문제</summary></entry><entry><title type="html">SHA2017 asby (100)</title><link href="http://localhost:4000/ctfs/2017/08/07/sha2017_asby_100.html" rel="alternate" type="text/html" title="SHA2017 asby (100)" /><published>2017-08-07T14:11:00+09:00</published><updated>2017-08-07T14:11:00+09:00</updated><id>http://localhost:4000/ctfs/2017/08/07/sha2017_asby_100</id><content type="html" xml:base="http://localhost:4000/ctfs/2017/08/07/sha2017_asby_100.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;문제&quot;&gt;문제&lt;/h3&gt;
-
-&lt;p&gt;asby (100)&lt;/p&gt;
-
-&lt;p&gt;Eindbazen team member asby has by far been putting the most energy and time in creating the SHA2017 CTF. To honor his dedication and all his effort we created this challenge as an ode to him.&lt;/p&gt;
-
-&lt;p&gt;You can choose to reverse engineer this challenge or you can “asby” it. Good luck with the option you choose.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;풀이&quot;&gt;풀이&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cmd&quot; data-lang=&quot;cmd&quot;&gt;What is the flag? k3y6reak
-Checking char 1:WRONG!
-What is the flag?&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;asby.exe 파일을 실행하면 위와 같이 What is the flag? 라는 문자열이 나타나며 입력을 하면 각 자리마다 값을 비교한다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dbg&quot; data-lang=&quot;dbg&quot;&gt;0040179B | 89 D0                    | MOV EAX, EDX                                     |
-0040179D | 0F B6 44 05 C9           | MOVZX EAX, BYTE PTR SS:[EBP + EAX - 37]          |
-004017A2 | 31 C8                    | XOR EAX, ECX                                     |
-004017A4 | 83 F0 2A                 | XOR EAX, 2A                                      |
-004017A7 | 38 45 80                 | CMP BYTE PTR SS:[EBP - 80], AL                   |
-004017AA | 0F 94 C0                 | SETE AL                                          |
-004017AD | 84 C0                    | TEST AL, AL                                      |
-004017AF | 74 16                    | JE asby.4017C7                                   |
-004017B1 | C7 44 24 04 4F 90 48 00  | MOV DWORD PTR SS:[ESP + 4], asby.48904F          | 48904F:&quot;CORRECT!\n&quot;
-004017B9 | C7 04 24 40 81 48 00     | MOV DWORD PTR SS:[ESP], asby.488140              |
-004017C0 | E8 4B 9F 07 00           | CALL asby.47B710                                 |
-004017C5 | EB 1D                    | JMP asby.4017E4                                  |
-004017C7 | C7 44 24 04 59 90 48 00  | MOV DWORD PTR SS:[ESP + 4], asby.489059          | 489059:&quot;WRONG!\n&quot;
-004017CF | C7 04 24 40 81 48 00     | MOV DWORD PTR SS:[ESP], asby.488140              |
-004017D6 | C7 45 88 02 00 00 00     | MOV DWORD PTR SS:[EBP - 78], 2                   |
-004017DD | E8 2E 9F 07 00           | CALL asby.47B710                                 |
-004017E2 | EB 29                    | JMP asby.40180D                                  |&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;각 자리를 비교하는 부분은 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x004017a7&lt;/code&gt; 에서 비교를 하는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x004017a4&lt;/code&gt;에서 입력한 값과 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x2a를 xor 연산한 값&lt;/code&gt;을 비교하게 된다.&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;WRONG!&lt;/code&gt;이 출력되면 다시 flag를 입력해야 하기 때문에 값이 틀려도 &lt;code class=&quot;highlighter-rouge&quot;&gt;CORRECT!&lt;/code&gt;가 나오도록 하기 위해서 바이너리를 패치한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;004017AF | 74 16                    | JE asby.4017C7&lt;/code&gt; 이 부분을 &lt;code class=&quot;highlighter-rouge&quot;&gt;NOP&lt;/code&gt;으로 패치한 뒤에 비교하는 값을 모두 찾아내면 된다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cmd&quot; data-lang=&quot;cmd&quot;&gt;C:\Users\k3y6reak\Desktop&amp;gt;asby.exe
-What is the flag? flag{024baa8ac03ef22fdde61c0f11069f2f}
-Checking char 1:CORRECT!
-Checking char 2:CORRECT!
-Checking char 3:CORRECT!
-Checking char 4:CORRECT!
-Checking char 5:CORRECT!
-Checking char 6:CORRECT!
-Checking char 7:CORRECT!
-Checking char 8:CORRECT!
-Checking char 9:CORRECT!
-Checking char 10:CORRECT!
-Checking char 11:CORRECT!
-Checking char 12:CORRECT!
-Checking char 13:CORRECT!
-Checking char 14:CORRECT!
-Checking char 15:CORRECT!
-Checking char 16:CORRECT!
-Checking char 17:CORRECT!
-Checking char 18:CORRECT!
-Checking char 19:CORRECT!
-Checking char 20:CORRECT!
-Checking char 21:CORRECT!
-Checking char 22:CORRECT!
-Checking char 23:CORRECT!
-Checking char 24:CORRECT!
-Checking char 25:CORRECT!
-Checking char 26:CORRECT!
-Checking char 27:CORRECT!
-Checking char 28:CORRECT!
-Checking char 29:CORRECT!
-Checking char 30:CORRECT!
-Checking char 31:CORRECT!
-Checking char 32:CORRECT!
-Checking char 33:CORRECT!
-Checking char 34:CORRECT!
-Checking char 35:CORRECT!
-Checking char 36:CORRECT!
-Checking char 37:CORRECT!
-Checking char 38:CORRECT!
-
-Congrats, it seems you asby'ed the flag out of the challenge!&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;각 자리를 모두 찾아내면 &lt;code class=&quot;highlighter-rouge&quot;&gt;flag{024baa8ac03ef22fdde61c0f11069f2f}&lt;/code&gt;가 나오게 된다.&lt;/p&gt;</content><author><name></name></author><summary type="html">문제</summary></entry><entry><title type="html">Cmdlet</title><link href="http://localhost:4000/technique/powershell/2017/08/04/cmdlet.html" rel="alternate" type="text/html" title="Cmdlet" /><published>2017-08-04T17:06:00+09:00</published><updated>2017-08-04T17:06:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/04/cmdlet</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/04/cmdlet.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번에는 PowerShell에서 사용되는 cmdlet에 대해서 알아 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 명령어를 사용하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Command&lt;/code&gt;를 입력하면 아래와 같이 많은 명령어들이 출력되는 것을 볼 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Command
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Alias           Add-ProvisionedAppxPackage                         3.0        Dism
-Alias           Apply-WindowsUnattend                              3.0        Dism
-Alias           Disable-PhysicalDiskIndication                     2.0.0.0    Storage
-Alias           Disable-StorageDiagnosticLog                       2.0.0.0    Storage
-Alias           Enable-PhysicalDiskIndication                      2.0.0.0    Storage
-Alias           Enable-StorageDiagnosticLog                        2.0.0.0    Storage
-Alias           Flush-Volume                                       2.0.0.0    Storage
-Alias           Get-DiskSNV                                        2.0.0.0    Storage
-Alias           Get-PhysicalDiskSNV                                2.0.0.0    Storage
-Alias           Get-ProvisionedAppxPackage                         3.0        Dism
-Alias           Get-StorageEnclosureSNV                            2.0.0.0    Storage
-Alias           Initialize-Volume                                  2.0.0.0    Storage
-Alias           Move-SmbClient                                     2.0.0.0    SmbWitness
-Alias           Remove-ProvisionedAppxPackage                      3.0        Dism
-Alias           Write-FileSystemCache                              2.0.0.0    Storage
-Function        A:
-Function        Add-BCDataCacheExtension                           1.0.0.0    BranchCache
-Function        Add-BitLockerKeyProtector                          1.0.0.0    BitLocker
-Function        Add-DnsClientNrptRule                              1.0.0.0    DnsClient
-Function        Add-DtcClusterTMMapping                            1.0.0.0    MsDtc
-Function        Add-EtwTraceProvider                               1.0.0.0    EventTracingManagement
-Function        Add-InitiatorIdToMaskingSet                        2.0.0.0    Storage
-...(생략)&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;이 중에서 알아볼 명령어는 cmdlet에 대한 명령어인데 해당 명령어만 출력하도록 해보겠습니다.
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Command -CommandType cmdlet&lt;/code&gt;을 실행합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Command -CommandType cmdlet
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Cmdlet          Add-AppvClientConnectionGroup                      1.0.0.0    AppvClient
-Cmdlet          Add-AppvClientPackage                              1.0.0.0    AppvClient
-Cmdlet          Add-AppvPublishingServer                           1.0.0.0    AppvClient
-Cmdlet          Add-AppxPackage                                    2.0.0.0    Appx
-Cmdlet          Add-AppxProvisionedPackage                         3.0        Dism
-Cmdlet          Add-AppxVolume                                     2.0.0.0    Appx
-Cmdlet          Add-BitsFile                                       2.0.0.0    BitsTransfer
-Cmdlet          Add-CertificateEnrollmentPolicyServer              1.0.0.0    PKI
-Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Add-Content                                        3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Add-History                                        3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Add-JobTrigger                                     1.1.0.0    PSScheduledJob
-Cmdlet          Add-KdsRootKey                                     1.0.0.0    Kds
-Cmdlet          Add-LocalGroupMember                               1.0.0.0    Microsoft.PowerShell.LocalAccounts
-Cmdlet          Add-Member                                         3.1.0.0    Microsoft.PowerShell.Utility
-Cmdlet          Add-PSSnapin                                       3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Add-SignerRule                                     1.0        ConfigCI
-Cmdlet          Add-Type                                           3.1.0.0    Microsoft.PowerShell.Utility&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;cmdlet에 대한 명령어 목록이 출력된 것을 확인할 수 있습니다. 이 중에서 process와 관련된 명령어를 찾고자 한다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Command -CommandType cmdlet -Name *process&lt;/code&gt; 을 입력합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Command -CommandType cmdlet -Name *process
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Cmdlet          Debug-Process                                      3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Enter-PSHostProcess                                3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Exit-PSHostProcess                                 3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Get-Process                                        3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Start-Process                                      3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Stop-Process                                       3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Wait-Process                                       3.1.0.0    Microsoft.PowerShell.Management&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;여기서 Start-Process를 이용하여 notepad.exe를 실행시켜 보도록 하겠습니다. 그 전에 Start-Process를 어떻게 사용해야 하는지 알고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help Start-Process -example&lt;/code&gt;를 입력합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help Start-Process -example
-
-이름
-    Start-Process
-
-개요
-    Starts one or more processes on the local computer.
-
-
-    Example 1: Start a process that uses default values
-
-    PS C:\&amp;gt;Start-Process -FilePath &quot;sort.exe&quot;
-
-    This command starts a process that uses the Sort.exe file in the current folder. The command uses all of the default values, including the default window style, working folder, and credentials.
-    Example 2: Print a text file
-
-    PS C:\&amp;gt;Start-Process -FilePath &quot;myfile.txt&quot; -WorkingDirectory &quot;C:\PS-Test&quot; -Verb Print
-
-    This command starts a process that prints the C:\PS-Test\MyFile.txt file.
-    Example 3: Start a process to sort items to a new file
-
-    PS C:\&amp;gt;Start-Process -FilePath &quot;Sort.exe&quot; -RedirectStandardInput &quot;Testsort.txt&quot; -RedirectStandardOutput &quot;Sorted.txt&quot; -RedirectStandardError &quot;SortError.txt&quot; -UseNewEnvironment
-
-    This command starts a process that sorts items in the Testsort.txt file and returns the sorted items in the Sorted.txt files. Any errors are written to the SortError.txt file.
-
-    The UseNewEnvironment parameter specifies that the process runs with its own environment variables.
-    Example 4: Start a process in a maximized window
-
-    PS C:\&amp;gt;Start-Process -FilePath &quot;notepad&quot; -Wait -WindowStyle Maximized
-
-    This command starts the Notepad process. It maximizes the window and retains the window until the process completes.
-    Example 5: Start Windows Powershell as an administrator
-
-    PS C:\&amp;gt;Start-Process -FilePath &quot;powershell&quot; -Verb runAs
-
-    This command starts Windows PowerShell by using the Run as administrator option.
-    Example 6: Using different verbs to start a process
-
-    PS C:\&amp;gt;$startExe = New-Object System.Diagnostics.ProcessStartInfo -Args PowerShell.exe
-    PS C:\&amp;gt; $startExe.verbs
-    open
-    runas
-
-    # Starts a PowerShell process in a new console window.
-
-    PS C:\&amp;gt; Start-Process -FilePath &quot;powershell.exe&quot; -Verb open
-
-    # Starts a PowerShell process with &quot;Run as Administrator&quot; permissions.
-
-    PS C:\&amp;gt; Start-Process -FilePath &quot;powershell.exe&quot; -Verb runas
-
-    These commands show how to find the verbs that can be used when starting a process, and the effect of using the verbs to start the process.
-
-    The available verbs are determined by the file name extension of the file that runs in the process. To find the verbs for a process, create a System.Diagnostics.ProcessStartInfo object for the process file
-     and look in the Verbs property of the object. This example uses the PowerShell.exe file that runs in the PowerShell process.
-
-    The first command uses New-Object to create a System.Diagnostics.ProcessStartInfo object for PowerShell.exe, the file that runs in the PowerShell process. The command saves the ProcessStartInfo object in t
-    he $startExe variable.
-
-    The second command displays the values in the Verbs property of the ProcessStartInfo object in the $startExe variable. The results show that you can use the Open and Runas verbs with PowerShell.exe, or wit
-    h any process that runs a .exe file.
-
-    The third command starts a PowerShell process with the Open verb. The Open verb starts the process in a new console window.
-
-    The fourth command starts a PowerShell process with the RunAs verb. The RunAs verb starts the process with permissions of a member of the Administrators group on the computer. This is the same as starting
-    Windows PowerShell by using the Run as administrator option.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Start-Process notepad.exe&lt;/code&gt;를 입력하면 아래와 같이 notepad.exe가 실행된 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/powershell/cmdlet/start_process.png&quot; alt=&quot;powershell_start_process&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;반대로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Stop-Process notepad.exe&lt;/code&gt;를 입력하면 아래와 같이 에러가 발생합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Stop-Process notepad.exe
-Stop-Process : 'InputObject' 매개 변수를 바인딩할 수 없습니다. &quot;System.String&quot; 유형의 &quot;notepad.exe&quot; 값을 &quot;System.Diagnostics.Process&quot; 유형으로 변환할 수 없습니다.
-위치 줄:1 문자:14
-+ Stop-Process notepad.exe
-+              ~~~~~~~~~~~
-    + CategoryInfo          : InvalidArgument: (:) [Stop-Process], ParameterBindingException
-    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.StopProcessCommand&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help&lt;/code&gt;를 이용해서 Stop-Proces에 대한 예시를 살펴봅니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help Stop-Process -example
-
-이름
-    Stop-Process
-
-개요
-    Stops one or more running processes.
-
-
-    Example 1: Stop all instances of a process
-
-    PS C:\&amp;gt;Stop-Process -Name &quot;notepad&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;-Name&lt;/code&gt;이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;flag{57201791ea24f3acd852cee3271333a8}&lt;/code&gt;가 된다.&lt;/p&gt;</content><author><name></name></author><summary type="html">문제</summary></entry></feed>
