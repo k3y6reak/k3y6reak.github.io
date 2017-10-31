@@ -1,5 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-11T15:29:59+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Registry</title><link href="http://localhost:4000/technique/powershell/2017/09/08/Registry.html" rel="alternate" type="text/html" title="Registry" /><published>2017-09-08T14:56:00+09:00</published><updated>2017-09-08T14:56:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/09/08/Registry</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/09/08/Registry.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-31T19:52:37+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Install Genymotion</title><link href="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html" rel="alternate" type="text/html" title="Install Genymotion" /><published>2017-10-30T17:38:00+09:00</published><updated>2017-10-30T17:38:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/30/Genymotion_install</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;genymotion-설치&quot;&gt;GenyMotion 설치&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;
+안드로이드는 apk 파일로 실행되기 때문에 이를 실행할 수 있는 애뮬레이터가 필요합니다. 보통 사용하는 애뮬레이터는 Nox, Momo 등이 있지만 주로 사용할 것은 GenyMotion 입니다. &lt;a href=&quot;https://genymotion.com&quot;&gt;Genymotion&lt;/a&gt;에 접속해서 가입 후 다운로드를 받습니다.&lt;/p&gt;
+
+&lt;p&gt;Windows의 경우 Virtual Box를 포함한 파일을 받아 설치하고 MacOS는 같이 설치가 됩니다.&lt;/p&gt;
+
+&lt;p&gt;GenyMotion은 안드로이드의 버전과 디바이스를 선택할 수 있는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;Android 4.1.1&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Nexus S&lt;/code&gt;를 선택하여 설치해 줍니다. 설치를 완료하면 아래와 같이 apk를 실행할 수 있는 안드로이드 4.1.1이 실행됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/android/install_genymotion/execute_android.png&quot; alt=&quot;execute_android&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;GenyMotion에 바로 APK 파일을 넣어서 설치를 할 수 있습니다. 하지만 안되는 경우도 있는데 이 경우에는 &lt;a href=&quot;https://github.com/k3y6reak/Android/tree/master/Genymotion&quot;&gt;여기&lt;/a&gt;에서 다운받아 해당 애뮬레이터에 넣어준 뒤 APK를 설치하면 됩니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">GenyMotion 설치 안드로이드는 apk 파일로 실행되기 때문에 이를 실행할 수 있는 애뮬레이터가 필요합니다. 보통 사용하는 애뮬레이터는 Nox, Momo 등이 있지만 주로 사용할 것은 GenyMotion 입니다. Genymotion에 접속해서 가입 후 다운로드를 받습니다.</summary></entry><entry><title type="html">Recon and Scan</title><link href="http://localhost:4000/technique/powershell/2017/09/21/Recon_and_Scan.html" rel="alternate" type="text/html" title="Recon and Scan" /><published>2017-09-21T21:00:00+09:00</published><updated>2017-09-21T21:00:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/09/21/Recon_and_Scan</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/09/21/Recon_and_Scan.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;PowerShell을 이용해 모의해킹을 진행하는 방법에 대해서 알아보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;임의의 한 사이트에 대해 점검하고자 할 때 해당 서버가 정상적으로 작동하는지, 어떤 포트가 열려있는지에 대해서 알아보겠습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;허락받지 않은 곳에서 테스트를 할 경우에는 본인에게 책임이 있습니다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;점검하기 위해서 여러가지 PowerShell Script를 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;nishang&quot;&gt;Nishang&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;http://github.com/samratashok/nishang&quot;&gt;여기&lt;/a&gt;에서 PowerShell Script를 받을 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;해당 스크립트를 다운받고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Import-Module&lt;/code&gt;명령어를 이용해 nishang.psm1 을 불러옵니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; ls
+
+
+    디렉터리: C:\Users\k3y6reak\Desktop\PowerShell
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----   2017. 9. 21.   오후 5:57                nishang-master
+d-----   2017. 9. 21.   오후 5:57                Posh-SecMod-master
+d-----   2017. 9. 21.   오후 5:57                PowerSploit-master
+d-----   2017. 9. 21.   오후 5:57                PowerTools-master
+-a----   2017. 9. 20.   오후 8:46        1762079 nishang-master.zip
+-a----   2017. 9. 20.   오후 8:49        1542881 Posh-SecMod-master.zip
+-a----   2017. 9. 20.   오후 8:47        1898185 PowerSploit-master.zip
+-a----   2017. 9. 20.   오후 8:48       10422636 PowerTools-master.zip
+
+PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; Import-Module .\nishang-master\nishang.psm1
+경고: 'nishang' 모듈에서 가져온 일부 명령 이름에 검색 가능성을 낮출 수 있는 승인되지 않은 동사가 포함되어 있습니다.
+승인되지 않은 동사가 포함된 명령을 찾으려면 Verbose 매개 변수와 함께 Import-Module 명령을 다시 실행하십시오. 승인된
+동사 목록을 보려면 Get-Verb를 입력하십시오.
+경고: 가져온 일부 명령 이름에 다음과 같은 제한 문자가 하나 이상 들어 있습니다. # , ( )  [ ] &amp;amp; - / \ $ ^ ; : &quot; ' &amp;lt; | ? @ ` * % + = ~&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위에서 본 결과처럼 nishang.psm1이 제대로 실행되지 않은 것을 볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;이러한 경우 사용하고자하는 스크립트를 &lt;code class=&quot;highlighter-rouge&quot;&gt;Dot Sourcing&lt;/code&gt; 방법으로 사용할 수 있습니다.
+Dot Sourcing에 대한 설명은 &lt;a href=&quot;https://k3y6reak.github.io/technique/powershell/2017/08/08/Functios.html&quot;&gt;여기&lt;/a&gt;를 참고해 주세요.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; . .\nishang-master\Scan\Invoke-PortScan.ps1
+PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; Invoke-PortScan -StartAddress XXX.XXX.XXX.XXX -EndAddress XXX.XXX.XXX.XXX -ResolveHost
+
+IPAddress       HostName            Ports
+---------       --------            -----
+XXX.XXX.XXX.XXX abcde.abcedf.ab.ab&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;StartAddress&lt;/code&gt;에 시작할 IP주소를 넣어주고 &lt;code class=&quot;highlighter-rouge&quot;&gt;EndAddress&lt;/code&gt;에 끝날 IP주소를 넣어주면 됩니다. 그러면 시작 IP부터 끝 IP까지 진행하면서 서버가 작동하는 IP 주소를 출력해 줍니다.&lt;/p&gt;
+
+&lt;p&gt;또한 열려있는 포트를 찾고자 한다면 -ResolveHost 옵션 대신 &lt;code class=&quot;highlighter-rouge&quot;&gt;ScanPort&lt;/code&gt;옵션을 사용하면 됩니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; Invoke-PortScan -StartAddress XXX.XXX.XXX.XXX -EndAddress XXX.XXX.XXX.XXX -ScanPort
+
+IPAddress       HostName Ports
+---------       -------- -----
+XXX.XXX.XXX.XXX          {80, 443}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;powersploit&quot;&gt;PowerSploit&lt;/h4&gt;
+&lt;p&gt;이번에는 다른 스크립트를 사용해 보겠습니다. &lt;a href=&quot;https://github.com/mattifestation/PowerSploit&quot;&gt;여기&lt;/a&gt;에서 PowerShell Script를 받을 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;DotSourcing 방식으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-HttpStatus&lt;/code&gt; 스크립트를 가져옵니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; . .\PowerSploit-master\Recon\Get-HttpStatus.ps1
+PS C:\Users\k3y6reak\Desktop\PowerShell&amp;gt; Get-HttpStatus -Target XXX.XXX.XXX.XXX -Path .\PowerSploit-master\Recon\Dictionaries\generic.txt -Port 80 | Where-Object {$_.Status -match &quot;ok&quot;}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;테스트 하고자 하는 서버에서 일치하는 결과값이 없기 때문에 출력이 안되지만 결과가 존재한다면 취약점으로 작용할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;이 외에도 PowerTools, Posh-SecMod 등 여러가지 스크립트들이 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Registry</title><link href="http://localhost:4000/technique/powershell/2017/09/08/Registry.html" rel="alternate" type="text/html" title="Registry" /><published>2017-09-08T14:56:00+09:00</published><updated>2017-09-08T14:56:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/09/08/Registry</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/09/08/Registry.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;PowerShell에서 레지스트리에 접근하고자 하는 경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Item&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-ChildItem&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-ItemProperty&lt;/code&gt;를 사용할 수 있습니다.&lt;/p&gt;
 
@@ -1556,290 +1637,4 @@ Bypass&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p&gt;다시 HelloWorld.ps1를 실행하면 정상적으로 실행되는 것을 알 수 있습니다.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; .\HelloWorld.ps1
-Hello World&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Condition_and_Loop</title><link href="http://localhost:4000/technique/powershell/2017/08/08/condition_and_loop.html" rel="alternate" type="text/html" title="Condition_and_Loop" /><published>2017-08-08T12:58:00+09:00</published><updated>2017-08-08T12:58:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/condition_and_loop</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/condition_and_loop.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번에는 PowerShell에서 사용하는 조건문과 반복문에 대해서 알아보도록 하겠습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;조건문&quot;&gt;조건문&lt;/h3&gt;
-
-&lt;p&gt;다른 언어와 마찬가지로 PowerShell에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;if~else&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;if~elseif~else&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;switch&lt;/code&gt;를 사용합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; if (1 -gt 0) {&quot;1 &amp;gt; 0&quot;}
-1 &amp;gt; 0
-PS C:\Users\k3y6reak&amp;gt; if (1 -gt 5) { &quot;1 &amp;gt; 0&quot; } else{ &quot;1 &amp;lt; 5&quot; }
-1 &amp;lt; 5
-PS C:\Users\k3y6reak&amp;gt; $num = 2
-PS C:\Users\k3y6reak&amp;gt; if ($num -eq 1) { &quot;num is 1&quot; } elseif( $num -eq 2 ) { &quot;num is 2&quot; } else { &quot;i don't know&quot; }
-num is 2
-PS C:\Users\k3y6reak&amp;gt; $num = 3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 다른 언어에서 사용하는 것과 동일하게 PowerShell에서 사용할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;switch&lt;/code&gt; 구문도 동일하게 사용하지만 좀 더 추가된 것이 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;를 이용하는 방법인데, 아래 예제를 보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; switch ($num) {1{&quot;num is 1&quot;} 2{&quot;num is two&quot;} default{&quot;i don't know&quot;}}
-i don't know
-PS C:\Users\k3y6reak&amp;gt; $str = &quot;abcd&quot;
-PS C:\Users\k3y6reak&amp;gt; switch -wildcard ($str) { a*{&quot;a~&quot;} *b*{&quot;~b~&quot;} c*{&quot;c~&quot;}}
-a~
-~b~&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;를 사용해서 switch 구문을 이용할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;반복문&quot;&gt;반복문&lt;/h3&gt;
-
-&lt;p&gt;마찬가지로 &lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;do~while&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;를 사용할 수 있으며 추가적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;do~until&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;foreach&lt;/code&gt;를 사용할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $count = 3
-PS C:\Users\k3y6reak&amp;gt; while ( $count -gt 0)
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; &quot;count is $count&quot;
-&amp;gt;&amp;gt; $count--
-&amp;gt;&amp;gt; }
-count is 3
-count is 2
-count is 1
-PS C:\Users\k3y6reak&amp;gt; $count = 3
-PS C:\Users\k3y6reak&amp;gt; do
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; &quot;count is $count&quot;
-&amp;gt;&amp;gt; $count--
-&amp;gt;&amp;gt; }
-&amp;gt;&amp;gt; while( $count -gt 0)
-count is 3
-count is 2
-count is 1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;do~while&lt;/code&gt;은 동일하게 실행됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $count = 3
-PS C:\Users\k3y6reak&amp;gt; do
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; &quot;count is $count&quot;
-&amp;gt;&amp;gt; $count--
-&amp;gt;&amp;gt; }
-&amp;gt;&amp;gt; until( $count -gt 0)
-count is 3
-PS C:\Users\k3y6reak&amp;gt; do
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; &quot;count is $count&quot;
-&amp;gt;&amp;gt; $count--
-&amp;gt;&amp;gt; }
-&amp;gt;&amp;gt; until( $count -lt 0)
-count is 2
-count is 1
-count is 0&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;until&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;~때 까지&lt;/code&gt;로 처음 실행한 &lt;code class=&quot;highlighter-rouge&quot;&gt;$count -gt 0&lt;/code&gt;의 의미는 &lt;code class=&quot;highlighter-rouge&quot;&gt;0보다 클 때까지만&lt;/code&gt;실행하기 때문에 count는 3이됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;while&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;until&lt;/code&gt;은 서로 반대되는 개념이라고 생각하면 됩니다.&lt;/p&gt;
-
-&lt;p&gt;for문 또한 동일하게 사용할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; for ($i = 0; $i -lt 10; $i++)
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; &quot;i is $i&quot;
-&amp;gt;&amp;gt; }
-i is 0
-i is 1
-i is 2
-i is 3
-i is 4
-i is 5
-i is 6
-i is 7
-i is 8
-i is 9&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;foreach&lt;/code&gt; 구문은 python 에서 for문과 동일합니다. java에도 foreach구문이 있죠.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $arr = &quot;Hello World!&quot;
-PS C:\Users\k3y6reak&amp;gt; foreach ($str in $arr)
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; $str
-&amp;gt;&amp;gt; }
-Hello World!
-PS C:\Users\k3y6reak&amp;gt; $arr = 1,2,3,4,5
-PS C:\Users\k3y6reak&amp;gt; foreach($num in $arr)
-&amp;gt;&amp;gt; {
-&amp;gt;&amp;gt; $num
-&amp;gt;&amp;gt; }
-1
-2
-3
-4
-5&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 예제를 보면 문자열인 경우 각 인덱스별로 값을 출력하는 것이 아니라 한 번에 출력하는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;이 외에도 ForEach-Object와 Where-Object가 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Process | ForEach-Object {$_.Name}
-acrotray
-ApplicationFrameHost
-armsvc
-coherence
-coherence
-coherence
-conhost
-csrss
-csrss
-dasHost
-dllhost
-dwm
-explorer
-fontdrvhost
-fontdrvhost
-Idle
-IpOverUsbSvc
-lsass
-Memory Compression
-MSASCuiL
-msdtc
-MsMpEng
-NisSrv
-OneDrive
-powershell&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Get-Process를 이용해 얻은 값을 ForEach-Object를 통해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;_.&lt;/code&gt;에 넣어준 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;Name&lt;/code&gt;만 출력해주는 방법입니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-ChildItem C:\Users\k3y6reak\Desktop | Where-Object {$_.Name -match &quot;exe&quot;}
-
-
-    디렉터리: C:\Users\k3y6reak\Desktop
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
--a----    2017. 8. 2.  오전 12:35        1368442 asby.exe&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Where-Object를 이용해 &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; 처럼 사용할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Type and Array</title><link href="http://localhost:4000/technique/powershell/2017/08/07/Type_and_Array.html" rel="alternate" type="text/html" title="Type and Array" /><published>2017-08-07T19:45:00+09:00</published><updated>2017-08-07T19:45:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/07/Type_and_Array</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/07/Type_and_Array.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 각 변수에 대한 자료형을 알아보는 방법과 배열에 대해서 알아보도록 하겠습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;type&quot;&gt;Type&lt;/h3&gt;
-
-&lt;p&gt;PowerShell에서는 각 변수에 &lt;code class=&quot;highlighter-rouge&quot;&gt;.GetType()&lt;/code&gt;를 붙여주면 자료형을 알 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; &quot;3&quot;.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     String                                   System.Object
-
-
-PS C:\Users\k3y6reak&amp;gt; $a = 3
-PS C:\Users\k3y6reak&amp;gt; $a.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     Int32                                    System.ValueType
-
-
-PS C:\Users\k3y6reak&amp;gt; $b = 3.2
-PS C:\Users\k3y6reak&amp;gt; $b.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     Double                                   System.ValueType&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;다른 언어들과 동일하게 자료형이 정해지는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;문자열을 사용하는 경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;'&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&lt;/code&gt;에 대한 차이를 알아야 합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $a = &quot;Hello My name is k3y6reak&quot;
-PS C:\Users\k3y6reak&amp;gt; $b = 'Hello My name is k3y6reak'
-PS C:\Users\k3y6reak&amp;gt; $a.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     String                                   System.Object
-
-
-PS C:\Users\k3y6reak&amp;gt; $b.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     String                                   System.Object
-
-
-PS C:\Users\k3y6reak&amp;gt; &quot;val a is $a&quot;
-val a is Hello My name is k3y6reak
-PS C:\Users\k3y6reak&amp;gt; 'val b is $b'
-val b is $b
-PS C:\Users\k3y6reak&amp;gt; &quot;val b is $b&quot;
-val b is Hello My name is k3y6reak&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;'&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&lt;/code&gt;는 모두 동일하게 String 자료형을 갖고 있으나 변수의 내용을 출력할 때는 위와 같이 차이를 보입니다.&lt;/p&gt;
-
-&lt;p&gt;여러 줄을 이용하여 문자열을 작성하고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;@&quot;&lt;/code&gt;으로 시작해 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;@&lt;/code&gt;로 끝나면 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $str = @&quot;
-&amp;gt;&amp;gt; &quot;Hi&quot;
-&amp;gt;&amp;gt; &quot;My name is&quot;
-&amp;gt;&amp;gt; &quot;k3y6reak&quot;
-&amp;gt;&amp;gt; &quot;@
-PS C:\Users\k3y6reak&amp;gt; $str
-&quot;Hi&quot;
-&quot;My name is&quot;
-&quot;k3y6reak&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;배열&quot;&gt;배열&lt;/h3&gt;
-
-&lt;p&gt;배열은 다른언어와 동일하게 사용할 수 있습니다. 대부분의 스크립트 언어는 하나의 배열에 여러가지의 형태가 들어가도 상관없는 것 처럼 PowerShell 또한 여러가지 형태가 들어갈 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $arr = 1,2,3
-PS C:\Users\k3y6reak&amp;gt; $arr
-1
-2
-3
-PS C:\Users\k3y6reak&amp;gt; $arr.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     Object[]                                 System.Array&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;여기서 배열에 대한 자료형은 Object[]로 나타낸 다는 것에 주의하면 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $arr2 = 1, 2.3, &quot;Hello&quot;
-PS C:\Users\k3y6reak&amp;gt; $arr2
-1
-2.3
-Hello&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 예제처럼 여러가지 자료형을 갖는 배열을 만들 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;아무것도 없는 배열을 만들고 싶다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;$arr = @()&lt;/code&gt;로 만들 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $arr3 = @()
-PS C:\Users\k3y6reak&amp;gt; $arr3
-PS C:\Users\k3y6reak&amp;gt; $arr3.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     Object[]                                 System.Array&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;마찬가지로 &lt;code class=&quot;highlighter-rouge&quot;&gt;[]&lt;/code&gt;를 이용하여 각 인덱스의 값을 출력할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $arr = &quot;Hello My name is k3y6reak&quot;
-PS C:\Users\k3y6reak&amp;gt; $arr[0]
-H
-PS C:\Users\k3y6reak&amp;gt; $arr[1]
-e&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;또한 &lt;code class=&quot;highlighter-rouge&quot;&gt;[]&lt;/code&gt;를 이용하여 값의 자료형을 변환할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $i = 3.2
-PS C:\Users\k3y6reak&amp;gt; $i.GetType()
-
-IsPublic IsSerial Name                                     BaseType
--------- -------- ----                                     --------
-True     True     Double                                   System.ValueType
-
-
-PS C:\Users\k3y6reak&amp;gt; [int]$i
-3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+Hello World&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
