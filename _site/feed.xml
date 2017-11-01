@@ -1,5 +1,238 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-31T20:00:35+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Install Genymotion</title><link href="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html" rel="alternate" type="text/html" title="Install Genymotion" /><published>2017-10-30T17:38:00+09:00</published><updated>2017-10-30T17:38:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/30/Genymotion_install</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-01T20:18:00+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Install Java</title><link href="http://localhost:4000/misc/2017/11/01/Java_install.html" rel="alternate" type="text/html" title="Install Java" /><published>2017-11-01T19:43:00+09:00</published><updated>2017-11-01T19:43:00+09:00</updated><id>http://localhost:4000/misc/2017/11/01/Java_install</id><content type="html" xml:base="http://localhost:4000/misc/2017/11/01/Java_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;ubuntu에서-java-설치하기&quot;&gt;Ubuntu에서 Java 설치하기&lt;/h3&gt;
+
+&lt;p&gt;자바를 설치하는 여러 블로그를 살펴보면 각각 다른 방법들로 설치를 많이 합니다.
+여러 방법들을 시도해보고 적성합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/index.html&quot;&gt;Oracle&lt;/a&gt;에 접속하면 최신버전의 Java SE를 받을 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 개발된 자바 프로그램들이 버전에 맞지 않아 실행이 안되는 경우도 발생합니다. Android를 분석하는데 Jadx 툴을 사용하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Java SE 7&lt;/code&gt; 버전을 사용해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;위 사이트에 접속 후 맨 밑의 &lt;code class=&quot;highlighter-rouge&quot;&gt;Java Archive&lt;/code&gt; 항목의 Download를 눌러 해당 OS에 맞는 파일을 다운로드 합니다.&lt;/p&gt;
+
+&lt;p&gt;Ubuntu에서 설치하기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Linux x64 (jdk-7u80-linux-x64.tar.gz)&lt;/code&gt;를 다운받습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;mv jdk-7u80-linux-x64.tar.gz /var/cache/oracle-jdk7-installer/
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;apt-get install python-software-properties
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;add-apt-repository ppa:webupd8team/java
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;apt-get update&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;여기서 JDK 버전에 따라서 &lt;code class=&quot;highlighter-rouge&quot;&gt;java&lt;/code&gt;뒤에 숫자를 다르게 합니다. 7버전을 받았으므로 java7이 됩니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;apt-get install oracle-java7-installer&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;그 다음으로 Java를 사용할 수 있도록 환경변수를 설정해 주어야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;vim /etc/bash.bashrc/&lt;/code&gt; 를 이용하여 bash.bashrc의 하단에 &lt;code class=&quot;highlighter-rouge&quot;&gt;export JAVA_HOME=/usr/lib/jvm/java-7-oracle&lt;/code&gt;를 작성합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;vim /etc/bash.bashrc
+
+&lt;span class=&quot;c&quot;&gt;# if the command-not-found package is installed, use it                                                       &lt;/span&gt;
+ 54 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-not-found &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then               
+ &lt;/span&gt;55     &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;command_not_found_handle &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;                                                                        56     ┆   ┆   &lt;span class=&quot;c&quot;&gt;# check because c-n-f could've been removed in the meantime                                       &lt;/span&gt;
+ 57     ┆   ┆   ┆   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -x /usr/lib/command-not-found &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then                                                    
+ &lt;/span&gt;58         ┆  /usr/lib/command-not-found -- &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;                                                                 
+ 59     ┆   ┆   ┆   ┆  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;                                                                                  
+ 60     ┆   ┆   ┆   &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -x /usr/share/command-not-found/command-not-found &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then                              
+ &lt;/span&gt;61         ┆  /usr/share/command-not-found/command-not-found -- &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;                                             
+ 62     ┆   ┆   ┆   ┆  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;                                                                                   63         &lt;span class=&quot;k&quot;&gt;else                                                                                                  
+ &lt;/span&gt;64         ┆  &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%s: command not found&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &amp;gt;&amp;amp;2                                                          
+ 65         ┆  &lt;span class=&quot;k&quot;&gt;return &lt;/span&gt;127                                                                                         
+ 66         &lt;span class=&quot;k&quot;&gt;fi                                                                                                    
+ &lt;/span&gt;67     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;                                                                                                         
+ 68 &lt;span class=&quot;k&quot;&gt;fi                                                                                                            
+ &lt;/span&gt;69                                                                                                               
+ 70 &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/jvm/java-7-oracle/  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;source /etc/bash.bashrc&lt;/code&gt;를 입력해 줍니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; /etc/bash.bashrc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;정상적으로 Java가 설치가 되었는지 확인하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;java -version&lt;/code&gt;을 입력합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;java -version
+java version &lt;span class=&quot;s2&quot;&gt;&quot;1.7.0_80&quot;&lt;/span&gt;
+Java&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; SE Runtime Environment &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 1.7.0_80-b15&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Java HotSpot&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 64-Bit Server VM &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 24.80-b11, mixed mode&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;정상적으로 설치가 완료 됐습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">Ubuntu에서 Java 설치하기</summary></entry><entry><title type="html">Extract APK</title><link href="http://localhost:4000/technique/android/2017/10/30/Extract_apk.html" rel="alternate" type="text/html" title="Extract APK" /><published>2017-10-30T19:55:00+09:00</published><updated>2017-10-30T19:55:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/30/Extract_apk</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/30/Extract_apk.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;apk-추출하기&quot;&gt;APK 추출하기&lt;/h3&gt;
+
+&lt;p&gt;APK를 분석하기 위해서는 APK 파일의 구조와 어떤 방식으로 동작하는지에 대해서 알아야 합니다. 먼저 APK 내에는 어떤 파일들이 존재하는지 알아보도록 합시다.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;unzip&quot;&gt;Unzip&lt;/h4&gt;
+
+&lt;p&gt;먼저 Chrome.apk를 받아 &lt;code class=&quot;highlighter-rouge&quot;&gt;Hex Editor&lt;/code&gt;를 이용해 열어봅니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-hex&quot; data-lang=&quot;hex&quot;&gt;Offset(d)00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15
+00000000 50 4B 03 04 0A 00 00 08 00 00 00 00 21 3A 64 68 PK..........!:dh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Hex 값을 살펴본 결과 &lt;code class=&quot;highlighter-rouge&quot;&gt;PK&lt;/code&gt;로 시작하는 것을 알 수 있습니다. PK로 시작하면 압축해제를 통해서 APK 안의 내용을 추출할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unzip [apk 이름] -d [디렉토리 이름]&lt;/code&gt;을 이용해 해제할 디렉토리에 chrome.apk를 해제합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;unzip chrome.apk -d Unzip_chrome/
+Archive:  chrome.apk
+ extracting: Unzip_chrome/assets/chrome_100_percent.pak  
+ extracting: Unzip_chrome/assets/icudtl.dat  
+ extracting: Unzip_chrome/assets/natives_blob.bin  
+ extracting: Unzip_chrome/assets/resources.pak  
+ extracting: Unzip_chrome/assets/snapshot_blob_32.bin  
+ extracting: Unzip_chrome/assets/webapk_dex_version.txt  
+ extracting: Unzip_chrome/lib/armeabi-v7a/crazy.libchrome.so  
+ extracting: Unzip_chrome/lib/armeabi-v7a/libchrome.1847.114.so  
+ extracting: Unzip_chrome/lib/armeabi-v7a/libchrome.1916.122.so  
+ extracting: Unzip_chrome/lib/armeabi-v7a/libchrome.1916.138.so  
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;중략...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  inflating: Unzip_chrome/res/xml/usb_device_preferences.xml  
+  inflating: Unzip_chrome/res/xml/website_preferences.xml  
+  inflating: Unzip_chrome/META-INF/CERT.SF  
+  inflating: Unzip_chrome/META-INF/CERT.RSA  
+  inflating: Unzip_chrome/META-INF/MANIFEST.MF  
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;해당 디렉토리에 접근하여 어떤 파일이 존재하는지 살펴보면 아래와 같습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop/Unzip_chrome# &lt;/span&gt;ls -al
+total 10368
+drwxr-xr-x  6 root     root        4096 Oct 31 20:05 .
+drwxr-xr-x  4 k3y6reak k3y6reak    4096 Oct 31 20:05 ..
+-rw-r--r--  1 root     root       95976 Jan  1  2009 AndroidManifest.xml
+drwxr-xr-x  2 root     root        4096 Oct 31 20:05 assets
+-rw-r--r--  1 root     root     6282576 Jan  1  2009 classes.dex
+drwxr-xr-x  3 root     root        4096 Oct 31 20:05 lib
+drwxr-xr-x  2 root     root        4096 Oct 31 20:05 META-INF
+drwxr-xr-x 70 root     root        4096 Oct 31 20:05 res
+-rw-r--r--  1 root     root     4206860 Jan  1  2009 resources.arsc&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;apktool&quot;&gt;Apktool&lt;/h4&gt;
+
+&lt;p&gt;이번에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;apktool&lt;/code&gt;을 이용해서 추출해 보도록 하겠습니다. apktool은 자바가 필요하며 사전에 설치가 돼있어야 합니다.
+&lt;a href=&quot;https://k3y6reak.github.io/misc/2017/11/01/Java_install.html&quot;&gt;자바 설치&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;먼저 apktool을 설치해 보겠습니다. &lt;a href=&quot;https://ibotpeaches.github.io/Apktool/install&quot;&gt;여기&lt;/a&gt;에 접속하면 각 운영체제별 설치방법이 나와있습니다. Ubuntu를 기준으로 Linux 설치방법을 따르면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;여기서 주의할 점은 Ubuntu 내에서 apt-get 을 이용해 미리 설치하신 분은 낮은 버전으로 실행되기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get purge apktool&lt;/code&gt;을 한 뒤 설치를 해주면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;wrapper script 파일을 apktool로 저장합니다. apktool_2.3.0.jar을 apktool.jar로 저장합니다.
+이 두 파일을 &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/bin&lt;/code&gt;에 저장한 뒤 &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod +x apktool apktool.jar&lt;/code&gt;을 해줍니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;mv wrapperscript.txt apktool
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;mv apktool_2.3.0.jar apktool.jar
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;chmod +x apktool apktool.jar
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;mv apktool apktool.jar /usr/bin
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;apktool
+Apktool v2.3.0 - a tool &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;reengineering Android apk files
+with smali v2.2.1 and baksmali v2.2.1
+Copyright 2014 Ryszard Wiśniewski &amp;lt;brut.alll@gmail.com&amp;gt;
+Updated by Connor Tumbleson &amp;lt;connor.tumbleson@gmail.com&amp;gt;
+
+usage: apktool
+ -advance,--advanced   prints advance information.
+ -version,--version    prints the version &lt;span class=&quot;k&quot;&gt;then &lt;/span&gt;exits
+usage: apktool &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;|install-framework &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] &amp;lt;framework.apk&amp;gt;
+ -p,--frame-path &amp;lt;dir&amp;gt;   Stores framework files into &amp;lt;dir&amp;gt;.
+ -t,--tag &amp;lt;tag&amp;gt;          Tag frameworks using &amp;lt;tag&amp;gt;.
+usage: apktool d[ecode] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] &amp;lt;file_apk&amp;gt;
+ -f,--force              Force delete destination directory.
+ -o,--output &amp;lt;dir&amp;gt;       The name of folder that gets written. Default is apk.out
+ -p,--frame-path &amp;lt;dir&amp;gt;   Uses framework files located &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &amp;lt;dir&amp;gt;.
+ -r,--no-res             Do not decode resources.
+ -s,--no-src             Do not decode sources.
+ -t,--frame-tag &amp;lt;tag&amp;gt;    Uses framework files tagged by &amp;lt;tag&amp;gt;.
+usage: apktool b[uild] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] &amp;lt;app_path&amp;gt;
+ -f,--force-all          Skip changes detection and build all files.
+ -o,--output &amp;lt;dir&amp;gt;       The name of apk that gets written. Default is dist/name.apk
+ -p,--frame-path &amp;lt;dir&amp;gt;   Uses framework files located &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &amp;lt;dir&amp;gt;.
+
+For additional info, see: http://ibotpeaches.github.io/Apktool/ 
+For smali/baksmali info, see: https://github.com/JesusFreke/smali&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이제 apktool을 사용할 수 있으므로 이를 이용해 chrome.apk를 Decompile을 해보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;apktool d chrome.apk
+I: Using Apktool 2.3.0 on chrome.apk
+I: Loading resource table...
+I: Decoding AndroidManifest.xml with resources...
+S: WARNING: Could not write to &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;/root/.local/share/apktool/framework&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, using /tmp instead...
+S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;the default storage directory is unavailable
+I: Loading resource table from file: /tmp/1.apk
+I: Regular manifest package...
+I: Decoding file-resources...
+I: Decoding values &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; XMLs...
+I: Baksmaling classes.dex...
+I: Copying assets and libs...
+I: Copying unknown files...
+I: Copying original files...
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;chrome
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop/chrome# &lt;/span&gt;ls
+AndroidManifest.xml  apktool.yml  assets  lib  original  res  smali&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apktool 버전이 낮은 경우 main함수에서 null point exception이 발생할 수 있습니다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;jadx&quot;&gt;jadx&lt;/h4&gt;
+
+&lt;p&gt;또 다른 방법으로는 jadx를 이용하는 방법이 있습니다. 마찬가지로 Java가 필요하기 때문에 자바를 설치해야 합니다. 여기서 주의할 점은 8버전을 설치하면 jadx가 실행되지 않을 수 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;7버전으로 설치해야 합니다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone https://github.com/skylot/jadx.git&lt;/code&gt;을 통해 해당 파일을 다운로드 받습니다.
+다운받은 jadx 디렉토리에 접근하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;./gradlew dist&lt;/code&gt;를 입력하여 컴파일을 합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~# &lt;/span&gt;git clone https://github.com/skylot/jadx.git
+Cloning into &lt;span class=&quot;s1&quot;&gt;'jadx'&lt;/span&gt;...
+remote: Counting objects: 11711, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+remote: Total 11711 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, reused 0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;delta 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, pack-reused 11710
+Receiving objects: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;11711/11711&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 5.31 MiB | 1.43 MiB/s, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Resolving deltas: 100% &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6143/6143&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+Checking connectivity... &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jadx
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx# &lt;/span&gt;./gradlew dist
+:jadx-core:compileJava
+warning: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] bootstrap class path not &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;conjunction with -source 1.6
+/root/jadx/jadx-core/src/main/java/jadx/core/xmlgen/ParserConstants.java:156: warning: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;serial] serializable class &amp;lt;anonymous jadx.core.xmlgen.ParserConstants&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&amp;gt; has no definition of serialVersionUID
+        protected static final Map&amp;lt;Integer, String&amp;gt; PLURALS_MAP &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; new HashMap&amp;lt;Integer, String&amp;gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                                                                                                 ^
+/root/jadx/jadx-core/src/main/java/jadx/core/dex/instructions/args/LiteralArg.java:68: warning: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;deprecation] literalToString&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;long,ArgType&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;TypeGen has been deprecated
+                        String value &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; TypeGen.literalToString&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;literal, getType&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;;
+                                              ^
+3 warnings
+:jadx-core:compileGroovy UP-TO-DATE
+:jadx-core:processResources
+:jadx-core:classes
+:jadx-core:jar
+:jadx-cli:compileJava
+warning: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;options] bootstrap class path not &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;conjunction with -source 1.6
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;중략...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+:jadx-gui:installDist
+:copyArtifacts
+:pack
+:dist
+
+BUILD SUCCESSFUL
+
+Total &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;: 7.471 secs
+
+This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html
+root@ubuntu:~/jadx#&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;컴파일을 모두 마치면 &lt;code class=&quot;highlighter-rouge&quot;&gt;build&lt;/code&gt;라는 디렉토리가 생성되는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;build/jadx/bin/&lt;/code&gt;에 jadx 실행파일이 생성된 것을 볼 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx# &lt;/span&gt;ls
+build  build.gradle  gradle  gradlew  gradlew.bat  jadx-cli  jadx-core  jadx-gui  jadx-samples  jadx-test-app  LICENSE  NOTICE  README.md  settings.gradle  version
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build/
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx/build# &lt;/span&gt;ls
+jadx  jadx-0.6.1.zip
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx/build# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;jadx
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx/build/jadx# &lt;/span&gt;ls
+bin  lib  LICENSE  NOTICE  README.md
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx/build/jadx# &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bin
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx/build/jadx/bin# &lt;/span&gt;ls
+jadx  jadx.bat  jadx-gui  jadx-gui.bat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jadx [애플리케이션.apk]&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;jadx-gui&lt;/code&gt;로 실행 후 apk 파일을 넣어주면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;이 외에 몇가지 부분은 나중에 추가하도록 하겠습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">APK 추출하기</summary></entry><entry><title type="html">Install Genymotion</title><link href="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html" rel="alternate" type="text/html" title="Install Genymotion" /><published>2017-10-30T17:38:00+09:00</published><updated>2017-10-30T17:38:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/30/Genymotion_install</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;genymotion-설치&quot;&gt;GenyMotion 설치&lt;/h3&gt;
 &lt;p&gt;&lt;br /&gt;
 안드로이드는 apk 파일로 실행되기 때문에 이를 실행할 수 있는 애뮬레이터가 필요합니다. 보통 사용하는 애뮬레이터는 Nox, Momo 등이 있지만 주로 사용할 것은 GenyMotion 입니다. &lt;a href=&quot;https://genymotion.com&quot;&gt;Genymotion&lt;/a&gt;에 접속해서 가입 후 다운로드를 받습니다.&lt;/p&gt;
@@ -1193,448 +1426,4 @@ Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Con
 Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
 Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DelFile 파일경로&lt;/code&gt;를 이용하여 test.txt가 삭제된 것을 확인할 수 있으며, 해당 모듈을 사용하지 않을 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Remove-Module 모듈명&lt;/code&gt;을 이용해 제거할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Functions</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Functios.html" rel="alternate" type="text/html" title="Functions" /><published>2017-08-08T20:29:00+09:00</published><updated>2017-08-08T20:29:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Functios</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Functios.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.&lt;/p&gt;
-
-&lt;p&gt;먼저 스크립트를 작성할 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;PowerShell ISE&lt;/code&gt;를 이용하여 작성하는 방법이 있고, 앞서 Execution Policy에서 설명한 것 처럼 &lt;code class=&quot;highlighter-rouge&quot;&gt;에디터&lt;/code&gt;를 이용하는 방법이 있습니다.&lt;/p&gt;
-
-&lt;p&gt;PowerShell ISE에서 스크립트를 작성할 때 아래 그림의 &lt;code class=&quot;highlighter-rouge&quot;&gt;스크립트&lt;/code&gt;를 누른 후 스크립트를 작성할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/powershell/functions/powershell_ise.png&quot; alt=&quot;powershell_ise&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;마찬가지로 &lt;code class=&quot;highlighter-rouge&quot;&gt;관리자 권한&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Set-Execution Byass&lt;/code&gt;를 실행해야 스크립트를 실행할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;스크립트를 작성하는 방법에 대해서 알았으니 함수에 대해서 알아보겠습니다.&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 함수를 작성하는 방법은 &lt;code class=&quot;highlighter-rouge&quot;&gt;function Name () {}&lt;/code&gt; 꼴로 작성합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;dot-sourcing&quot;&gt;Dot Sourcing&lt;/h4&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function add()
-{
-  1+3
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 코드를 작성한 후 ISE에서 실행을 하면 아래와 같이 에러가 발생합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; .\add.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; add
-add : 'add' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로
-가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
-위치 줄:1 문자:1
-+ add
-+ ~~~
-    + CategoryInfo          : ObjectNotFound: (add:String) [], CommandNotFoundExcept 
-   ion
-    + FullyQualifiedErrorId : CommandNotFoundException&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;스크립트 파일 자체를 실행하면 아무런 결과도 나오지 않고 함수명을 바로 호출하면 에러가 발생합니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 에러를 발생하지 않고 실행하는 방법이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Dot Sourcing&lt;/code&gt;입니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\add.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; add
-4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Dot Sourcing&lt;/code&gt;은 위 코드를 살펴보면 실행하고자 스크립트 앞에 &lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;을 붙여 한 번 실행한 뒤 함수명으로 바로 실행이 가능하도록 하는 것 입니다.&lt;/p&gt;
-
-&lt;p&gt;쉽게 말하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;해당 스크립트의 내용을 현재 쉘에 로드해 둔 것&lt;/code&gt;이라 생각하면 됩니다.&lt;/p&gt;
-
-&lt;p&gt;자 이제, 함수를 작성하는 방법은 알았으니 함수의 본질로 넘어가 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;p&gt;함수를 사용하는 건 &lt;code class=&quot;highlighter-rouge&quot;&gt;인자 값&lt;/code&gt;을 넘겨 &lt;code class=&quot;highlighter-rouge&quot;&gt;연산&lt;/code&gt;을 하는 것 입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;parameter&quot;&gt;Parameter&lt;/h4&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramadd ($num1, $num2){
-    $num1 + $num2
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 paramadd 라는 함수를 작성 한 후 아래와 같이 실행해 봅시다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramadd.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd 1 2
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd 1 &quot;2&quot;
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd 1 &quot;b&quot;
-값 &quot;b&quot;을(를) &quot;System.Int32&quot; 유형으로 변환할 수 없습니다. 오류: &quot;입력 문자열의 형식이 잘못되었습니다.&quot;
-위치 C:\Users\k3y6reak\Desktop\paramadd.ps1:2 문자:5
-+     $num1 + $num2
-+     ~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidArgument: (:) [], RuntimeException
-    + FullyQualifiedErrorId : InvalidCastFromStringToInteger&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;인자 값으로 1과 2를 넣어 실행한 경우 정상적으로 3이라는 결과를 출력해 줍니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 2를 문자열 “2”로 변환하여 넣은 경우도 신기하게 3이라는 결과를 출력해줍니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;숫자 형태로 이루어진 문자&lt;/code&gt;는 PowerShell에서 숫자로 변환하여 실행을 해줍니다.&lt;/p&gt;
-
-&lt;p&gt;진짜 문자형태인 “b”를 넣었을 경우에는 에러를 발생합니다. 에러의 내용을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;b&quot;를 &quot;System.Int32&quot;유형으로 변환할 수 없습니다.&lt;/code&gt; 라고 출력하는 것을 보아 앞의 &lt;code class=&quot;highlighter-rouge&quot;&gt;$num1의 형태가 Int32이기 때문에 이에 맞춰 변환하는 과정&lt;/code&gt;에서 에러가 발생한 것입니다.&lt;/p&gt;
-
-&lt;p&gt;반대로 “1”과 2를 넣은 경우에는 정상적으로 실행됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd &quot;1&quot; 2
-12&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;어떤 연산을 하는 경우 앞의 변수의 형태에 따라 뒤의 변수 형태를 변환하는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;또한 인자 값을 지정하여 함수를 실행할 수도 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd -num1 1 -num2 2
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramadd -num2 1 -num1 2
-3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;함수에서 사용하는 변수를 &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;과 함께 사용하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;순서에 상관없이&lt;/code&gt; 사용할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;다음으로 함수의 인자 개수에 대해서 설명하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function overparam ($num1, $num2)
-{
-    $num1 + $num2
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 overparam 함수를 작성합니다. overparam에서 사용하는 인자 값의 개수는 2개 인데 아래 실행 예제를 살펴보면 3개의 인자 값을 넣어도 에러를 발생하지 않습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; overparam 1 2
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; overparam 1 2 3
-3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;보통 다른 언어에서는 인자 값을 맞춰 코딩을 하기 때문에 에러가 발생하는데 PowerShell의 경우 에러를 출력하지 않습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function overparam2 ($num1, $num2){
-    $num1 + $num2
-    $args
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 스크립트를 작성한 후 아래와 같이 실행해 봅시다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\overparam2.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2 3
-3
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2 3 4
-3
-3
-4
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; overparam2 1 2 3 4 5
-3
-3
-4
-5&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 실행예제를 보면 인자 개수가 2개이지만 값을 3개, 4개 넣었을 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;$args&lt;/code&gt;를 통해 출력 된 다는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;default-value&quot;&gt;Default Value&lt;/h4&gt;
-
-&lt;p&gt;c++에서 함수의 &lt;code class=&quot;highlighter-rouge&quot;&gt;Default value(기본 값)&lt;/code&gt;을 지정할 수 있는데, PowerShell에서도 기본 값을 사용할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function defaultvalue($num1 = 11, $num2){
-    $num1 + $num2
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\defaultvalue.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; defaultvalue 1 2
-3
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; defaultvalue 2
-2
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; defaultvalue -num2 2
-13&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;$num1의 값을 11로 기본 값으로 선언하고 실행합니다. 인자 값이 있는 경우에는 해당 값을 이용해 연산을 하지만 없는 경우 기본 값을 이용해 연산을 합니다.&lt;/p&gt;
-
-&lt;p&gt;추가적으로 함수 내에서 사용하는 변수는 &lt;code class=&quot;highlighter-rouge&quot;&gt;지역변수&lt;/code&gt;입니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; $num1 = 11
-PS C:\Users\k3y6reak\Desktop&amp;gt; function add($num1 = 2, $num2) {
-&amp;gt;&amp;gt; $num1 + $num2
-&amp;gt;&amp;gt; }
-PS C:\Users\k3y6reak\Desktop&amp;gt; $num1
-11
-PS C:\Users\k3y6reak\Desktop&amp;gt; add 1 2
-3
-PS C:\Users\k3y6reak\Desktop&amp;gt; add -num2 2
-4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;mandatory&quot;&gt;Mandatory&lt;/h4&gt;
-
-&lt;p&gt;다음으로는 함수의 인자의 조건에 대해서 알아보겠습니다. PowreShell에서는 인자 값에 대한 조건을 줄 수 있는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;param([parameter () ], [parameter () ])&lt;/code&gt;과 같은 형식을 사용합니다. 아래 예제를 보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
-{
-    param([parameter (Mandatory = $true)]$val1, [Parameter()]$val2)
-
-    Write-Output &quot;val1 is $val1&quot;
-    Write-Output &quot;val2 is $val2&quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;소스코드를 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Mandatory = $true&lt;/code&gt;가 작성된 것을 볼 수 있는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;Mandatory&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;의무적인&lt;/code&gt;이라는 뜻으로 해당 변수에 대해서는 무조건 값이 필요하다는 것을 뜻합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck 1 2
-val1 is 1
-val2 is 2
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 1 -val2 2
-val1 is 1
-val2 is 2
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 1
-val1 is 1
-val2 is 
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val2 2
-cmdlet paramcheck(명령 파이프라인 위치 1)
-다음 매개 변수에 대한 값을 제공하십시오.
-val1: 1
-val1 is 1
-val2 is 2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 실행 예제를 보면 알 수 있듯이 &lt;code class=&quot;highlighter-rouge&quot;&gt;val2&lt;/code&gt;에 대한 값만 전달하는 경우 사용자마다 다르지만 에러를 발생하거나 위 경우처럼 val1에 대한 값을 요구하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;position&quot;&gt;Position&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
-{
-    param([parameter (Mandatory = $true, Position = 1)]$val1, [Parameter(Position = 0)]$val2)
-
-    Write-Output &quot;val1 is $val1&quot;
-    Write-Output &quot;val2 is $val2&quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Position&lt;/code&gt;은 각 인자 값에 대한 &lt;code class=&quot;highlighter-rouge&quot;&gt;순서&lt;/code&gt;를 지정하는 것 입니다. 아래 실행 예제를 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck 1 2
-val1 is 2
-val2 is 1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;두 번째 인자 값인 &lt;code class=&quot;highlighter-rouge&quot;&gt;val2&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Posiotion = 0&lt;/code&gt;으로 되어있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;val1&lt;/code&gt;은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Position = 1&lt;/code&gt;로 되어있기 때문에 순서 상 val2가 먼저 값을 받게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;valuefrompipeline&quot;&gt;ValueFromPipeline&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ValueFromPipeline&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
-{
-    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
-
-    Write-Output &quot;val1 is $val1&quot;
-    Write-Output &quot;val2 is $val2&quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ValueFromPipeline&lt;/code&gt;은 Pipeline을 통해 함수의 인자 값을 넣어줄 수 있는 방법을 말합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; 33 | paramcheck
-val1 is 33
-val2 is &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;allownull&quot;&gt;AllowNull&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AllowNull&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
-{
-    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)]$val1, [Parameter(Position = 1)]$val2)
-
-    Write-Output &quot;val1 is $val1&quot;
-    Write-Output &quot;val2 is $val2&quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 예제에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;val1&lt;/code&gt;에 대한 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;NULL&lt;/code&gt;로 하고 실행하면 아래와 같이 에러가 발생합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 $NULL -val2 2
-paramcheck : 'val1' 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.
-위치 줄:1 문자:18
-+ paramcheck -val1 $NULL -val2 2
-+                  ~~~~~
-    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
-   ionException
-    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,paramch 
-   eck&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
-{
-    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [AllowNull()]$val1, [Parameter(Position = 1)]$val2)
-
-    Write-Output &quot;val1 is $val1&quot;
-    Write-Output &quot;val2 is $val2&quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 &lt;code class=&quot;highlighter-rouge&quot;&gt;[AllowNull()]&lt;/code&gt;를 작성한 후 실행하면 아래와 같이 에러가 발생하지 않는 것을 볼 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 $NULL -val2 2
-val1 is 
-val2 is 2&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;validateset&quot;&gt;ValidateSet&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ValidateSet&lt;/code&gt;에 대해서 알아보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function paramcheck
-{
-    param([parameter (Mandatory = $true, Position = 0, ValueFromPipeline = $true)] [ValidateSet(1,2,3)]$val1, [Parameter(Position = 1)]$val2)
-
-    Write-Output &quot;val1 is $val1&quot;
-    Write-Output &quot;val2 is $val2&quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;paramcheck -val1&lt;/code&gt;을 입력한 뒤, &lt;code class=&quot;highlighter-rouge&quot;&gt;tab&lt;/code&gt;을 누르면 사용할 수 있는 값을 출력해 줍니다.&lt;/p&gt;
-
-&lt;p&gt;이 외의 값을 사용하면 에러를 발생합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; . .\paramcheck.ps1
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 3 -val2 4
-val1 is 3
-val2 is 4
-
-PS C:\Users\k3y6reak\Desktop&amp;gt; paramcheck -val1 33 -val2 4
-paramcheck : 'val1' 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. &quot;33&quot; 인수가 ValidateSet 특성에 지정된 &quot;1,2,
-3&quot; 집합에 속하지 않습니다. 집합에 속한 인수를 제공하고 명령을 다시 시도하십시오.
-위치 줄:1 문자:18
-+ paramcheck -val1 33 -val2 4
-+                  ~~
-    + CategoryInfo          : InvalidData: (:) [paramcheck], ParameterBindingValidat 
-   ionException
-    + FullyQualifiedErrorId : ParameterArgumentValidationError,paramcheck&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Execution Policy</title><link href="http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy.html" rel="alternate" type="text/html" title="Execution Policy" /><published>2017-08-08T17:59:00+09:00</published><updated>2017-08-08T17:59:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/08/Execution_Policy.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 Script를 바로 실행할 수 없습니다.&lt;/p&gt;
-
-&lt;p&gt;notepad를 이용해서 “HelloWorld!”를 작성한 뒤 &lt;code class=&quot;highlighter-rouge&quot;&gt;HelloWorld.ps1&lt;/code&gt; 파일을 생성합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; .\HelloWorld.ps1
-.\HelloWorld.ps1 : 이 시스템에서 스크립트를 실행할 수 없으므로 C:\Users\k3y6reak\Desktop\HelloWorld.ps1 파일을 로드할 수 없습니다. 자세한 내용은 http://go.microsoft.com/fwlink/?Li
-nkID=135170의 about_Execution_Policies를 참조하십시오.
-위치 줄:1 문자:1
-+ .\HelloWorld.ps1
-+ ~~~~~~~~~~~~~~~~
-    + CategoryInfo          : 보안 오류: (:) [], PSSecurityException
-    + FullyQualifiedErrorId : UnauthorizedAccess&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 에러를 살펴보면 HelloWorld.ps1 파일을 로드할 수 없고 &lt;code class=&quot;highlighter-rouge&quot;&gt;about_Execution_Policies&lt;/code&gt;를 참조하라고 나옵니다.&lt;/p&gt;
-
-&lt;p&gt;먼저 현재 권한이 어떻게 되는지 살펴보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; Get-ExecutionPolicy
-Restricted&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;현재 권한은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Restricted&lt;/code&gt; 이며 &lt;code class=&quot;highlighter-rouge&quot;&gt;제한된&lt;/code&gt;이라는 뜻을 갖고 있습니다. 말 그대로 제한된 권한을 사용한다는 것입니다. 아무래도 아무 스크립트나 실행할 수 없도록 한 것 같습니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help&lt;/code&gt;를 이용해 about_Execution_Policies에 대해서 찾아보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; Get-Help about_Execution_Policies
-TOPIC
-    about_Execution_Policies
-
-SHORT DESCRIPTION
-    Describes the Windows PowerShell execution policies and explains
-    how to manage them.
-    ...(중략)
-
-WINDOWS POWERSHELL EXECUTION POLICIES
--------------------------------------
-
-   The Windows PowerShell execution policies are as follows:
-
-   &quot;Restricted&quot; is the default policy.
-
-       Restricted
-           - Default execution policy in Windows 8,
-             Windows Server 2012, and Windows 8.1.
-
-           - Permits individual commands, but will not run
-             scripts.
-
-           - Prevents running of all script files, including
-             formatting and configuration files (.ps1xml), module
-             script files (.psm1), and Windows PowerShell
-             profiles (.ps1).
-
-             ...(중략)
-
-       Bypass
-           - Nothing is blocked and there are no warnings or
-             prompts.
-
-           - This execution policy is designed for configurations
-             in which a Windows PowerShell script is built in to a
-             a larger application or for configurations in which
-             Windows PowerShell is the foundation for a program
-             that has its own security model.
-
-
-       Undefined
-           - There is no execution policy set in the current scope.
-
-           - If the execution policy in all scopes is Undefined, the
-             effective execution policy is Restricted, which is the
-             default execution policy.
-
-
-   Note: On systems that do not distinguish Universal Naming Convention (UNC)
-         paths from Internet paths, scripts that are identified by a UNC path
-         might not be permitted to run with the RemoteSigned execution policy.
-         ...(생략)&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 도움말을 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Restricted&lt;/code&gt; 권한은 Default로 되어있고 이를 해지하려면 &lt;code class=&quot;highlighter-rouge&quot;&gt;bypass&lt;/code&gt;권한을 이용해야 합니다.&lt;/p&gt;
-
-&lt;p&gt;권한을 변경하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;관리자 권한&lt;/code&gt;으로 PowerShell를 실행시킨 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;Set-ExecutionPolicy Bypass&lt;/code&gt;를 입력해 줍니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;Windows PowerShell
-Copyright (C) 2016 Microsoft Corporation. All rights reserved.
-
-PS C:\WINDOWS\system32&amp;gt; Set-ExecutionPolicy Bypass
-
-실행 규칙 변경
-실행 정책은 신뢰하지 않는 스크립트로부터 사용자를 보호합니다. 실행 정책을 변경하면 about_Execution_Policies 도움말
-항목(http://go.microsoft.com/fwlink/?LinkID=135170)에 설명된 보안 위험에 노출될 수 있습니다. 실행 정책을
-변경하시겠습니까?
-[Y] 예(Y)  [A] 모두 예(A)  [N] 아니요(N)  [L] 모두 아니요(L)  [S] 일시 중단(S)  [?] 도움말 (기본값은 &quot;N&quot;): Y&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;그 후 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-ExecutionPolicy&lt;/code&gt;를 실행하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Bypass&lt;/code&gt;로 권한이 변경된 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; Get-ExecutionPolicy
-Bypass&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;다시 HelloWorld.ps1를 실행하면 정상적으로 실행되는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Desktop&amp;gt; .\HelloWorld.ps1
-Hello World&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DelFile 파일경로&lt;/code&gt;를 이용하여 test.txt가 삭제된 것을 확인할 수 있으며, 해당 모듈을 사용하지 않을 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Remove-Module 모듈명&lt;/code&gt;을 이용해 제거할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
