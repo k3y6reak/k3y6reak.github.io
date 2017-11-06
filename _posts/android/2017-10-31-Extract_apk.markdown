@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Extract APK"
-date:   2017-10-30 19:55:00 +0900
+date:   2017-10-31 19:55:00 +0900
 categories: ['technique', 'android']
 ---
 
@@ -198,7 +198,7 @@ root@ubuntu:~/jadx/build/jadx/bin# ls
 jadx  jadx.bat  jadx-gui  jadx-gui.bat
 {% endhighlight bash %}
 
-`jadx [애플리케이션.apk]` 또는 `jadx-gui`로 실행 후 apk 파일을 넣어주면 됩니다.
+`jadx [apk 이름]` 또는 `jadx-gui`로 실행 후 apk 파일을 넣어주면 됩니다.
 
 
 이 외에 몇가지 부분은 나중에 추가하도록 하겠습니다.

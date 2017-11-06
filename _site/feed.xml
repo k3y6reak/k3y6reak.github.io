@@ -1,5 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-01T20:18:00+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Install Java</title><link href="http://localhost:4000/misc/2017/11/01/Java_install.html" rel="alternate" type="text/html" title="Install Java" /><published>2017-11-01T19:43:00+09:00</published><updated>2017-11-01T19:43:00+09:00</updated><id>http://localhost:4000/misc/2017/11/01/Java_install</id><content type="html" xml:base="http://localhost:4000/misc/2017/11/01/Java_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-06T16:22:24+09:00</updated><id>http://localhost:4000/</id><title type="html">k3y6reak</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Dex</title><link href="http://localhost:4000/technique/android/2017/11/03/Dex.html" rel="alternate" type="text/html" title="Dex" /><published>2017-11-03T17:12:00+09:00</published><updated>2017-11-03T17:12:00+09:00</updated><id>http://localhost:4000/technique/android/2017/11/03/Dex</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/11/03/Dex.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;dex&quot;&gt;Dex&lt;/h3&gt;
+
+&lt;p&gt;Dex는 Android에서 사용되는 파일로 Windows의 PE 파일과 같은 존재입니다. Dex는 Dalvik Executable을 줄여놓은 것으로 Dalvik Virtual Machine에서 동작합니다.&lt;/p&gt;
+
+&lt;p&gt;Dex의 Signature는 &lt;code class=&quot;highlighter-rouge&quot;&gt;64 65 78 0a 30 33 35 00(dex\n035)&lt;/code&gt; 로 시작합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;k3y6reak:SoundMeter k3y6reak&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ls
+AndroidManifest.xml	classes.dex		resources.arsc
+META-INF		res
+k3y6reak:SoundMeter k3y6reak&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hexdump -C classes.dex | more
+00000000  64 65 78 0a 30 33 35 00  e2 50 cf a8 1b 24 b9 ce  |dex.035..P...&lt;span class=&quot;nv&quot;&gt;$.&lt;/span&gt;.|&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unzip&lt;/code&gt;으로 추출한 classes.dex 파일을 분석해야 하는데 이때 사용하는 툴이 dex2jar가 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://sourceforge.net/projects/dex2jar/&quot;&gt;dex2jar&lt;/a&gt;에서 해당 파일을 다운로드 받습니다.&lt;/p&gt;
+
+&lt;p&gt;압축을 해제한 후 Ubuntu에서 사용하기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;d2j-dex2jar.sh&lt;/code&gt;를 이용해 &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; 파일을 추출합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/dex2jar# &lt;/span&gt;ls
+d2j-baksmali.bat   d2j-dex-recompute-checksum.bat  d2j-jar2jasmin.bat  d2j-std-apk.bat
+d2j-baksmali.sh    d2j-dex-recompute-checksum.sh   d2j-jar2jasmin.sh   d2j-std-apk.sh
+d2j-dex2jar.bat    d2j_invoke.bat                  d2j-jasmin2jar.bat  lib
+d2j-dex2jar.sh     d2j_invoke.sh                   d2j-jasmin2jar.sh   SoundMeter.apk
+d2j-dex2smali.bat  d2j-jar2dex.bat                 d2j-smali.bat
+d2j-dex2smali.sh   d2j-jar2dex.sh                  d2j-smali.sh
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/dex2jar# &lt;/span&gt;./d2j-dex2jar.sh SoundMeter.apk
+dex2jar SoundMeter.apk -&amp;gt; ./SoundMeter-dex2jar.jar
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/dex2jar# &lt;/span&gt;ls
+d2j-baksmali.bat   d2j-dex-recompute-checksum.bat  d2j-jar2jasmin.bat  d2j-std-apk.bat
+d2j-baksmali.sh    d2j-dex-recompute-checksum.sh   d2j-jar2jasmin.sh   d2j-std-apk.sh
+d2j-dex2jar.bat    d2j_invoke.bat                  d2j-jasmin2jar.bat  lib
+d2j-dex2jar.sh     d2j_invoke.sh                   d2j-jasmin2jar.sh   SoundMeter.apk
+d2j-dex2smali.bat  d2j-jar2dex.bat                 d2j-smali.bat       SoundMeter-dex2jar.jar
+d2j-dex2smali.sh   d2j-jar2dex.sh                  d2j-smali.sh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SoundMeter-dex2jar.jar&lt;/code&gt;파일이 추출된 것을 볼 수 있습니다. 이제 jar 파일을 다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;Java Decompiler&lt;/code&gt;를 이용해 자바코드로 변환합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jd.benow.ca/&quot;&gt;JD-GUI&lt;/a&gt;에서 운영체제에 맞는 파일을 받아 실행합니다.
+jar 파일을 받은경우 &lt;code class=&quot;highlighter-rouge&quot;&gt;java -jar jd-gui-1.4.0.jar&lt;/code&gt; 로 실행하면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/android/dex/execute_jdgui.png&quot; alt=&quot;jd_gui&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;실행 후 해당 apk를 드래그 앤 드롭으로 넣어주면 자동으로 분석을 해줍니다.&lt;/p&gt;
+
+&lt;p&gt;또 다른 방법으로는 &lt;code class=&quot;highlighter-rouge&quot;&gt;010 Editor&lt;/code&gt;를 사용하는 방법입니다. &lt;a href=&quot;http://www.sweetscape.com/010editor/&quot;&gt;010Editor&lt;/a&gt;에서 다운로드 받을 수 있습니다. 010 Editor는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Template&lt;/code&gt;을 이용해 파일의 구조를 분석할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/strazzere/010Editor-stuff/tree/master/Templates&quot;&gt;Templates_Github&lt;/a&gt;에서 여러 종류의 템플릿을 받을 수 있으며 여기서 사용할 파일은 &lt;code class=&quot;highlighter-rouge&quot;&gt;DEXTemplate.bt&lt;/code&gt;이므로 이 파일을 받아주면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;classes.dex&lt;/code&gt;파일을 010 Editor에 올리고 다운로드 받은 Dex template을 실행하면 됩니다.
+상단의 메뉴에서 Templates - Open Template - DexTemplate.bt - Run Template를 선택합니다.&lt;/p&gt;
+
+&lt;p&gt;Github에서 받은 파일이 에러 간다면 &lt;a href=&quot;https://www.sweetscape.com/010editor/templates/&quot;&gt;Templates_sweetscape&lt;/a&gt;에서 받아서 실행해보세요.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/android/dex/editor.png&quot; alt=&quot;editor&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Dex</summary></entry><entry><title type="html">Install Java</title><link href="http://localhost:4000/misc/2017/11/01/Java_install.html" rel="alternate" type="text/html" title="Install Java" /><published>2017-11-01T19:43:00+09:00</published><updated>2017-11-01T19:43:00+09:00</updated><id>http://localhost:4000/misc/2017/11/01/Java_install</id><content type="html" xml:base="http://localhost:4000/misc/2017/11/01/Java_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;ubuntu에서-java-설치하기&quot;&gt;Ubuntu에서 Java 설치하기&lt;/h3&gt;
 
 &lt;p&gt;자바를 설치하는 여러 블로그를 살펴보면 각각 다른 방법들로 설치를 많이 합니다.
@@ -56,7 +110,7 @@ java version &lt;span class=&quot;s2&quot;&gt;&quot;1.7.0_80&quot;&lt;/span&gt;
 Java&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; SE Runtime Environment &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 1.7.0_80-b15&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 Java HotSpot&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;TM&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 64-Bit Server VM &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;build 24.80-b11, mixed mode&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;정상적으로 설치가 완료 됐습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">Ubuntu에서 Java 설치하기</summary></entry><entry><title type="html">Extract APK</title><link href="http://localhost:4000/technique/android/2017/10/30/Extract_apk.html" rel="alternate" type="text/html" title="Extract APK" /><published>2017-10-30T19:55:00+09:00</published><updated>2017-10-30T19:55:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/30/Extract_apk</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/30/Extract_apk.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;정상적으로 설치가 완료 됐습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">Ubuntu에서 Java 설치하기</summary></entry><entry><title type="html">Extract APK</title><link href="http://localhost:4000/technique/android/2017/10/31/Extract_apk.html" rel="alternate" type="text/html" title="Extract APK" /><published>2017-10-31T19:55:00+09:00</published><updated>2017-10-31T19:55:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/31/Extract_apk</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/31/Extract_apk.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;apk-추출하기&quot;&gt;APK 추출하기&lt;/h3&gt;
 
 &lt;p&gt;APK를 분석하기 위해서는 APK 파일의 구조와 어떤 방식으로 동작하는지에 대해서 알아야 합니다. 먼저 APK 내에는 어떤 파일들이 존재하는지 알아보도록 합시다.
@@ -230,7 +284,7 @@ bin  lib  LICENSE  NOTICE  README.md
 &lt;span class=&quot;gp&quot;&gt;root@ubuntu:~/jadx/build/jadx/bin# &lt;/span&gt;ls
 jadx  jadx.bat  jadx-gui  jadx-gui.bat&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jadx [애플리케이션.apk]&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;jadx-gui&lt;/code&gt;로 실행 후 apk 파일을 넣어주면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jadx [apk 이름]&lt;/code&gt; 또는 &lt;code class=&quot;highlighter-rouge&quot;&gt;jadx-gui&lt;/code&gt;로 실행 후 apk 파일을 넣어주면 됩니다.&lt;/p&gt;
 
 &lt;p&gt;이 외에 몇가지 부분은 나중에 추가하도록 하겠습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">APK 추출하기</summary></entry><entry><title type="html">Install Genymotion</title><link href="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html" rel="alternate" type="text/html" title="Install Genymotion" /><published>2017-10-30T17:38:00+09:00</published><updated>2017-10-30T17:38:00+09:00</updated><id>http://localhost:4000/technique/android/2017/10/30/Genymotion_install</id><content type="html" xml:base="http://localhost:4000/technique/android/2017/10/30/Genymotion_install.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&quot;genymotion-설치&quot;&gt;GenyMotion 설치&lt;/h3&gt;
@@ -1270,160 +1324,4 @@ d----        2017-08-25   오후 1:31            Windows
 
 -a---        2009-06-11   오전 6:42         10 config.sys&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Enter-PSSession&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;-id&lt;/code&gt; 옵션 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;New-PSSession&lt;/code&gt;을 통해서 만들어진 &lt;code class=&quot;highlighter-rouge&quot;&gt;Id&lt;/code&gt;값입니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Modules</title><link href="http://localhost:4000/technique/powershell/2017/08/22/modules.html" rel="alternate" type="text/html" title="Modules" /><published>2017-08-22T20:23:00+09:00</published><updated>2017-08-22T20:23:00+09:00</updated><id>http://localhost:4000/technique/powershell/2017/08/22/modules</id><content type="html" xml:base="http://localhost:4000/technique/powershell/2017/08/22/modules.html">&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 Module에 관한 명령어를 알아보기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Help *module*&lt;/code&gt;을 입력합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; Get-Help *module*
-
-Name                              Category  Module                    Synopsis
-----                              --------  ------                    --------
-ImportSystemModules               Function                            ...
-Export-ModuleMember               Cmdlet    Microsoft.PowerShell.Core Specifies the module members that are exported.
-Get-Module                        Cmdlet    Microsoft.PowerShell.Core Gets the modules that have been imported or that can be imported into the current session.
-Import-Module                     Cmdlet    Microsoft.PowerShell.Core Adds modules to the current session.
-New-Module                        Cmdlet    Microsoft.PowerShell.Core Creates a new dynamic module that exists only in memory.
-New-ModuleManifest                Cmdlet    Microsoft.PowerShell.Core Creates a new module manifest.
-Remove-Module                     Cmdlet    Microsoft.PowerShell.Core Removes modules from the current session.
-Test-ModuleManifest               Cmdlet    Microsoft.PowerShell.Core Verifies that a module manifest file accurately describes the contents of a module.
-InModuleScope                     Function  Pester                    ...
-Uninstall-Module                  Function  PowerShellGet             ...
-Install-Module                    Function  PowerShellGet             ...
-Publish-Module                    Function  PowerShellGet             ...
-Update-ModuleManifest             Function  PowerShellGet             ...
-Save-Module                       Function  PowerShellGet             ...
-Update-Module                     Function  PowerShellGet             ...
-Get-InstalledModule               Function  PowerShellGet             ...
-Find-Module                       Function  PowerShellGet             ...
-about_Modules                     HelpFile                            Explains how to install, import, and use Windows PowerShell modules.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;주로 사용하게 될 명령어는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Import-module&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;Remove-module&lt;/code&gt; 입니다. 모듈을 사용하고자 할 때는 Import-module을 사용하고 모듈을 해제 하고자할 때는 Remove-module을 사용합니다.&lt;/p&gt;
-
-&lt;p&gt;PowerShell에서 모듈을 사용하기 위해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;$env:PSModulePath&lt;/code&gt;를 입력합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; $env:PSModulePath
-C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 결과를 보면 모듈에 대한 경로가 나타나게 된다. 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&lt;/code&gt;로 이동하면 WindowsPowerShell 폴더가 없다는 에러 메시지가 나타난다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak&amp;gt; cd C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
-cd : 'C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules' 경로는 존재하지 않으므로 찾을 수 없습니다.
-위치 줄:1 문자:1
-+ cd C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (C:\Users\k3y6re...erShell\Modules:String) [Set-Location], ItemNotFoundException
-    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
-
-PS C:\Users\k3y6reak&amp;gt; cd C:\Users\k3y6reak\Documents\
-PS C:\Users\k3y6reak\Documents&amp;gt; mkdir WindowsPowerShell
-
-
-    디렉터리: C:\Users\k3y6reak\Documents
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
-d-----   2017. 8. 24.  오전 11:23                WindowsPowerShell
-
-
-PS C:\Users\k3y6reak\Documents&amp;gt; cd WindowsPowerShell
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell&amp;gt; mkdir Modules
-
-
-    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
-d-----   2017. 8. 24.  오전 11:24                Modules&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위와 같이 해당 디렉토리를 생성하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Modules 디렉토리&lt;/code&gt;에서 모듈을 저장하면 된다.&lt;/p&gt;
-
-&lt;p&gt;그렇다면 PowerShell에서 사용하는 모듈을 한번 만들어 보겠습니다.&lt;/p&gt;
-
-&lt;p&gt;PowerShell script는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.ps1&lt;/code&gt; 확장자를 갖고있고, PowerShell module은 &lt;code class=&quot;highlighter-rouge&quot;&gt;.psm1&lt;/code&gt; 확장자를 갖고 있습니다.&lt;/p&gt;
-
-&lt;p&gt;아래 &lt;code class=&quot;highlighter-rouge&quot;&gt;DelFile.psm1&lt;/code&gt; 코드를 작성합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;function DelFile
-{
-    [CmdletBinding( SupportsShouldProcess = $true )] 
-    param ([Parameter()]$FilePath)
-
-    Write-Verbose &quot;Delete $FilePath&quot;
-    
-    if($PSCmdlet.ShouldProcess(&quot;$FilePath&quot;, &quot;Deleting File permanently&quot;))
-    {
-        Remove-Item $FilePath
-    }
-
-}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; cp C:\Users\k3y6reak\Desktop\DelFile.psm1 .
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; ls
-
-
-    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
--a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Modules 디렉토리에 DelFile.psm1을 복사합니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Import-Module .\DelFile.psm1
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Get-Command -Module DelFile
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Function        DelFile                                            0.0        DelFile
-
-
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Get-Module
-
-ModuleType Version    Name                                ExportedCommands
----------- -------    ----                                ----------------
-Script     0.0        DelFile                             DelFile
-Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Content...}
-Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
-Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Import-Module&lt;/code&gt;을 이용하여 모듈을 추가할 수 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Get-Module&lt;/code&gt;을 이용하여 사용되는 모듈을 확인할 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;해당 디렉토리에 &lt;code class=&quot;highlighter-rouge&quot;&gt;test.txt&lt;/code&gt;파일을 생성한 후 추가한 DelFile 모듈을 사용해 보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ps&quot; data-lang=&quot;ps&quot;&gt;PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; ls
-
-
-    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
--a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
--a----   2017. 8. 24.   오후 1:45              0 test.txt
-
-
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; DelFile C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules\test.txt
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; ls
-
-
-    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
--a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
-
-
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Remove-Module DelFile
-PS C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&amp;gt; Get-Module
-
-ModuleType Version    Name                                ExportedCommands
----------- -------    ----                                ----------------
-Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Content...}
-Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, Compare-Object...}
-Script     1.2        PSReadline                          {Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, Set-PSReadlineKeyHandler...}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DelFile 파일경로&lt;/code&gt;를 이용하여 test.txt가 삭제된 것을 확인할 수 있으며, 해당 모듈을 사용하지 않을 때는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Remove-Module 모듈명&lt;/code&gt;을 이용해 제거할 수 있습니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Enter-PSSession&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;-id&lt;/code&gt; 옵션 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;New-PSSession&lt;/code&gt;을 통해서 만들어진 &lt;code class=&quot;highlighter-rouge&quot;&gt;Id&lt;/code&gt;값입니다.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
