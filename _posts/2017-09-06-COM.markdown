@@ -1,0 +1,92 @@
+---
+layout: post
+title:  "COM"
+subtitle: "PowerShell COM에 대해서 알아보겠습니다."
+date:   2017-09-06 19:14:00 +0900
+categories: ['technique']
+tags: powershell
+comments: true
+---
+
+<br/><br/>
+
+`COM`은 Component Object Model로 [위키백과](https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8_%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8_%EB%AA%A8%EB%8D%B8)를 참조하길 바란다.
+
+PowerShell에서 `ComObject`를 이용해 Registry에 접근할 수 있다.
+
+`Get-ChildItem REGISTRY::HKEY_CLASSES_ROOT\CLSID -include PROGID -recurse | ForEach {$_.GetValue("")}`를 실행해 보자.
+
+
+{% highlight ps %}
+PS C:\WINDOWS\system32> Get-ChildItem REGISTRY::HKEY_CLASSES_ROOT\CLSID -include PROGID -recurse | ForEach {$_.GetValue("")}
+file
+StaticMetafile
+StaticDib
+clsid
+objref
+ADODB.Command.6.0
+ADODB.Parameter.6.0
+ADODB.Connection.6.0
+ADODB.Recordset.6.0
+...(생략)
+{% endhighlight %}
+
+많은 결과가 출력되는데 이 중 `wscript`만 출력해 보자. `| Where-Object {$_ -match "wscript"}`를 붙여주면 된다. wscript는 윈도우에서 사용하는 스크립트다.
+
+{% highlight ps %}
+PS C:\WINDOWS\system32> Get-ChildItem REGISTRY::HKEY_CLASSES_ROOT\CLSID -include PROGID -recurse | ForEach {$_.GetValue("")} | Where-Object {$_ -match "wscript"}
+WScript.Network.1
+WScript.Shell.1
+WScript.Shell.1
+WScript.Network.1
+{% endhighlight %}
+
+여기서 WScript.Shell.1을 사용해보자.
+
+`$wscript = New-Object -ComObject Wscript.Shell.1`을 입력한 후 `$wscript | Get-Member`을 입력해 보자.
+
+{% highlight ps %}
+PS C:\WINDOWS\system32> $wscript = New-Object -ComObject Wscript.Shell.1
+PS C:\WINDOWS\system32> $wscript | Get-Member
+
+
+   TypeName: System.__ComObject#{41904400-be18-11d3-a28b-00104bd35090}
+
+Name                     MemberType            Definition
+----                     ----------            ----------
+AppActivate              Method                bool AppActivate (Variant, Variant)
+CreateShortcut           Method                IDispatch CreateShortcut (string)
+Exec                     Method                IWshExec Exec (string)
+ExpandEnvironmentStrings Method                string ExpandEnvironmentStrings (string)
+LogEvent                 Method                bool LogEvent (Variant, string, string)
+Popup                    Method                int Popup (string, Variant, Variant, Variant)
+RegDelete                Method                void RegDelete (string)
+RegRead                  Method                Variant RegRead (string)
+RegWrite                 Method                void RegWrite (string, Variant, Variant)
+Run                      Method                int Run (string, Variant, Variant)
+SendKeys                 Method                void SendKeys (string, Variant)
+Environment              ParameterizedProperty IWshEnvironment Environment (Variant) {get}
+CurrentDirectory         Property              string CurrentDirectory () {get} {set}
+SpecialFolders           Property              IWshCollection SpecialFolders () {get}
+{% endhighlight %}
+
+사용할 수 있는 Method들이 출력된 것을 볼 수 있다. 
+
+{% highlight ps %}
+PS C:\WINDOWS\system32> $wscript.CurrentDirectory
+C:\WINDOWS\system32
+PS C:\WINDOWS\system32> $wscript.Exec("notepad.exe")
+
+
+Status    : 0
+StdIn     : System.__ComObject
+StdOut    : System.__ComObject
+StdErr    : System.__ComObject
+ProcessID : 8056
+ExitCode  : 0
+{% endhighlight %}
+
+이렇게 사용할 수 있다.
+
+
+

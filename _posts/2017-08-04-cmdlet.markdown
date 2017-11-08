@@ -1,0 +1,200 @@
+---
+layout: post
+title:  "Cmdlet"
+subtitle: "PowerShell에서 사용되는 Cmdlet에 대해서 알아보자."
+date:   2017-08-04 17:06:00 +0900
+categories: ['technique']
+tags: powershell
+commnets: true
+---
+
+<br/><br/>
+
+이번에는 PowerShell에서 사용되는 cmdlet에 대해서 알아 보도록 하겠습니다.
+
+
+PowerShell에서 명령어를 사용하기 위해서 `Get-Command`를 입력하면 아래와 같이 많은 명령어들이 출력되는 것을 볼 수 있습니다.
+
+{% highlight PowerShell %}
+PS C:\Users\k3y6reak> Get-Command
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Add-ProvisionedAppxPackage                         3.0        Dism
+Alias           Apply-WindowsUnattend                              3.0        Dism
+Alias           Disable-PhysicalDiskIndication                     2.0.0.0    Storage
+Alias           Disable-StorageDiagnosticLog                       2.0.0.0    Storage
+Alias           Enable-PhysicalDiskIndication                      2.0.0.0    Storage
+Alias           Enable-StorageDiagnosticLog                        2.0.0.0    Storage
+Alias           Flush-Volume                                       2.0.0.0    Storage
+Alias           Get-DiskSNV                                        2.0.0.0    Storage
+Alias           Get-PhysicalDiskSNV                                2.0.0.0    Storage
+Alias           Get-ProvisionedAppxPackage                         3.0        Dism
+Alias           Get-StorageEnclosureSNV                            2.0.0.0    Storage
+Alias           Initialize-Volume                                  2.0.0.0    Storage
+Alias           Move-SmbClient                                     2.0.0.0    SmbWitness
+Alias           Remove-ProvisionedAppxPackage                      3.0        Dism
+Alias           Write-FileSystemCache                              2.0.0.0    Storage
+Function        A:
+Function        Add-BCDataCacheExtension                           1.0.0.0    BranchCache
+Function        Add-BitLockerKeyProtector                          1.0.0.0    BitLocker
+Function        Add-DnsClientNrptRule                              1.0.0.0    DnsClient
+Function        Add-DtcClusterTMMapping                            1.0.0.0    MsDtc
+Function        Add-EtwTraceProvider                               1.0.0.0    EventTracingManagement
+Function        Add-InitiatorIdToMaskingSet                        2.0.0.0    Storage
+...(생략)
+{% endhighlight %}
+
+이 중에서 알아볼 명령어는 cmdlet에 대한 명령어인데 해당 명령어만 출력하도록 해보겠습니다.
+`Get-Command -CommandType cmdlet`을 실행합니다.
+
+{% highlight PowerShell %}
+PS C:\Users\k3y6reak> Get-Command -CommandType cmdlet
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Add-AppvClientConnectionGroup                      1.0.0.0    AppvClient
+Cmdlet          Add-AppvClientPackage                              1.0.0.0    AppvClient
+Cmdlet          Add-AppvPublishingServer                           1.0.0.0    AppvClient
+Cmdlet          Add-AppxPackage                                    2.0.0.0    Appx
+Cmdlet          Add-AppxProvisionedPackage                         3.0        Dism
+Cmdlet          Add-AppxVolume                                     2.0.0.0    Appx
+Cmdlet          Add-BitsFile                                       2.0.0.0    BitsTransfer
+Cmdlet          Add-CertificateEnrollmentPolicyServer              1.0.0.0    PKI
+Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Add-Content                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Add-History                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Add-JobTrigger                                     1.1.0.0    PSScheduledJob
+Cmdlet          Add-KdsRootKey                                     1.0.0.0    Kds
+Cmdlet          Add-LocalGroupMember                               1.0.0.0    Microsoft.PowerShell.LocalAccounts
+Cmdlet          Add-Member                                         3.1.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Add-PSSnapin                                       3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Add-SignerRule                                     1.0        ConfigCI
+Cmdlet          Add-Type                                           3.1.0.0    Microsoft.PowerShell.Utility
+{% endhighlight %}
+
+cmdlet에 대한 명령어 목록이 출력된 것을 확인할 수 있습니다. 이 중에서 process와 관련된 명령어를 찾고자 한다면 `Get-Command -CommandType cmdlet -Name *process` 을 입력합니다.
+
+{% highlight PowerShell %}
+PS C:\Users\k3y6reak> Get-Command -CommandType cmdlet -Name *process
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Debug-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Enter-PSHostProcess                                3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Exit-PSHostProcess                                 3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Get-Process                                        3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Start-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Stop-Process                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          Wait-Process                                       3.1.0.0    Microsoft.PowerShell.Management
+{% endhighlight %}
+
+여기서 Start-Process를 이용하여 notepad.exe를 실행시켜 보도록 하겠습니다. 그 전에 Start-Process를 어떻게 사용해야 하는지 알고 싶다면 `Get-Help Start-Process -example`를 입력합니다.
+
+
+{% highlight PowerShell %}
+PS C:\Users\k3y6reak> Get-Help Start-Process -example
+
+이름
+    Start-Process
+
+개요
+    Starts one or more processes on the local computer.
+
+
+    Example 1: Start a process that uses default values
+
+    PS C:\>Start-Process -FilePath "sort.exe"
+
+    This command starts a process that uses the Sort.exe file in the current folder. The command uses all of the default values, including the default window style, working folder, and credentials.
+    Example 2: Print a text file
+
+    PS C:\>Start-Process -FilePath "myfile.txt" -WorkingDirectory "C:\PS-Test" -Verb Print
+
+    This command starts a process that prints the C:\PS-Test\MyFile.txt file.
+    Example 3: Start a process to sort items to a new file
+
+    PS C:\>Start-Process -FilePath "Sort.exe" -RedirectStandardInput "Testsort.txt" -RedirectStandardOutput "Sorted.txt" -RedirectStandardError "SortError.txt" -UseNewEnvironment
+
+    This command starts a process that sorts items in the Testsort.txt file and returns the sorted items in the Sorted.txt files. Any errors are written to the SortError.txt file.
+
+    The UseNewEnvironment parameter specifies that the process runs with its own environment variables.
+    Example 4: Start a process in a maximized window
+
+    PS C:\>Start-Process -FilePath "notepad" -Wait -WindowStyle Maximized
+
+    This command starts the Notepad process. It maximizes the window and retains the window until the process completes.
+    Example 5: Start Windows Powershell as an administrator
+
+    PS C:\>Start-Process -FilePath "powershell" -Verb runAs
+
+    This command starts Windows PowerShell by using the Run as administrator option.
+    Example 6: Using different verbs to start a process
+
+    PS C:\>$startExe = New-Object System.Diagnostics.ProcessStartInfo -Args PowerShell.exe
+    PS C:\> $startExe.verbs
+    open
+    runas
+
+    # Starts a PowerShell process in a new console window.
+
+    PS C:\> Start-Process -FilePath "powershell.exe" -Verb open
+
+    # Starts a PowerShell process with "Run as Administrator" permissions.
+
+    PS C:\> Start-Process -FilePath "powershell.exe" -Verb runas
+
+    These commands show how to find the verbs that can be used when starting a process, and the effect of using the verbs to start the process.
+
+    The available verbs are determined by the file name extension of the file that runs in the process. To find the verbs for a process, create a System.Diagnostics.ProcessStartInfo object for the process file
+     and look in the Verbs property of the object. This example uses the PowerShell.exe file that runs in the PowerShell process.
+
+    The first command uses New-Object to create a System.Diagnostics.ProcessStartInfo object for PowerShell.exe, the file that runs in the PowerShell process. The command saves the ProcessStartInfo object in t
+    he $startExe variable.
+
+    The second command displays the values in the Verbs property of the ProcessStartInfo object in the $startExe variable. The results show that you can use the Open and Runas verbs with PowerShell.exe, or wit
+    h any process that runs a .exe file.
+
+    The third command starts a PowerShell process with the Open verb. The Open verb starts the process in a new console window.
+
+    The fourth command starts a PowerShell process with the RunAs verb. The RunAs verb starts the process with permissions of a member of the Administrators group on the computer. This is the same as starting
+    Windows PowerShell by using the Run as administrator option.
+{% endhighlight %}
+
+`Start-Process notepad.exe`를 입력하면 아래와 같이 notepad.exe가 실행된 것을 알 수 있습니다.
+
+![powershell_start_process](/img/powershell/cmdlet/start_process.png)
+
+반대로 `Stop-Process notepad.exe`를 입력하면 아래와 같이 에러가 발생합니다.
+
+{% highlight PowerShell%}
+PS C:\Users\k3y6reak> Stop-Process notepad.exe
+Stop-Process : 'InputObject' 매개 변수를 바인딩할 수 없습니다. "System.String" 유형의 "notepad.exe" 값을 "System.Diagnostics.Process" 유형으로 변환할 수 없습니다.
+위치 줄:1 문자:14
++ Stop-Process notepad.exe
++              ~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Stop-Process], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.StopProcessCommand
+{% endhighlight%}
+
+`Get-Help`를 이용해서 Stop-Proces에 대한 예시를 살펴봅니다.
+
+{% highlight PowerShell%}
+PS C:\Users\k3y6reak> Get-Help Stop-Process -example
+
+이름
+    Stop-Process
+
+개요
+    Stops one or more running processes.
+
+
+    Example 1: Stop all instances of a process
+
+    PS C:\>Stop-Process -Name "notepad"
+{% endhighlight%}
+
+위와 같이 `-Name`이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.
+
+
+

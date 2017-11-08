@@ -1,21 +1,9 @@
-{% include base.html %}
-
-<div class="container">
-	<hr>
-	<section class="float-left">
-		&copy; 2017. SAHONG PAK all rights reserved.
-	</section>
-	<section class="float-right">
-		<a href="http://blog.rebforpwn.com">
-			<img src="{{ base }}/assets/img/rebforpwn.png" alt="RebForPwn" height="32" width="100">
-		</a>
-
-		<a href="http://">
-		<img src="{{ base }}/assets/img/github.svg" alt="github" height="32" width="32">
-		</a>
-
-		<a href="mailto:k3y6reak@naver.com">
-		<img src="{{ base }}/assets/img/mail.svg" alt="mail" height="32" width="32">
-		</a>
-	</section>
-</div>
+<footer>
+  <hr/>
+  {% if site.copyright.size > 0 %}
+    {{ site.copyright | markdownify }}
+  {% endif %}
+  <p>
+    <code>Powered by <a href="https://k3y6reak.github.io/">k3y6reak</a></code>
+  </p>
+</footer>

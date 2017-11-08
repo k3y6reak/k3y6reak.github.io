@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="Functions">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Functions &middot; k3y6reak</title>
+
+
+
+<meta name="description" content="PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.
+
+">
+<meta property="og:description" content="PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/technique/2017/08/08/Functios/">
+<meta property="og:url" content="http://localhost:4000/technique/2017/08/08/Functios/">
+
+<link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/technique/2017/08/08/Execution_Policy/">
+
+
+
+  <link rel="next" href="http://localhost:4000/technique/2017/08/22/modules/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-technique/2017/08/08/Functios" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Functions
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2017-08-08T20:29:00+09:00">08 Aug 2017</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/technique/" data-flip="title">High Level Technique</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-9134477021095729"
+    data-ad-slot="6559875097"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+      <p>PowerShell에서 함수를 사용하는 방법에 대해서 알아보겠습니다.</p>
+
+<p>먼저 스크립트를 작성할 때 <code class="highlighter-rouge">PowerShell ISE</code>를 이용하여 작성하는 방법이 있고, 앞서 Execution Policy에서 설명한 것 처럼 <code class="highlighter-rouge">에디터</code>를 이용하는 방법이 있습니다.</p>
+
+<p>PowerShell ISE에서 스크립트를 작성할 때 아래 그림의 <code class="highlighter-rouge">스크립트</code>를 누른 후 스크립트를 작성할 수 있습니다.</p>
+
+<p><img src="/img/powershell/functions/powershell_ise.png" alt="powershell_ise" /></p>
+
+<p>마찬가지로 <code class="highlighter-rouge">관리자 권한</code>에서 <code class="highlighter-rouge">Set-Execution Byass</code>를 실행해야 스크립트를 실행할 수 있습니다.</p>
+
+<p>스크립트를 작성하는 방법에 대해서 알았으니 함수에 대해서 알아보겠습니다.</p>
+
+<p>PowerShell에서 함수를 작성하는 방법은 <code class="highlighter-rouge">function Name () {}</code> 꼴로 작성합니다.</p>
+
+<h4 id="dot-sourcing">Dot Sourcing</h4>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>add<span class="o">()</span>
+<span class="o">{</span>
+  1+3
+<span class="o">}</span></code></pre></figure>
+
+<p>위와 같이 코드를 작성한 후 ISE에서 실행을 하면 아래와 같이 에러가 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; .<span class="se">\a</span>dd.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add
+add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로
+가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ add
++ ~~~
+    + CategoryInfo          : ObjectNotFound: <span class="o">(</span>add:String<span class="o">)</span> <span class="o">[]</span>, CommandNotFoundExcept 
+   ion
+    + FullyQualifiedErrorId : CommandNotFoundException</code></pre></figure>
+
+<p>스크립트 파일 자체를 실행하면 아무런 결과도 나오지 않고 함수명을 바로 호출하면 에러가 발생합니다.</p>
+
+<p>여기서 에러를 발생하지 않고 실행하는 방법이 <code class="highlighter-rouge">Dot Sourcing</code>입니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\a</span>dd.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add
+4</code></pre></figure>
+
+<p><code class="highlighter-rouge">Dot Sourcing</code>은 위 코드를 살펴보면 실행하고자 스크립트 앞에 <code class="highlighter-rouge">.</code>을 붙여 한 번 실행한 뒤 함수명으로 바로 실행이 가능하도록 하는 것 입니다.</p>
+
+<p>쉽게 말하면 <code class="highlighter-rouge">해당 스크립트의 내용을 현재 쉘에 로드해 둔 것</code>이라 생각하면 됩니다.</p>
+
+<p>자 이제, 함수를 작성하는 방법은 알았으니 함수의 본질로 넘어가 보도록 하겠습니다.</p>
+
+<p>함수를 사용하는 건 <code class="highlighter-rouge">인자 값</code>을 넘겨 <code class="highlighter-rouge">연산</code>을 하는 것 입니다.</p>
+
+<h4 id="parameter">Parameter</h4>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramadd <span class="o">(</span><span class="nv">$num1</span>, <span class="nv">$num2</span><span class="o">){</span>
+    <span class="nv">$num1</span> + <span class="nv">$num2</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위와 같이 paramadd 라는 함수를 작성 한 후 아래와 같이 실행해 봅시다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramadd.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd 1 2
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd 1 <span class="s2">"2"</span>
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd 1 <span class="s2">"b"</span>
+값 <span class="s2">"b"</span>을<span class="o">(</span>를<span class="o">)</span> <span class="s2">"System.Int32"</span> 유형으로 변환할 수 없습니다. 오류: <span class="s2">"입력 문자열의 형식이 잘못되었습니다."</span>
+위치 C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\p</span>aramadd.ps1:2 문자:5
++     <span class="nv">$num1</span> + <span class="nv">$num2</span>
++     ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: <span class="o">(</span>:<span class="o">)</span> <span class="o">[]</span>, RuntimeException
+    + FullyQualifiedErrorId : InvalidCastFromStringToInteger</code></pre></figure>
+
+<p>인자 값으로 1과 2를 넣어 실행한 경우 정상적으로 3이라는 결과를 출력해 줍니다.</p>
+
+<p>여기서 2를 문자열 “2”로 변환하여 넣은 경우도 신기하게 3이라는 결과를 출력해줍니다.</p>
+
+<p><code class="highlighter-rouge">숫자 형태로 이루어진 문자</code>는 PowerShell에서 숫자로 변환하여 실행을 해줍니다.</p>
+
+<p>진짜 문자형태인 “b”를 넣었을 경우에는 에러를 발생합니다. 에러의 내용을 살펴보면 <code class="highlighter-rouge">"b"를 "System.Int32"유형으로 변환할 수 없습니다.</code> 라고 출력하는 것을 보아 앞의 <code class="highlighter-rouge">$num1의 형태가 Int32이기 때문에 이에 맞춰 변환하는 과정</code>에서 에러가 발생한 것입니다.</p>
+
+<p>반대로 “1”과 2를 넣은 경우에는 정상적으로 실행됩니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd <span class="s2">"1"</span> 2
+12</code></pre></figure>
+
+<p>어떤 연산을 하는 경우 앞의 변수의 형태에 따라 뒤의 변수 형태를 변환하는 것을 알 수 있습니다.</p>
+
+<p>또한 인자 값을 지정하여 함수를 실행할 수도 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd -num1 1 -num2 2
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd -num2 1 -num1 2
+3</code></pre></figure>
+
+<p>함수에서 사용하는 변수를 <code class="highlighter-rouge">-</code>과 함께 사용하여 <code class="highlighter-rouge">순서에 상관없이</code> 사용할 수 있습니다.</p>
+
+<p>다음으로 함수의 인자 개수에 대해서 설명하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>overparam <span class="o">(</span><span class="nv">$num1</span>, <span class="nv">$num2</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="nv">$num1</span> + <span class="nv">$num2</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위와 같이 overparam 함수를 작성합니다. overparam에서 사용하는 인자 값의 개수는 2개 인데 아래 실행 예제를 살펴보면 3개의 인자 값을 넣어도 에러를 발생하지 않습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam 1 2
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam 1 2 3
+3</code></pre></figure>
+
+<p>보통 다른 언어에서는 인자 값을 맞춰 코딩을 하기 때문에 에러가 발생하는데 PowerShell의 경우 에러를 출력하지 않습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>overparam2 <span class="o">(</span><span class="nv">$num1</span>, <span class="nv">$num2</span><span class="o">){</span>
+    <span class="nv">$num1</span> + <span class="nv">$num2</span>
+    <span class="nv">$args</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위와 같이 스크립트를 작성한 후 아래와 같이 실행해 봅시다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\o</span>verparam2.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2 3
+3
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2 3 4
+3
+3
+4
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2 3 4 5
+3
+3
+4
+5</code></pre></figure>
+
+<p>위 실행예제를 보면 인자 개수가 2개이지만 값을 3개, 4개 넣었을 때 <code class="highlighter-rouge">$args</code>를 통해 출력 된 다는 것을 알 수 있습니다.</p>
+
+<h4 id="default-value">Default Value</h4>
+
+<p>c++에서 함수의 <code class="highlighter-rouge">Default value(기본 값)</code>을 지정할 수 있는데, PowerShell에서도 기본 값을 사용할 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>defaultvalue<span class="o">(</span><span class="nv">$num1</span> <span class="o">=</span> 11, <span class="nv">$num2</span><span class="o">){</span>
+    <span class="nv">$num1</span> + <span class="nv">$num2</span>
+<span class="o">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\d</span>efaultvalue.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; defaultvalue 1 2
+3
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; defaultvalue 2
+2
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; defaultvalue -num2 2
+13</code></pre></figure>
+
+<p>$num1의 값을 11로 기본 값으로 선언하고 실행합니다. 인자 값이 있는 경우에는 해당 값을 이용해 연산을 하지만 없는 경우 기본 값을 이용해 연산을 합니다.</p>
+
+<p>추가적으로 함수 내에서 사용하는 변수는 <code class="highlighter-rouge">지역변수</code>입니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nv">$num1</span> <span class="o">=</span> 11
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="k">function </span>add<span class="o">(</span><span class="nv">$num1</span> <span class="o">=</span> 2, <span class="nv">$num2</span><span class="o">)</span> <span class="o">{</span>
+<span class="gp">&gt;&gt; </span><span class="nv">$num1</span> + <span class="nv">$num2</span>
+<span class="gp">&gt;&gt; </span><span class="o">}</span>
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nv">$num1</span>
+11
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add 1 2
+3
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add -num2 2
+4</code></pre></figure>
+
+<h4 id="mandatory">Mandatory</h4>
+
+<p>다음으로는 함수의 인자의 조건에 대해서 알아보겠습니다. PowreShell에서는 인자 값에 대한 조건을 줄 수 있는데 <code class="highlighter-rouge">param([parameter () ], [parameter () ])</code>과 같은 형식을 사용합니다. 아래 예제를 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramcheck
+<span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>parameter <span class="o">(</span>Mandatory <span class="o">=</span> <span class="nv">$true</span><span class="o">)]</span><span class="nv">$val1</span>, <span class="o">[</span>Parameter<span class="o">()]</span><span class="nv">$val2</span><span class="o">)</span>
+
+    <span class="nb">Write-Output</span> <span class="s2">"val1 is </span><span class="nv">$val1</span><span class="s2">"</span>
+    <span class="nb">Write-Output</span> <span class="s2">"val2 is </span><span class="nv">$val2</span><span class="s2">"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>소스코드를 보면 <code class="highlighter-rouge">Mandatory = $true</code>가 작성된 것을 볼 수 있는데, <code class="highlighter-rouge">Mandatory</code>는 <code class="highlighter-rouge">의무적인</code>이라는 뜻으로 해당 변수에 대해서는 무조건 값이 필요하다는 것을 뜻합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck 1 2
+val1 is 1
+val2 is 2
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 1 -val2 2
+val1 is 1
+val2 is 2
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 1
+val1 is 1
+val2 is 
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val2 2
+cmdlet paramcheck<span class="o">(</span>명령 파이프라인 위치 1<span class="o">)</span>
+다음 매개 변수에 대한 값을 제공하십시오.
+val1: 1
+val1 is 1
+val2 is 2</code></pre></figure>
+
+<p>위 실행 예제를 보면 알 수 있듯이 <code class="highlighter-rouge">val2</code>에 대한 값만 전달하는 경우 사용자마다 다르지만 에러를 발생하거나 위 경우처럼 val1에 대한 값을 요구하게 됩니다.</p>
+
+<h4 id="position">Position</h4>
+<p><code class="highlighter-rouge">Position</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramcheck
+<span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>parameter <span class="o">(</span>Mandatory <span class="o">=</span> <span class="nv">$true</span>, Position <span class="o">=</span> 1<span class="o">)]</span><span class="nv">$val1</span>, <span class="o">[</span>Parameter<span class="o">(</span>Position <span class="o">=</span> 0<span class="o">)]</span><span class="nv">$val2</span><span class="o">)</span>
+
+    <span class="nb">Write-Output</span> <span class="s2">"val1 is </span><span class="nv">$val1</span><span class="s2">"</span>
+    <span class="nb">Write-Output</span> <span class="s2">"val2 is </span><span class="nv">$val2</span><span class="s2">"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">Position</code>은 각 인자 값에 대한 <code class="highlighter-rouge">순서</code>를 지정하는 것 입니다. 아래 실행 예제를 보도록 하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck 1 2
+val1 is 2
+val2 is 1</code></pre></figure>
+
+<p>두 번째 인자 값인 <code class="highlighter-rouge">val2</code>는 <code class="highlighter-rouge">Posiotion = 0</code>으로 되어있고 <code class="highlighter-rouge">val1</code>은 <code class="highlighter-rouge">Position = 1</code>로 되어있기 때문에 순서 상 val2가 먼저 값을 받게 됩니다.</p>
+
+<h4 id="valuefrompipeline">ValueFromPipeline</h4>
+
+<p><code class="highlighter-rouge">ValueFromPipeline</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramcheck
+<span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>parameter <span class="o">(</span>Mandatory <span class="o">=</span> <span class="nv">$true</span>, Position <span class="o">=</span> 0, ValueFromPipeline <span class="o">=</span> <span class="nv">$true</span><span class="o">)]</span><span class="nv">$val1</span>, <span class="o">[</span>Parameter<span class="o">(</span>Position <span class="o">=</span> 1<span class="o">)]</span><span class="nv">$val2</span><span class="o">)</span>
+
+    <span class="nb">Write-Output</span> <span class="s2">"val1 is </span><span class="nv">$val1</span><span class="s2">"</span>
+    <span class="nb">Write-Output</span> <span class="s2">"val2 is </span><span class="nv">$val2</span><span class="s2">"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">ValueFromPipeline</code>은 Pipeline을 통해 함수의 인자 값을 넣어줄 수 있는 방법을 말합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; 33 | paramcheck
+val1 is 33
+val2 is </code></pre></figure>
+
+<h4 id="allownull">AllowNull</h4>
+
+<p><code class="highlighter-rouge">AllowNull</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramcheck
+<span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>parameter <span class="o">(</span>Mandatory <span class="o">=</span> <span class="nv">$true</span>, Position <span class="o">=</span> 0, ValueFromPipeline <span class="o">=</span> <span class="nv">$true</span><span class="o">)]</span><span class="nv">$val1</span>, <span class="o">[</span>Parameter<span class="o">(</span>Position <span class="o">=</span> 1<span class="o">)]</span><span class="nv">$val2</span><span class="o">)</span>
+
+    <span class="nb">Write-Output</span> <span class="s2">"val1 is </span><span class="nv">$val1</span><span class="s2">"</span>
+    <span class="nb">Write-Output</span> <span class="s2">"val2 is </span><span class="nv">$val2</span><span class="s2">"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위 예제에서 <code class="highlighter-rouge">val1</code>에 대한 값을 <code class="highlighter-rouge">NULL</code>로 하고 실행하면 아래와 같이 에러가 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 <span class="nv">$NULL</span> -val2 2
+paramcheck : <span class="s1">'val1'</span> 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.
+위치 줄:1 문자:18
++ paramcheck -val1 <span class="nv">$NULL</span> -val2 2
++                  ~~~~~
+    + CategoryInfo          : InvalidData: <span class="o">(</span>:<span class="o">)</span> <span class="o">[</span>paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,paramch 
+   eck</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramcheck
+<span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>parameter <span class="o">(</span>Mandatory <span class="o">=</span> <span class="nv">$true</span>, Position <span class="o">=</span> 0, ValueFromPipeline <span class="o">=</span> <span class="nv">$true</span><span class="o">)]</span> <span class="o">[</span>AllowNull<span class="o">()]</span><span class="nv">$val1</span>, <span class="o">[</span>Parameter<span class="o">(</span>Position <span class="o">=</span> 1<span class="o">)]</span><span class="nv">$val2</span><span class="o">)</span>
+
+    <span class="nb">Write-Output</span> <span class="s2">"val1 is </span><span class="nv">$val1</span><span class="s2">"</span>
+    <span class="nb">Write-Output</span> <span class="s2">"val2 is </span><span class="nv">$val2</span><span class="s2">"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위와 같이 <code class="highlighter-rouge">[AllowNull()]</code>를 작성한 후 실행하면 아래와 같이 에러가 발생하지 않는 것을 볼 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 <span class="nv">$NULL</span> -val2 2
+val1 is 
+val2 is 2</code></pre></figure>
+
+<h4 id="validateset">ValidateSet</h4>
+
+<p><code class="highlighter-rouge">ValidateSet</code>에 대해서 알아보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">function </span>paramcheck
+<span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>parameter <span class="o">(</span>Mandatory <span class="o">=</span> <span class="nv">$true</span>, Position <span class="o">=</span> 0, ValueFromPipeline <span class="o">=</span> <span class="nv">$true</span><span class="o">)]</span> <span class="o">[</span>ValidateSet<span class="o">(</span>1,2,3<span class="o">)]</span><span class="nv">$val1</span>, <span class="o">[</span>Parameter<span class="o">(</span>Position <span class="o">=</span> 1<span class="o">)]</span><span class="nv">$val2</span><span class="o">)</span>
+
+    <span class="nb">Write-Output</span> <span class="s2">"val1 is </span><span class="nv">$val1</span><span class="s2">"</span>
+    <span class="nb">Write-Output</span> <span class="s2">"val2 is </span><span class="nv">$val2</span><span class="s2">"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">paramcheck -val1</code>을 입력한 뒤, <code class="highlighter-rouge">tab</code>을 누르면 사용할 수 있는 값을 출력해 줍니다.</p>
+
+<p>이 외의 값을 사용하면 에러를 발생합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 3 -val2 4
+val1 is 3
+val2 is 4
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 33 -val2 4
+paramcheck : <span class="s1">'val1'</span> 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. <span class="s2">"33"</span> 인수가 ValidateSet 특성에 지정된 <span class="s2">"1,2,
+3"</span> 집합에 속하지 않습니다. 집합에 속한 인수를 제공하고 명령을 다시 시도하십시오.
+위치 줄:1 문자:18
++ paramcheck -val1 33 -val2 4
++                  ~~
+    + CategoryInfo          : InvalidData: <span class="o">(</span>:<span class="o">)</span> <span class="o">[</span>paramcheck], ParameterBindingValidat 
+   ionException
+    + FullyQualifiedErrorId : ParameterArgumentValidationError,paramcheck</code></pre></figure>
+
+
+      <br/>
+      <br/>
+      <!-- 블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-9134477021095729"
+          data-ad-slot="2380354290"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Functions&amp;url=http://localhost:4000/technique/2017/08/08/Functios/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/technique/2017/08/08/Functios/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>F1nd k3y, 6reak k3y!</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/technique/2017/11/06/Proxy/" data-flip="title">
+    <span>Proxy</span>
+  </a>
+  <small><time datetime="2017-11-06T18:44:00+09:00">
+    06 Nov 2017
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/technique/2017/11/06/ADB/" data-flip="title">
+    <span>ADB</span>
+  </a>
+  <small><time datetime="2017-11-06T16:38:00+09:00">
+    06 Nov 2017
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/technique/2017/11/03/Dex/" data-flip="title">
+    <span>Dex</span>
+  </a>
+  <small><time datetime="2017-11-03T17:12:00+09:00">
+    03 Nov 2017
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Functions",this.page.identifier="/technique/2017/08/08/Functios",this.page.url="http://localhost:4000/technique/2017/08/08/Functios/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by k3y6reak</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://k3y6reak.github.io/">k3y6reak</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">k3y6reak</a></h1>
+        <p>F1nd k3y, 6reak k3y!</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/programming/">Programming</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-c/">C Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-cpp/">C++ Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-python/">Python Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-ruby/">Ruby Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/technique/">High Level Technique</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-reversing/">Reversing</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-android/">Android</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-powershell/">Powershell</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-systemhacking/">System Hacking</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-shellcoding/">Shellcoding</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-webhacking/">Web Hacking</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowsforensic/">Windows Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-linuxforensic/">Linux Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowssystem/">Windows System</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/wargame/">Wargame</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-reversing-kr/">reversing.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-wargame-kr/">wargame.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-pwnable-kr/">pwnable.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ctfs/">CTFs</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/misc/">MISC</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>RebForPwn</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/k3y6reak">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:k3y6reak@naver.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://k3y6reak.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-92346434-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

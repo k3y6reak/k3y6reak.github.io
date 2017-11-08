@@ -1,0 +1,137 @@
+---
+layout: post
+title:  "Jobs"
+subtitle: "PowerShell의 job에 대해서 알아보겠습니다."
+date:   2017-09-01 10:34:00 +0900
+categories: ['technique']
+tags: powershell
+comments: true
+---
+
+
+
+`job`은 PowerShell에서 사용되는 것으로 `Background`로 실행하는 것을 말합니다.
+
+{% highlight PowerShell %}
+PS C:\Users\k3y6reak\Desktop> Help *job*
+
+Remove-Job                        Cmdlet    Microsoft.PowerShell.Core Deletes a Windows PowerShell background job.
+Start-Job                         Cmdlet    Microsoft.PowerShell.Core Starts a Windows PowerShell background job.
+Stop-Job                          Cmdlet    Microsoft.PowerShell.Core Stops a Windows PowerShell background job.
+Wait-Job                          Cmdlet    Microsoft.PowerShell.Core Suppresses the command prompt until one or all of the Windows PowerShell background jobs running in the session are completed.
+Resume-Job                        Cmdlet    Microsoft.PowerShell.Core Restarts a suspended job.
+Suspend-Job                       Cmdlet    Microsoft.PowerShell.Core Temporarily stops workflow jobs.
+Add-JobTrigger                    Cmdlet    PSScheduledJob            Adds job triggers to scheduled jobs.
+Disable-JobTrigger                Cmdlet    PSScheduledJob            Disables the job triggers of scheduled jobs.
+Disable-ScheduledJob              Cmdlet    PSScheduledJob            Disables a scheduled job.
+Enable-JobTrigger                 Cmdlet    PSScheduledJob            Enables the job triggers of scheduled jobs.
+Enable-ScheduledJob               Cmdlet    PSScheduledJob            Enables a scheduled job.
+Get-JobTrigger                    Cmdlet    PSScheduledJob            Gets the job triggers of scheduled jobs.
+Get-ScheduledJob                  Cmdlet    PSScheduledJob            Gets scheduled jobs on the local computer.
+Get-ScheduledJobOption            Cmdlet    PSScheduledJob            Gets the job options of scheduled jobs.
+New-JobTrigger                    Cmdlet    PSScheduledJob            Creates a job trigger for a scheduled job.
+New-ScheduledJobOption            Cmdlet    PSScheduledJob            Creates an object that contains advanced options for a scheduled job.
+Register-ScheduledJob             Cmdlet    PSScheduledJob            Creates a scheduled job.
+Remove-JobTrigger                 Cmdlet    PSScheduledJob            Delete job triggers from scheduled jobs.
+Set-JobTrigger                    Cmdlet    PSScheduledJob            Changes the job trigger of a scheduled job.
+Set-ScheduledJob                  Cmdlet    PSScheduledJob            Changes scheduled jobs.
+Set-ScheduledJobOption            Cmdlet    PSScheduledJob            Changes the job options of a scheduled job.
+Unregister-ScheduledJob           Cmdlet    PSScheduledJob            Deletes scheduled jobs on the local computer.
+Resume-PrintJob                   Function  PrintManagement           ...
+Suspend-PrintJob                  Function  PrintManagement           ...
+Restart-PrintJob                  Function  PrintManagement           ...
+Get-PrintJob                      Function  PrintManagement           ...
+Remove-PrintJob                   Function  PrintManagement           ...
+Stop-StorageJob                   Function  Storage                   ...
+Get-StorageJob                    Function  Storage                   ...
+about_Jobs                        HelpFile                            Provides information about how Windows PowerShell background jobs run a
+about_Job_Details                 HelpFile                            Provides details about background jobs on local and remote computers.
+about_Remote_Jobs                 HelpFile                            Describes how to run background jobs on remote computers.
+about_Scheduled_Jobs              HelpFile                            Describes scheduled jobs and explains how to use and manage
+about_Scheduled_Jobs_Advanced     HelpFile                            Explains advanced scheduled job topics, including the file structure
+about_Scheduled_Jobs_Basics       HelpFile                            Explains how to create and manage scheduled jobs.
+about_Scheduled_Jobs_Troublesh... HelpFile                            Explains how to resolve problems with scheduled jobs
+about_Scheduled_Jobs              HelpFile                            Describes scheduled jobs and explains how to use and manage
+about_Scheduled_Jobs_Advanced     HelpFile                            Explains advanced scheduled job topics, including the file structure
+about_Scheduled_Jobs_Basics       HelpFile                            Explains how to create and manage scheduled jobs.
+about_Scheduled_Jobs_Troublesh... HelpFile                            Explains how to resolve problems with scheduled jobs
+{% endhighlight %}
+
+
+`Job`에 관한 내용을 찾아보면 `Start-Job` 명령어가 있는데 이 명령어를 통해서 실행할 수 있습니다.
+
+{% highlight PowerShell %}
+PS C:\WINDOWS\system32> Start-Job -ScriptBlock {whoami}
+
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command
+--     ----            -------------   -----         -----------     --------             -------
+1      Job1            BackgroundJob   Running       True            localhost            whoami
+{% endhighlight %}
+
+`Background` 상태로 `whoami`명령이 실행된 것을 볼 수 있습니다. 해당 명령의 실행결과를 출력하고자 할 때는 `Receive-Job`을 이용하면 됩니다.
+
+{% highlight PowerShell %}
+PS C:\WINDOWS\system32> Get-Job -Id 1 | Receive-Job
+k3y6reak9778\k3y6reak
+{% endhighlight %}
+
+이번에는 `Windows7`에서 Job을 실행시킨 후 해당 결과를 출력해 보도록 하겠습니다.
+`$se`라는 변수를 이용하고 `PSSession`을 이용해야 합니다.
+
+`$se = New-PSSession -ComputerName [Windows7 컴퓨터 이름] -Credential [Windows7 계정]`을 입력합니다.
+
+{% highlight PowerShell %}
+PS C:\WINDOWS\system32> $se = New-PSSession -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+PS C:\WINDOWS\system32> Invoke-Command -ScriptBlock {Start-Job -ScriptBlock {ps}} -Session $se
+
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command                   PSComputerName
+--     ----            -------------   -----         -----------     --------             -------                   --------------
+1      Job1                            Running       True            localhost            ps                        WIN-J9KO348JQVU
+{% endhighlight %}
+
+그리고 `Invoke-Command -ScriptBlock { Get-Job | Receive-Job } -Session $se`를 입력하면 Windows7에서 실행되는 프로세스의 목록을 가져올 수 있습니다.
+
+{% highlight PowerShell %}
+PS C:\WINDOWS\system32> Invoke-Command -ScriptBlock { Get-Job | Receive-Job } -Session $se
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                                 PSComputerName
+-------  ------    -----      -----     ------     --  -- -----------                                                                 --------------
+     30       2      660       2256      0.000   3488     conhost                                                                     WIN-J9KO348JQVU
+    538       6     1264       4224      6.552    332     csrss                                                                       WIN-J9KO348JQVU
+    204       7     9900       7844     22.558    396     csrss                                                                       WIN-J9KO348JQVU
+    188       8     2928       8648     11.560   1908     dllhost                                                                     WIN-J9KO348JQVU
+    116       6    36584      35968  8,268.271   2208     dwm                                                                         WIN-J9KO348JQVU
+    807      28    32868      59380     62.166   2240     explorer                                                                    WIN-J9KO348JQVU
+      0       0        0         24                 0     Idle                                                                        WIN-J9KO348JQVU
+    622      10     2988       8188      5.257    500     lsass                                                                       WIN-J9KO348JQVU
+    139       4     1216       3020      0.281    508     lsm                                                                         WIN-J9KO348JQVU
+    143       9     2440       6252      0.265   2016     msdtc                                                                       WIN-J9KO348JQVU
+    253      11    22232      32532      1.856   2748     powershell                                                                  WIN-J9KO348JQVU
+    602      16    22056      25588      6.614   2536     SearchIndexer                                                               WIN-J9KO348JQVU
+    208       7     3804       6736      9.656    492     services                                                                    WIN-J9KO348JQVU
+     29       1      220        736      0.343    256     smss                                                                        WIN-J9KO348JQVU
+    323      12     5056      11128      0.499   1256     spoolsv                                                                     WIN-J9KO348JQVU
+    150       4     4228       8000     11.060   3240     sppsvc                                                                      WIN-J9KO348JQVU
+    353       7     2688       7004      2.371    600     svchost                                                                     WIN-J9KO348JQVU
+    265       9     2684       6100      1.654    700     svchost                                                                     WIN-J9KO348JQVU
+    528      14    14144      14924      9.656    748     svchost                                                                     WIN-J9KO348JQVU
+    343       9     2932       8364      2.293    848     svchost                                                                     WIN-J9KO348JQVU
+    972      26    13888      25536     47.284    892     svchost                                                                     WIN-J9KO348JQVU
+    814      19     7412      14292     16.505   1036     svchost                                                                     WIN-J9KO348JQVU
+    454      18     9064      12392     23.369   1160     svchost                                                                     WIN-J9KO348JQVU
+    304      25     8100       9572      2.418   1292     svchost                                                                     WIN-J9KO348JQVU
+     97       7     1196       4272      0.187   1808     svchost                                                                     WIN-J9KO348JQVU
+    285      13     4120       8752      7.301   2752     svchost                                                                     WIN-J9KO348JQVU
+    348      35   145304      38772     20.967   3276     svchost                                                                     WIN-J9KO348JQVU
+    525       0       44       1000                 4     System                                                                      WIN-J9KO348JQVU
+    200      10     6784       7512      0.686   2152     taskhost                                                                    WIN-J9KO348JQVU
+     85       5     4960       8936      0.250   1440     VGAuthService                                                               WIN-J9KO348JQVU
+     53       3      816       3232      0.078    660     vmacthlp                                                                    WIN-J9KO348JQVU
+    288      12     9316      16732    837.429   1492     vmtoolsd                                                                    WIN-J9KO348JQVU
+    175       9     6904      15524    220.117   2340     vmtoolsd                                                                    WIN-J9KO348JQVU
+     78       5      984       3764      0.359    384     wininit                                                                     WIN-J9KO348JQVU
+    115       4     1656       5116      0.671    432     winlogon                                                                    WIN-J9KO348JQVU
+    202       7     7184      11924     24.383    376     WmiPrvSE                                                                    WIN-J9KO348JQVU
+    238       8     3636       4360     14.134   2624     wmpnetwk                                                                    WIN-J9KO348JQVU
+    266      12    21748      31724      0.530   1144     wsmprovhost                                                                 WIN-J9KO348JQVU
+{% endhighlight %}

@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "Proxy"
+subtitle: "안드로이드에서 프록시를 사용하는 방법에 대해서 알아보겠습니다."
+date:   2017-11-06 18:44:00 +0900
+categories: ['technique']
+tags: android
+comments: true
+---
+
+### Proxy
+
+안드로이드OS 는 네트워크를 주로 사용하는 장비에 사용되므로 분석을 할 필요가 있습니다. 웹 또한 분석할 때 Proxy를 이용해 파라미터 값을 변조하여 점검을 합니다. 마찬가지로 안드로이드에서도 Proxy 설정을 통해 점검할 수 있습니다.
+
+`Settings - Wi-Fi - WiredSSID(Long Click) - Modify network - Show advanced options(check) - Proxy settings(Manual)` 로 이동합니다.
+
+하단에 `Proxy hostname`과 `Proxy port`가 나타나는데 각각 Burp Suite를 사용하는 OS의 IP와 Port를 작성해 줍니다.
+
+기본적으로 Burp Suite를 사용하시는 분이라면 `Proxy - Options - Proxy Listeners - Edit(All interfaces)`로 되어있는지 확인해야 합니다.
+
+여기서 중요한 것이 하나 더 있는데 `Security warning`이 계속해서 나타나면 아래와 같이 설정을 해야 합니다.
+
+`Browser - http://burp 접속 - CA Certificate - cacert.der 다운로드`
+
+![ca_certificate](/img/android/proxy/CA_Certificate.png)
+![cacert](/img/android/proxy/cacert.png)
+
+이제 `adb shell`을 이용해 cacert.der 을 cacert.crt로 변경합니다.
+
+{% highlight bash %}
+k3y6reak:Desktop k3y6reak$ adb shell
+root@android:/ # cd /mnt/sdcard/Download/
+root@android:/mnt/sdcard/Download # ls
+cacert.der
+root@android:/mnt/sdcard/Download # mv cacert.der cacert.crt
+root@android:/mnt/sdcard/Download # ls
+cacert.crt
+{% endhighlight %}
+
+`Settings - Security - Install from SD card - OK`를 선택해 설치를 완료합니다.
+
+![burpsuite](/img/android/proxy/burpsuite.png)
+
+정상적으로 burpsuite가 실행되는 것을 알 수 있습니다.

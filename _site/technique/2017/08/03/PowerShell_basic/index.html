@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="PowerShell 기초">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>PowerShell 기초 &middot; k3y6reak</title>
+
+
+
+<meta name="description" content="
+개념
+
+">
+<meta property="og:description" content="
+개념
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/technique/2017/08/03/PowerShell_basic/">
+<meta property="og:url" content="http://localhost:4000/technique/2017/08/03/PowerShell_basic/">
+
+<link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/technique/2017/07/25/Save_Frame_Pointer_Overwrite/">
+
+
+
+  <link rel="next" href="http://localhost:4000/technique/2017/08/04/cmdlet/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-technique/2017/08/03/PowerShell_basic" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        PowerShell 기초
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2017-08-03T13:20:00+09:00">03 Aug 2017</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/technique/" data-flip="title">High Level Technique</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-9134477021095729"
+    data-ad-slot="6559875097"
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+      <p><br /><br /></p>
+<h3 id="개념">개념</h3>
+
+<p>Linux에서 터미널을 이용하여 ls, pwd 등과 같은 명령어를 사용하는 것 처럼 Windows에서도 명령어들을 이용하여 사용할 수 있도록 하는 것이 PowerShell 입니다.</p>
+
+<p>물론 Windows에서는 cmd라고 하는 것도 있지만 이보다 더 많은 명령어들이 포함되어 있습니다.</p>
+
+<p><img src="/img/powershell/basic/ps_cmd.png" alt="powershell_and_cmd" /></p>
+
+<p><br /><br /></p>
+<h3 id="설명">설명</h3>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">ls
+
+
+    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-r---   2017. 7. 31.   오후 8:13                Contacts
+d-r---    2017. 8. 2.   오후 2:33                Desktop
+d-r---    2017. 8. 2.   오후 2:09                Documents
+d-r---    2017. 8. 2.   오후 2:33                Downloads
+d-r---   2017. 7. 31.   오후 8:13                Favorites
+d-r---   2017. 7. 31.   오후 8:13                Links
+d-r---   2017. 7. 31.   오후 8:13                Music
+d-r---   2017. 7. 31.   오후 5:35                OneDrive
+d-r---   2017. 7. 31.   오후 8:13                Pictures
+d-r---   2017. 7. 31.   오후 8:13                Saved Games
+d-r---   2017. 7. 31.   오후 8:13                Searches
+d-r---   2017. 7. 31.   오후 8:13                Videos
+
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">dir
+
+
+    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-r---   2017. 7. 31.   오후 8:13                Contacts
+d-r---    2017. 8. 2.   오후 2:33                Desktop
+d-r---    2017. 8. 2.   오후 2:09                Documents
+d-r---    2017. 8. 2.   오후 2:33                Downloads
+d-r---   2017. 7. 31.   오후 8:13                Favorites
+d-r---   2017. 7. 31.   오후 8:13                Links
+d-r---   2017. 7. 31.   오후 8:13                Music
+d-r---   2017. 7. 31.   오후 5:35                OneDrive
+d-r---   2017. 7. 31.   오후 8:13                Pictures
+d-r---   2017. 7. 31.   오후 8:13                Saved Games
+d-r---   2017. 7. 31.   오후 8:13                Searches
+d-r---   2017. 7. 31.   오후 8:13                Videos
+
+
+<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt;</code></pre></figure>
+
+<p>PowerShell에서는 PowerShell에서만 사용할 수 있는 명령어도 있지만 기존에 사용하던 Windows 명령어도 사용이 가능하고, Linux에서 사용하던 명령어도 사용할 수 있습니다.</p>
+
+<p>Linux에서 명령어를 사용할 때 alias라는 명령어가 있는데 이는 명령어의 별칭을 붙여서 사용할 수 있습니다. 즉, a라고 입력을 하면 ls가 실행이 되도록 하는 것이죠.</p>
+
+<p>PowerShell에서도 ls, dir이 모두 같은 결과값을 출력하는데 alias를 통해서 같은 명령어를 실행할 것입니다.</p>
+
+<p>alias에 대한 명령어가 어떤것이 있는지 확인하기 위해서 <code class="highlighter-rouge">Get-Help *alias</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help</span> <span class="k">*</span><span class="nb">alias
+
+</span>Name                              Category  Module                    Synopsis
+----                              --------  ------                    --------
+<span class="nb">Export-Alias                      </span>Cmdlet    Microsoft.PowerShell.U... ...
+<span class="nb">Get-Alias                         </span>Cmdlet    Microsoft.PowerShell.U... ...
+<span class="nb">Import-Alias                      </span>Cmdlet    Microsoft.PowerShell.U... ...
+<span class="nb">New-Alias                         </span>Cmdlet    Microsoft.PowerShell.U... ...
+<span class="nb">Set-Alias                         </span>Cmdlet    Microsoft.PowerShell.U... ...</code></pre></figure>
+
+<p>위 결과값에서 Get-Alias라는 명령어를 볼 수 있는데 모든 명령어를 확인 하기위해서 <code class="highlighter-rouge">Get-Alias *</code>를 입력합니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Alias</span> <span class="k">*</span>
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+...
+Alias           <span class="nb">dir</span> -&gt; <span class="nb">Get-ChildItem</span>
+...
+Alias           <span class="nb">ls</span> -&gt; <span class="nb">Get-ChildItem</span>
+...</code></pre></figure>
+
+<p><code class="highlighter-rouge">ls</code> 명령어와 <code class="highlighter-rouge">dir</code> 명령어는 PowerShell에서 Get-ChildItem 명령어가 실행되도록 되어있는 것을 알 수 있습니다.</p>
+
+<p>PowerShell에서는 명령어에 대한 예시들을 <code class="highlighter-rouge">Get-Help</code>를 통해서 알 수 있습니다. 사용하는 OS의 환경에 따라, Get-Help 명령어가 안 될 수도 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help Get-Alias
+
+</span>이름
+    <span class="nb">Get-Alias
+
+</span>구문
+    <span class="nb">Get-Alias</span> <span class="o">[[</span>-Name] &lt;<span class="kt">string</span><span class="o">[]</span>&gt;]  <span class="o">[</span>&lt;CommonParameters&gt;]
+
+    <span class="nb">Get-Alias</span>  <span class="o">[</span>&lt;CommonParameters&gt;]
+
+
+별칭
+    <span class="nb">gal
+
+
+</span>설명
+    Get-Help가 이 컴퓨터에서 이 cmdlet에 대한 도움말 파일을 찾을 수 없습니다. 일부 도움말만 표시합니다.
+        -- 이 cmdlet을 포함하는 모듈에 대한 도움말 파일을 다운로드하여 설치하려면 Update-Help를 사용하십시오.
+        -- 이 cmdlet에 대한 도움말 항목을 온라인으로 보려면 <span class="s2">"Get-Help Get-Alias -Online"</span>을 입력하거나
+           http://go.microsoft.com/fwlink/?LinkID<span class="o">=</span>113306<span class="o">(</span>으<span class="o">)</span>로 이동하십시오.</code></pre></figure>
+
+<p>위 경우 <code class="highlighter-rouge">설명</code> 부분을 보면 일부 도움말만 표시한다고 되어있는데 Update-Help를 통해서 도움말을 다운로드 합니다. 여기서 중요한 것은 반드시 <code class="highlighter-rouge">관리자 권한</code>으로 실행해야 합니다.</p>
+
+<p><img src="/img/powershell/basic/update_help.png" alt="powershell_and_cmd" /></p>
+
+<p>설치가 완료되면 <code class="highlighter-rouge">Get-Help Get-Alias -examples</code>를 입력해 봅니다.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help Get-Alias</span> -examples
+
+이름
+    <span class="nb">Get-Alias
+
+</span>개요
+    Gets the aliases <span class="k">for </span>the current session.
+
+
+    Example 1: Get all aliases <span class="k">in </span>the current session
+
+    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias
+    </span>CommandType     Name
+    -----------     ----
+    Alias           % -&gt; <span class="k">ForEach</span>-Object
+    Alias           ? -&gt; <span class="nb">Where-Object
+    </span>Alias           <span class="nb">ac</span> -&gt; <span class="nb">Add-Content
+    </span>Alias           <span class="nb">asnp</span> -&gt; <span class="nb">Add-PSSnapin
+    </span>Alias           <span class="nb">cat</span> -&gt; <span class="nb">Get-Content
+    </span>Alias           <span class="nb">cd</span> -&gt; <span class="nb">Set-Location
+    </span>Alias           <span class="nb">chdir</span> -&gt; <span class="nb">Set-Location
+    </span>Alias           <span class="nb">clc</span> -&gt; <span class="nb">Clear-Content
+    </span>Alias           <span class="nb">clear</span> -&gt; <span class="nb">Clear</span>-Host
+    Alias           <span class="nb">clhy</span> -&gt; <span class="nb">Clear</span>-History â€¦
+
+    This <span class="nb">command </span>gets all aliases <span class="k">in </span>the current session.
+
+    The output shows the &lt;<span class="nb">alias</span>&gt; -&gt; &lt;definition&gt; format that was introduced <span class="k">in </span>Windows PowerShell 3.0. This format is u
+    sed only <span class="k">for </span>aliases that <span class="k">do </span>not include hyphens, because aliases with hyphens are typically preferred names <span class="k">for </span>cm
+    dlets and functions, rather than nicknames.
+    Example 2: Get aliases by name
+
+    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> -Name g<span class="k">*</span>, s<span class="k">*</span> -Exclude Get-<span class="k">*</span>
+
+    This <span class="nb">command </span>gets all aliases that <span class="k">begin </span>with g or s, except <span class="k">for </span>aliases that <span class="k">begin </span>with Get-.
+    Example 3: Get aliases <span class="k">for </span>a cmdlet
+
+    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> -Definition <span class="nb">Get-ChildItem
+
+    </span>This <span class="nb">command </span>gets the aliases <span class="k">for </span>the <span class="nb">Get-ChildItem </span>cmdlet.
+
+    By default, the <span class="nb">Get-Alias </span>cmdlet gets the item name when you know the alias. The Definition parameter gets the alia
+    s when you know the item name.
+    Example 4: Get aliases by <span class="nb">property
+
+    PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> | <span class="nb">Where-Object</span> <span class="o">{</span><span class="nv">$_</span>.Options -Match <span class="s2">"ReadOnly"</span><span class="o">}</span>
+
+    This <span class="nb">command </span>gets all aliases <span class="k">in </span>which the value of the Options <span class="nb">property </span>is ReadOnly. This <span class="nb">command </span>provides a quick
+     way to find the aliases that are built into Windows PowerShell, because they have the ReadOnly option.
+
+    Options is just one <span class="nb">property </span>of the AliasInfo objects that <span class="nb">Get-Alias </span>gets. To find all properties and methods of Al
+    iasInfo objects, <span class="nb">type</span> <span class="sb">`</span><span class="nb">Get-Alias</span> | <span class="nb">get-member</span><span class="sb">`</span>.
+    Example 5: Get aliases by name and <span class="k">filter </span>by beginning letter
+
+    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> -Definition <span class="s2">"*-PSSession"</span> -Exclude e<span class="k">*</span> -Scope Global
+
+    This example gets aliases <span class="k">for </span>commands that have names that <span class="k">end in</span> -PSSession, except <span class="k">for </span>those that <span class="k">begin </span>with e.
+
+    The <span class="nb">command </span>uses the Scope parameter to apply the <span class="nb">command </span><span class="k">in </span>the global scope. This is useful <span class="k">in </span>scripts when you w
+    ant to get the aliases <span class="k">in </span>the session.</code></pre></figure>
+
+<p>위와 같이 해당 명령어에 대한 예제들도 출력하는 것을 볼 수 있습니다.</p>
+
+      <br/>
+      <br/>
+      <!-- 블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-9134477021095729"
+          data-ad-slot="2380354290"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=PowerShell 기초&amp;url=http://localhost:4000/technique/2017/08/03/PowerShell_basic/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/technique/2017/08/03/PowerShell_basic/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>F1nd k3y, 6reak k3y!</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/technique/2017/11/06/Proxy/" data-flip="title">
+    <span>Proxy</span>
+  </a>
+  <small><time datetime="2017-11-06T18:44:00+09:00">
+    06 Nov 2017
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/technique/2017/11/06/ADB/" data-flip="title">
+    <span>ADB</span>
+  </a>
+  <small><time datetime="2017-11-06T16:38:00+09:00">
+    06 Nov 2017
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/technique/2017/11/03/Dex/" data-flip="title">
+    <span>Dex</span>
+  </a>
+  <small><time datetime="2017-11-03T17:12:00+09:00">
+    03 Nov 2017
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="PowerShell 기초",this.page.identifier="/technique/2017/08/03/PowerShell_basic",this.page.url="http://localhost:4000/technique/2017/08/03/PowerShell_basic/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by k3y6reak</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://k3y6reak.github.io/">k3y6reak</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">k3y6reak</a></h1>
+        <p>F1nd k3y, 6reak k3y!</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/programming/">Programming</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-c/">C Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-cpp/">C++ Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-python/">Python Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-ruby/">Ruby Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/technique/">High Level Technique</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-reversing/">Reversing</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-android/">Android</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-powershell/">Powershell</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-systemhacking/">System Hacking</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-shellcoding/">Shellcoding</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-webhacking/">Web Hacking</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowsforensic/">Windows Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-linuxforensic/">Linux Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowssystem/">Windows System</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/wargame/">Wargame</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-reversing-kr/">reversing.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-wargame-kr/">wargame.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-pwnable-kr/">pwnable.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ctfs/">CTFs</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/misc/">MISC</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>RebForPwn</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/k3y6reak">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:k3y6reak@naver.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://k3y6reak.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-92346434-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
