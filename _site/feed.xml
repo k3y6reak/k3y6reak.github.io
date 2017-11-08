@@ -6,9 +6,168 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 08 Nov 2017 13:09:37 +0900</pubDate>
-    <lastBuildDate>Wed, 08 Nov 2017 13:09:37 +0900</lastBuildDate>
+    <pubDate>Wed, 08 Nov 2017 14:32:25 +0900</pubDate>
+    <lastBuildDate>Wed, 08 Nov 2017 14:32:25 +0900</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>WITHCON2017 crackme</title>
+        <description>&lt;h3 id=&quot;문제&quot;&gt;문제&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/img/ctfs/withcon2017/crackme.png&quot; alt=&quot;crackme&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;풀이&quot;&gt;풀이&lt;/h3&gt;
+
+&lt;p&gt;crackme 파일은 ELF 64bit 입니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;file crackme
+crackme: ELF 64-bit LSB executable, x86-64, version 1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;SYSV&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;GNU/Linux 2.6.32, BuildID[sha1]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;d4153567d0a264a1fa799425563693cc1ad86149, stripped&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;crackme 파일을 실행하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;PASSCODE&lt;/code&gt; 입력을 요구하고 이에 따라 &lt;code class=&quot;highlighter-rouge&quot;&gt;CONGRATZ&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;FAILED&lt;/code&gt;가 출력됩니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;chmod +x crackme
+&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;./crackme
+PASSCODE : k3y6reak
+FAILED&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;IDA Pro를 이용해 Decompile을 하면 main 함수에서 많은 연산을 하고 있다는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/ctfs/withcon2017/pseudocode.png&quot; alt=&quot;crackme_pseudocode&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Main 함수를 분석하는 것은 많은 시간이 필요할 것 같아 Intel PIN의 &lt;code class=&quot;highlighter-rouge&quot;&gt;icount.so&lt;/code&gt;를 이용해 count을 확인했습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;popen2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;string&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;^&amp;amp;*()_+-=,./:;&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;input&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;./pin -t source/tools/SimpleExamples/obj-intel64/icount.so -- ./crackme &amp;lt; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Input&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;popen2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popen2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;result1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;result2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result2&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;WriteFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;gt; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;WriteFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위에서 작성한 python 코드를 count.py로 저장 후 실행하면 입력 값에 따른 count 값이 출력된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;k3y6reak@ubuntu: ~/pintools# python count.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;D
+Count 152301
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;E
+Count 152301
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;F
+Count 152301
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;G
+Count 152301
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H
+Count 152359
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;I
+Count 152301
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;J
+Count 152302
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;K
+Count 152302
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;L
+Count 152302&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위의 실행 결과를 살펴보면 다른 문자들은 152301과 비슷한 값이 출력되는 반면 &lt;code class=&quot;highlighter-rouge&quot;&gt;'H'&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;152359&lt;/code&gt;로 큰 차이로 출력됐다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;gt; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;WriteFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;key = ''&lt;/code&gt; 부분에 H를 추가하여 다음 값을 찾는다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;k3y6reak@ubuntu: ~/pintools# python count.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H3
+Count 152360
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4
+Count 152636
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H5
+Count 152359&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;k3y6reak@ubuntu: ~/pintools# python count.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4O
+Count 152636
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4P
+Count 152694
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4Q
+Count 152635&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;k3y6reak@ubuntu: ~/pintools# python count.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PO
+Count 152693
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PP
+Count 153022
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPQ
+Count 152693&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;k3y6reak@ubuntu: ~/pintools# python count.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPx
+Count 153023
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPy
+Count 153081
+
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPz
+Count 153022&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 실행 결과를 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;'H4'&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;'H4P'&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;'H4PP'&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;'H4PPy'&lt;/code&gt;가 큰 편차로 출력되는 것을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 편차가 큰 문자를 찾아 key에 추가하여 실행하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;H4PPyW1THC0nCTF!&lt;/code&gt; 일 때 &lt;code class=&quot;highlighter-rouge&quot;&gt;CONGRATZ&lt;/code&gt;가 출력되는 것을 볼 수 있다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;k3y6reak@ubuntu: ~/pintools# python count.py
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPyW1THC0nCTF~
+PASSCODE : FAILED
+
+Count 154799
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPyW1THC0nCTF!
+PASSCODE : CONGRATZ
+
+Count 154018
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;H4PPyW1THC0nCTF@
+PASSCODE : FAILED&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@ubuntu:/home/k3y6reak/Desktop# &lt;/span&gt;./crackme
+PASSCODE : H4PPyW1THC0nCTF!
+CONGRATZ&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flag: H4PPyW1THC0nCTF!&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 08 Nov 2017 13:15:00 +0900</pubDate>
+        <link>http://localhost:4000/ctfs/2017/11/08/withcon2017_crackme/</link>
+        <guid isPermaLink="true">http://localhost:4000/ctfs/2017/11/08/withcon2017_crackme/</guid>
+        
+        
+        <category>ctfs</category>
+        
+      </item>
     
       <item>
         <title>Proxy</title>
