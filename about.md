@@ -39,8 +39,10 @@ pwnable.kr (Rank 537)
 noe.systems (Rank 2)
 
 ## CTFs
-2016 WITHCON - Hacknodap (Rank 11)
+2016 WITHCON 예선 - Hacknodap (Rank 11)
 
 2016 Holyshield - RebForPwn (Rank 10)
 
 2016 ChristmasCTF - RebForPwn (Rank 9)
+
+2017 WITHCON 예선 - RebForPwn (Rank 10) 본선 진출.
