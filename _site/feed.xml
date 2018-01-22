@@ -6,9 +6,249 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 14 Nov 2017 17:07:19 +0900</pubDate>
-    <lastBuildDate>Tue, 14 Nov 2017 17:07:19 +0900</lastBuildDate>
+    <pubDate>Mon, 22 Jan 2018 16:26:21 +0900</pubDate>
+    <lastBuildDate>Mon, 22 Jan 2018 16:26:21 +0900</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Easy Crack</title>
+        <description>&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/img/wargame/reversing_kr/easy_crack.png&quot; alt=&quot;crackme&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
+
+&lt;p&gt;먼저 Easy Crack이 어떤 언어로 만들어 졌는지 확인하기 위해 Exeinfo를 이용해 확인합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/wargame/reversing_kr/exe_info.png&quot; alt=&quot;exe_info&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림을 보면 C++로 만들어졌진 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;이 문제는 전형적인 &lt;code class=&quot;highlighter-rouge&quot;&gt;CrackMe&lt;/code&gt;로 올바른 &lt;code class=&quot;highlighter-rouge&quot;&gt;키 값&lt;/code&gt;을 입력을 해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;IDA를 사용하면 엄청 쉽게 해결할 수 있지만, 분석하는 방법을 익히기 위해서 하나씩 살펴보도록 하겠습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;직접-실행하기&quot;&gt;직접 실행하기&lt;/h3&gt;
+
+&lt;p&gt;리버싱 문제를 해결하기 위해서 항상 프로그램을 직접 실행하여 어떻게 동작하는지, 어떤 문자열이 나타나는지 확인해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/wargame/reversing_kr/incorrect.png&quot; alt=&quot;incorrect&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;123&lt;/code&gt;이라는 문자열을 넣고 확인 버튼을 누르면 &lt;code class=&quot;highlighter-rouge&quot;&gt;incorrect password&lt;/code&gt;라는 문자열이 나타납니다. 그렇다면 올바른 password를 입력하면 아마도 &lt;code class=&quot;highlighter-rouge&quot;&gt;correct&lt;/code&gt;가 나타날 것이라고 생각할 수 있습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;언어-패킹-유무-확인하기&quot;&gt;언어, 패킹 유무 확인하기&lt;/h3&gt;
+
+&lt;p&gt;앞서 미리 Exeinfo를 이용해 확인을 했지만 다시 확인하자면 C++로 만들어졌고, 패킹은 안돼 있는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;디버깅&quot;&gt;디버깅&lt;/h3&gt;
+
+&lt;p&gt;분석할 때 사용할 프로그램은 x86DBG 입니다. 과거 ollydbg를 많이 사용했으나 현재는 x86dbg를 많이 사용하고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;키 값&lt;/code&gt;을 찾는 문제에서는 반드시 올바른 값인지에 대한 여부를 꼭 확인합니다.&lt;/p&gt;
+
+&lt;p&gt;여기서 잠시 코딩을 생각해본다면 어떤 특정 값이 맞는지에 대한 여부는 보통 &lt;code class=&quot;highlighter-rouge&quot;&gt;조건문&lt;/code&gt;을 이용해 검사할 수 있습니다. (물론 여러 방법을 이용해 확인 할 수 있습니다.)&lt;/p&gt;
+
+&lt;p&gt;그렇다면 어셈블리어에서 조건문에 해당하는 부분을 찾아야 하는데, 대부분의 조건문을 나타내는 어셈블리어는 &lt;code class=&quot;highlighter-rouge&quot;&gt;CMP ~ JMP(비교 ~ 점프)&lt;/code&gt;구문으로 이루어져 있습니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;문자열-찾기&quot;&gt;문자열 찾기&lt;/h3&gt;
+
+&lt;p&gt;조건문 부분을 찾기 위해서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;문자열&lt;/code&gt;을 찾아야 합니다. 앞서 직접 실행하면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt;라는 문자열을 찾았습니다. 그렇다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;확인&lt;/code&gt;버튼을 누르고 해당 문자열이 나타났기 때문에 문자열이 있는 근처에서 조건문이 실행됐다고 생각할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/wargame/reversing_kr/string.png&quot; alt=&quot;string&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;x86DBG에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;오른쪽 마우스 - Search for - Current Region(또는 All Modules) - String references&lt;/code&gt;에서 문자열을 찾을 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Address  Disassembly                       String                                     
+004010BD push easy_crackme.406078          &lt;span class=&quot;s2&quot;&gt;&quot;5y&quot;&lt;/span&gt;
+004010D1 mov esi,easy_crackme.40606C       &lt;span class=&quot;s2&quot;&gt;&quot;R3versing&quot;&lt;/span&gt;
+00401116 push easy_crackme.406058          &lt;span class=&quot;s2&quot;&gt;&quot;EasyCrackMe&quot;&lt;/span&gt;
+0040111B push easy_crackme.406044          &lt;span class=&quot;s2&quot;&gt;&quot;Congratulation !!&quot;&lt;/span&gt;
+00401137 push easy_crackme.406058          &lt;span class=&quot;s2&quot;&gt;&quot;EasyCrackMe&quot;&lt;/span&gt;
+0040113C push easy_crackme.406030          &lt;span class=&quot;s2&quot;&gt;&quot;Incorrect Password&quot;&lt;/span&gt;
+00401C04 push easy_crackme.4050D4          &lt;span class=&quot;s2&quot;&gt;&quot;__MSVCRT_HEAP_SELECT&quot;&lt;/span&gt;
+00401C43 push easy_crackme.4050BC          &lt;span class=&quot;s2&quot;&gt;&quot;__GLOBAL_HEAP_SELECTED&quot;&lt;/span&gt;
+00401FE2 push easy_crackme.4053C4          &lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;program name unknown&amp;gt;&quot;&lt;/span&gt;
+00402024 push easy_crackme.4053C0          &lt;span class=&quot;s2&quot;&gt;&quot;...&quot;&lt;/span&gt;
+00402038 push easy_crackme.4053A4          &lt;span class=&quot;s2&quot;&gt;&quot;Runtime Error!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Program: &quot;&lt;/span&gt;
+00402056 push easy_crackme.4053A0          &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+00402061 push dword ptr ds:[esi+406134]    &amp;amp;&lt;span class=&quot;s2&quot;&gt;&quot;R6002&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;- floating point not loaded&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+0040207E push easy_crackme.405378          &lt;span class=&quot;s2&quot;&gt;&quot;Microsoft Visual C++ Runtime Library&quot;&lt;/span&gt;
+00402092 lea esi,dword ptr ds:[esi+406134] &amp;amp;&lt;span class=&quot;s2&quot;&gt;&quot;R6002&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;- floating point not loaded&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+00403CE1 push easy_crackme.40540C          &lt;span class=&quot;s2&quot;&gt;&quot;user32.dll&quot;&lt;/span&gt;
+00403CF8 push easy_crackme.405400          &lt;span class=&quot;s2&quot;&gt;&quot;MessageBoxA&quot;&lt;/span&gt;
+00403D09 push easy_crackme.4053F0          &lt;span class=&quot;s2&quot;&gt;&quot;GetActiveWindow&quot;&lt;/span&gt;
+00403D11 push easy_crackme.4053DC          &lt;span class=&quot;s2&quot;&gt;&quot;GetLastActivePopup&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;문자열 중 직접 실행해서 찾은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt;가 존재하는 것을 확인 할 수 있고 &lt;code class=&quot;highlighter-rouge&quot;&gt;Congratulation !!&lt;/code&gt;이라는 문자열도 존재하는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 올바른 키 값을 입력하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;Congratulation !!&lt;/code&gt;이라는 문자열이 나타날 것으로 추측할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt; 부분을 클릭하면 해당 문자열이 존재하는 주소로 이동하게 됩니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;cmp--jmp-구문-찾기&quot;&gt;CMP ~ JMP 구문 찾기&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/wargame/reversing_kr/cmp_jmp.png&quot; alt=&quot;cmp_jmp&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;문자열을 찾아 이동한 후 위, 아래를 쭉 살펴봅니다. 위 그림을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010B0&lt;/code&gt; 주소에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x61&lt;/code&gt;과 비교를 한 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;JNE&lt;/code&gt;가 실행되는 것을 볼 수 있습니다. 그림의 왼쪽 화살표를 확인하면 좀 더 쉽게 살펴볼 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;화살표들을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010B5&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;4010CD&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;40110B&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;401112&lt;/code&gt; 에서 조건을 확인하며 값이 정확하지 않을 경우 모두 &lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt; 부분으로 넘어가는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 이 부분들의 값을 정확히 맞춰주면 될 것이라 생각할 수 있습니다. 따라서 해당 부분 모두 BreakPoint를 걸어두고 &lt;code class=&quot;highlighter-rouge&quot;&gt;k3y6reak&lt;/code&gt;를 입력하고 진행해 보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;004010B0 | 80 7C 24 05 61           | CMP BYTE PTR SS:[ESP + 5], 61                    | 61:&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;
+004010B5 | 75 7E                    | JNE easy_crackme.401135                          |
+
+BYTE &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ESP+5]&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;0019F6ED]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;33 &lt;span class=&quot;s1&quot;&gt;'3'&lt;/span&gt;
+61 &lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;
+.text:004010B0 easy_crackme.exe:&lt;span class=&quot;nv&quot;&gt;$10B0&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#10B0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;먼저 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010B0&lt;/code&gt; 위치에서 문자 &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;을 비교하고 있습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;k3y6reak&lt;/code&gt;를 입력했을 때 두 번째 값과 a를 비교하고 있다는 것을 알 수 있고 해당 값은 틀렸기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt;로 넘어갈 것입니다. 따라서 다시 실행하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;kay6reak&lt;/code&gt;를 입력해 보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;004010B0 | 80 7C 24 05 61           | CMP BYTE PTR SS:[ESP + 5], 61                    | 61:&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;
+004010B5 | 75 7E                    | JNE easy_crackme.401135                          |
+004010B7 | 6A 02                    | PUSH 2                                           |
+004010B9 | 8D 4C 24 0A              | LEA ECX, DWORD PTR SS:[ESP + A]                  |
+004010BD | 68 78 60 40 00           | PUSH easy_crackme.406078                         | 406078:&lt;span class=&quot;s2&quot;&gt;&quot;5y&quot;&lt;/span&gt;
+004010C2 | 51                       | PUSH ECX                                         |
+004010C3 | E8 88 00 00 00           | CALL easy_crackme.401150                         |
+004010C8 | 83 C4 0C                 | ADD ESP, C                                       |
+004010CB | 85 C0                    | TEST EAX, EAX                                    |
+004010CD | 75 66                    | JNE easy_crackme.401135                          |
+
+EAX : 00000001
+ECX : 00000001
+EDX : 00000000
+EBX : 00000001
+EDI : 0039053C
+EBP : 0019FA18
+ESI : 0039053C
+ESP : 0019F980
+EIP : 004010CD     easy_crackme.004010CD&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;4010B0&lt;/code&gt;위치는 원하는 방향대로 넘어갔지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010CD&lt;/code&gt; 부분은 통과하지 못했습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;EAX&lt;/code&gt;의 값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt;인데 &lt;code class=&quot;highlighter-rouge&quot;&gt;JNE&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt;로 넘어가기 때문에 단순히 생각하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;EAX&lt;/code&gt;의 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;이 되면 넘어갈 것으로 추측할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010B0&lt;/code&gt;부터 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010CD&lt;/code&gt;의 어셈블리어를 살펴보면 어떤 부분도 &lt;code class=&quot;highlighter-rouge&quot;&gt;EAX&lt;/code&gt;를 이용한 연산은 눈에 보이지 않습니다. 여기서 한 가지 중요한 것은 &lt;code class=&quot;highlighter-rouge&quot;&gt;함수의 리턴 값은 EAX에 저장된다.&lt;/code&gt;라는 것을 알아야 합니다.&lt;/p&gt;
+
+&lt;p&gt;어셈블리어에서 함수의 호출은 &lt;code class=&quot;highlighter-rouge&quot;&gt;CALL&lt;/code&gt; 명령을 통해서 해당 함수의 주소로 이동하게 됩니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;4010B0&lt;/code&gt;부터 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010CD&lt;/code&gt; 중에서 함수를 호출하는 부분은 &lt;code class=&quot;highlighter-rouge&quot;&gt;4010C3&lt;/code&gt;이 있는데 해당 부분에 BreakPoint를 걸고 들어가 보도록 하겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;00401150 | 55                       | PUSH EBP                                         |
+00401151 | 8B EC                    | MOV EBP, ESP                                     |
+00401153 | 57                       | PUSH EDI                                         |
+00401154 | 56                       | PUSH ESI                                         |
+00401155 | 53                       | PUSH EBX                                         |
+00401156 | 8B 4D 10                 | MOV ECX, DWORD PTR SS:[EBP + 10]                 |
+00401159 | E3 26                    | JECXZ easy_crackme.401181                        |
+0040115B | 8B D9                    | MOV EBX, ECX                                     | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+0040115D | 8B 7D 08                 | MOV EDI, DWORD PTR SS:[EBP + 8]                  |
+00401160 | 8B F7                    | MOV ESI, EDI                                     |
+00401162 | 33 C0                    | XOR EAX, EAX                                     |
+00401164 | F2 AE                    | REPNE SCASB AL, BYTE PTR ES:[EDI]                |
+00401166 | F7 D9                    | NEG ECX                                          | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+00401168 | 03 CB                    | ADD ECX, EBX                                     | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+0040116A | 8B FE                    | MOV EDI, ESI                                     |
+0040116C | 8B 75 0C                 | MOV ESI, DWORD PTR SS:[EBP + C]                  |
+0040116F | F3 A6                    | REPE CMPSB BYTE PTR DS:[ESI], BYTE PTR ES:[EDI]  |
+00401171 | 8A 46 FF                 | MOV AL, BYTE PTR DS:[ESI - 1]                    |
+00401174 | 33 C9                    | XOR ECX, ECX                                     | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+00401176 | 3A 47 FF                 | CMP AL, BYTE PTR DS:[EDI - 1]                    |
+00401179 | 77 04                    | JA easy_crackme.40117F                           |
+0040117B | 74 04                    | JE easy_crackme.401181                           |
+0040117D | 49                       | DEC ECX                                          | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+0040117E | 49                       | DEC ECX                                          | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+0040117F | F7 D1                    | NOT ECX                                          | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+00401181 | 8B C1                    | MOV EAX, ECX                                     | ecx:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+00401183 | 5B                       | POP EBX                                          |
+00401184 | 5E                       | POP ESI                                          |
+00401185 | 5F                       | POP EDI                                          |
+00401186 | C9                       | LEAVE                                            |
+00401187 | C3                       | RET                                              |&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;401150&lt;/code&gt;의 함수 부분인데 이 부분에서 어떤 값을 검사하는지 알아야 합니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;00401176 | 3A 47 FF                 | CMP AL, BYTE PTR DS:[EDI - 1]                    | edi-1:&lt;span class=&quot;s2&quot;&gt;&quot;y6reak&quot;&lt;/span&gt;
+00401179 | 77 04                    | JA easy_crackme.40117F                           |
+0040117B | 74 04                    | JE easy_crackme.401181                           |
+
+&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;35 &lt;span class=&quot;s1&quot;&gt;'5'&lt;/span&gt;
+BYTE &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;EDI-1]&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;0019F986]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;79 &lt;span class=&quot;s1&quot;&gt;'y'&lt;/span&gt;
+.text:00401176 easy_crackme.exe:&lt;span class=&quot;nv&quot;&gt;$1176&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#1176&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;401176&lt;/code&gt; 에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;5&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt;를 비교하고 있습니다. 입력했던 &lt;code class=&quot;highlighter-rouge&quot;&gt;kay6reak&lt;/code&gt;의 &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt;와 비교를 한다는 것이므로 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka56reak&lt;/code&gt;가 돼야 한다는 것을 알 수 있습니다. 다시 실행하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka56reak&lt;/code&gt;를 입력한 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;EAX&lt;/code&gt;의 값을 살펴보도록 하겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;004010B0 | 80 7C 24 05 61           | CMP BYTE PTR SS:[ESP + 5], 61                    | 61:&lt;span class=&quot;s1&quot;&gt;'a'&lt;/span&gt;
+004010B5 | 75 7E                    | JNE easy_crackme.401135                          |
+004010B7 | 6A 02                    | PUSH 2                                           |
+004010B9 | 8D 4C 24 0A              | LEA ECX, DWORD PTR SS:[ESP + A]                  |
+004010BD | 68 78 60 40 00           | PUSH easy_crackme.406078                         | 406078:&lt;span class=&quot;s2&quot;&gt;&quot;5y&quot;&lt;/span&gt;
+004010C2 | 51                       | PUSH ECX                                         |
+004010C3 | E8 88 00 00 00           | CALL easy_crackme.401150                         |
+004010C8 | 83 C4 0C                 | ADD ESP, C                                       |
+004010CB | 85 C0                    | TEST EAX, EAX                                    |
+004010CD | 75 66                    | JNE easy_crackme.401135                          |
+
+EAX : FFFFFFFF
+ECX : FFFFFFFF
+EDX : 00000000
+EBX : 00000001
+EDI : 002B05AC
+EBP : 0019FA18
+ESI : 002B05AC
+ESP : 0019F980
+EIP : 004010CB     easy_crackme.004010CB&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;EAX&lt;/code&gt;의 값이 &lt;code class=&quot;highlighter-rouge&quot;&gt;FFFFFFFF&lt;/code&gt;이 됐지만 마찬가지로 &lt;code class=&quot;highlighter-rouge&quot;&gt;JNE&lt;/code&gt;에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Incorrect Password&lt;/code&gt;로 넘어갑니다. 다시 실행하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka56reak&lt;/code&gt;를 입력해서 함수로 들어가 다시 확인해 보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;al&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;79 &lt;span class=&quot;s1&quot;&gt;'y'&lt;/span&gt;
+BYTE &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;EDI-1]&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;0019F6EF]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;36 &lt;span class=&quot;s1&quot;&gt;'6'&lt;/span&gt;
+.text:00401176 easy_crackme.exe:&lt;span class=&quot;nv&quot;&gt;$1176&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#1176&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이번에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka56reak&lt;/code&gt; 중 &lt;code class=&quot;highlighter-rouge&quot;&gt;6&lt;/code&gt;과 &lt;code class=&quot;highlighter-rouge&quot;&gt;y&lt;/code&gt;를 비교하고 있습니다. 그렇다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka5yreak&lt;/code&gt;가 돼야 한다는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ka5yreak&lt;/code&gt;를 입력한 후 실행하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;004010CD&lt;/code&gt;의 &lt;code class=&quot;highlighter-rouge&quot;&gt;JNE&lt;/code&gt;가 실행이 안되는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;004010CF | 53                       | PUSH EBX                                         |
+004010D0 | 56                       | PUSH ESI                                         | esi:&lt;span class=&quot;s2&quot;&gt;&quot;R3versing&quot;&lt;/span&gt;
+004010D1 | BE 6C 60 40 00           | MOV ESI, easy_crackme.40606C                     | esi:&lt;span class=&quot;s2&quot;&gt;&quot;R3versing&quot;&lt;/span&gt;, 40606C:&lt;span class=&quot;s2&quot;&gt;&quot;R3versing&quot;&lt;/span&gt;
+004010D6 | 8D 44 24 10              | LEA EAX, DWORD PTR SS:[ESP + 10]                 |
+004010DA | 8A 10                    | MOV DL, BYTE PTR DS:[EAX]                        | eax:&lt;span class=&quot;s2&quot;&gt;&quot;reak&quot;&lt;/span&gt;
+004010DC | 8A 1E                    | MOV BL, BYTE PTR DS:[ESI]                        | esi:&lt;span class=&quot;s2&quot;&gt;&quot;R3versing&quot;&lt;/span&gt;
+004010DE | 8A CA                    | MOV CL, DL                                       |
+004010E0 | 3A D3                    | CMP DL, BL                                       |
+004010E2 | 75 1E                    | JNE easy_crackme.401102                          |
+
+&lt;span class=&quot;nv&quot;&gt;dl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;72 &lt;span class=&quot;s1&quot;&gt;'r'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;bl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;52 &lt;span class=&quot;s1&quot;&gt;'R'&lt;/span&gt;
+.text:004010E0 easy_crackme.exe:&lt;span class=&quot;nv&quot;&gt;$10E0&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#10E0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;4010E0&lt;/code&gt; 부분에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;r&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;R&lt;/code&gt;을 비교하고 있습니다. 입력했던 값 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka5yreak&lt;/code&gt; 중 &lt;code class=&quot;highlighter-rouge&quot;&gt;r&lt;/code&gt;과 비교를 한다는 것인데, 위 어셈블리어 코드를 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;R3versing&lt;/code&gt;이라는 문자열이 존재하는 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;reak&lt;/code&gt; 부분과 &lt;code class=&quot;highlighter-rouge&quot;&gt;R3versing&lt;/code&gt;을 비교한다고 추측할 수 있습니다. 재실행하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;ka5yR3versing&lt;/code&gt;을 입력하고 진행해 보겠습니다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;0040110D | 80 7C 24 04 45           | CMP BYTE PTR SS:[ESP + 4], 45                    | 45:&lt;span class=&quot;s1&quot;&gt;'E'&lt;/span&gt;
+00401112 | 75 21                    | JNE easy_crackme.401135                          |
+
+BYTE &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ESP+4]&lt;span class=&quot;o&quot;&gt;=[&lt;/span&gt;0019F984]&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;6B &lt;span class=&quot;s1&quot;&gt;'k'&lt;/span&gt;
+45 &lt;span class=&quot;s1&quot;&gt;'E'&lt;/span&gt;
+.text:0040110D easy_crackme.exe:&lt;span class=&quot;nv&quot;&gt;$110D&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#110D&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ka5yR3versing&lt;/code&gt;을 입력하고 진행했더니 &lt;code class=&quot;highlighter-rouge&quot;&gt;40110D&lt;/code&gt;까지 진행된 것을 알 수 있습니다. 이 부분에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;k&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;E&lt;/code&gt;를 비교하고 있기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ea5yR3versing&lt;/code&gt;을 입력해 보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/wargame/reversing_kr/congratz.png&quot; alt=&quot;Congratulation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;입력한 결과가 모두 일치한 것을 알 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Flag: Ea5yR3versing&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 22 Jan 2018 14:43:00 +0900</pubDate>
+        <link>http://localhost:4000/wargame/2018/01/22/easy_crack/</link>
+        <guid isPermaLink="true">http://localhost:4000/wargame/2018/01/22/easy_crack/</guid>
+        
+        <category>reversing-kr</category>
+        
+        
+        <category>wargame</category>
+        
+      </item>
     
       <item>
         <title>WITHCON2017 crackme</title>

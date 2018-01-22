@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="87b624932dd1910564c0104512a8a4eaab4b4dfc"/>
+<meta property="og:title" content="Easy Crack">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Easy Crack &middot; k3y6reak</title>
+
+
+
+<meta name="description" content="문제
+
+
+">
+<meta property="og:description" content="문제
+
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/wargame/2018/01/22/easy_crack/">
+<meta property="og:url" content="http://localhost:4000/wargame/2018/01/22/easy_crack/">
+
+<link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/ctfs/2017/11/08/withcon2017_crackme/">
+
+
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-wargame/2018/01/22/easy_crack" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Easy Crack
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-01-22T14:43:00+09:00">22 Jan 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/wargame/" data-flip="title">Wargame</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <span>Reversing-kr</span>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-8115495896391807"
+    data-ad-slot=""
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+      <h2 id="문제">문제</h2>
+<p><img src="/img/wargame/reversing_kr/easy_crack.png" alt="crackme" /></p>
+
+<h2 id="풀이">풀이</h2>
+
+<p>먼저 Easy Crack이 어떤 언어로 만들어 졌는지 확인하기 위해 Exeinfo를 이용해 확인합니다.</p>
+
+<p><img src="/img/wargame/reversing_kr/exe_info.png" alt="exe_info" /></p>
+
+<p>위 그림을 보면 C++로 만들어졌진 것을 알 수 있습니다.</p>
+
+<p>이 문제는 전형적인 <code class="highlighter-rouge">CrackMe</code>로 올바른 <code class="highlighter-rouge">키 값</code>을 입력을 해야 합니다.</p>
+
+<p>IDA를 사용하면 엄청 쉽게 해결할 수 있지만, 분석하는 방법을 익히기 위해서 하나씩 살펴보도록 하겠습니다.</p>
+
+<h3 id="직접-실행하기">직접 실행하기</h3>
+
+<p>리버싱 문제를 해결하기 위해서 항상 프로그램을 직접 실행하여 어떻게 동작하는지, 어떤 문자열이 나타나는지 확인해야 합니다.</p>
+
+<p><img src="/img/wargame/reversing_kr/incorrect.png" alt="incorrect" /></p>
+
+<p><code class="highlighter-rouge">123</code>이라는 문자열을 넣고 확인 버튼을 누르면 <code class="highlighter-rouge">incorrect password</code>라는 문자열이 나타납니다. 그렇다면 올바른 password를 입력하면 아마도 <code class="highlighter-rouge">correct</code>가 나타날 것이라고 생각할 수 있습니다.</p>
+
+<h3 id="언어-패킹-유무-확인하기">언어, 패킹 유무 확인하기</h3>
+
+<p>앞서 미리 Exeinfo를 이용해 확인을 했지만 다시 확인하자면 C++로 만들어졌고, 패킹은 안돼 있는 것을 알 수 있습니다.</p>
+
+<h3 id="디버깅">디버깅</h3>
+
+<p>분석할 때 사용할 프로그램은 x86DBG 입니다. 과거 ollydbg를 많이 사용했으나 현재는 x86dbg를 많이 사용하고 있습니다.</p>
+
+<p><code class="highlighter-rouge">키 값</code>을 찾는 문제에서는 반드시 올바른 값인지에 대한 여부를 꼭 확인합니다.</p>
+
+<p>여기서 잠시 코딩을 생각해본다면 어떤 특정 값이 맞는지에 대한 여부는 보통 <code class="highlighter-rouge">조건문</code>을 이용해 검사할 수 있습니다. (물론 여러 방법을 이용해 확인 할 수 있습니다.)</p>
+
+<p>그렇다면 어셈블리어에서 조건문에 해당하는 부분을 찾아야 하는데, 대부분의 조건문을 나타내는 어셈블리어는 <code class="highlighter-rouge">CMP ~ JMP(비교 ~ 점프)</code>구문으로 이루어져 있습니다.</p>
+
+<h3 id="문자열-찾기">문자열 찾기</h3>
+
+<p>조건문 부분을 찾기 위해서는 <code class="highlighter-rouge">문자열</code>을 찾아야 합니다. 앞서 직접 실행하면서 <code class="highlighter-rouge">Incorrect Password</code>라는 문자열을 찾았습니다. 그렇다면 <code class="highlighter-rouge">확인</code>버튼을 누르고 해당 문자열이 나타났기 때문에 문자열이 있는 근처에서 조건문이 실행됐다고 생각할 수 있습니다.</p>
+
+<p><img src="/img/wargame/reversing_kr/string.png" alt="string" /></p>
+
+<p>x86DBG에서는 <code class="highlighter-rouge">오른쪽 마우스 - Search for - Current Region(또는 All Modules) - String references</code>에서 문자열을 찾을 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Address  Disassembly                       String                                     
+004010BD push easy_crackme.406078          <span class="s2">"5y"</span>
+004010D1 mov esi,easy_crackme.40606C       <span class="s2">"R3versing"</span>
+00401116 push easy_crackme.406058          <span class="s2">"EasyCrackMe"</span>
+0040111B push easy_crackme.406044          <span class="s2">"Congratulation !!"</span>
+00401137 push easy_crackme.406058          <span class="s2">"EasyCrackMe"</span>
+0040113C push easy_crackme.406030          <span class="s2">"Incorrect Password"</span>
+00401C04 push easy_crackme.4050D4          <span class="s2">"__MSVCRT_HEAP_SELECT"</span>
+00401C43 push easy_crackme.4050BC          <span class="s2">"__GLOBAL_HEAP_SELECTED"</span>
+00401FE2 push easy_crackme.4053C4          <span class="s2">"&lt;program name unknown&gt;"</span>
+00402024 push easy_crackme.4053C0          <span class="s2">"..."</span>
+00402038 push easy_crackme.4053A4          <span class="s2">"Runtime Error!</span><span class="se">\n\n</span><span class="s2">Program: "</span>
+00402056 push easy_crackme.4053A0          <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+00402061 push dword ptr ds:[esi+406134]    &amp;<span class="s2">"R6002</span><span class="se">\r\n</span><span class="s2">- floating point not loaded</span><span class="se">\r\n</span><span class="s2">"</span>
+0040207E push easy_crackme.405378          <span class="s2">"Microsoft Visual C++ Runtime Library"</span>
+00402092 lea esi,dword ptr ds:[esi+406134] &amp;<span class="s2">"R6002</span><span class="se">\r\n</span><span class="s2">- floating point not loaded</span><span class="se">\r\n</span><span class="s2">"</span>
+00403CE1 push easy_crackme.40540C          <span class="s2">"user32.dll"</span>
+00403CF8 push easy_crackme.405400          <span class="s2">"MessageBoxA"</span>
+00403D09 push easy_crackme.4053F0          <span class="s2">"GetActiveWindow"</span>
+00403D11 push easy_crackme.4053DC          <span class="s2">"GetLastActivePopup"</span></code></pre></figure>
+
+<p>문자열 중 직접 실행해서 찾은 <code class="highlighter-rouge">Incorrect Password</code>가 존재하는 것을 확인 할 수 있고 <code class="highlighter-rouge">Congratulation !!</code>이라는 문자열도 존재하는 것을 알 수 있습니다.</p>
+
+<p>그렇다면 올바른 키 값을 입력하면 <code class="highlighter-rouge">Congratulation !!</code>이라는 문자열이 나타날 것으로 추측할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">Incorrect Password</code> 부분을 클릭하면 해당 문자열이 존재하는 주소로 이동하게 됩니다.</p>
+
+<h3 id="cmp--jmp-구문-찾기">CMP ~ JMP 구문 찾기</h3>
+
+<p><img src="/img/wargame/reversing_kr/cmp_jmp.png" alt="cmp_jmp" /></p>
+
+<p>문자열을 찾아 이동한 후 위, 아래를 쭉 살펴봅니다. 위 그림을 살펴보면 <code class="highlighter-rouge">4010B0</code> 주소에서 <code class="highlighter-rouge">0x61</code>과 비교를 한 후 <code class="highlighter-rouge">JNE</code>가 실행되는 것을 볼 수 있습니다. 그림의 왼쪽 화살표를 확인하면 좀 더 쉽게 살펴볼 수 있습니다.</p>
+
+<p>화살표들을 살펴보면 <code class="highlighter-rouge">4010B5</code>, <code class="highlighter-rouge">4010CD</code>, <code class="highlighter-rouge">40110B</code>, <code class="highlighter-rouge">401112</code> 에서 조건을 확인하며 값이 정확하지 않을 경우 모두 <code class="highlighter-rouge">Incorrect Password</code> 부분으로 넘어가는 것을 알 수 있습니다.</p>
+
+<p>그렇다면 이 부분들의 값을 정확히 맞춰주면 될 것이라 생각할 수 있습니다. 따라서 해당 부분 모두 BreakPoint를 걸어두고 <code class="highlighter-rouge">k3y6reak</code>를 입력하고 진행해 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">004010B0 | 80 7C 24 05 61           | CMP BYTE PTR SS:[ESP + 5], 61                    | 61:<span class="s1">'a'</span>
+004010B5 | 75 7E                    | JNE easy_crackme.401135                          |
+
+BYTE <span class="o">[</span>ESP+5]<span class="o">=[</span>0019F6ED]<span class="o">=</span>33 <span class="s1">'3'</span>
+61 <span class="s1">'a'</span>
+.text:004010B0 easy_crackme.exe:<span class="nv">$10B0</span> <span class="c">#10B0</span></code></pre></figure>
+
+<p>먼저 <code class="highlighter-rouge">4010B0</code> 위치에서 문자 <code class="highlighter-rouge">a</code>와 <code class="highlighter-rouge">3</code>을 비교하고 있습니다. <code class="highlighter-rouge">k3y6reak</code>를 입력했을 때 두 번째 값과 a를 비교하고 있다는 것을 알 수 있고 해당 값은 틀렸기 때문에 <code class="highlighter-rouge">Incorrect Password</code>로 넘어갈 것입니다. 따라서 다시 실행하여 <code class="highlighter-rouge">kay6reak</code>를 입력해 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">004010B0 | 80 7C 24 05 61           | CMP BYTE PTR SS:[ESP + 5], 61                    | 61:<span class="s1">'a'</span>
+004010B5 | 75 7E                    | JNE easy_crackme.401135                          |
+004010B7 | 6A 02                    | PUSH 2                                           |
+004010B9 | 8D 4C 24 0A              | LEA ECX, DWORD PTR SS:[ESP + A]                  |
+004010BD | 68 78 60 40 00           | PUSH easy_crackme.406078                         | 406078:<span class="s2">"5y"</span>
+004010C2 | 51                       | PUSH ECX                                         |
+004010C3 | E8 88 00 00 00           | CALL easy_crackme.401150                         |
+004010C8 | 83 C4 0C                 | ADD ESP, C                                       |
+004010CB | 85 C0                    | TEST EAX, EAX                                    |
+004010CD | 75 66                    | JNE easy_crackme.401135                          |
+
+EAX : 00000001
+ECX : 00000001
+EDX : 00000000
+EBX : 00000001
+EDI : 0039053C
+EBP : 0019FA18
+ESI : 0039053C
+ESP : 0019F980
+EIP : 004010CD     easy_crackme.004010CD</code></pre></figure>
+
+<p><code class="highlighter-rouge">4010B0</code>위치는 원하는 방향대로 넘어갔지만 <code class="highlighter-rouge">4010CD</code> 부분은 통과하지 못했습니다. <code class="highlighter-rouge">EAX</code>의 값은 <code class="highlighter-rouge">1</code>인데 <code class="highlighter-rouge">JNE</code>에서 <code class="highlighter-rouge">Incorrect Password</code>로 넘어가기 때문에 단순히 생각하면 <code class="highlighter-rouge">EAX</code>의 값이 <code class="highlighter-rouge">0</code>이 되면 넘어갈 것으로 추측할 수 있습니다.</p>
+
+<p>하지만 <code class="highlighter-rouge">4010B0</code>부터 <code class="highlighter-rouge">4010CD</code>의 어셈블리어를 살펴보면 어떤 부분도 <code class="highlighter-rouge">EAX</code>를 이용한 연산은 눈에 보이지 않습니다. 여기서 한 가지 중요한 것은 <code class="highlighter-rouge">함수의 리턴 값은 EAX에 저장된다.</code>라는 것을 알아야 합니다.</p>
+
+<p>어셈블리어에서 함수의 호출은 <code class="highlighter-rouge">CALL</code> 명령을 통해서 해당 함수의 주소로 이동하게 됩니다. <code class="highlighter-rouge">4010B0</code>부터 <code class="highlighter-rouge">4010CD</code> 중에서 함수를 호출하는 부분은 <code class="highlighter-rouge">4010C3</code>이 있는데 해당 부분에 BreakPoint를 걸고 들어가 보도록 하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">00401150 | 55                       | PUSH EBP                                         |
+00401151 | 8B EC                    | MOV EBP, ESP                                     |
+00401153 | 57                       | PUSH EDI                                         |
+00401154 | 56                       | PUSH ESI                                         |
+00401155 | 53                       | PUSH EBX                                         |
+00401156 | 8B 4D 10                 | MOV ECX, DWORD PTR SS:[EBP + 10]                 |
+00401159 | E3 26                    | JECXZ easy_crackme.401181                        |
+0040115B | 8B D9                    | MOV EBX, ECX                                     | ecx:<span class="s2">"y6reak"</span>
+0040115D | 8B 7D 08                 | MOV EDI, DWORD PTR SS:[EBP + 8]                  |
+00401160 | 8B F7                    | MOV ESI, EDI                                     |
+00401162 | 33 C0                    | XOR EAX, EAX                                     |
+00401164 | F2 AE                    | REPNE SCASB AL, BYTE PTR ES:[EDI]                |
+00401166 | F7 D9                    | NEG ECX                                          | ecx:<span class="s2">"y6reak"</span>
+00401168 | 03 CB                    | ADD ECX, EBX                                     | ecx:<span class="s2">"y6reak"</span>
+0040116A | 8B FE                    | MOV EDI, ESI                                     |
+0040116C | 8B 75 0C                 | MOV ESI, DWORD PTR SS:[EBP + C]                  |
+0040116F | F3 A6                    | REPE CMPSB BYTE PTR DS:[ESI], BYTE PTR ES:[EDI]  |
+00401171 | 8A 46 FF                 | MOV AL, BYTE PTR DS:[ESI - 1]                    |
+00401174 | 33 C9                    | XOR ECX, ECX                                     | ecx:<span class="s2">"y6reak"</span>
+00401176 | 3A 47 FF                 | CMP AL, BYTE PTR DS:[EDI - 1]                    |
+00401179 | 77 04                    | JA easy_crackme.40117F                           |
+0040117B | 74 04                    | JE easy_crackme.401181                           |
+0040117D | 49                       | DEC ECX                                          | ecx:<span class="s2">"y6reak"</span>
+0040117E | 49                       | DEC ECX                                          | ecx:<span class="s2">"y6reak"</span>
+0040117F | F7 D1                    | NOT ECX                                          | ecx:<span class="s2">"y6reak"</span>
+00401181 | 8B C1                    | MOV EAX, ECX                                     | ecx:<span class="s2">"y6reak"</span>
+00401183 | 5B                       | POP EBX                                          |
+00401184 | 5E                       | POP ESI                                          |
+00401185 | 5F                       | POP EDI                                          |
+00401186 | C9                       | LEAVE                                            |
+00401187 | C3                       | RET                                              |</code></pre></figure>
+
+<p><code class="highlighter-rouge">401150</code>의 함수 부분인데 이 부분에서 어떤 값을 검사하는지 알아야 합니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">00401176 | 3A 47 FF                 | CMP AL, BYTE PTR DS:[EDI - 1]                    | edi-1:<span class="s2">"y6reak"</span>
+00401179 | 77 04                    | JA easy_crackme.40117F                           |
+0040117B | 74 04                    | JE easy_crackme.401181                           |
+
+<span class="nv">al</span><span class="o">=</span>35 <span class="s1">'5'</span>
+BYTE <span class="o">[</span>EDI-1]<span class="o">=[</span>0019F986]<span class="o">=</span>79 <span class="s1">'y'</span>
+.text:00401176 easy_crackme.exe:<span class="nv">$1176</span> <span class="c">#1176</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">401176</code> 에서 <code class="highlighter-rouge">5</code>와 <code class="highlighter-rouge">y</code>를 비교하고 있습니다. 입력했던 <code class="highlighter-rouge">kay6reak</code>의 <code class="highlighter-rouge">y</code>와 비교를 한다는 것이므로 <code class="highlighter-rouge">ka56reak</code>가 돼야 한다는 것을 알 수 있습니다. 다시 실행하여 <code class="highlighter-rouge">ka56reak</code>를 입력한 후 <code class="highlighter-rouge">EAX</code>의 값을 살펴보도록 하겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">004010B0 | 80 7C 24 05 61           | CMP BYTE PTR SS:[ESP + 5], 61                    | 61:<span class="s1">'a'</span>
+004010B5 | 75 7E                    | JNE easy_crackme.401135                          |
+004010B7 | 6A 02                    | PUSH 2                                           |
+004010B9 | 8D 4C 24 0A              | LEA ECX, DWORD PTR SS:[ESP + A]                  |
+004010BD | 68 78 60 40 00           | PUSH easy_crackme.406078                         | 406078:<span class="s2">"5y"</span>
+004010C2 | 51                       | PUSH ECX                                         |
+004010C3 | E8 88 00 00 00           | CALL easy_crackme.401150                         |
+004010C8 | 83 C4 0C                 | ADD ESP, C                                       |
+004010CB | 85 C0                    | TEST EAX, EAX                                    |
+004010CD | 75 66                    | JNE easy_crackme.401135                          |
+
+EAX : FFFFFFFF
+ECX : FFFFFFFF
+EDX : 00000000
+EBX : 00000001
+EDI : 002B05AC
+EBP : 0019FA18
+ESI : 002B05AC
+ESP : 0019F980
+EIP : 004010CB     easy_crackme.004010CB</code></pre></figure>
+
+<p><code class="highlighter-rouge">EAX</code>의 값이 <code class="highlighter-rouge">FFFFFFFF</code>이 됐지만 마찬가지로 <code class="highlighter-rouge">JNE</code>에서 <code class="highlighter-rouge">Incorrect Password</code>로 넘어갑니다. 다시 실행하여 <code class="highlighter-rouge">ka56reak</code>를 입력해서 함수로 들어가 다시 확인해 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">al</span><span class="o">=</span>79 <span class="s1">'y'</span>
+BYTE <span class="o">[</span>EDI-1]<span class="o">=[</span>0019F6EF]<span class="o">=</span>36 <span class="s1">'6'</span>
+.text:00401176 easy_crackme.exe:<span class="nv">$1176</span> <span class="c">#1176</span></code></pre></figure>
+
+<p>이번에는 <code class="highlighter-rouge">ka56reak</code> 중 <code class="highlighter-rouge">6</code>과 <code class="highlighter-rouge">y</code>를 비교하고 있습니다. 그렇다면 <code class="highlighter-rouge">ka5yreak</code>가 돼야 한다는 것을 알 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">ka5yreak</code>를 입력한 후 실행하면 <code class="highlighter-rouge">004010CD</code>의 <code class="highlighter-rouge">JNE</code>가 실행이 안되는 것을 알 수 있습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">004010CF | 53                       | PUSH EBX                                         |
+004010D0 | 56                       | PUSH ESI                                         | esi:<span class="s2">"R3versing"</span>
+004010D1 | BE 6C 60 40 00           | MOV ESI, easy_crackme.40606C                     | esi:<span class="s2">"R3versing"</span>, 40606C:<span class="s2">"R3versing"</span>
+004010D6 | 8D 44 24 10              | LEA EAX, DWORD PTR SS:[ESP + 10]                 |
+004010DA | 8A 10                    | MOV DL, BYTE PTR DS:[EAX]                        | eax:<span class="s2">"reak"</span>
+004010DC | 8A 1E                    | MOV BL, BYTE PTR DS:[ESI]                        | esi:<span class="s2">"R3versing"</span>
+004010DE | 8A CA                    | MOV CL, DL                                       |
+004010E0 | 3A D3                    | CMP DL, BL                                       |
+004010E2 | 75 1E                    | JNE easy_crackme.401102                          |
+
+<span class="nv">dl</span><span class="o">=</span>72 <span class="s1">'r'</span>
+<span class="nv">bl</span><span class="o">=</span>52 <span class="s1">'R'</span>
+.text:004010E0 easy_crackme.exe:<span class="nv">$10E0</span> <span class="c">#10E0</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">4010E0</code> 부분에서 <code class="highlighter-rouge">r</code>와 <code class="highlighter-rouge">R</code>을 비교하고 있습니다. 입력했던 값 <code class="highlighter-rouge">ka5yreak</code> 중 <code class="highlighter-rouge">r</code>과 비교를 한다는 것인데, 위 어셈블리어 코드를 살펴보면 <code class="highlighter-rouge">R3versing</code>이라는 문자열이 존재하는 것을 알 수 있습니다.</p>
+
+<p>그렇다면 <code class="highlighter-rouge">reak</code> 부분과 <code class="highlighter-rouge">R3versing</code>을 비교한다고 추측할 수 있습니다. 재실행하여 <code class="highlighter-rouge">ka5yR3versing</code>을 입력하고 진행해 보겠습니다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">0040110D | 80 7C 24 04 45           | CMP BYTE PTR SS:[ESP + 4], 45                    | 45:<span class="s1">'E'</span>
+00401112 | 75 21                    | JNE easy_crackme.401135                          |
+
+BYTE <span class="o">[</span>ESP+4]<span class="o">=[</span>0019F984]<span class="o">=</span>6B <span class="s1">'k'</span>
+45 <span class="s1">'E'</span>
+.text:0040110D easy_crackme.exe:<span class="nv">$110D</span> <span class="c">#110D</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">ka5yR3versing</code>을 입력하고 진행했더니 <code class="highlighter-rouge">40110D</code>까지 진행된 것을 알 수 있습니다. 이 부분에서는 <code class="highlighter-rouge">k</code>와 <code class="highlighter-rouge">E</code>를 비교하고 있기 때문에 <code class="highlighter-rouge">Ea5yR3versing</code>을 입력해 보겠습니다.</p>
+
+<p><img src="/img/wargame/reversing_kr/congratz.png" alt="Congratulation" /></p>
+
+<p>입력한 결과가 모두 일치한 것을 알 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">Flag: Ea5yR3versing</code></p>
+
+
+      <br/>
+      <br/>
+      <!-- 블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-8115495896391807"
+          data-ad-slot=""
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Easy Crack&amp;url=http://localhost:4000/wargame/2018/01/22/easy_crack/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/wargame/2018/01/22/easy_crack/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>F1nd k3y, 6reak k3y!</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+          
+          
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Easy Crack",this.page.identifier="/wargame/2018/01/22/easy_crack",this.page.url="http://localhost:4000/wargame/2018/01/22/easy_crack/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by k3y6reak</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://k3y6reak.github.io/">k3y6reak</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">k3y6reak</a></h1>
+        <p>F1nd k3y, 6reak k3y!</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/programming/">Programming</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-c/">C Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-cpp/">C++ Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-python/">Python Language</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-ruby/">Ruby Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/technique/">High Level Technique</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-reversing/">Reversing</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-android/">Android</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-powershell/">Powershell</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-systemhacking/">System Hacking</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-shellcoding/">Shellcoding</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-webhacking/">Web Hacking</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowsforensic/">Windows Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-linuxforensic/">Linux Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowssystem/">Windows System</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/wargame/">Wargame</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-reversing-kr/">reversing.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-wargame-kr/">wargame.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-pwnable-kr/">pwnable.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ctfs/">CTFs</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/misc/">MISC</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>RebForPwn</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/k3y6reak">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:k3y6reak@naver.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://k3y6reak.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-109251496-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
