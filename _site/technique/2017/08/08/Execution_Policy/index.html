@@ -222,11 +222,11 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>notepad를 이용해서 “HelloWorld!”를 작성한 뒤 <code class="highlighter-rouge">HelloWorld.ps1</code> 파일을 생성합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; .<span class="se">\H</span>elloWorld.ps1
-.<span class="se">\H</span>elloWorld.ps1 : 이 시스템에서 스크립트를 실행할 수 없으므로 C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\H</span>elloWorld.ps1 파일을 로드할 수 없습니다. 자세한 내용은 http://go.microsoft.com/fwlink/?Li
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; .\HelloWorld.ps1
+.\HelloWorld.ps1 : 이 시스템에서 스크립트를 실행할 수 없으므로 C:\Users\k3y6reak\Desktop\HelloWorld.ps1 파일을 로드할 수 없습니다. 자세한 내용은 http://go.microsoft.com/fwlink/?Li
 <span class="nv">nkID</span><span class="o">=</span>135170의 about_Execution_Policies를 참조하십시오.
 위치 줄:1 문자:1
-+ .<span class="se">\H</span>elloWorld.ps1
++ .\HelloWorld.ps1
 + ~~~~~~~~~~~~~~~~
     + CategoryInfo          : 보안 오류: <span class="o">(</span>:<span class="o">)</span> <span class="o">[]</span>, PSSecurityException
     + FullyQualifiedErrorId : UnauthorizedAccess</code></pre></figure>
@@ -235,14 +235,14 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>먼저 현재 권한이 어떻게 되는지 살펴보겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nb">Get-ExecutionPolicy
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">Get-ExecutionPolicy
 </span>Restricted</code></pre></figure>
 
 <p>현재 권한은 <code class="highlighter-rouge">Restricted</code> 이며 <code class="highlighter-rouge">제한된</code>이라는 뜻을 갖고 있습니다. 말 그대로 제한된 권한을 사용한다는 것입니다. 아무래도 아무 스크립트나 실행할 수 없도록 한 것 같습니다.</p>
 
 <p>여기서 <code class="highlighter-rouge">Get-Help</code>를 이용해 about_Execution_Policies에 대해서 찾아보겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nb">Get-Help </span>about_Execution_Policies
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; Get-Help about_Execution_Policies
 TOPIC
     about_Execution_Policies
 
@@ -266,9 +266,9 @@ WINDOWS POWERSHELL EXECUTION POLICIES
              scripts.
 
            - Prevents running of all script files, including
-             formatting and configuration files <span class="o">(</span>.ps1xml<span class="o">)</span>, module
+             formatting and <span class="nb">configuration </span>files <span class="o">(</span>.ps1xml<span class="o">)</span>, module
              script files <span class="o">(</span>.psm1<span class="o">)</span>, and Windows PowerShell
-             profiles <span class="o">(</span>.ps1<span class="o">)</span>.
+             profiles <span class="o">(</span>.ps1<span class="o">)</span><span class="nb">.</span>
 
              ...<span class="o">(</span>중략<span class="o">)</span>
 
@@ -303,7 +303,7 @@ WINDOWS POWERSHELL EXECUTION POLICIES
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">Windows PowerShell
 Copyright <span class="o">(</span>C<span class="o">)</span> 2016 Microsoft Corporation. All rights reserved.
 
-<span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Set-ExecutionPolicy </span>Bypass
+<span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Set-ExecutionPolicy </span>Bypass
 
 실행 규칙 변경
 실행 정책은 신뢰하지 않는 스크립트로부터 사용자를 보호합니다. 실행 정책을 변경하면 about_Execution_Policies 도움말
@@ -313,12 +313,12 @@ Copyright <span class="o">(</span>C<span class="o">)</span> 2016 Microsoft Corpo
 
 <p>그 후 다시 <code class="highlighter-rouge">Get-ExecutionPolicy</code>를 실행하면 <code class="highlighter-rouge">Bypass</code>로 권한이 변경된 것을 알 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nb">Get-ExecutionPolicy
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">Get-ExecutionPolicy
 </span>Bypass</code></pre></figure>
 
 <p>다시 HelloWorld.ps1를 실행하면 정상적으로 실행되는 것을 알 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; .<span class="se">\H</span>elloWorld.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; .\HelloWorld.ps1
 Hello World</code></pre></figure>
 
       <br/>

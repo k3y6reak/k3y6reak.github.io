@@ -232,9 +232,9 @@ in <a href="/category/ctfs/" data-flip="title">CTFs</a>
 <p><br /><br /></p>
 <h3 id="풀이">풀이</h3>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>./100
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">root@ubuntu:/home/k3y6reak/Desktop# ./100
 Sorry
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>./100 a
+root@ubuntu:/home/k3y6reak/Desktop# ./100 a
 Sorry</code></pre></figure>
 
 <p>해당 바이너리를 실행하면 위와같이 Sorry만 출력한다.</p>
@@ -259,27 +259,27 @@ Sorry</code></pre></figure>
 .text:08048983                 jnz     short loc_8048977
 .text:08048985                 jmp     short loc_8048940</code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span>----------------------------------registers-----------------------------------]
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span><span class="nt">----------------------------------registers-----------------------------------</span><span class="o">]</span>
 EAX: 0x5c4742c2
 EBX: 0x8048164 <span class="o">(</span>&lt;_init&gt;:	push   ebx<span class="o">)</span>
-ECX: 0x80ed5e8 --&gt; 0x0
+ECX: 0x80ed5e8 <span class="nt">--</span><span class="o">&gt;</span> 0x0
 EDX: 0xe6cbc1fb
-ESI: 0x80ea0c4 --&gt; 0x8068270 <span class="o">(</span>&lt;__strcpy_sse2&gt;:	mov    edx,DWORD PTR <span class="o">[</span>esp+0x4]<span class="o">)</span>
+ESI: 0x80ea0c4 <span class="nt">--</span><span class="o">&gt;</span> 0x8068270 <span class="o">(</span>&lt;__strcpy_sse2&gt;:	mov    edx,DWORD PTR <span class="o">[</span>esp+0x4]<span class="o">)</span>
 EDI: 0x46 <span class="o">(</span><span class="s1">'F'</span><span class="o">)</span>
-EBP: 0xffffd4f8 --&gt; 0x1000
+EBP: 0xffffd4f8 <span class="nt">--</span><span class="o">&gt;</span> 0x1000
 ESP: 0xffffd370 <span class="o">(</span><span class="s2">"flag{57201791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
 EIP: 0x8048977 <span class="o">(</span>&lt;main+263&gt;:	cmp    eax,0x96c8acca<span class="o">)</span>
 EFLAGS: 0x246 <span class="o">(</span>carry PARITY adjust ZERO sign <span class="nb">trap </span>INTERRUPT direction overflow<span class="o">)</span>
-<span class="o">[</span>-------------------------------------code-------------------------------------]
+<span class="o">[</span><span class="nt">-------------------------------------code-------------------------------------</span><span class="o">]</span>
    0x804896d &lt;main+253&gt;:	or     cl,al
    0x804896f &lt;main+255&gt;:	mov    eax,0x6b8a9776
    0x8048974 &lt;main+260&gt;:	cmovne eax,edx
-<span class="gp">=&gt; </span>0x8048977 &lt;main+263&gt;:	cmp    eax,0x96c8acca
+<span class="o">=&gt;</span> 0x8048977 &lt;main+263&gt;:	cmp    eax,0x96c8acca
    0x804897c &lt;main+268&gt;:	jg     0x8048990 &lt;main+288&gt;
    0x804897e &lt;main+270&gt;:	cmp    eax,0x8fd5472d
    0x8048983 &lt;main+275&gt;:	jne    0x8048977 &lt;main+263&gt;
    0x8048985 &lt;main+277&gt;:	jmp    0x8048940 &lt;main+208&gt;
-<span class="o">[</span>------------------------------------stack-------------------------------------]
+<span class="o">[</span><span class="nt">------------------------------------stack-------------------------------------</span><span class="o">]</span>
 0000| 0xffffd370 <span class="o">(</span><span class="s2">"flag{57201791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
 0004| 0xffffd374 <span class="o">(</span><span class="s2">"{57201791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
 0008| 0xffffd378 <span class="o">(</span><span class="s2">"01791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
@@ -288,7 +288,7 @@ EFLAGS: 0x246 <span class="o">(</span>carry PARITY adjust ZERO sign <span class=
 0020| 0xffffd384 <span class="o">(</span><span class="s2">"cd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
 0024| 0xffffd388 <span class="o">(</span><span class="s2">"2cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
 0028| 0xffffd38c <span class="o">(</span><span class="s2">"3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-<span class="o">[</span>------------------------------------------------------------------------------]
+<span class="o">[</span><span class="nt">------------------------------------------------------------------------------</span><span class="o">]</span>
 Legend: code, data, rodata, value
 
 Breakpoint 1, 0x08048977 <span class="k">in </span>main <span class="o">()</span>
@@ -296,7 +296,7 @@ gdb-peda<span class="err">$</span></code></pre></figure>
 
 <p><code class="highlighter-rouge">finish</code>명령을 계속해서 실행하면 위와같이 stack에 flag에 대한 정보가 나오게 된다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>./100 flag<span class="o">{</span>57201791ea24f3acd852cee3271333a8<span class="o">}</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">root@ubuntu:/home/k3y6reak/Desktop# ./100 flag<span class="o">{</span>57201791ea24f3acd852cee3271333a8<span class="o">}</span>
 Yes!
 root@ubuntu:/home/k3y6reak/Desktop#</code></pre></figure>
 

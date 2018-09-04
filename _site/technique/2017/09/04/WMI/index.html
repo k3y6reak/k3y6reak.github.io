@@ -220,7 +220,7 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 <br/>
       <p><code class="highlighter-rouge">WMI</code>는 Windows Management Instrumentation으로 <code class="highlighter-rouge">윈도우 관리 도구</code>다. 이를 PowerShell에서 사용할 수 있는데 <code class="highlighter-rouge">Get-WmiObject</code>명령을 이용한다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -Namespace <span class="s2">"root"</span> -Class <span class="s2">"__Namespace"</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -Namespace <span class="s2">"root"</span> -Class <span class="s2">"__Namespace"</span>
 
 
 __GENUS          : 2
@@ -232,7 +232,7 @@ __PROPERTY_COUNT : 1
 __DERIVATION     : <span class="o">{</span>__SystemClass<span class="o">}</span>
 __SERVER         : K3Y6REAK9778
 __NAMESPACE      : ROOT
-__PATH           : <span class="se">\\</span>K3Y6REAK9778<span class="se">\R</span>OOT:__NAMESPACE.Name<span class="o">=</span><span class="s2">"subscription"</span>
+__PATH           : \\K3Y6REAK9778\ROOT:__NAMESPACE.Name<span class="o">=</span><span class="s2">"subscription"</span>
 Name             : subscription
 PSComputerName   : K3Y6REAK9778
 
@@ -245,13 +245,13 @@ __PROPERTY_COUNT : 1
 __DERIVATION     : <span class="o">{</span>__SystemClass<span class="o">}</span>
 __SERVER         : K3Y6REAK9778
 __NAMESPACE      : ROOT
-__PATH           : <span class="se">\\</span>K3Y6REAK9778<span class="se">\R</span>OOT:__NAMESPACE.Name<span class="o">=</span><span class="s2">"DEFAULT"</span>
+__PATH           : \\K3Y6REAK9778\ROOT:__NAMESPACE.Name<span class="o">=</span><span class="s2">"DEFAULT"</span>
 Name             : DEFAULT
 PSComputerName   : K3Y6REAK9778</code></pre></figure>
 
 <p>여기서 이름에 대한 내용만 가져오고 싶은 경우 <code class="highlighter-rouge">| Select-Object Name</code>를 붙여주면 된다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -Namespace <span class="s2">"root"</span> -Class <span class="s2">"__Namespace"</span> | <span class="nb">Select-Object </span>Name
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -Namespace <span class="s2">"root"</span> -Class <span class="s2">"__Namespace"</span> | <span class="nb">Select-Object </span>Name
 
 Name
 ----
@@ -280,10 +280,10 @@ Appv</code></pre></figure>
 
 <p><code class="highlighter-rouge">Get-WmiObject -NameSpace "root/cimv2" -List</code>를 입력하면 아래와 같은 수많은 항목을 볼 수 있다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -NameSpace <span class="s2">"root/cimv2"</span> -List
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -NameSpace <span class="s2">"root/cimv2"</span> -List
 
 
-   NameSpace: ROOT<span class="se">\C</span>IMV2
+   NameSpace: ROOT\CIMV2
 
 Name                                Methods              Properties
 ----                                -------              ----------
@@ -311,8 +311,8 @@ __RELPATH                  : Win32_Process.Handle<span class="o">=</span><span c
 __PROPERTY_COUNT           : 45
 __DERIVATION               : <span class="o">{</span>CIM_Process, CIM_LogicalElement, CIM_ManagedSystemElement<span class="o">}</span>
 __SERVER                   : K3Y6REAK9778
-__NAMESPACE                : root<span class="se">\c</span>imv2
-__PATH                     : <span class="se">\\</span>K3Y6REAK9778<span class="se">\r</span>oot<span class="se">\c</span>imv2:Win32_Process.Handle<span class="o">=</span><span class="s2">"604"</span>
+__NAMESPACE                : root\cimv2
+__PATH                     : \\K3Y6REAK9778\root\cimv2:Win32_Process.Handle<span class="o">=</span><span class="s2">"604"</span>
 Caption                    : wininit.exe
 CommandLine                :
 CreationClassName          : Win32_Process
@@ -330,7 +330,7 @@ MaximumWorkingSetSize      :
 MinimumWorkingSetSize      :
 Name                       : wininit.exe
 OSCreationClassName        : Win32_OperatingSystem
-OSName                     : Microsoft Windows 10 Education|C:<span class="se">\W</span>INDOWS|<span class="se">\D</span>evice<span class="se">\H</span>arddisk0<span class="se">\P</span>artition4
+OSName                     : Microsoft Windows 10 Education|C:\WINDOWS|\Device\Harddisk0\Partition4
 OtherOperationCount        : 17201
 OtherTransferCount         : 4702606
 PageFaults                 : 6127
@@ -367,7 +367,7 @@ Path                       :</code></pre></figure>
 
 <p>이름만 출력하고 싶다면 <code class="highlighter-rouge">| select Name</code>을 붙여주면 된다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process | <span class="nb">Select </span>Name
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process | <span class="nb">Select </span>Name
 
 Name
 ----
@@ -392,7 +392,7 @@ WUDFHost.exe
 
 <p><code class="highlighter-rouge">Get-WmiObject -Class Win32_Process -ComputerName [Win7 컴퓨터이름] -Credential [Win7 계정] | select Name</code></p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process -ComputerName WIN-J9KO348JQVU -Credential k3y6reak | <span class="nb">select </span>Name
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process -ComputerName WIN-J9KO348JQVU -Credential k3y6reak | <span class="nb">select </span>Name
 
 Name
 ----
@@ -466,10 +466,10 @@ svchost.exe</code></pre></figure>
 
 <p><code class="highlighter-rouge">Get-WmiObject -Class Win32_Process -List</code>를 입력한다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process -List
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process -List
 
 
-   NameSpace: ROOT<span class="se">\c</span>imv2
+   NameSpace: ROOT\cimv2
 
 Name                                Methods              Properties
 ----                                -------              ----------
@@ -479,7 +479,7 @@ Win32_Process                       <span class="o">{</span>Create, Terminat... 
 
 <p><code class="highlighter-rouge">Get-WmiObject -Class Win32_Process -List | Select-Object -ExpandProterty Methods</code>를 입력해 보자.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process -List | <span class="nb">Select-Object</span> -ExpandProperty Methods
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Get-WmiObject</span> -Class Win32_Process -List | <span class="nb">Select-Object</span> -ExpandProperty Methods
 
 
 Name          : Create
@@ -530,7 +530,7 @@ Qualifiers    : <span class="o">{</span>Implemented, ValueMap<span class="o">}</
 
 <p><code class="highlighter-rouge">Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList "notepad.exe"</code>를 입력해 보자.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList <span class="s2">"notepad.exe"</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Invoke-WmiMethod</span> -Class Win32_Process -Name Create -ArgumentList <span class="s2">"notepad.exe"</span>
 
 
 __GENUS          : 2
@@ -549,7 +549,7 @@ PSComputerName   :</code></pre></figure>
 
 <p><code class="highlighter-rouge">Invoke-WmiMethod</code> 또한 Win7에 notepad.exe를 실행할 수 있다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32&gt; Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList <span class="s2">"notepad.exe"</span> -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\WINDOWS\system32&gt; <span class="nb">Invoke-WmiMethod</span> -Class Win32_Process -Name Create -ArgumentList <span class="s2">"notepad.exe"</span> -ComputerName WIN-J9KO348JQVU -Credential k3y6reak
 
 
 __GENUS          : 2

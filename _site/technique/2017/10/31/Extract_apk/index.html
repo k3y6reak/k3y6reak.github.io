@@ -233,7 +233,7 @@ on <a href="/tag/technique-android/" data-flip="title">Android</a>
 
 <p><code class="highlighter-rouge">unzip [apk 이름] -d [디렉토리 이름]</code>을 이용해 해제할 디렉토리에 chrome.apk를 해제합니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>unzip chrome.apk -d Unzip_chrome/
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop# unzip chrome.apk <span class="nt">-d</span> Unzip_chrome/
 Archive:  chrome.apk
  extracting: Unzip_chrome/assets/chrome_100_percent.pak  
  extracting: Unzip_chrome/assets/icudtl.dat  
@@ -251,21 +251,21 @@ Archive:  chrome.apk
   inflating: Unzip_chrome/META-INF/CERT.SF  
   inflating: Unzip_chrome/META-INF/CERT.RSA  
   inflating: Unzip_chrome/META-INF/MANIFEST.MF  
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span></code></pre></figure>
+root@ubuntu:/home/k3y6reak/Desktop# </code></pre></figure>
 
 <p>해당 디렉토리에 접근하여 어떤 파일이 존재하는지 살펴보면 아래와 같습니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop/Unzip_chrome# </span>ls -al
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop/Unzip_chrome# <span class="nb">ls</span> <span class="nt">-al</span>
 total 10368
-drwxr-xr-x  6 root     root        4096 Oct 31 20:05 .
+drwxr-xr-x  6 root     root        4096 Oct 31 20:05 <span class="nb">.</span>
 drwxr-xr-x  4 k3y6reak k3y6reak    4096 Oct 31 20:05 ..
--rw-r--r--  1 root     root       95976 Jan  1  2009 AndroidManifest.xml
+<span class="nt">-rw-r--r--</span>  1 root     root       95976 Jan  1  2009 AndroidManifest.xml
 drwxr-xr-x  2 root     root        4096 Oct 31 20:05 assets
--rw-r--r--  1 root     root     6282576 Jan  1  2009 classes.dex
+<span class="nt">-rw-r--r--</span>  1 root     root     6282576 Jan  1  2009 classes.dex
 drwxr-xr-x  3 root     root        4096 Oct 31 20:05 lib
 drwxr-xr-x  2 root     root        4096 Oct 31 20:05 META-INF
 drwxr-xr-x 70 root     root        4096 Oct 31 20:05 res
--rw-r--r--  1 root     root     4206860 Jan  1  2009 resources.arsc</code></pre></figure>
+<span class="nt">-rw-r--r--</span>  1 root     root     4206860 Jan  1  2009 resources.arsc</code></pre></figure>
 
 <h4 id="apktool">Apktool</h4>
 
@@ -279,45 +279,45 @@ drwxr-xr-x 70 root     root        4096 Oct 31 20:05 res
 <p>wrapper script 파일을 apktool로 저장합니다. apktool_2.3.0.jar을 apktool.jar로 저장합니다.
 이 두 파일을 <code class="highlighter-rouge">/usr/bin</code>에 저장한 뒤 <code class="highlighter-rouge">chmod +x apktool apktool.jar</code>을 해줍니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>mv wrapperscript.txt apktool
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>mv apktool_2.3.0.jar apktool.jar
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>chmod +x apktool apktool.jar
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>mv apktool apktool.jar /usr/bin
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>apktool
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop# <span class="nb">mv </span>wrapperscript.txt apktool
+root@ubuntu:/home/k3y6reak/Desktop# <span class="nb">mv </span>apktool_2.3.0.jar apktool.jar
+root@ubuntu:/home/k3y6reak/Desktop# <span class="nb">chmod</span> +x apktool apktool.jar
+root@ubuntu:/home/k3y6reak/Desktop# <span class="nb">mv </span>apktool apktool.jar /usr/bin
+root@ubuntu:/home/k3y6reak/Desktop# apktool
 Apktool v2.3.0 - a tool <span class="k">for </span>reengineering Android apk files
 with smali v2.2.1 and baksmali v2.2.1
 Copyright 2014 Ryszard Wiśniewski &lt;brut.alll@gmail.com&gt;
 Updated by Connor Tumbleson &lt;connor.tumbleson@gmail.com&gt;
 
 usage: apktool
- -advance,--advanced   prints advance information.
- -version,--version    prints the version <span class="k">then </span>exits
+ <span class="nt">-advance</span>,--advanced   prints advance information.
+ <span class="nt">-version</span>,--version    prints the version <span class="k">then </span>exits
 usage: apktool <span class="k">if</span>|install-framework <span class="o">[</span>options] &lt;framework.apk&gt;
- -p,--frame-path &lt;dir&gt;   Stores framework files into &lt;dir&gt;.
- -t,--tag &lt;tag&gt;          Tag frameworks using &lt;tag&gt;.
+ <span class="nt">-p</span>,--frame-path &lt;<span class="nb">dir</span><span class="o">&gt;</span>   Stores framework files into &lt;<span class="nb">dir</span><span class="o">&gt;</span><span class="nb">.</span>
+ <span class="nt">-t</span>,--tag &lt;tag&gt;          Tag frameworks using &lt;tag&gt;.
 usage: apktool d[ecode] <span class="o">[</span>options] &lt;file_apk&gt;
- -f,--force              Force delete destination directory.
- -o,--output &lt;dir&gt;       The name of folder that gets written. Default is apk.out
- -p,--frame-path &lt;dir&gt;   Uses framework files located <span class="k">in</span> &lt;dir&gt;.
- -r,--no-res             Do not decode resources.
- -s,--no-src             Do not decode sources.
- -t,--frame-tag &lt;tag&gt;    Uses framework files tagged by &lt;tag&gt;.
+ <span class="nt">-f</span>,--force              Force delete destination directory.
+ <span class="nt">-o</span>,--output &lt;<span class="nb">dir</span><span class="o">&gt;</span>       The name of folder that gets written. Default is apk.out
+ <span class="nt">-p</span>,--frame-path &lt;<span class="nb">dir</span><span class="o">&gt;</span>   Uses framework files located <span class="k">in</span> &lt;<span class="nb">dir</span><span class="o">&gt;</span><span class="nb">.</span>
+ <span class="nt">-r</span>,--no-res             Do not decode resources.
+ <span class="nt">-s</span>,--no-src             Do not decode sources.
+ <span class="nt">-t</span>,--frame-tag &lt;tag&gt;    Uses framework files tagged by &lt;tag&gt;.
 usage: apktool b[uild] <span class="o">[</span>options] &lt;app_path&gt;
- -f,--force-all          Skip changes detection and build all files.
- -o,--output &lt;dir&gt;       The name of apk that gets written. Default is dist/name.apk
- -p,--frame-path &lt;dir&gt;   Uses framework files located <span class="k">in</span> &lt;dir&gt;.
+ <span class="nt">-f</span>,--force-all          Skip changes detection and build all files.
+ <span class="nt">-o</span>,--output &lt;<span class="nb">dir</span><span class="o">&gt;</span>       The name of apk that gets written. Default is dist/name.apk
+ <span class="nt">-p</span>,--frame-path &lt;<span class="nb">dir</span><span class="o">&gt;</span>   Uses framework files located <span class="k">in</span> &lt;<span class="nb">dir</span><span class="o">&gt;</span><span class="nb">.</span>
 
 For additional info, see: http://ibotpeaches.github.io/Apktool/ 
 For smali/baksmali info, see: https://github.com/JesusFreke/smali</code></pre></figure>
 
 <p>이제 apktool을 사용할 수 있으므로 이를 이용해 chrome.apk를 Decompile을 해보겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>apktool d chrome.apk
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop# apktool d chrome.apk
 I: Using Apktool 2.3.0 on chrome.apk
 I: Loading resource table...
 I: Decoding AndroidManifest.xml with resources...
 S: WARNING: Could not write to <span class="o">(</span>/root/.local/share/apktool/framework<span class="o">)</span>, using /tmp instead...
-S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path <span class="k">if </span>the default storage directory is unavailable
+S: Please be aware this is a volatile directory and frameworks could go missing, please utilize <span class="nt">--frame-path</span> <span class="k">if </span>the default storage directory is unavailable
 I: Loading resource table from file: /tmp/1.apk
 I: Regular manifest package...
 I: Decoding file-resources...
@@ -326,9 +326,9 @@ I: Baksmaling classes.dex...
 I: Copying assets and libs...
 I: Copying unknown files...
 I: Copying original files...
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span><span class="nb">cd </span>chrome
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop/chrome# </span>ls
-AndroidManifest.xml  apktool.yml  assets  lib  original  res  smali</code></pre></figure>
+root@ubuntu:/home/k3y6reak/Desktop# <span class="nb">cd </span>chrome
+root@ubuntu:/home/k3y6reak/Desktop/chrome# <span class="nb">ls
+</span>AndroidManifest.xml  apktool.yml  assets  lib  original  res  smali</code></pre></figure>
 
 <p><code class="highlighter-rouge">apktool 버전이 낮은 경우 main함수에서 null point exception이 발생할 수 있습니다.</code></p>
 
@@ -339,22 +339,22 @@ AndroidManifest.xml  apktool.yml  assets  lib  original  res  smali</code></pre>
 <p><code class="highlighter-rouge">git clone https://github.com/skylot/jadx.git</code>을 통해 해당 파일을 다운로드 받습니다.
 다운받은 jadx 디렉토리에 접근하여 <code class="highlighter-rouge">./gradlew dist</code>를 입력하여 컴파일을 합니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:~# </span>git clone https://github.com/skylot/jadx.git
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:~# git clone https://github.com/skylot/jadx.git
 Cloning into <span class="s1">'jadx'</span>...
-remote: Counting objects: 11711, <span class="k">done</span>.
+remote: Counting objects: 11711, <span class="k">done</span><span class="nb">.</span>
 remote: Total 11711 <span class="o">(</span>delta 0<span class="o">)</span>, reused 0 <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused 11710
-Receiving objects: 100% <span class="o">(</span>11711/11711<span class="o">)</span>, 5.31 MiB | 1.43 MiB/s, <span class="k">done</span>.
-Resolving deltas: 100% <span class="o">(</span>6143/6143<span class="o">)</span>, <span class="k">done</span>.
-Checking connectivity... <span class="k">done</span>.
-<span class="gp">root@ubuntu:~# </span><span class="nb">cd </span>jadx
-<span class="gp">root@ubuntu:~/jadx# </span>./gradlew dist
+Receiving objects: 100% <span class="o">(</span>11711/11711<span class="o">)</span>, 5.31 MiB | 1.43 MiB/s, <span class="k">done</span><span class="nb">.</span>
+Resolving deltas: 100% <span class="o">(</span>6143/6143<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+Checking connectivity... <span class="k">done</span><span class="nb">.</span>
+root@ubuntu:~# <span class="nb">cd </span>jadx
+root@ubuntu:~/jadx# ./gradlew dist
 :jadx-core:compileJava
-warning: <span class="o">[</span>options] bootstrap class path not <span class="nb">set </span><span class="k">in </span>conjunction with -source 1.6
-/root/jadx/jadx-core/src/main/java/jadx/core/xmlgen/ParserConstants.java:156: warning: <span class="o">[</span>serial] serializable class &lt;anonymous jadx.core.xmlgen.ParserConstants<span class="nv">$1</span>&gt; has no definition of serialVersionUID
+warning: <span class="o">[</span>options] bootstrap class path not <span class="nb">set </span><span class="k">in </span>conjunction with <span class="nt">-source</span> 1.6
+/root/jadx/jadx-core/src/main/java/jadx/core/xmlgen/ParserConstants.java:156: warning: <span class="o">[</span>serial] serializable class &lt;anonymous jadx.core.xmlgen.ParserConstants<span class="nv">$1</span><span class="o">&gt;</span> has no definition of serialVersionUID
         protected static final Map&lt;Integer, String&gt; PLURALS_MAP <span class="o">=</span> new HashMap&lt;Integer, String&gt;<span class="o">()</span> <span class="o">{</span>
                                                                                                  ^
 /root/jadx/jadx-core/src/main/java/jadx/core/dex/instructions/args/LiteralArg.java:68: warning: <span class="o">[</span>deprecation] literalToString<span class="o">(</span>long,ArgType<span class="o">)</span> <span class="k">in </span>TypeGen has been deprecated
-                        String value <span class="o">=</span> TypeGen.literalToString<span class="o">(</span>literal, getType<span class="o">())</span>;
+                        String value <span class="o">=</span> TypeGen.literalToString<span class="o">(</span>literal, getType<span class="o">())</span><span class="p">;</span>
                                               ^
 3 warnings
 :jadx-core:compileGroovy UP-TO-DATE
@@ -362,7 +362,7 @@ warning: <span class="o">[</span>options] bootstrap class path not <span class="
 :jadx-core:classes
 :jadx-core:jar
 :jadx-cli:compileJava
-warning: <span class="o">[</span>options] bootstrap class path not <span class="nb">set </span><span class="k">in </span>conjunction with -source 1.6
+warning: <span class="o">[</span>options] bootstrap class path not <span class="nb">set </span><span class="k">in </span>conjunction with <span class="nt">-source</span> 1.6
 <span class="o">(</span>중략...<span class="o">)</span>
 :jadx-gui:installDist
 :copyArtifacts
@@ -378,17 +378,17 @@ root@ubuntu:~/jadx#</code></pre></figure>
 
 <p>컴파일을 모두 마치면 <code class="highlighter-rouge">build</code>라는 디렉토리가 생성되는데 <code class="highlighter-rouge">build/jadx/bin/</code>에 jadx 실행파일이 생성된 것을 볼 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:~/jadx# </span>ls
-build  build.gradle  gradle  gradlew  gradlew.bat  jadx-cli  jadx-core  jadx-gui  jadx-samples  jadx-test-app  LICENSE  NOTICE  README.md  settings.gradle  version
-<span class="gp">root@ubuntu:~/jadx# </span><span class="nb">cd </span>build/
-<span class="gp">root@ubuntu:~/jadx/build# </span>ls
-jadx  jadx-0.6.1.zip
-<span class="gp">root@ubuntu:~/jadx/build# </span><span class="nb">cd </span>jadx
-<span class="gp">root@ubuntu:~/jadx/build/jadx# </span>ls
-bin  lib  LICENSE  NOTICE  README.md
-<span class="gp">root@ubuntu:~/jadx/build/jadx# </span><span class="nb">cd </span>bin
-<span class="gp">root@ubuntu:~/jadx/build/jadx/bin# </span>ls
-jadx  jadx.bat  jadx-gui  jadx-gui.bat</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:~/jadx# <span class="nb">ls
+</span>build  build.gradle  gradle  gradlew  gradlew.bat  jadx-cli  jadx-core  jadx-gui  jadx-samples  jadx-test-app  LICENSE  NOTICE  README.md  settings.gradle  version
+root@ubuntu:~/jadx# <span class="nb">cd </span>build/
+root@ubuntu:~/jadx/build# <span class="nb">ls
+</span>jadx  jadx-0.6.1.zip
+root@ubuntu:~/jadx/build# <span class="nb">cd </span>jadx
+root@ubuntu:~/jadx/build/jadx# <span class="nb">ls
+</span>bin  lib  LICENSE  NOTICE  README.md
+root@ubuntu:~/jadx/build/jadx# <span class="nb">cd </span>bin
+root@ubuntu:~/jadx/build/jadx/bin# <span class="nb">ls
+</span>jadx  jadx.bat  jadx-gui  jadx-gui.bat</code></pre></figure>
 
 <p><code class="highlighter-rouge">jadx [apk 이름]</code> 또는 <code class="highlighter-rouge">jadx-gui</code>로 실행 후 apk 파일을 넣어주면 됩니다.</p>
 

@@ -224,20 +224,20 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>다른 언어와 마찬가지로 PowerShell에서 <code class="highlighter-rouge">if</code>, <code class="highlighter-rouge">if~else</code>, <code class="highlighter-rouge">if~elseif~else</code>, <code class="highlighter-rouge">switch</code>를 사용합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">if</span> <span class="o">(</span>1 -gt 0<span class="o">)</span> <span class="o">{</span><span class="s2">"1 &gt; 0"</span><span class="o">}</span>
-1 &gt; 0
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">if</span> <span class="o">(</span>1 -gt 5<span class="o">)</span> <span class="o">{</span> <span class="s2">"1 &gt; 0"</span> <span class="o">}</span> <span class="k">else</span><span class="o">{</span> <span class="s2">"1 &lt; 5"</span> <span class="o">}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">if</span> <span class="o">(</span>1 -gt 0<span class="o">)</span> <span class="o">{</span><span class="s2">"1 &gt; 0"</span><span class="o">}</span>
+1 <span class="o">&gt;</span> 0
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">if</span> <span class="o">(</span>1 -gt 5<span class="o">)</span> <span class="o">{</span> <span class="s2">"1 &gt; 0"</span> <span class="o">}</span> <span class="k">else</span><span class="o">{</span> <span class="s2">"1 &lt; 5"</span> <span class="o">}</span>
 1 &lt; 5
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$num</span> <span class="o">=</span> 2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">if</span> <span class="o">(</span><span class="nv">$num</span> -eq 1<span class="o">)</span> <span class="o">{</span> <span class="s2">"num is 1"</span> <span class="o">}</span> <span class="k">elseif</span><span class="o">(</span> <span class="nv">$num</span> -eq 2 <span class="o">)</span> <span class="o">{</span> <span class="s2">"num is 2"</span> <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="s2">"i don't know"</span> <span class="o">}</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$num</span> <span class="o">=</span> 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">if</span> <span class="o">(</span><span class="nv">$num</span> -eq 1<span class="o">)</span> <span class="o">{</span> <span class="s2">"num is 1"</span> <span class="o">}</span> <span class="k">elseif</span><span class="o">(</span> <span class="nv">$num</span> -eq 2 <span class="o">)</span> <span class="o">{</span> <span class="s2">"num is 2"</span> <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="s2">"i don't know"</span> <span class="o">}</span>
 num is 2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$num</span> <span class="o">=</span> 3</code></pre></figure>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$num</span> <span class="o">=</span> 3</code></pre></figure>
 
 <p>위와 같이 다른 언어에서 사용하는 것과 동일하게 PowerShell에서 사용할 수 있습니다.</p>
 
 <p><code class="highlighter-rouge">switch</code> 구문도 동일하게 사용하지만 좀 더 추가된 것이 있습니다. <code class="highlighter-rouge">*</code>를 이용하는 방법인데, 아래 예제를 보겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">switch</span> <span class="o">(</span><span class="nv">$num</span><span class="o">)</span> <span class="o">{</span>1<span class="o">{</span><span class="s2">"num is 1"</span><span class="o">}</span> 2<span class="o">{</span><span class="s2">"num is two"</span><span class="o">}</span> default<span class="o">{</span><span class="s2">"i don't know"</span><span class="o">}}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">switch</span> <span class="o">(</span><span class="nv">$num</span><span class="o">)</span> <span class="o">{</span>1<span class="o">{</span><span class="s2">"num is 1"</span><span class="o">}</span> 2<span class="o">{</span><span class="s2">"num is two"</span><span class="o">}</span> default<span class="o">{</span><span class="s2">"i don't know"</span><span class="o">}}</span>
 i don<span class="s1">'t know
 PS C:\Users\k3y6reak&gt; $str = "abcd"
 PS C:\Users\k3y6reak&gt; switch -wildcard ($str) { a*{"a~"} *b*{"~b~"} c*{"c~"}}
@@ -250,42 +250,42 @@ a~
 
 <p>마찬가지로 <code class="highlighter-rouge">while</code>, <code class="highlighter-rouge">do~while</code>, <code class="highlighter-rouge">for</code>를 사용할 수 있으며 추가적으로 <code class="highlighter-rouge">do~until</code>, <code class="highlighter-rouge">foreach</code>를 사용할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$count</span> <span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">while</span> <span class="o">(</span> <span class="nv">$count</span> -gt 0<span class="o">)</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$count</span>--
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$count</span> <span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">while</span> <span class="o">(</span> <span class="nv">$count</span> -gt 0<span class="o">)</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$count</span>--
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
 count is 3
 count is 2
 count is 1
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$count</span> <span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">do</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$count</span>--
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
-<span class="gp">&gt;&gt; </span><span class="k">while</span><span class="o">(</span> <span class="nv">$count</span> -gt 0<span class="o">)</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$count</span> <span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">do</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$count</span>--
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
+<span class="o">&gt;&gt;</span> <span class="k">while</span><span class="o">(</span> <span class="nv">$count</span> -gt 0<span class="o">)</span>
 count is 3
 count is 2
 count is 1</code></pre></figure>
 
 <p><code class="highlighter-rouge">while</code>, <code class="highlighter-rouge">do~while</code>은 동일하게 실행됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$count</span> <span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">do</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$count</span>--
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
-<span class="gp">&gt;&gt; </span><span class="k">until</span><span class="o">(</span> <span class="nv">$count</span> -gt 0<span class="o">)</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$count</span> <span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">do</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$count</span>--
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
+<span class="o">&gt;&gt;</span> <span class="k">until</span><span class="o">(</span> <span class="nv">$count</span> -gt 0<span class="o">)</span>
 count is 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">do</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$count</span>--
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
-<span class="gp">&gt;&gt; </span><span class="k">until</span><span class="o">(</span> <span class="nv">$count</span> -lt 0<span class="o">)</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">do</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="s2">"count is </span><span class="nv">$count</span><span class="s2">"</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$count</span>--
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
+<span class="o">&gt;&gt;</span> <span class="k">until</span><span class="o">(</span> <span class="nv">$count</span> -lt 0<span class="o">)</span>
 count is 2
 count is 1
 count is 0</code></pre></figure>
@@ -296,10 +296,10 @@ count is 0</code></pre></figure>
 
 <p>for문 또한 동일하게 사용할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">for</span> <span class="o">(</span><span class="nv">$i</span> <span class="o">=</span> 0; <span class="nv">$i</span> -lt 10; <span class="nv">$i</span>++<span class="o">)</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="s2">"i is </span><span class="nv">$i</span><span class="s2">"</span>
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">for</span> <span class="o">(</span><span class="nv">$i</span> <span class="o">=</span> 0; <span class="nv">$i</span> -lt 10; <span class="nv">$i</span>++<span class="o">)</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="s2">"i is </span><span class="nv">$i</span><span class="s2">"</span>
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
 i is 0
 i is 1
 i is 2
@@ -313,17 +313,17 @@ i is 9</code></pre></figure>
 
 <p><code class="highlighter-rouge">foreach</code> 구문은 python 에서 for문과 동일합니다. java에도 foreach구문이 있죠.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> <span class="s2">"Hello World!"</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">foreach</span> <span class="o">(</span><span class="nv">$str</span> <span class="k">in</span> <span class="nv">$arr</span><span class="o">)</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$str</span>
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> <span class="s2">"Hello World!"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">foreach</span> <span class="o">(</span><span class="nv">$str</span> <span class="k">in</span> <span class="nv">$arr</span><span class="o">)</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$str</span>
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
 Hello World!
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> 1,2,3,4,5
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="k">foreach</span><span class="o">(</span><span class="nv">$num</span> <span class="k">in</span> <span class="nv">$arr</span><span class="o">)</span>
-<span class="gp">&gt;&gt; </span><span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$num</span>
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> 1,2,3,4,5
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="k">foreach</span><span class="o">(</span><span class="nv">$num</span> <span class="k">in</span> <span class="nv">$arr</span><span class="o">)</span>
+<span class="o">&gt;&gt;</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$num</span>
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
 1
 2
 3
@@ -334,7 +334,7 @@ Hello World!
 
 <p>이 외에도 ForEach-Object와 Where-Object가 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Process</span> | <span class="k">ForEach</span>-Object <span class="o">{</span><span class="nv">$_</span>.Name<span class="o">}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-Process</span> | <span class="k">ForEach</span>-Object <span class="o">{</span><span class="nv">$_</span>.Name<span class="o">}</span>
 acrotray
 ApplicationFrameHost
 armsvc
@@ -363,10 +363,10 @@ powershell</code></pre></figure>
 
 <p>Get-Process를 이용해 얻은 값을 ForEach-Object를 통해서 <code class="highlighter-rouge">_.</code>에 넣어준 후 <code class="highlighter-rouge">Name</code>만 출력해주는 방법입니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-ChildItem </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop | <span class="nb">Where-Object</span> <span class="o">{</span><span class="nv">$_</span>.Name -match <span class="s2">"exe"</span><span class="o">}</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-ChildItem </span>C:\Users\k3y6reak\Desktop | <span class="nb">Where</span>-Object <span class="o">{</span><span class="nv">$_</span>.Name -match <span class="s2">"exe"</span><span class="o">}</span>
 
 
-    디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop
+    디렉터리: C:\Users\k3y6reak\Desktop
 
 
 Mode                LastWriteTime         Length Name

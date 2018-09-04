@@ -4,7 +4,7 @@ title:  "Easy Crack"
 subtitle: "Reversing.kr의 Easy Crack 풀이방법입니다."
 date:   2018-01-22 14:43:00 +0900
 categories: ['wargame']
-tags: reversing-kr
+tags: reversing.kr
 comments: true
 ---
 

@@ -220,7 +220,7 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 <br/>
       <p>PowerShell에서 Module에 관한 명령어를 알아보기 위해서 <code class="highlighter-rouge">Get-Help *module*</code>을 입력합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help</span> <span class="k">*</span>module<span class="k">*</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Help <span class="k">*</span>module<span class="k">*</span>
 
 Name                              Category  Module                    Synopsis
 ----                              --------  ------                    --------
@@ -241,30 +241,30 @@ Save-Module                       <span class="k">Function  </span>PowerShellGet
 Update-Module                     <span class="k">Function  </span>PowerShellGet             ...
 Get-InstalledModule               <span class="k">Function  </span>PowerShellGet             ...
 Find-Module                       <span class="k">Function  </span>PowerShellGet             ...
-about_Modules                     HelpFile                            Explains how to install, import, and use Windows PowerShell modules.</code></pre></figure>
+about_Modules                     HelpFile                            Explains how to <span class="nb">install</span>, import, and use Windows PowerShell modules.</code></pre></figure>
 
 <p>주로 사용하게 될 명령어는 <code class="highlighter-rouge">Import-module</code>과 <code class="highlighter-rouge">Remove-module</code> 입니다. 모듈을 사용하고자 할 때는 Import-module을 사용하고 모듈을 해제 하고자할 때는 Remove-module을 사용합니다.</p>
 
 <p>PowerShell에서 모듈을 사용하기 위해서 <code class="highlighter-rouge">$env:PSModulePath</code>를 입력합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$env</span>:PSModulePath
-C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules;C:<span class="se">\P</span>rogram Files<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules;C:<span class="se">\W</span>INDOWS<span class="se">\s</span>ystem32<span class="se">\W</span>indowsPowerShell<span class="se">\v</span>1.0<span class="se">\M</span>odules</code></pre></figure>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$env</span>:PSModulePath
+C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules</code></pre></figure>
 
 <p>위 결과를 보면 모듈에 대한 경로가 나타나게 된다. 여기서 <code class="highlighter-rouge">C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules</code>로 이동하면 WindowsPowerShell 폴더가 없다는 에러 메시지가 나타난다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">cd </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">cd </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
 <span class="nb">cd</span> : <span class="s1">'C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules'</span> 경로는 존재하지 않으므로 찾을 수 없습니다.
 위치 줄:1 문자:1
-+ <span class="nb">cd </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules
++ <span class="nb">cd </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: <span class="o">(</span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6re...erShell<span class="se">\M</span>odules:String<span class="o">)</span> <span class="o">[</span><span class="nb">Set-Location</span><span class="o">]</span>, ItemNotFoundException
+    + CategoryInfo          : ObjectNotFound: <span class="o">(</span>C:\Users\k3y6re...erShell\Modules:String<span class="o">)</span> <span class="o">[</span><span class="nb">Set-Location</span><span class="o">]</span>, ItemNotFoundException
     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">cd </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments&gt; mkdir WindowsPowerShell
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">cd </span>C:\Users\k3y6reak\Documents\
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents&gt; <span class="nb">mkdir </span>WindowsPowerShell
 
 
-    디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments
+    디렉터리: C:\Users\k3y6reak\Documents
 
 
 Mode                LastWriteTime         Length Name
@@ -272,11 +272,11 @@ Mode                LastWriteTime         Length Name
 d-----   2017. 8. 24.  오전 11:23                WindowsPowerShell
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments&gt; <span class="nb">cd </span>WindowsPowerShell
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell&gt; mkdir Modules
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents&gt; <span class="nb">cd </span>WindowsPowerShell
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell&gt; <span class="nb">mkdir </span>Modules
 
 
-    디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell
+    디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell
 
 
 Mode                LastWriteTime         Length Name
@@ -305,11 +305,11 @@ d-----   2017. 8. 24.  오전 11:24                Modules</code></pre></figure>
 
 <span class="o">}</span></code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; <span class="nb">cp </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\D</span>elFile.psm1 .
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; <span class="nb">ls
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; <span class="nb">cp </span>C:\Users\k3y6reak\Desktop\DelFile.psm1 <span class="nb">.</span>
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; <span class="nb">ls
 
 
-    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules
+    </span>디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
 
 
 Mode                LastWriteTime         Length Name
@@ -318,31 +318,31 @@ Mode                LastWriteTime         Length Name
 
 <p>Modules 디렉토리에 DelFile.psm1을 복사합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; Import-Module .<span class="se">\D</span>elFile.psm1
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; <span class="nb">Get-Command</span> -Module DelFile
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Import-Module .\DelFile.psm1
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Get-Command -Module DelFile
 
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
 <span class="k">Function        </span>DelFile                                            0.0        DelFile
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; Get-Module
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Get-Module
 
 ModuleType Version    Name                                ExportedCommands
 ---------- -------    ----                                ----------------
 Script     0.0        DelFile                             DelFile
-Manifest   3.1.0.0    Microsoft.PowerShell.Management     <span class="o">{</span>Add-Computer, <span class="nb">Add-Content</span>, Checkpoint-Computer, <span class="nb">Clear</span>-Content...<span class="o">}</span>
-Manifest   3.1.0.0    Microsoft.PowerShell.Utility        <span class="o">{</span><span class="nb">Add-Member</span>, Add-Type, <span class="nb">Clear-Variable</span>, <span class="nb">Compare</span>-Object...<span class="o">}</span>
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     <span class="o">{</span><span class="nb">Add-Computer</span>, <span class="nb">Add-Content</span>, <span class="nb">Checkpoint-Computer</span>, <span class="nb">Clear</span>-Content...<span class="o">}</span>
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        <span class="o">{</span><span class="nb">Add-Member</span>, <span class="nb">Add-Type</span>, <span class="nb">Clear-Variable</span>, <span class="nb">Compare</span>-Object...<span class="o">}</span>
 Script     1.2        PSReadline                          <span class="o">{</span>Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, <span class="nb">Set</span>-PSReadlineKeyHandler...<span class="o">}</span></code></pre></figure>
 
 <p><code class="highlighter-rouge">Import-Module</code>을 이용하여 모듈을 추가할 수 있고 <code class="highlighter-rouge">Get-Module</code>을 이용하여 사용되는 모듈을 확인할 수 있습니다.</p>
 
 <p>해당 디렉토리에 <code class="highlighter-rouge">test.txt</code>파일을 생성한 후 추가한 DelFile 모듈을 사용해 보겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; <span class="nb">ls
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; <span class="nb">ls
 
 
-    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules
+    </span>디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
 
 
 Mode                LastWriteTime         Length Name
@@ -351,11 +351,11 @@ Mode                LastWriteTime         Length Name
 -a----   2017. 8. 24.   오후 1:45              0 test.txt
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; DelFile C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules<span class="se">\t</span>est.txt
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; <span class="nb">ls
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; DelFile C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules\test.txt
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; <span class="nb">ls
 
 
-    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules
+    </span>디렉터리: C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules
 
 
 Mode                LastWriteTime         Length Name
@@ -363,13 +363,13 @@ Mode                LastWriteTime         Length Name
 -a----   2017. 8. 24.   오후 1:34            284 DelFile.psm1
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; Remove-Module DelFile
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>ocuments<span class="se">\W</span>indowsPowerShell<span class="se">\M</span>odules&gt; Get-Module
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Remove-Module DelFile
+<span class="nb">PS </span>C:\Users\k3y6reak\Documents\WindowsPowerShell\Modules&gt; Get-Module
 
 ModuleType Version    Name                                ExportedCommands
 ---------- -------    ----                                ----------------
-Manifest   3.1.0.0    Microsoft.PowerShell.Management     <span class="o">{</span>Add-Computer, <span class="nb">Add-Content</span>, Checkpoint-Computer, <span class="nb">Clear</span>-Content...<span class="o">}</span>
-Manifest   3.1.0.0    Microsoft.PowerShell.Utility        <span class="o">{</span><span class="nb">Add-Member</span>, Add-Type, <span class="nb">Clear-Variable</span>, <span class="nb">Compare</span>-Object...<span class="o">}</span>
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     <span class="o">{</span><span class="nb">Add-Computer</span>, <span class="nb">Add-Content</span>, <span class="nb">Checkpoint-Computer</span>, <span class="nb">Clear</span>-Content...<span class="o">}</span>
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        <span class="o">{</span><span class="nb">Add-Member</span>, <span class="nb">Add-Type</span>, <span class="nb">Clear-Variable</span>, <span class="nb">Compare</span>-Object...<span class="o">}</span>
 Script     1.2        PSReadline                          <span class="o">{</span>Get-PSReadlineKeyHandler, Get-PSReadlineOption, Remove-PSReadlineKeyHandler, <span class="nb">Set</span>-PSReadlineKeyHandler...<span class="o">}</span></code></pre></figure>
 
 <p><code class="highlighter-rouge">DelFile 파일경로</code>를 이용하여 test.txt가 삭제된 것을 확인할 수 있으며, 해당 모듈을 사용하지 않을 때는 <code class="highlighter-rouge">Remove-Module 모듈명</code>을 이용해 제거할 수 있습니다.</p>

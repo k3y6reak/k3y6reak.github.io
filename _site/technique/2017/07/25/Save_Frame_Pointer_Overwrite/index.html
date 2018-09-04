@@ -243,7 +243,7 @@ on <a href="/tag/technique-systemhacking/" data-flip="title">System Hacking</a>
 
 <p>위 소스코드를 보면 main 함수에서는 출력과 sub_func()을 호출하고 sub_func 함수에서는 buf가 8개의 공간이 할당되었고 scanf를 이용해 buf에 값을 저장합니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>Dump of assembler code <span class="k">for function </span>main:
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>Dump of assembler code <span class="k">for function </span>main:
 0x0804846d &lt;+0&gt;:	push	ebp
 0x0804846e &lt;+1&gt;:	mov 	ebp,esp
 0x08048470 &lt;+3&gt;:	sub 	esp,0x4
@@ -257,18 +257,18 @@ End of assembler dump.</code></pre></figure>
 
 <p>위 어셈블리 코드에서 puts와 sub_func의 호출을 볼 수 있으며 puts를 호출하기 전 esp에 <code class="highlighter-rouge">0x8048540</code> 값을 저장하고 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/s 0x8048540
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/s 0x8048540
 0x8048540:	<span class="s2">"Main Func"</span></code></pre></figure>
 
 <p><code class="highlighter-rouge">0x804847f</code>에 Breakpoint를 걸고 해당 주소까지 실행해 보도록 하겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>Dump of assembler code <span class="k">for function </span>main:
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>Dump of assembler code <span class="k">for function </span>main:
 	0x0804846d &lt;+0&gt;:	push	ebp
 	0x0804846e &lt;+1&gt;:	mov 	ebp,esp
 	0x08048470 &lt;+3&gt;:	sub 	esp,0x4
 	0x08048473 &lt;+6&gt;:	mov	DWORD PTR <span class="o">[</span>esp],0x8048540
 	0x0804847a &lt;+13&gt;:	call	0x8048330 &lt;puts@plt&gt;
-<span class="o">=</span>&gt;	0x0804847f &lt;+18&gt;:	call	0x804848b &lt;sub_func&gt;
+<span class="o">=&gt;</span>	0x0804847f &lt;+18&gt;:	call	0x804848b &lt;sub_func&gt;
 	0x08048484 &lt;+23&gt;:	mov	eax,0
 	0x08048489 &lt;+28&gt;:	leave
 	0x0804848a &lt;+29&gt;:	ret
@@ -276,15 +276,15 @@ End of assembler dump.</code></pre></figure>
 
 <p>해당 위치에서 esp 부터 10개의 값은 아래와 같습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx <span class="nv">$esp</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/10wx <span class="nv">$esp</span>
 0xbffff154:	0x08048540	0x00000000	0xb7e2fa83	0x00000001
 0xbffff164:	0xbffff1f4	0xbffff1fc	0xb7feccea	0x00000001
 0xbffff174:	0xbffff1f4	0xbffff194</code></pre></figure>
 
 <p>이제 여기서 sub_func 함수 안으로 들어가 보도록 하겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>Dump of assembler code <span class="k">for function </span>sub_func:
-<span class="o">=</span>&gt;	0x0804848b &lt;+0&gt;:	push	ebp
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>Dump of assembler code <span class="k">for function </span>sub_func:
+<span class="o">=&gt;</span>	0x0804848b &lt;+0&gt;:	push	ebp
 	0x0804848c &lt;+1&gt;:	mov 	ebp,esp
 	0x0804848e &lt;+3&gt;:	sub 	esp,0x10
 	0x08048491 &lt;+6&gt;:	lea	eax,[ebp-0x8]
@@ -297,7 +297,7 @@ End of assembler dump.</code></pre></figure>
 
 <p>sub_func 함수 내로 들어온 후 esp 값을 확인해보면 아래와 같습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx <span class="nv">$esp</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/10wx <span class="nv">$esp</span>
 0xbffff150:	0x08048484	0x08048540	0x00000000	0xb7e2fa83
 0xbffff160:	0x00000001	0xbffff1f4	0xbffff1fc	0xb7feccea
 0xbffff170:	0x00000001	0xbffff1f4</code></pre></figure>
@@ -306,19 +306,19 @@ End of assembler dump.</code></pre></figure>
 
 <p><code class="highlighter-rouge">0x804849f</code>에 Breakpoint를 걸고 해당 주소까지 실행 후 스택을 확인해 보도록 하겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>Dump of assembler code <span class="k">for function </span>sub_func:
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>Dump of assembler code <span class="k">for function </span>sub_func:
 	0x0804848b &lt;+0&gt;:	push	ebp
 	0x0804848c &lt;+1&gt;:	mov 	ebp,esp
 	0x0804848e &lt;+3&gt;:	sub 	esp,0x10
 	0x08048491 &lt;+6&gt;:	lea	eax,[ebp-0x8]
 	0x08048494 &lt;+9&gt;:	mov	DWORD PTR[esp+0x4],eax
 	0x08048498 &lt;+13&gt;:	mov	DWORD PTR[esp],0x804854b
-<span class="o">=</span>&gt;	0x0804849f &lt;+20&gt;:	call	0x8048360 &lt;__isoc99_scanf@plt&gt;
+<span class="o">=&gt;</span>	0x0804849f &lt;+20&gt;:	call	0x8048360 &lt;__isoc99_scanf@plt&gt;
 	0x080484a4 &lt;+25&gt;:	leave
 	0x080484a5 &lt;+26&gt;:	ret
 End of assembler dump.</code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx <span class="nv">$esp</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/10wx <span class="nv">$esp</span>
 0xbffff13c:	0x0804854b	0xbffff144	0x00000000	0x00000000
 0xbffff14c:	0xbffff158	0x08048484	0x08048540	0x00000000
 0xbffff15c:	0xb7e2fa83	0x00000001</code></pre></figure>
@@ -326,14 +326,14 @@ End of assembler dump.</code></pre></figure>
 <p>scanf 함수가 사용하는 인자 값은 2개이기 때문에 <code class="highlighter-rouge">0x804854b</code>와 <code class="highlighter-rouge">0xbffff144</code>가 인자 값이 됩니다.
 0x804854b는 <code class="highlighter-rouge">%s</code>가 되며 0xbffff144는 <code class="highlighter-rouge">buf의 주소</code>가 됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx 0xbffff144
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/10wx 0xbffff144
 0xbffff144:	0x00000000	0x00000000	0xbffff158	0x08048484
 0xbffff154:	0x08048540	0x00000000	0xb7e2fa83	0x00000001
 0xbffff164:	0xbffff1f4	0xbffff1fc</code></pre></figure>
 
 <p>0xbffff144의 스택을 살펴보면 아직 scanf가 실행되지 않았기 때문에 값이 0x00000000로 되어있는 것을 알 수 있습니다. scanf가 실행되고 난 뒤를 실펴보기 위해 <code class="highlighter-rouge">ni</code>명령으로 실행 후 <code class="highlighter-rouge">12345678</code>값을 입력하고 다시 스택을 살펴보면 아래와 같습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx 0xbffff144
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/10wx 0xbffff144
 0xbffff144:	0x34333231	0x38373635	0xbffff100	0x08048484
 0xbffff154:	0x08048540	0x00000000	0xb7e2fa83	0x00000001
 0xbffff164:	0xbffff1f4	0xbffff1fc</code></pre></figure>
@@ -371,7 +371,7 @@ src로 받은 값을 buffer에 41개 만큼 저장합니다.</p>
 
 <p>여기서 중요한 것은 <code class="highlighter-rouge">buffer의 크기는 40인데 strncpy를 이용해 41개를 넣어주는 것입니다.</code></p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>pdisas main
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>pdisas main
 Dump of assembler code <span class="k">for function </span>main:
 	0x080484aa &lt;+0&gt;:	push	ebp
 	0x080484ab &lt;+1&gt;:	mov 	ebp,esp
@@ -394,7 +394,7 @@ End of assembler dump.</code></pre></figure>
 <p>problem_child 위치에 Breakpoint를 걸고 `python -c ‘print “A”*40 + “B”’`를 이용해 argv[1]에 값을 넣고 problem_child 함수 안으로 들어갑니다.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">Dump of assembler code <span class="k">for function </span>problem_child:
-<span class="o">=</span>&gt;	0x0804847d &lt;+0&gt;:	push	ebp
+<span class="o">=&gt;</span>	0x0804847d &lt;+0&gt;:	push	ebp
 	0x0804847e &lt;+1&gt;:	mov 	ebp,esp
 	0x08048480 &lt;+3&gt;:	sub 	esp,0x34
 	0x08048483 &lt;+6&gt;:	mov	DWORD PTR <span class="o">[</span>esp+0x8],0x29
@@ -429,7 +429,7 @@ End of assembler dump.</code></pre></figure>
 	0x080484a9 &lt;+44&gt;:	ret
 End of assembler dump.</code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>x/10wx <span class="nv">$ebp</span>-0x28
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>x/10wx <span class="nv">$ebp</span><span class="nt">-0x28</span>
 0xbffff0f4:	0x41414141	0x41414141	0x41414141	0x41414141
 0xbffff104:	0x41414141	0x41414141	0x41414141	0x41414141
 0xbffff114:	0x41414141	0x41414141	0xbffff142 	0x080484de
@@ -442,7 +442,7 @@ End of assembler dump.</code></pre></figure>
 
 <p>함수의 에필로그는 <code class="highlighter-rouge">leave</code>와 <code class="highlighter-rouge">ret</code>이 있는데 이 어셈블리어는 각각 <code class="highlighter-rouge">mov esp, ebp</code> <code class="highlighter-rouge">pop ebp</code>와 <code class="highlighter-rouge">pop eip</code> <code class="highlighter-rouge">jmp eip</code>가 됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>pdisas main
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>pdisas main
 Dump of assembler code <span class="k">for function </span>main:
 	0x080484aa &lt;+0&gt;:	push	ebp
 	0x080484ab &lt;+1&gt;:	mov 	ebp,esp
@@ -458,18 +458,18 @@ Dump of assembler code <span class="k">for function </span>main:
 	0x080484d4 &lt;+42&gt;:	mov	eax,DWORD PTR <span class="o">[</span>eax]
 	0x080484d6 &lt;+44&gt;:	mov	DWORD PTR <span class="o">[</span>esp],eax
 	0x080484d9 &lt;+47&gt;:	call	0x804847d &lt;problem_child&gt;
-<span class="o">=</span>&gt;	0x080484de &lt;+52&gt;:	leave
+<span class="o">=&gt;</span>	0x080484de &lt;+52&gt;:	leave
 	0x080484df &lt;+53&gt;:	ret
 End of assembler dump.</code></pre></figure>
 
 <p>main에서 leave 위치까지 실행한 뒤에 ebp와 esp를 확인하면 아래와 같습니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>i r ebp
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>i r ebp
 ebp 	0xbffff142 	0xbffff142</code></pre></figure>
 
 <p>ebp를 확인한 결과 조작된 0xbffff142가 되었습니다. 여기서 leave 명령을 실행하면 <code class="highlighter-rouge">mov esp,ebp</code>, <code class="highlighter-rouge">pop ebp</code> 이므로 ebp의 값을 esp로 옮기고 pop하여 ebp에 저장합니다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">gdb-peda$ </span>i r ebp esp
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gdb-peda<span class="nv">$ </span>i r ebp esp
 ebp 	0xf1c40000 	0xf1c40000
 esp 	0xbffff146 	0xbffff146</code></pre></figure>
 

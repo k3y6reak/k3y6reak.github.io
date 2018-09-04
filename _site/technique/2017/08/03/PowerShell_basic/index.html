@@ -232,32 +232,10 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 <p><br /><br /></p>
 <h3 id="설명">설명</h3>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">ls
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">ls
 
 
-    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak
-
-
-Mode                LastWriteTime         Length Name
-----                -------------         ------ ----
-d-r---   2017. 7. 31.   오후 8:13                Contacts
-d-r---    2017. 8. 2.   오후 2:33                Desktop
-d-r---    2017. 8. 2.   오후 2:09                Documents
-d-r---    2017. 8. 2.   오후 2:33                Downloads
-d-r---   2017. 7. 31.   오후 8:13                Favorites
-d-r---   2017. 7. 31.   오후 8:13                Links
-d-r---   2017. 7. 31.   오후 8:13                Music
-d-r---   2017. 7. 31.   오후 5:35                OneDrive
-d-r---   2017. 7. 31.   오후 8:13                Pictures
-d-r---   2017. 7. 31.   오후 8:13                Saved Games
-d-r---   2017. 7. 31.   오후 8:13                Searches
-d-r---   2017. 7. 31.   오후 8:13                Videos
-
-
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">dir
-
-
-    </span>디렉터리: C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak
+    </span>디렉터리: C:\Users\k3y6reak
 
 
 Mode                LastWriteTime         Length Name
@@ -276,7 +254,29 @@ d-r---   2017. 7. 31.   오후 8:13                Searches
 d-r---   2017. 7. 31.   오후 8:13                Videos
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt;</code></pre></figure>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">dir
+
+
+    </span>디렉터리: C:\Users\k3y6reak
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-r---   2017. 7. 31.   오후 8:13                Contacts
+d-r---    2017. 8. 2.   오후 2:33                Desktop
+d-r---    2017. 8. 2.   오후 2:09                Documents
+d-r---    2017. 8. 2.   오후 2:33                Downloads
+d-r---   2017. 7. 31.   오후 8:13                Favorites
+d-r---   2017. 7. 31.   오후 8:13                Links
+d-r---   2017. 7. 31.   오후 8:13                Music
+d-r---   2017. 7. 31.   오후 5:35                OneDrive
+d-r---   2017. 7. 31.   오후 8:13                Pictures
+d-r---   2017. 7. 31.   오후 8:13                Saved Games
+d-r---   2017. 7. 31.   오후 8:13                Searches
+d-r---   2017. 7. 31.   오후 8:13                Videos
+
+
+<span class="nb">PS </span>C:\Users\k3y6reak&gt;</code></pre></figure>
 
 <p>PowerShell에서는 PowerShell에서만 사용할 수 있는 명령어도 있지만 기존에 사용하던 Windows 명령어도 사용이 가능하고, Linux에서 사용하던 명령어도 사용할 수 있습니다.</p>
 
@@ -286,7 +286,7 @@ d-r---   2017. 7. 31.   오후 8:13                Videos
 
 <p>alias에 대한 명령어가 어떤것이 있는지 확인하기 위해서 <code class="highlighter-rouge">Get-Help *alias</code>를 입력합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help</span> <span class="k">*</span><span class="nb">alias
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Help <span class="k">*</span><span class="nb">alias
 
 </span>Name                              Category  Module                    Synopsis
 ----                              --------  ------                    --------
@@ -298,7 +298,7 @@ d-r---   2017. 7. 31.   오후 8:13                Videos
 
 <p>위 결과값에서 Get-Alias라는 명령어를 볼 수 있는데 모든 명령어를 확인 하기위해서 <code class="highlighter-rouge">Get-Alias *</code>를 입력합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Alias</span> <span class="k">*</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-Alias</span> <span class="k">*</span>
 
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
@@ -312,13 +312,13 @@ Alias           <span class="nb">ls</span> -&gt; <span class="nb">Get-ChildItem<
 
 <p>PowerShell에서는 명령어에 대한 예시들을 <code class="highlighter-rouge">Get-Help</code>를 통해서 알 수 있습니다. 사용하는 OS의 환경에 따라, Get-Help 명령어가 안 될 수도 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help Get-Alias
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Help <span class="nb">Get-Alias
 
 </span>이름
     <span class="nb">Get-Alias
 
 </span>구문
-    <span class="nb">Get-Alias</span> <span class="o">[[</span>-Name] &lt;<span class="kt">string</span><span class="o">[]</span>&gt;]  <span class="o">[</span>&lt;CommonParameters&gt;]
+    <span class="nb">Get-Alias</span> <span class="o">[[</span>-Name] &lt;<span class="kt">string</span><span class="o">[]&gt;]</span>  <span class="o">[</span>&lt;CommonParameters&gt;]
 
     <span class="nb">Get-Alias</span>  <span class="o">[</span>&lt;CommonParameters&gt;]
 
@@ -339,7 +339,7 @@ Alias           <span class="nb">ls</span> -&gt; <span class="nb">Get-ChildItem<
 
 <p>설치가 완료되면 <code class="highlighter-rouge">Get-Help Get-Alias -examples</code>를 입력해 봅니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help Get-Alias</span> -examples
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Help <span class="nb">Get-Alias</span> -examples
 
 이름
     <span class="nb">Get-Alias
@@ -350,14 +350,14 @@ Alias           <span class="nb">ls</span> -&gt; <span class="nb">Get-ChildItem<
 
     Example 1: Get all aliases <span class="k">in </span>the current session
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias
-    </span>CommandType     Name
+    <span class="nb">PS </span>C:\&gt;Get-Alias
+    CommandType     Name
     -----------     ----
     Alias           % -&gt; <span class="k">ForEach</span>-Object
-    Alias           ? -&gt; <span class="nb">Where-Object
-    </span>Alias           <span class="nb">ac</span> -&gt; <span class="nb">Add-Content
-    </span>Alias           <span class="nb">asnp</span> -&gt; <span class="nb">Add-PSSnapin
-    </span>Alias           <span class="nb">cat</span> -&gt; <span class="nb">Get-Content
+    Alias           ? -&gt; <span class="nb">Where</span>-Object
+    Alias           <span class="nb">ac</span> -&gt; <span class="nb">Add-Content
+    </span>Alias           <span class="nb">asnp</span> -&gt; Add-PSSnapin
+    Alias           <span class="nb">cat</span> -&gt; <span class="nb">Get-Content
     </span>Alias           <span class="nb">cd</span> -&gt; <span class="nb">Set-Location
     </span>Alias           <span class="nb">chdir</span> -&gt; <span class="nb">Set-Location
     </span>Alias           <span class="nb">clc</span> -&gt; <span class="nb">Clear-Content
@@ -366,34 +366,34 @@ Alias           <span class="nb">ls</span> -&gt; <span class="nb">Get-ChildItem<
 
     This <span class="nb">command </span>gets all aliases <span class="k">in </span>the current session.
 
-    The output shows the &lt;<span class="nb">alias</span>&gt; -&gt; &lt;definition&gt; format that was introduced <span class="k">in </span>Windows PowerShell 3.0. This format is u
-    sed only <span class="k">for </span>aliases that <span class="k">do </span>not include hyphens, because aliases with hyphens are typically preferred names <span class="k">for </span>cm
+    The output shows the &lt;<span class="nb">alias</span><span class="o">&gt;</span> -&gt; &lt;definition&gt; format that was introduced <span class="k">in </span>Windows PowerShell 3.0. This format is u
+    <span class="nb">sed </span>only <span class="k">for </span>aliases that <span class="k">do </span>not include hyphens, because aliases with hyphens are typically preferred names <span class="k">for </span>cm
     dlets and functions, rather than nicknames.
     Example 2: Get aliases by name
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> -Name g<span class="k">*</span>, s<span class="k">*</span> -Exclude Get-<span class="k">*</span>
+    <span class="nb">PS </span>C:\&gt;Get-Alias -Name g<span class="k">*</span>, s<span class="k">*</span> -Exclude Get-<span class="k">*</span>
 
     This <span class="nb">command </span>gets all aliases that <span class="k">begin </span>with g or s, except <span class="k">for </span>aliases that <span class="k">begin </span>with Get-.
     Example 3: Get aliases <span class="k">for </span>a cmdlet
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> -Definition <span class="nb">Get-ChildItem
+    <span class="nb">PS </span>C:\&gt;Get-Alias -Definition <span class="nb">Get-ChildItem
 
     </span>This <span class="nb">command </span>gets the aliases <span class="k">for </span>the <span class="nb">Get-ChildItem </span>cmdlet.
 
     By default, the <span class="nb">Get-Alias </span>cmdlet gets the item name when you know the alias. The Definition parameter gets the alia
     s when you know the item name.
-    Example 4: Get aliases by <span class="nb">property
+    Example 4: Get aliases by property
 
-    PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> | <span class="nb">Where-Object</span> <span class="o">{</span><span class="nv">$_</span>.Options -Match <span class="s2">"ReadOnly"</span><span class="o">}</span>
+    <span class="nb">PS </span>C:\&gt;Get-Alias | <span class="nb">Where</span>-Object <span class="o">{</span><span class="nv">$_</span>.Options -Match <span class="s2">"ReadOnly"</span><span class="o">}</span>
 
-    This <span class="nb">command </span>gets all aliases <span class="k">in </span>which the value of the Options <span class="nb">property </span>is ReadOnly. This <span class="nb">command </span>provides a quick
+    This <span class="nb">command </span>gets all aliases <span class="k">in </span>which the value of the Options property is ReadOnly. This <span class="nb">command </span>provides a quick
      way to find the aliases that are built into Windows PowerShell, because they have the ReadOnly option.
 
-    Options is just one <span class="nb">property </span>of the AliasInfo objects that <span class="nb">Get-Alias </span>gets. To find all properties and methods of Al
-    iasInfo objects, <span class="nb">type</span> <span class="sb">`</span><span class="nb">Get-Alias</span> | <span class="nb">get-member</span><span class="sb">`</span>.
+    Options is just one property of the AliasInfo objects that <span class="nb">Get-Alias </span>gets. To find all properties and methods of Al
+    iasInfo objects, <span class="nb">type</span> <span class="se">`G</span>et-Alias | <span class="nb">get-member</span><span class="se">`.</span>
     Example 5: Get aliases by name and <span class="k">filter </span>by beginning letter
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Get-Alias</span> -Definition <span class="s2">"*-PSSession"</span> -Exclude e<span class="k">*</span> -Scope Global
+    <span class="nb">PS </span>C:\&gt;Get-Alias -Definition <span class="s2">"*-PSSession"</span> -Exclude e<span class="k">*</span> -Scope Global
 
     This example gets aliases <span class="k">for </span>commands that have names that <span class="k">end in</span> -PSSession, except <span class="k">for </span>those that <span class="k">begin </span>with e.
 

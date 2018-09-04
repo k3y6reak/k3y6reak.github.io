@@ -224,136 +224,136 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>PowerShell에서 명령어를 사용하기 위해서 <code class="highlighter-rouge">Get-Command</code>를 입력하면 아래와 같이 많은 명령어들이 출력되는 것을 볼 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Command
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Command
 
-</span>CommandType     Name                                               Version    Source
+CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Alias           Add-ProvisionedAppxPackage                         3.0        Dism
-Alias           Apply-WindowsUnattend                              3.0        Dism
-Alias           Disable-PhysicalDiskIndication                     2.0.0.0    Storage
-Alias           Disable-StorageDiagnosticLog                       2.0.0.0    Storage
-Alias           Enable-PhysicalDiskIndication                      2.0.0.0    Storage
-Alias           Enable-StorageDiagnosticLog                        2.0.0.0    Storage
-Alias           Flush-Volume                                       2.0.0.0    Storage
-Alias           Get-DiskSNV                                        2.0.0.0    Storage
-Alias           Get-PhysicalDiskSNV                                2.0.0.0    Storage
-Alias           Get-ProvisionedAppxPackage                         3.0        Dism
-Alias           Get-StorageEnclosureSNV                            2.0.0.0    Storage
-Alias           Initialize-Volume                                  2.0.0.0    Storage
-Alias           <span class="nb">Move</span>-SmbClient                                     2.0.0.0    SmbWitness
-Alias           Remove-ProvisionedAppxPackage                      3.0        Dism
-Alias           <span class="nb">Write</span>-FileSystemCache                              2.0.0.0    Storage
+Alias           <span class="nb">Add-ProvisionedAppxPackage                         </span>3.0        Dism
+Alias           <span class="nb">Apply-WindowsUnattend                              </span>3.0        Dism
+Alias           <span class="nb">Disable-PhysicalDiskIndication                     </span>2.0.0.0    Storage
+Alias           <span class="nb">Disable-StorageDiagnosticLog                       </span>2.0.0.0    Storage
+Alias           <span class="nb">Enable-PhysicalDiskIndication                      </span>2.0.0.0    Storage
+Alias           <span class="nb">Enable-StorageDiagnosticLog                        </span>2.0.0.0    Storage
+Alias           <span class="nb">Flush-Volume                                       </span>2.0.0.0    Storage
+Alias           <span class="nb">Get-DiskSNV                                        </span>2.0.0.0    Storage
+Alias           <span class="nb">Get-PhysicalDiskSNV                                </span>2.0.0.0    Storage
+Alias           <span class="nb">Get-ProvisionedAppxPackage                         </span>3.0        Dism
+Alias           <span class="nb">Get-StorageEnclosureSNV                            </span>2.0.0.0    Storage
+Alias           <span class="nb">Initialize-Volume                                  </span>2.0.0.0    Storage
+Alias           <span class="nb">Move-SmbClient                                     </span>2.0.0.0    SmbWitness
+Alias           <span class="nb">Remove-ProvisionedAppxPackage                      </span>3.0        Dism
+Alias           <span class="nb">Write-FileSystemCache                              </span>2.0.0.0    Storage
 <span class="k">Function        </span>A:
-<span class="k">Function        </span>Add-BCDataCacheExtension                           1.0.0.0    BranchCache
+<span class="k">Function        </span><span class="nb">Add-BCDataCacheExtension                           </span>1.0.0.0    BranchCache
 <span class="k">Function        </span>Add-BitLockerKeyProtector                          1.0.0.0    BitLocker
-<span class="k">Function        </span>Add-DnsClientNrptRule                              1.0.0.0    DnsClient
-<span class="k">Function        </span>Add-DtcClusterTMMapping                            1.0.0.0    MsDtc
-<span class="k">Function        </span>Add-EtwTraceProvider                               1.0.0.0    EventTracingManagement
-<span class="k">Function        </span>Add-InitiatorIdToMaskingSet                        2.0.0.0    Storage
+<span class="k">Function        </span><span class="nb">Add-DnsClientNrptRule                              </span>1.0.0.0    DnsClient
+<span class="k">Function        </span><span class="nb">Add-DtcClusterTMMapping                            </span>1.0.0.0    MsDtc
+<span class="k">Function        </span><span class="nb">Add-EtwTraceProvider                               </span>1.0.0.0    EventTracingManagement
+<span class="k">Function        </span><span class="nb">Add-InitiatorIdToMaskingSet                        </span>2.0.0.0    Storage
 ...<span class="o">(</span>생략<span class="o">)</span></code></pre></figure>
 
 <p>이 중에서 알아볼 명령어는 cmdlet에 대한 명령어인데 해당 명령어만 출력하도록 해보겠습니다.
 <code class="highlighter-rouge">Get-Command -CommandType cmdlet</code>을 실행합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Command</span> -CommandType cmdlet
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Command -CommandType cmdlet
 
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Cmdlet          Add-AppvClientConnectionGroup                      1.0.0.0    AppvClient
-Cmdlet          Add-AppvClientPackage                              1.0.0.0    AppvClient
-Cmdlet          Add-AppvPublishingServer                           1.0.0.0    AppvClient
-Cmdlet          Add-AppxPackage                                    2.0.0.0    Appx
-Cmdlet          Add-AppxProvisionedPackage                         3.0        Dism
-Cmdlet          Add-AppxVolume                                     2.0.0.0    Appx
-Cmdlet          Add-BitsFile                                       2.0.0.0    BitsTransfer
-Cmdlet          Add-CertificateEnrollmentPolicyServer              1.0.0.0    PKI
-Cmdlet          Add-Computer                                       3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          <span class="nb">Add-AppvClientConnectionGroup                      </span>1.0.0.0    AppvClient
+Cmdlet          <span class="nb">Add-AppvClientPackage                              </span>1.0.0.0    AppvClient
+Cmdlet          <span class="nb">Add-AppvPublishingServer                           </span>1.0.0.0    AppvClient
+Cmdlet          <span class="nb">Add-AppxPackage                                    </span>2.0.0.0    Appx
+Cmdlet          <span class="nb">Add-AppxProvisionedPackage                         </span>3.0        Dism
+Cmdlet          <span class="nb">Add-AppxVolume                                     </span>2.0.0.0    Appx
+Cmdlet          <span class="nb">Add-BitsFile                                       </span>2.0.0.0    BitsTransfer
+Cmdlet          <span class="nb">Add-CertificateEnrollmentPolicyServer              </span>1.0.0.0    PKI
+Cmdlet          <span class="nb">Add-Computer                                       </span>3.1.0.0    Microsoft.PowerShell.Management
 Cmdlet          <span class="nb">Add-Content                                        </span>3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          <span class="nb">Add-History                                        </span>3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Add-JobTrigger                                     1.1.0.0    PSScheduledJob
-Cmdlet          Add-KdsRootKey                                     1.0.0.0    Kds
-Cmdlet          Add-LocalGroupMember                               1.0.0.0    Microsoft.PowerShell.LocalAccounts
+Cmdlet          Add-History                                        3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          <span class="nb">Add-JobTrigger                                     </span>1.1.0.0    PSScheduledJob
+Cmdlet          <span class="nb">Add-KdsRootKey                                     </span>1.0.0.0    Kds
+Cmdlet          <span class="nb">Add-LocalGroupMember                               </span>1.0.0.0    Microsoft.PowerShell.LocalAccounts
 Cmdlet          <span class="nb">Add-Member                                         </span>3.1.0.0    Microsoft.PowerShell.Utility
-Cmdlet          <span class="nb">Add-PSSnapin                                       </span>3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Add-SignerRule                                     1.0        ConfigCI
-Cmdlet          Add-Type                                           3.1.0.0    Microsoft.PowerShell.Utility</code></pre></figure>
+Cmdlet          Add-PSSnapin                                       3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          <span class="nb">Add-SignerRule                                     </span>1.0        ConfigCI
+Cmdlet          <span class="nb">Add-Type                                           </span>3.1.0.0    Microsoft.PowerShell.Utility</code></pre></figure>
 
 <p>cmdlet에 대한 명령어 목록이 출력된 것을 확인할 수 있습니다. 이 중에서 process와 관련된 명령어를 찾고자 한다면 <code class="highlighter-rouge">Get-Command -CommandType cmdlet -Name *process</code> 을 입력합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Command</span> -CommandType cmdlet -Name <span class="k">*process
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Command -CommandType cmdlet -Name <span class="k">*process
 
 </span>CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Cmdlet          Debug-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          <span class="nb">Debug-Process                                      </span>3.1.0.0    Microsoft.PowerShell.Management
 Cmdlet          Enter-PSHostProcess                                3.0.0.0    Microsoft.PowerShell.Core
 Cmdlet          <span class="k">Exit</span>-PSHostProcess                                 3.0.0.0    Microsoft.PowerShell.Core
 Cmdlet          <span class="nb">Get-Process                                        </span>3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          <span class="nb">Start</span>-Process                                      3.1.0.0    Microsoft.PowerShell.Management
+Cmdlet          <span class="nb">Start-Process                                      </span>3.1.0.0    Microsoft.PowerShell.Management
 Cmdlet          <span class="nb">Stop-Process                                       </span>3.1.0.0    Microsoft.PowerShell.Management
-Cmdlet          Wait-Process                                       3.1.0.0    Microsoft.PowerShell.Management</code></pre></figure>
+Cmdlet          <span class="nb">Wait-Process                                       </span>3.1.0.0    Microsoft.PowerShell.Management</code></pre></figure>
 
 <p>여기서 Start-Process를 이용하여 notepad.exe를 실행시켜 보도록 하겠습니다. 그 전에 Start-Process를 어떻게 사용해야 하는지 알고 싶다면 <code class="highlighter-rouge">Get-Help Start-Process -example</code>를 입력합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help Start</span>-Process -example
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Help <span class="nb">Start-Process</span> -example
 
 이름
-    <span class="nb">Start</span>-Process
+    <span class="nb">Start-Process
 
-개요
+</span>개요
     Starts one or more processes on the <span class="nb">local </span>computer.
 
 
     Example 1: <span class="nb">Start </span>a <span class="k">process </span>that uses default values
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Start</span>-Process -FilePath <span class="s2">"sort.exe"</span>
+    <span class="nb">PS </span>C:\&gt;Start-Process -FilePath <span class="s2">"sort.exe"</span>
 
     This <span class="nb">command </span>starts a <span class="k">process </span>that uses the Sort.exe file <span class="k">in </span>the current folder. The <span class="nb">command </span>uses all of the default values, including the default window style, working folder, and credentials.
     Example 2: Print a text file
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Start</span>-Process -FilePath <span class="s2">"myfile.txt"</span> -WorkingDirectory <span class="s2">"C:</span><span class="se">\P</span><span class="s2">S-Test"</span> -Verb Print
+    <span class="nb">PS </span>C:\&gt;Start-Process -FilePath <span class="s2">"myfile.txt"</span> -WorkingDirectory <span class="s2">"C:\PS-Test"</span> -Verb Print
 
-    This <span class="nb">command </span>starts a <span class="k">process </span>that prints the C:<span class="se">\P</span>S-Test<span class="se">\M</span>yFile.txt file.
+    This <span class="nb">command </span>starts a <span class="k">process </span>that prints the C:\PS-Test\MyFile.txt file.
     Example 3: <span class="nb">Start </span>a <span class="k">process </span>to <span class="nb">sort </span>items to a new file
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Start</span>-Process -FilePath <span class="s2">"Sort.exe"</span> -RedirectStandardInput <span class="s2">"Testsort.txt"</span> -RedirectStandardOutput <span class="s2">"Sorted.txt"</span> -RedirectStandardError <span class="s2">"SortError.txt"</span> -UseNewEnvironment
+    <span class="nb">PS </span>C:\&gt;Start-Process -FilePath <span class="s2">"Sort.exe"</span> -RedirectStandardInput <span class="s2">"Testsort.txt"</span> -RedirectStandardOutput <span class="s2">"Sorted.txt"</span> -RedirectStandardError <span class="s2">"SortError.txt"</span> -UseNewEnvironment
 
     This <span class="nb">command </span>starts a <span class="k">process </span>that sorts items <span class="k">in </span>the Testsort.txt file and returns the sorted items <span class="k">in </span>the Sorted.txt files. Any errors are written to the SortError.txt file.
 
     The UseNewEnvironment parameter specifies that the <span class="k">process </span>runs with its own environment variables.
     Example 4: <span class="nb">Start </span>a <span class="k">process in </span>a maximized window
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Start</span>-Process -FilePath <span class="s2">"notepad"</span> -Wait -WindowStyle Maximized
+    <span class="nb">PS </span>C:\&gt;Start-Process -FilePath <span class="s2">"notepad"</span> -Wait -WindowStyle Maximized
 
-    This <span class="nb">command </span>starts the Notepad <span class="k">process</span>. It maximizes the window and retains the window <span class="k">until </span>the <span class="k">process </span>completes.
+    This <span class="nb">command </span>starts the Notepad <span class="k">process</span><span class="nb">.</span> It maximizes the window and retains the window <span class="k">until </span>the <span class="k">process </span>completes.
     Example 5: <span class="nb">Start </span>Windows Powershell as an administrator
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Start</span>-Process -FilePath <span class="s2">"powershell"</span> -Verb runAs
+    <span class="nb">PS </span>C:\&gt;Start-Process -FilePath <span class="s2">"powershell"</span> -Verb runAs
 
     This <span class="nb">command </span>starts Windows PowerShell by <span class="k">using </span>the Run as administrator option.
     Example 6: <span class="k">Using </span>different verbs to <span class="nb">start </span>a <span class="k">process
 
-    </span><span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nv">$startExe</span> <span class="o">=</span> <span class="nb">New-Object </span>System.Diagnostics.ProcessStartInfo -Args PowerShell.exe
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nv">$startExe</span>.verbs
+    </span><span class="nb">PS </span>C:\&gt;<span class="nv">$startExe</span> <span class="o">=</span> <span class="nb">New-Object </span>System.Diagnostics.ProcessStartInfo -Args PowerShell.exe
+    <span class="nb">PS </span>C:\&gt; <span class="nv">$startExe</span>.verbs
     open
     runas
 
     <span class="c1"># Starts a PowerShell process in a new console window.</span>
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nb">Start</span>-Process -FilePath <span class="s2">"powershell.exe"</span> -Verb open
+    <span class="nb">PS </span>C:\&gt; <span class="nb">Start-Process</span> -FilePath <span class="s2">"powershell.exe"</span> -Verb open
 
     <span class="c1"># Starts a PowerShell process with "Run as Administrator" permissions.</span>
 
-    <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nb">Start</span>-Process -FilePath <span class="s2">"powershell.exe"</span> -Verb runas
+    <span class="nb">PS </span>C:\&gt; <span class="nb">Start-Process</span> -FilePath <span class="s2">"powershell.exe"</span> -Verb runas
 
-    These commands show how to find the verbs that can be used when starting a <span class="k">process</span>, and the effect of <span class="k">using </span>the verbs to <span class="nb">start </span>the <span class="k">process</span>.
+    These commands show how to find the verbs that can be used when starting a <span class="k">process</span>, and the effect of <span class="k">using </span>the verbs to <span class="nb">start </span>the <span class="k">process</span><span class="nb">.</span>
 
-    The available verbs are determined by the file name extension of the file that runs <span class="k">in </span>the <span class="k">process</span>. To find the verbs <span class="k">for </span>a <span class="k">process</span>, create a System.Diagnostics.ProcessStartInfo <span class="kt">object </span><span class="k">for </span>the <span class="k">process </span>file
-     and look <span class="k">in </span>the Verbs <span class="nb">property </span>of the <span class="kt">object</span>. This example uses the PowerShell.exe file that runs <span class="k">in </span>the PowerShell <span class="k">process</span>.
+    The available verbs are determined by the file name extension of the file that runs <span class="k">in </span>the <span class="k">process</span><span class="nb">.</span> To find the verbs <span class="k">for </span>a <span class="k">process</span>, create a System.Diagnostics.ProcessStartInfo <span class="kt">object </span><span class="k">for </span>the <span class="k">process </span>file
+     and look <span class="k">in </span>the Verbs property of the <span class="kt">object</span><span class="nb">.</span> This example uses the PowerShell.exe file that runs <span class="k">in </span>the PowerShell <span class="k">process</span><span class="nb">.</span>
 
-    The first <span class="nb">command </span>uses <span class="nb">New-Object </span>to create a System.Diagnostics.ProcessStartInfo <span class="kt">object </span><span class="k">for </span>PowerShell.exe, the file that runs <span class="k">in </span>the PowerShell <span class="k">process</span>. The <span class="nb">command </span>saves the ProcessStartInfo <span class="kt">object </span><span class="k">in </span>t
+    The first <span class="nb">command </span>uses <span class="nb">New-Object </span>to create a System.Diagnostics.ProcessStartInfo <span class="kt">object </span><span class="k">for </span>PowerShell.exe, the file that runs <span class="k">in </span>the PowerShell <span class="k">process</span><span class="nb">.</span> The <span class="nb">command </span>saves the ProcessStartInfo <span class="kt">object </span><span class="k">in </span>t
     he <span class="nv">$startExe</span> variable.
 
-    The second <span class="nb">command </span>displays the values <span class="k">in </span>the Verbs <span class="nb">property </span>of the ProcessStartInfo <span class="kt">object </span><span class="k">in </span>the <span class="nv">$startExe</span> variable. The results show that you can use the Open and Runas verbs with PowerShell.exe, or wit
+    The second <span class="nb">command </span>displays the values <span class="k">in </span>the Verbs property of the ProcessStartInfo <span class="kt">object </span><span class="k">in </span>the <span class="nv">$startExe</span> variable. The results show that you can use the Open and Runas verbs with PowerShell.exe, or wit
     <span class="nb">h </span>any <span class="k">process </span>that runs a .exe file.
 
     The third <span class="nb">command </span>starts a PowerShell <span class="k">process </span>with the Open verb. The Open verb starts the <span class="k">process in </span>a new console window.
@@ -367,7 +367,7 @@ Cmdlet          Wait-Process                                       3.1.0.0    Mi
 
 <p>반대로 <code class="highlighter-rouge">Stop-Process notepad.exe</code>를 입력하면 아래와 같이 에러가 발생합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Stop-Process </span>notepad.exe
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Stop-Process </span>notepad.exe
 <span class="nb">Stop-Process</span> : <span class="s1">'InputObject'</span> 매개 변수를 바인딩할 수 없습니다. <span class="s2">"System.String"</span> 유형의 <span class="s2">"notepad.exe"</span> 값을 <span class="s2">"System.Diagnostics.Process"</span> 유형으로 변환할 수 없습니다.
 위치 줄:1 문자:14
 + <span class="nb">Stop-Process </span>notepad.exe
@@ -377,7 +377,7 @@ Cmdlet          Wait-Process                                       3.1.0.0    Mi
 
 <p><code class="highlighter-rouge">Get-Help</code>를 이용해서 Stop-Proces에 대한 예시를 살펴봅니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Help Stop-Process</span> -example
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; Get-Help <span class="nb">Stop-Process</span> -example
 
 이름
     <span class="nb">Stop-Process
@@ -388,7 +388,7 @@ Cmdlet          Wait-Process                                       3.1.0.0    Mi
 
     Example 1: Stop all instances of a <span class="k">process
 
-    </span><span class="nb">PS </span>C:<span class="se">\&gt;</span><span class="nb">Stop-Process</span> -Name <span class="s2">"notepad"</span></code></pre></figure>
+    </span><span class="nb">PS </span>C:\&gt;Stop-Process -Name <span class="s2">"notepad"</span></code></pre></figure>
 
 <p>위와 같이 <code class="highlighter-rouge">-Name</code>이라는 옵션을 이용해야 합니다. 직접 실행해 보면 notepad가 종료된 것을 알 수 있습니다.</p>
 

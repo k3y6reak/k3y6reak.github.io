@@ -253,11 +253,11 @@ root@android:/ <span class="c">#</span></code></pre></figure>
 <p>로컬에서 안드로이드 기기로 파일을 전송하고자 하는 경우 <code class="highlighter-rouge">adb push</code>를 사용합니다</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak:~ k3y6reak<span class="nv">$ </span>vim test.txt
-k3y6reak:~ k3y6reak<span class="nv">$ </span>cat test.txt
+k3y6reak:~ k3y6reak<span class="nv">$ </span><span class="nb">cat </span>test.txt
 k3y6reak <span class="nb">test
 </span>k3y6reak:~ k3y6reak<span class="nv">$ </span>adb push test.txt /mnt/sdcard
 test.txt: 1 file pushed. 0.0 MB/s <span class="o">(</span>14 bytes <span class="k">in </span>0.002s<span class="o">)</span>
-k3y6reak:~ k3y6reak<span class="nv">$ </span>adb shell ls /mnt/sdcard
+k3y6reak:~ k3y6reak<span class="nv">$ </span>adb shell <span class="nb">ls</span> /mnt/sdcard
 Alarms
 Android
 DCIM
@@ -295,18 +295,18 @@ root@android:/mnt/sdcard <span class="c"># mv test.txt test2.txt</span>
 root@android:/mnt/sdcard <span class="c"># exit</span>
 k3y6reak:~ k3y6reak<span class="nv">$ </span>adb pull /mnt/sdcard/test2.txt test2.txt
 /mnt/sdcard/test2.txt: 1 file pulled. 0.0 MB/s <span class="o">(</span>14 bytes <span class="k">in </span>0.001s<span class="o">)</span>
-k3y6reak:~ k3y6reak<span class="nv">$ </span>cat test2.txt
+k3y6reak:~ k3y6reak<span class="nv">$ </span><span class="nb">cat </span>test2.txt
 k3y6reak <span class="nb">test</span></code></pre></figure>
 
 <h4 id="adb-install">adb install</h4>
 
 <p>apk 파일을 설치하고 하는 경우 <code class="highlighter-rouge">adb install</code>을 사용합니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak:Desktop k3y6reak<span class="nv">$ </span>adb install SoundMeter.apk
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak:Desktop k3y6reak<span class="nv">$ </span>adb <span class="nb">install </span>SoundMeter.apk
 SoundMeter.apk: 1 file pushed. 17.5 MB/s <span class="o">(</span>845724 bytes <span class="k">in </span>0.046s<span class="o">)</span>
 	pkg: /data/local/tmp/SoundMeter.apk
 Success
-rm failed <span class="k">for</span> -f, No such file or directory</code></pre></figure>
+<span class="nb">rm </span>failed <span class="k">for</span> <span class="nt">-f</span>, No such file or directory</code></pre></figure>
 
 <p>해당 안드로이드 기기에서 확인하면 설치가 완료된 것을 볼 수 있습니다.</p>
 
@@ -333,17 +333,17 @@ Success</code></pre></figure>
 USER     PID   PPID  VSIZE  RSS     WCHAN    PC         NAME
 u0_a49    1348  165   509072 29960 ffffffff b75eb507 S me.daei.soundmeter</code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak:Desktop k3y6reak<span class="nv">$ </span>adb logcat | grep -i 1348
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak:Desktop k3y6reak<span class="nv">$ </span>adb logcat | <span class="nb">grep</span> <span class="nt">-i</span> 1348
 I/ActivityManager<span class="o">(</span>  326<span class="o">)</span>: Start proc me.daei.soundmeter <span class="k">for </span>activity me.daei.soundmeter/.MainActivity: <span class="nv">pid</span><span class="o">=</span>1348 <span class="nv">uid</span><span class="o">=</span>10049 <span class="nv">gids</span><span class="o">={</span>1015, 3003, 1028<span class="o">}</span>
-W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to find class referenced <span class="k">in </span>signature <span class="o">(</span>Landroid/view/SearchEvent;<span class="o">)</span>
+W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to find class referenced <span class="k">in </span>signature <span class="o">(</span>Landroid/view/SearchEvent<span class="p">;</span><span class="o">)</span>
 I/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: Could not find method android.view.Window<span class="nv">$Callback</span>.onSearchRequested, referenced from method android.support.v7.view.n.onSearchRequested
-W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to resolve interface method 6404: Landroid/view/Window<span class="nv">$Callback</span>;.onSearchRequested <span class="o">(</span>Landroid/view/SearchEvent;<span class="o">)</span>Z
+W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to resolve interface method 6404: Landroid/view/Window<span class="nv">$Callback</span><span class="p">;</span>.onSearchRequested <span class="o">(</span>Landroid/view/SearchEvent<span class="p">;</span><span class="o">)</span>Z
 D/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: replacing opcode 0x72 at 0x0002
 I/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: Could not find method android.view.Window<span class="nv">$Callback</span>.onWindowStartingActionMode, referenced from method android.support.v7.view.n.onWindowStartingActionMode
-W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to resolve interface method 6408: Landroid/view/Window<span class="nv">$Callback</span>;.onWindowStartingActionMode <span class="o">(</span>Landroid/view/ActionMode<span class="nv">$Callback</span>;I<span class="o">)</span>Landroid/view/ActionMode;
+W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to resolve interface method 6408: Landroid/view/Window<span class="nv">$Callback</span><span class="p">;</span>.onWindowStartingActionMode <span class="o">(</span>Landroid/view/ActionMode<span class="nv">$Callback</span><span class="p">;</span>I<span class="o">)</span>Landroid/view/ActionMode<span class="p">;</span>
 D/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: replacing opcode 0x72 at 0x0002
 I/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: Could not find method android.view.ViewGroup.onRtlPropertiesChanged, referenced from method android.support.v7.widget.Toolbar.onRtlPropertiesChanged
-W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to resolve virtual method 6345: Landroid/view/ViewGroup;.onRtlPropertiesChanged <span class="o">(</span>I<span class="o">)</span>V
+W/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: unable to resolve virtual method 6345: Landroid/view/ViewGroup<span class="p">;</span>.onRtlPropertiesChanged <span class="o">(</span>I<span class="o">)</span>V
 D/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: VFY: replacing opcode 0x6f at 0x0007
 I/dalvikvm<span class="o">(</span> 1348<span class="o">)</span>: Could not find method android.content.res.Resources.getDrawable, referenced from method android.support.v7.widget.cn.getDrawable
 

@@ -226,15 +226,15 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>산술 연산자는 <code class="highlighter-rouge">덧셈, 뺄셈, 나눗셈, 곱셈</code>을 하는 것을 뜻합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 + 1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 + 1
 4
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 - 1
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 - 1
 2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 <span class="k">*</span> 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 <span class="k">*</span> 2
 6
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 / 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 / 2
 1.5
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 % 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 % 2
 1</code></pre></figure>
 
 <p>다른 언어의 경우 나눗셈을 할 때 <code class="highlighter-rouge">정수값</code>을 출력해주지만 PowerSell에서는 <code class="highlighter-rouge">소수</code>로 출력하는 것이 다릅니다.</p>
@@ -243,30 +243,30 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>대입 연산자는 <code class="highlighter-rouge">변수에 값을 넣는 것</code>을 뜻합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> <span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> <span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>
 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> <span class="k">*</span><span class="o">=</span> 2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> <span class="k">*</span><span class="o">=</span> 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>
 6
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> -<span class="o">=</span> 1
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> -<span class="o">=</span> 1
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>
 5
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> +<span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> +<span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>
 8
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> /<span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> /<span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>
 2.66666666666667
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> %<span class="o">=</span> 2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> %<span class="o">=</span> 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>
 0.666666666666667</code></pre></figure>
 
 <h3 id="비교-연산자">비교 연산자</h3>
 
 <p>비교 연산자는 <code class="highlighter-rouge">값을 비교하는 것</code>을 뜻합니다. 다른 언어와는 다르게 ==, !=, &lt; 등 을 사용하지 못합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 2 &lt; 3
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; 2 &lt; 3
 위치 줄:1 문자:3
 + 2 &lt; 3
 +   ~
@@ -274,7 +274,7 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
     + CategoryInfo          : ParserError: <span class="o">(</span>:<span class="o">)</span> <span class="o">[]</span>, ParentContainsErrorRecordException
     + FullyQualifiedErrorId : RedirectionNotSupported
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 2 <span class="o">==</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 2 <span class="o">==</span> 3
 위치 줄:1 문자:1
 + 2 <span class="o">==</span> 3
 + ~
@@ -289,41 +289,41 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 <p><code class="highlighter-rouge">-eq</code>는 equal 로 값이 같은지를 확인합니다. 숫자와 문자 모두 비교가 가능합니다.
 문자를 비교할 때는 대소문자를 따지지 않습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 2 -eq 3
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; 2 -eq 3
 False
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 2 -eq 2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 2 -eq 2
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -eq <span class="s2">"Hello"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -eq <span class="s2">"Hello"</span>
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -eq <span class="s2">"HellO"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -eq <span class="s2">"HellO"</span>
 True</code></pre></figure>
 
 <p><code class="highlighter-rouge">-ne</code>는 not equal 로 값이 다른지를 확인합니다. 숫자와 문자 모두 비교가 가능합니다.
 문자를 비교할 때는 대소문자를 따지지 않습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 2 -ne 3
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; 2 -ne 3
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -ne <span class="s2">"World"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -ne <span class="s2">"World"</span>
 True</code></pre></figure>
 
 <p><code class="highlighter-rouge">-gt</code>는 greater than 로 값이 큰지를 확인합니다. 숫자와 문자 모두 비교가 가능합니다.
 문자를 비교할 때는 각 문자의 ascii 값으로 비교합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 4 -gt 3
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; 4 -gt 3
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -gt <span class="s2">"Hell0"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -gt <span class="s2">"Hell0"</span>
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -gt <span class="s2">"Helln"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -gt <span class="s2">"Helln"</span>
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -gt <span class="s2">"Hellp"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -gt <span class="s2">"Hellp"</span>
 False</code></pre></figure>
 
 <p><code class="highlighter-rouge">-lt</code>는 less than 로 값이 작은지를 확인합니다. 숫자와 문자 모두 비교가 가능합니다.
 문자를 비교할 때는 각 문자의 ascii 값으로 비교합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> -lt <span class="s2">"Hell0"</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> -lt <span class="s2">"Hell0"</span>
 False
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 2 -lt 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 2 -lt 3
 True</code></pre></figure>
 
 <p>이외의 연산자는 직접 실습해 보시길 바랍니다.</p>
@@ -332,11 +332,11 @@ True</code></pre></figure>
 
 <p>리다이렉션은 linux와 동일하게 사용됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span> &gt; hello.txt
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">cat </span>hello.txt
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span> <span class="o">&gt;</span> hello.txt
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">cat </span>hello.txt
 Hello
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"World"</span> &gt;&gt; hello.txt
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">cat </span>hello.txt
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"World"</span> <span class="o">&gt;&gt;</span> hello.txt
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">cat </span>hello.txt
 Hello
 World</code></pre></figure>
 
@@ -344,36 +344,36 @@ World</code></pre></figure>
 
 <p>논리 연산자는 <code class="highlighter-rouge">and, or, not, !</code>를 말합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="o">(</span>2 -eq 3<span class="o">)</span> -and <span class="o">(</span>4 -eq 4<span class="o">)</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="o">(</span>2 -eq 3<span class="o">)</span> -and <span class="o">(</span>4 -eq 4<span class="o">)</span>
 False
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="o">(</span>2 -eq 3<span class="o">)</span> -or <span class="o">(</span>4 -eq 4<span class="o">)</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="o">(</span>2 -eq 3<span class="o">)</span> -or <span class="o">(</span>4 -eq 4<span class="o">)</span>
 True</code></pre></figure>
 
 <h3 id="분할-병합">분할, 병합</h3>
 
 <p>분할과 병합은 <code class="highlighter-rouge">split, join</code>으로 할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello World My name is k3y6reak"</span> -split <span class="s2">" "</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello World My name is k3y6reak"</span> -split <span class="s2">" "</span>
 Hello
 World
 My
 name
 is
 k3y6reak
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"Hello"</span>, <span class="s2">"My name is k3y6reak"</span> -join <span class="s2">"World"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"Hello"</span>, <span class="s2">"My name is k3y6reak"</span> -join <span class="s2">"World"</span>
 HelloWorldMy name is k3y6reak</code></pre></figure>
 
 <h3 id="타입">타입</h3>
 
 <p>타입은 값의 형태를 확인거나 변환할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 -is <span class="s2">"int"</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 -is <span class="s2">"int"</span>
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 3 -is <span class="s2">"float"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 3 -is <span class="s2">"float"</span>
 False
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"3"</span> -is <span class="s2">"string"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"3"</span> -is <span class="s2">"string"</span>
 True
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; 0x12 -as <span class="s2">"int"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; 0x12 -as <span class="s2">"int"</span>
 18</code></pre></figure>
 
 

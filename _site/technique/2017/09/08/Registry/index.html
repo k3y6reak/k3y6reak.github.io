@@ -222,15 +222,15 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <h4 id="get-item">Get-Item</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-Item</span> <span class="s1">'HKLM:\Software\Microsoft\Windows NT\CurrentVersion'</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-Item</span> <span class="s1">'HKLM:\Software\Microsoft\Windows NT\CurrentVersion'</span>
 
 
-    Hive: HKEY_LOCAL_MACHINE<span class="se">\S</span>oftware<span class="se">\M</span>icrosoft<span class="se">\W</span>indows NT
+    Hive: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT
 
 
-Name                           <span class="nb">Property</span>
+Name                           Property
 ----                           --------
-CurrentVersion                 SystemRoot                : C:<span class="se">\W</span>INDOWS
+CurrentVersion                 SystemRoot                : C:\WINDOWS
                                BuildBranch               : rs2_release
                                BuildGUID                 : ffffffff-ffff-ffff-ffff-ffffffffffff
                                BuildLab                  : 15063.rs2_release.170317-1834
@@ -250,7 +250,7 @@ CurrentVersion                 SystemRoot                : C:<span class="se">\W
                                ReleaseId                 : 1703
                                SoftwareType              : System
                                UBR                       : 540
-                               PathName                  : C:<span class="se">\W</span>INDOWS
+                               PathName                  : C:\WINDOWS
                                ProductId                 : 
                                DigitalProductId          : 
                                DigitalProductId4         : 
@@ -260,10 +260,10 @@ CurrentVersion                 SystemRoot                : C:<span class="se">\W
 
 <h4 id="get-itemproperty">Get-ItemProperty</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-ItemProperty</span> <span class="s1">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-ItemProperty</span> <span class="s1">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'</span>
 
 
-SystemRoot                : C:<span class="se">\W</span>INDOWS
+SystemRoot                : C:\WINDOWS
 BuildBranch               : rs2_release
 BuildGUID                 : ffffffff-ffff-ffff-ffff-ffffffffffff
 BuildLab                  : 15063.rs2_release.170317-1834
@@ -283,53 +283,53 @@ ProductName               : Windows 10 Education
 ReleaseId                 : 1703
 SoftwareType              : System
 UBR                       : 540
-PathName                  : C:<span class="se">\W</span>INDOWS
+PathName                  : C:\WINDOWS
 ProductId                 : 
 DigitalProductId          : 
 DigitalProductId4         : 
 RegisteredOrganization    :
 RegisteredOwner           : k3y6reak
 InstallTime               : 131465678534059230
-PSPath                    : Microsoft.PowerShell.Core<span class="se">\R</span>egistry::HKEY_LOCAL_MACHINE<span class="se">\S</span>OFTWARE<span class="se">\M</span>icrosoft<span class="se">\W</span>indows NT<span class="se">\C</span>urrentVersion
-PSParentPath              : Microsoft.PowerShell.Core<span class="se">\R</span>egistry::HKEY_LOCAL_MACHINE<span class="se">\S</span>OFTWARE<span class="se">\M</span>icrosoft<span class="se">\W</span>indows NT
+PSPath                    : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+PSParentPath              : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT
 PSChildName               : CurrentVersion
 PSDrive                   : HKLM
-PSProvider                : Microsoft.PowerShell.Core<span class="se">\R</span>egistry</code></pre></figure>
+PSProvider                : Microsoft.PowerShell.Core\Registry</code></pre></figure>
 
 <h4 id="get-childitem">Get-ChildItem</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-ChildItem</span> <span class="s1">'HKLM:\software\microsoft\windows nt\CurrentVersion'</span> -Recurse | more
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-ChildItem</span> <span class="s1">'HKLM:\software\microsoft\windows nt\CurrentVersion'</span> -Recurse | more
 <span class="nb">Get-ChildItem</span> : 요청한 레지스트리에 액세스할 수 없습니다.
 위치 줄:1 문자:1
 + <span class="nb">Get-ChildItem</span> <span class="s1">'HKLM:\software\microsoft\windows nt\CurrentVersion'</span> -R ...
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : PermissionDenied: <span class="o">(</span>HKEY_LOCAL_MACH...lags<span class="se">\C</span>IT<span class="se">\S</span>ystem:String<span class="o">)</span> <span class="o">[</span><span class="nb">Get-ChildItem</span><span class="o">]</span>, SecurityException
+    + CategoryInfo          : PermissionDenied: <span class="o">(</span>HKEY_LOCAL_MACH...lags\CIT\System:String<span class="o">)</span> <span class="o">[</span><span class="nb">Get-ChildItem</span><span class="o">]</span>, SecurityException
     + FullyQualifiedErrorId : System.Security.SecurityException,Microsoft.PowerShell.Commands.GetChildItemCommand
 
 
 ...<span class="o">(</span>중략<span class="o">)</span>
 
 
-    Hive: HKEY_LOCAL_MACHINE<span class="se">\s</span>oftware<span class="se">\m</span>icrosoft<span class="se">\w</span>indows nt<span class="se">\C</span>urrentVersion
+    Hive: HKEY_LOCAL_MACHINE\software\microsoft\windows nt\CurrentVersion
 
 
-Name                           <span class="nb">Property</span>
+Name                           Property
 ----                           --------
 Accessibility
 
 
-    Hive: HKEY_LOCAL_MACHINE<span class="se">\s</span>oftware<span class="se">\m</span>icrosoft<span class="se">\w</span>indows nt<span class="se">\C</span>urrentVersion<span class="se">\A</span>ccessibility
+    Hive: HKEY_LOCAL_MACHINE\software\microsoft\windows nt\CurrentVersion\Accessibility
 
 
-Name                           <span class="nb">Property</span>
+Name                           Property
 ----                           --------
 ATs
 
 
-    Hive: HKEY_LOCAL_MACHINE<span class="se">\s</span>oftware<span class="se">\m</span>icrosoft<span class="se">\w</span>indows nt<span class="se">\C</span>urrentVersion<span class="se">\A</span>ccessibility<span class="se">\A</span>Ts
+    Hive: HKEY_LOCAL_MACHINE\software\microsoft\windows nt\CurrentVersion\Accessibility\ATs
 
 
-Name                           <span class="nb">Property</span>
+Name                           Property
 ----                           --------
 animations                     Description   :
                                Profile       : &lt;HCIModel&gt;&lt;Accommodation <span class="nb">type</span><span class="o">=</span><span class="s2">"mild cognitive"</span> /&gt;&lt;Accommodation <span class="nb">type</span><span class="o">=</span><span class="s2">"severe cognitive"</span> /&gt;&lt;Accommodation <span class="nb">type</span><span class="o">=</span><span class="s2">"severe vision"</span> /&gt;&lt;Accommodation <span class="nb">type</span><span class="o">=</span><span class="s2">"mild vision"</span>
@@ -340,14 +340,14 @@ animations                     Description   :
 
 <p>추가적으로 <code class="highlighter-rouge">Set-Location</code>을 이용하여 레지스트리에 직접 접근할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Set-Location </span>Registry::
-<span class="nb">PS </span>Microsoft.PowerShell.Core<span class="se">\R</span>egistry::&gt; <span class="nb">ls
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Set-Location </span>Registry::
+<span class="nb">PS </span>Microsoft.PowerShell.Core\Registry::&gt; <span class="nb">ls
 
 
     </span>Hive:
 
 
-Name                           <span class="nb">Property</span>
+Name                           Property
 ----                           --------
 HKEY_LOCAL_MACHINE
 HKEY_CURRENT_USER
@@ -363,7 +363,7 @@ HKEY_PERFORMANCE_DATA          Global : <span class="o">{</span>80, 0, 69, 0...<
 
 <h4 id="new-item">New-Item</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Get-PSProvider
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Get-PSProvider
 
 </span>Name                 Capabilities                                                                     Drives
 ----                 ------------                                                                     ------
@@ -374,13 +374,13 @@ FileSystem           <span class="k">Filter</span>, ShouldProcess, Credentials  
 <span class="k">Function             </span>ShouldProcess                                                                    <span class="o">{</span><span class="k">Function</span><span class="o">}</span>
 Variable             ShouldProcess                                                                    <span class="o">{</span>Variable<span class="o">}</span>
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">New-Item</span> -Path HKCU:<span class="se">\k</span>3y6reak
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">New-Item</span> -Path HKCU:\k3y6reak
 
 
     Hive: HKEY_CURRENT_USER
 
 
-Name                           <span class="nb">Property</span>
+Name                           Property
 ----                           --------
 k3y6reak</code></pre></figure>
 
@@ -390,33 +390,33 @@ k3y6reak</code></pre></figure>
 
 <h4 id="new-itemproperty">New-ItemProperty</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">New-ItemProperty</span> -Path HKCU:<span class="se">\k</span>3y6reak<span class="se">\ </span>-Name Reg1 -PropertyType <span class="kt">String</span> -Value 2
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">New-ItemProperty</span> -Path HKCU:\k3y6reak\ -Name Reg1 -PropertyType <span class="kt">String</span> -Value 2
 
 
 Reg1         : 2
-PSPath       : Microsoft.PowerShell.Core<span class="se">\R</span>egistry::HKEY_CURRENT_USER<span class="se">\k</span>3y6reak<span class="se">\</span>
-PSParentPath : Microsoft.PowerShell.Core<span class="se">\R</span>egistry::HKEY_CURRENT_USER
+PSPath       : Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\k3y6reak\
+PSParentPath : Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER
 PSChildName  : k3y6reak
 PSDrive      : HKCU
-PSProvider   : Microsoft.PowerShell.Core<span class="se">\R</span>egistry</code></pre></figure>
+PSProvider   : Microsoft.PowerShell.Core\Registry</code></pre></figure>
 
 <p>위와 같이 해당 위치에 값 또한 설정할 수 있습니다.</p>
 
 <h4 id="rename-item">Rename-Item</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Rename-Item </span>HKCU:<span class="se">\k</span>3y6reak -newname k3y6reak2</code></pre></figure>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Rename-Item </span>HKCU:\k3y6reak -newname k3y6reak2</code></pre></figure>
 
 <p>특정 레지스트리의 이름을 변경할 수 있습니다.</p>
 
 <h4 id="rename-itemproperty">Rename-ItemProperty</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Rename-ItemProperty </span>HKCU:<span class="se">\k</span>3y6reak2 -Name Reg1 -NewName Reg2</code></pre></figure>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Rename-ItemProperty </span>HKCU:\k3y6reak2 -Name Reg1 -NewName Reg2</code></pre></figure>
 
 <p>마찬가지로 특정 레지스트리의 값 또한 변경할 수 있습니다.</p>
 
 <h4 id="set-itemproperty">Set-ItemProperty</h4>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nb">Set-ItemProperty</span> -Path HKCU:<span class="se">\k</span>3y6reak2 -Name Reg2 -Value 4855</code></pre></figure>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nb">Set-ItemProperty</span> -Path HKCU:\k3y6reak2 -Name Reg2 -Value 4855</code></pre></figure>
 
 
       <br/>

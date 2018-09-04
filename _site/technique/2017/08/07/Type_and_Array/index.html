@@ -224,23 +224,23 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>PowerShell에서는 각 변수에 <code class="highlighter-rouge">.GetType()</code>를 붙여주면 자료형을 알 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"3"</span>.GetType<span class="o">()</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"3"</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     True     <span class="kt">String                                   </span>System.Object
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> <span class="o">=</span> 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>.GetType<span class="o">()</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> <span class="o">=</span> 3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     True     Int32                                    System.ValueType
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$b</span> <span class="o">=</span> 3.2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$b</span>.GetType<span class="o">()</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$b</span> <span class="o">=</span> 3.2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$b</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
@@ -250,39 +250,39 @@ True     True     <span class="kt">Double                                   </sp
 
 <p>문자열을 사용하는 경우 <code class="highlighter-rouge">'</code>과 <code class="highlighter-rouge">"</code>에 대한 차이를 알아야 합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span> <span class="o">=</span> <span class="s2">"Hello My name is k3y6reak"</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$b</span> <span class="o">=</span> <span class="s1">'Hello My name is k3y6reak'</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$a</span>.GetType<span class="o">()</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span> <span class="o">=</span> <span class="s2">"Hello My name is k3y6reak"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$b</span> <span class="o">=</span> <span class="s1">'Hello My name is k3y6reak'</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$a</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     True     <span class="kt">String                                   </span>System.Object
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$b</span>.GetType<span class="o">()</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$b</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     True     <span class="kt">String                                   </span>System.Object
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"val a is </span><span class="nv">$a</span><span class="s2">"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"val a is </span><span class="nv">$a</span><span class="s2">"</span>
 val a is Hello My name is k3y6reak
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s1">'val b is $b'</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s1">'val b is $b'</span>
 val b is <span class="nv">$b</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="s2">"val b is </span><span class="nv">$b</span><span class="s2">"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="s2">"val b is </span><span class="nv">$b</span><span class="s2">"</span>
 val b is Hello My name is k3y6reak</code></pre></figure>
 
 <p><code class="highlighter-rouge">'</code>과 <code class="highlighter-rouge">"</code>는 모두 동일하게 String 자료형을 갖고 있으나 변수의 내용을 출력할 때는 위와 같이 차이를 보입니다.</p>
 
 <p>여러 줄을 이용하여 문자열을 작성하고 싶다면 <code class="highlighter-rouge">@"</code>으로 시작해 <code class="highlighter-rouge">"@</code>로 끝나면 됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$str</span> <span class="o">=</span> @<span class="s2">"
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$str</span> <span class="o">=</span> @<span class="s2">"
 &gt;&gt; "</span>Hi<span class="s2">"
 &gt;&gt; "</span>My name is<span class="s2">"
 &gt;&gt; "</span>k3y6reak<span class="s2">"
 &gt;&gt; "</span>@
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$str</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$str</span>
 <span class="s2">"Hi"</span>
 <span class="s2">"My name is"</span>
 <span class="s2">"k3y6reak"</span></code></pre></figure>
@@ -291,12 +291,12 @@ val b is Hello My name is k3y6reak</code></pre></figure>
 
 <p>배열은 다른언어와 동일하게 사용할 수 있습니다. 대부분의 스크립트 언어는 하나의 배열에 여러가지의 형태가 들어가도 상관없는 것 처럼 PowerShell 또한 여러가지 형태가 들어갈 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> 1,2,3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> 1,2,3
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span>
 1
 2
 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span>.GetType<span class="o">()</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
@@ -304,8 +304,8 @@ True     True     <span class="kt">Object</span><span class="o">[]</span>       
 
 <p>여기서 배열에 대한 자료형은 Object[]로 나타낸 다는 것에 주의하면 됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr2</span> <span class="o">=</span> 1, 2.3, <span class="s2">"Hello"</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr2</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr2</span> <span class="o">=</span> 1, 2.3, <span class="s2">"Hello"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr2</span>
 1
 2.3
 Hello</code></pre></figure>
@@ -314,9 +314,9 @@ Hello</code></pre></figure>
 
 <p>아무것도 없는 배열을 만들고 싶다면 <code class="highlighter-rouge">$arr = @()</code>로 만들 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr3</span> <span class="o">=</span> @<span class="o">()</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr3</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr3</span>.GetType<span class="o">()</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr3</span> <span class="o">=</span> @<span class="o">()</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr3</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr3</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
@@ -324,23 +324,23 @@ True     True     <span class="kt">Object</span><span class="o">[]</span>       
 
 <p>마찬가지로 <code class="highlighter-rouge">[]</code>를 이용하여 각 인덱스의 값을 출력할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> <span class="s2">"Hello My name is k3y6reak"</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span><span class="o">[</span>0]
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span> <span class="o">=</span> <span class="s2">"Hello My name is k3y6reak"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span><span class="o">[</span>0]
 <span class="nb">H
-PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$arr</span><span class="o">[</span>1]
+PS </span>C:\Users\k3y6reak&gt; <span class="nv">$arr</span><span class="o">[</span>1]
 e</code></pre></figure>
 
 <p>또한 <code class="highlighter-rouge">[]</code>를 이용하여 값의 자료형을 변환할 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$i</span> <span class="o">=</span> 3.2
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="nv">$i</span>.GetType<span class="o">()</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$i</span> <span class="o">=</span> 3.2
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="nv">$i</span>.GetType<span class="o">()</span>
 
 IsPublic IsSerial Name                                     BaseType
 -------- -------- ----                                     --------
 True     True     <span class="kt">Double                                   </span>System.ValueType
 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak&gt; <span class="o">[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$i</span>
+<span class="nb">PS </span>C:\Users\k3y6reak&gt; <span class="o">[</span><span class="kt">int</span><span class="o">]</span><span class="nv">$i</span>
 3</code></pre></figure>
 
       <br/>

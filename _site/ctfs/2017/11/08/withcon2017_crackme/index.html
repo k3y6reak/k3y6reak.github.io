@@ -227,13 +227,13 @@ in <a href="/category/ctfs/" data-flip="title">CTFs</a>
 
 <p>crackme 파일은 ELF 64bit 입니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>file crackme
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop# file crackme
 crackme: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 2.6.32, BuildID[sha1]<span class="o">=</span>d4153567d0a264a1fa799425563693cc1ad86149, stripped</code></pre></figure>
 
 <p>crackme 파일을 실행하면 <code class="highlighter-rouge">PASSCODE</code> 입력을 요구하고 이에 따라 <code class="highlighter-rouge">CONGRATZ</code>와 <code class="highlighter-rouge">FAILED</code>가 출력됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>chmod +x crackme
-<span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>./crackme
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop# <span class="nb">chmod</span> +x crackme
+root@ubuntu:/home/k3y6reak/Desktop# ./crackme
 PASSCODE : k3y6reak
 FAILED</code></pre></figure>
 
@@ -243,7 +243,7 @@ FAILED</code></pre></figure>
 
 <p>Main 함수를 분석하는 것은 많은 시간이 필요할 것 같아 Intel PIN의 <code class="highlighter-rouge">icount.so</code>를 이용해 count을 확인했습니다.</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">popen2</span><span class="o">,</span> <span class="nn">string</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">popen2</span><span class="p">,</span> <span class="n">string</span>
 
 <span class="n">strings</span> <span class="o">=</span> <span class="s">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$</span><span class="si">%</span><span class="s">^&amp;*()_+-=,./:;"</span>
 <span class="n">Input</span> <span class="o">=</span> <span class="s">"input"</span>
@@ -269,31 +269,31 @@ FAILED</code></pre></figure>
 <p>위에서 작성한 python 코드를 count.py로 저장 후 실행하면 입력 값에 따른 count 값이 출력된다.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak@ubuntu: ~/pintools# python count.py
-<span class="gp">&gt; </span>D
+<span class="o">&gt;</span> D
 Count 152301
 
-<span class="gp">&gt; </span>E
+<span class="o">&gt;</span> E
 Count 152301
 
-<span class="gp">&gt; </span>F
+<span class="o">&gt;</span> F
 Count 152301
 
-<span class="gp">&gt; </span>G
+<span class="o">&gt;</span> G
 Count 152301
 
-<span class="gp">&gt; </span>H
+<span class="o">&gt;</span> H
 Count 152359
 
-<span class="gp">&gt; </span>I
+<span class="o">&gt;</span> I
 Count 152301
 
-<span class="gp">&gt; </span>J
+<span class="o">&gt;</span> J
 Count 152302
 
-<span class="gp">&gt; </span>K
+<span class="o">&gt;</span> K
 Count 152302
 
-<span class="gp">&gt; </span>L
+<span class="o">&gt;</span> L
 Count 152302</code></pre></figure>
 
 <p>위의 실행 결과를 살펴보면 다른 문자들은 152301과 비슷한 값이 출력되는 반면 <code class="highlighter-rouge">'H'</code>는 <code class="highlighter-rouge">152359</code>로 큰 차이로 출력됐다.</p>
@@ -307,43 +307,43 @@ Count 152302</code></pre></figure>
 <p><code class="highlighter-rouge">key = ''</code> 부분에 H를 추가하여 다음 값을 찾는다.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak@ubuntu: ~/pintools# python count.py
-<span class="gp">&gt; </span>H3
+<span class="o">&gt;</span> H3
 Count 152360
 
-<span class="gp">&gt; </span>H4
+<span class="o">&gt;</span> H4
 Count 152636
 
-<span class="gp">&gt; </span>H5
+<span class="o">&gt;</span> H5
 Count 152359</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak@ubuntu: ~/pintools# python count.py
-<span class="gp">&gt; </span>H4O
+<span class="o">&gt;</span> H4O
 Count 152636
 
-<span class="gp">&gt; </span>H4P
+<span class="o">&gt;</span> H4P
 Count 152694
 
-<span class="gp">&gt; </span>H4Q
+<span class="o">&gt;</span> H4Q
 Count 152635</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak@ubuntu: ~/pintools# python count.py
-<span class="gp">&gt; </span>H4PO
+<span class="o">&gt;</span> H4PO
 Count 152693
 
-<span class="gp">&gt; </span>H4PP
+<span class="o">&gt;</span> H4PP
 Count 153022
 
-<span class="gp">&gt; </span>H4PPQ
+<span class="o">&gt;</span> H4PPQ
 Count 152693</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak@ubuntu: ~/pintools# python count.py
-<span class="gp">&gt; </span>H4PPx
+<span class="o">&gt;</span> H4PPx
 Count 153023
 
-<span class="gp">&gt; </span>H4PPy
+<span class="o">&gt;</span> H4PPy
 Count 153081
 
-<span class="gp">&gt; </span>H4PPz
+<span class="o">&gt;</span> H4PPz
 Count 153022</code></pre></figure>
 
 <p>위 실행 결과를 살펴보면 <code class="highlighter-rouge">'H4'</code>, <code class="highlighter-rouge">'H4P'</code>, <code class="highlighter-rouge">'H4PP'</code>, <code class="highlighter-rouge">'H4PPy'</code>가 큰 편차로 출력되는 것을 볼 수 있다.</p>
@@ -351,18 +351,18 @@ Count 153022</code></pre></figure>
 <p>이렇게 편차가 큰 문자를 찾아 key에 추가하여 실행하면 <code class="highlighter-rouge">H4PPyW1THC0nCTF!</code> 일 때 <code class="highlighter-rouge">CONGRATZ</code>가 출력되는 것을 볼 수 있다.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">k3y6reak@ubuntu: ~/pintools# python count.py
-<span class="gp">&gt; </span>H4PPyW1THC0nCTF~
+<span class="o">&gt;</span> H4PPyW1THC0nCTF~
 PASSCODE : FAILED
 
 Count 154799
-<span class="gp">&gt; </span>H4PPyW1THC0nCTF!
+<span class="o">&gt;</span> H4PPyW1THC0nCTF!
 PASSCODE : CONGRATZ
 
 Count 154018
-<span class="gp">&gt; </span>H4PPyW1THC0nCTF@
+<span class="o">&gt;</span> H4PPyW1THC0nCTF@
 PASSCODE : FAILED</code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">root@ubuntu:/home/k3y6reak/Desktop# </span>./crackme
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">root@ubuntu:/home/k3y6reak/Desktop# ./crackme
 PASSCODE : H4PPyW1THC0nCTF!
 CONGRATZ</code></pre></figure>
 

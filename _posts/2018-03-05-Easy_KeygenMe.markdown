@@ -4,7 +4,7 @@ title:  "Easy KeygenMe"
 subtitle: "Reversing.kr의 Easy Keygen 풀이방법입니다."
 date:   2018-03-05 14:31:00 +0900
 categories: ['wargame']
-tags: reversing-kr
+tags: reversing.kr
 comments: true
 ---
 

@@ -241,9 +241,9 @@ on <a href="/tag/technique-powershell/" data-flip="title">Powershell</a>
 
 <p>위와 같이 코드를 작성한 후 ISE에서 실행을 하면 아래와 같이 에러가 발생합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; .<span class="se">\a</span>dd.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; .\add.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; add
 add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니다. 이름이 정확한지 확인하고 경로
 가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
 위치 줄:1 문자:1
@@ -257,9 +257,9 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
 
 <p>여기서 에러를 발생하지 않고 실행하는 방법이 <code class="highlighter-rouge">Dot Sourcing</code>입니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\a</span>dd.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\add.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; add
 4</code></pre></figure>
 
 <p><code class="highlighter-rouge">Dot Sourcing</code>은 위 코드를 살펴보면 실행하고자 스크립트 앞에 <code class="highlighter-rouge">.</code>을 붙여 한 번 실행한 뒤 함수명으로 바로 실행이 가능하도록 하는 것 입니다.</p>
@@ -278,17 +278,17 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
 
 <p>위와 같이 paramadd 라는 함수를 작성 한 후 아래와 같이 실행해 봅시다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramadd.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramadd.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd 1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramadd 1 2
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd 1 <span class="s2">"2"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramadd 1 <span class="s2">"2"</span>
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd 1 <span class="s2">"b"</span>
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramadd 1 <span class="s2">"b"</span>
 값 <span class="s2">"b"</span>을<span class="o">(</span>를<span class="o">)</span> <span class="s2">"System.Int32"</span> 유형으로 변환할 수 없습니다. 오류: <span class="s2">"입력 문자열의 형식이 잘못되었습니다."</span>
-위치 C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\p</span>aramadd.ps1:2 문자:5
+위치 C:\Users\k3y6reak\Desktop\paramadd.ps1:2 문자:5
 +     <span class="nv">$num1</span> + <span class="nv">$num2</span>
 +     ~~~~~~~~~~~~~
     + CategoryInfo          : InvalidArgument: <span class="o">(</span>:<span class="o">)</span> <span class="o">[]</span>, RuntimeException
@@ -304,17 +304,17 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
 
 <p>반대로 “1”과 2를 넣은 경우에는 정상적으로 실행됩니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd <span class="s2">"1"</span> 2
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramadd <span class="s2">"1"</span> 2
 12</code></pre></figure>
 
 <p>어떤 연산을 하는 경우 앞의 변수의 형태에 따라 뒤의 변수 형태를 변환하는 것을 알 수 있습니다.</p>
 
 <p>또한 인자 값을 지정하여 함수를 실행할 수도 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd -num1 1 -num2 2
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramadd -num1 1 -num2 2
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramadd -num2 1 -num1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramadd -num2 1 -num1 2
 3</code></pre></figure>
 
 <p>함수에서 사용하는 변수를 <code class="highlighter-rouge">-</code>과 함께 사용하여 <code class="highlighter-rouge">순서에 상관없이</code> 사용할 수 있습니다.</p>
@@ -328,10 +328,10 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
 
 <p>위와 같이 overparam 함수를 작성합니다. overparam에서 사용하는 인자 값의 개수는 2개 인데 아래 실행 예제를 살펴보면 3개의 인자 값을 넣어도 에러를 발생하지 않습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam 1 2
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; overparam 1 2
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam 1 2 3
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; overparam 1 2 3
 3</code></pre></figure>
 
 <p>보통 다른 언어에서는 인자 값을 맞춰 코딩을 하기 때문에 에러가 발생하는데 PowerShell의 경우 에러를 출력하지 않습니다.</p>
@@ -343,21 +343,21 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
 
 <p>위와 같이 스크립트를 작성한 후 아래와 같이 실행해 봅시다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\o</span>verparam2.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\overparam2.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; overparam2 1 2
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2 3
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; overparam2 1 2 3
 3
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2 3 4
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; overparam2 1 2 3 4
 3
 3
 4
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; overparam2 1 2 3 4 5
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; overparam2 1 2 3 4 5
 3
 3
 4
@@ -373,30 +373,30 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
     <span class="nv">$num1</span> + <span class="nv">$num2</span>
 <span class="o">}</span></code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\d</span>efaultvalue.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\defaultvalue.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; defaultvalue 1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; defaultvalue 1 2
 3
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; defaultvalue 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; defaultvalue 2
 2
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; defaultvalue -num2 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; defaultvalue -num2 2
 13</code></pre></figure>
 
 <p>$num1의 값을 11로 기본 값으로 선언하고 실행합니다. 인자 값이 있는 경우에는 해당 값을 이용해 연산을 하지만 없는 경우 기본 값을 이용해 연산을 합니다.</p>
 
 <p>추가적으로 함수 내에서 사용하는 변수는 <code class="highlighter-rouge">지역변수</code>입니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nv">$num1</span> <span class="o">=</span> 11
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="k">function </span>add<span class="o">(</span><span class="nv">$num1</span> <span class="o">=</span> 2, <span class="nv">$num2</span><span class="o">)</span> <span class="o">{</span>
-<span class="gp">&gt;&gt; </span><span class="nv">$num1</span> + <span class="nv">$num2</span>
-<span class="gp">&gt;&gt; </span><span class="o">}</span>
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; <span class="nv">$num1</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nv">$num1</span> <span class="o">=</span> 11
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="k">function </span>add<span class="o">(</span><span class="nv">$num1</span> <span class="o">=</span> 2, <span class="nv">$num2</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">&gt;&gt;</span> <span class="nv">$num1</span> + <span class="nv">$num2</span>
+<span class="o">&gt;&gt;</span> <span class="o">}</span>
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nv">$num1</span>
 11
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add 1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; add 1 2
 3
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; add -num2 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; add -num2 2
 4</code></pre></figure>
 
 <h4 id="mandatory">Mandatory</h4>
@@ -413,21 +413,21 @@ add : <span class="s1">'add'</span> 용어가 cmdlet, 함수, 스크립트 파�
 
 <p>소스코드를 보면 <code class="highlighter-rouge">Mandatory = $true</code>가 작성된 것을 볼 수 있는데, <code class="highlighter-rouge">Mandatory</code>는 <code class="highlighter-rouge">의무적인</code>이라는 뜻으로 해당 변수에 대해서는 무조건 값이 필요하다는 것을 뜻합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramcheck.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck 1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck 1 2
 val1 is 1
 val2 is 2
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 1 -val2 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 1 -val2 2
 val1 is 1
 val2 is 2
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 1
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 1
 val1 is 1
 val2 is 
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val2 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val2 2
 cmdlet paramcheck<span class="o">(</span>명령 파이프라인 위치 1<span class="o">)</span>
 다음 매개 변수에 대한 값을 제공하십시오.
 val1: 1
@@ -449,9 +449,9 @@ val2 is 2</code></pre></figure>
 
 <p><code class="highlighter-rouge">Position</code>은 각 인자 값에 대한 <code class="highlighter-rouge">순서</code>를 지정하는 것 입니다. 아래 실행 예제를 보도록 하겠습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramcheck.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck 1 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck 1 2
 val1 is 2
 val2 is 1</code></pre></figure>
 
@@ -471,9 +471,9 @@ val2 is 1</code></pre></figure>
 
 <p><code class="highlighter-rouge">ValueFromPipeline</code>은 Pipeline을 통해 함수의 인자 값을 넣어줄 수 있는 방법을 말합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramcheck.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; 33 | paramcheck
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; 33 | paramcheck
 val1 is 33
 val2 is </code></pre></figure>
 
@@ -491,9 +491,9 @@ val2 is </code></pre></figure>
 
 <p>위 예제에서 <code class="highlighter-rouge">val1</code>에 대한 값을 <code class="highlighter-rouge">NULL</code>로 하고 실행하면 아래와 같이 에러가 발생합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramcheck.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 <span class="nv">$NULL</span> -val2 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 <span class="nv">$NULL</span> -val2 2
 paramcheck : <span class="s1">'val1'</span> 매개 변수가 null이므로 인수를 해당 매개 변수에 바인딩할 수 없습니다.
 위치 줄:1 문자:18
 + paramcheck -val1 <span class="nv">$NULL</span> -val2 2
@@ -513,9 +513,9 @@ paramcheck : <span class="s1">'val1'</span> 매개 변수가 null이므로 인�
 
 <p>위와 같이 <code class="highlighter-rouge">[AllowNull()]</code>를 작성한 후 실행하면 아래와 같이 에러가 발생하지 않는 것을 볼 수 있습니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramcheck.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 <span class="nv">$NULL</span> -val2 2
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 <span class="nv">$NULL</span> -val2 2
 val1 is 
 val2 is 2</code></pre></figure>
 
@@ -535,13 +535,13 @@ val2 is 2</code></pre></figure>
 
 <p>이 외의 값을 사용하면 에러를 발생합니다.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; . .<span class="se">\p</span>aramcheck.ps1
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; <span class="nb">.</span> .\paramcheck.ps1
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 3 -val2 4
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 3 -val2 4
 val1 is 3
 val2 is 4
 
-<span class="nb">PS </span>C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop&gt; paramcheck -val1 33 -val2 4
+<span class="nb">PS </span>C:\Users\k3y6reak\Desktop&gt; paramcheck -val1 33 -val2 4
 paramcheck : <span class="s1">'val1'</span> 매개 변수에 대한 인수의 유효성을 검사할 수 없습니다. <span class="s2">"33"</span> 인수가 ValidateSet 특성에 지정된 <span class="s2">"1,2,
 3"</span> 집합에 속하지 않습니다. 집합에 속한 인수를 제공하고 명령을 다시 시도하십시오.
 위치 줄:1 문자:18
