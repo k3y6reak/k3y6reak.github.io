@@ -30,7 +30,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="87b624932dd1910564c0104512a8a4eaab4b4dfc"/>
-<meta property="og:title" content="CTFs">
+<meta property="og:title" content="Hackingcamp 2018 What is END?">
 <meta property="og:type" content="article">
 
 
@@ -45,13 +45,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>CTFs &middot; k3y6reak</title>
+  <title>Hackingcamp 2018 What is END? &middot; k3y6reak</title>
 
 
 
-<meta name="description" content="CTF에 출제된 문제에 대한 해설을 작성합니다.
+<meta name="description" content="풀이
+
 ">
-<meta property="og:description" content="CTF에 출제된 문제에 대한 해설을 작성합니다.
+<meta property="og:description" content="풀이
+
 ">
 
 
@@ -59,15 +61,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/category/ctfs/">
-<meta property="og:url" content="http://localhost:4000/category/ctfs/">
+<link rel="canonical" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_What_is_END/">
+<meta property="og:url" content="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_What_is_END/">
 
 <link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
 
 
+  <link rel="prev" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_eaJsy/">
 
 
-  <link rel="next" href="http://localhost:4000/category/misc/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -154,47 +156,226 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
       
 
-
-
+<article id="post-ctfs/2018/09/07/Hackingcamp_What_is_END" class="post" role="article">
   <header>
-    <h1 class="page-title">CTFs</h1>
+    <h1 class="post-title">
+      
+        Hackingcamp 2018 What is END?
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-09-07T15:48:00+09:00">07 Sep 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/ctfs/" data-flip="title">CTFs</a>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+    </p>
+
     
-  
-  
-<p class="message">CTF에 출제된 문제에 대한 해설을 작성합니다.</p>
-
-
+  <div class="hr" style="padding-bottom:0"></div>
 
 
   </header>
-  <hr class="sr-only"/>
-
-
-
   
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-8115495896391807"
+    data-ad-slot=""
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+      <h2 id="풀이">풀이</h2>
+
+<p>바이너리를 다운받아 파일을 확인하면 ELF 64 임을 확인할 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">file theend.dms
+theend.dms: ELF 64-bit LSB executable, x86-64, version 1 <span class="o">(</span>SYSV<span class="o">)</span>, dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, <span class="k">for </span>GNU/Linux 2.6.32, BuildID[sha1]<span class="o">=</span>3a818b70bc51d9d32a21154a640333386b9807ee, stripped</code></pre></figure>
+
+<p>IDA를 이용해 확인하면 값을 입력받기 전에 아래와 같이 값을 저장한다.</p>
+
+<figure class="highlight"><pre><code class="language-asm" data-lang="asm">mov     byte ptr [rbp+var_F0], 43h
+mov     byte ptr [rbp+var_F0+1], 5Fh
+mov     byte ptr [rbp+var_F0+3], 30h
+mov     byte ptr [rbp+var_F0+4], 2Bh
+mov     byte ptr [rbp+var_F0+5], 1Ch
+mov     byte ptr [rbp+var_F0+6], 0Dh
+mov     byte ptr [rbp+var_F0+7], 3Ah
+mov     byte ptr [rbp+var_E8], 3Ah
+mov     byte ptr [rbp+var_E8+1], 0Bh
+mov     byte ptr [rbp+var_E8+2], 0Ah
+mov     byte ptr [rbp+var_E8+3], 3Bh
+mov     byte ptr [rbp+var_E8+4], 36h
+mov     byte ptr [rbp+var_E8+5], 1Ah
+mov     byte ptr [rbp+var_E8+6], 2Ch
+mov     byte ptr [rbp+var_E8+7], 25h
+mov     byte ptr [rbp+var_E0], 1Fh
+mov     byte ptr [rbp+var_E0+1], 17h
+mov     byte ptr [rbp+var_E0+2], 1Dh
+mov     byte ptr [rbp+var_E0+3], 30h
+mov     byte ptr [rbp+var_E0+4], 30h
+mov     byte ptr [rbp+var_E0+5], 1Dh
+mov     byte ptr [rbp+var_E0+6], 2Dh
+mov     byte ptr [rbp+var_E0+7], 31h
+mov     byte ptr [rbp+var_D8], 1Bh
+mov     byte ptr [rbp+var_D8+1], 19h
+mov     byte ptr [rbp+var_D8+3], 53h
+mov     byte ptr [rbp+var_D4], 3Fh</code></pre></figure>
+
+<p>그 후에 입력 받은 값을 검증하는데 코드는 아래와 같다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mh">0x1D</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v6</span> <span class="o">+</span> <span class="p">(</span><span class="kt">signed</span> <span class="kt">int</span><span class="p">)</span><span class="n">i</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v11</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">!=</span> <span class="n">v11</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+    <span class="n">v5</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>여기서 코드를 살펴보면 미리 저장한 값과 사용자가 입력한 값을 xor하고 사용자가 다음에 입력하는 값과 일치해야 한다.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">root</span><span class="nd">@ubuntu</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">k3y6reak</span><span class="o">/</span><span class="n">Desktop</span><span class="c"># python</span>
+<span class="n">Python</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">12</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Nov</span> <span class="mi">20</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">18</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">56</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">5.4</span><span class="o">.</span><span class="mi">0</span> <span class="mi">20160609</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="n">Type</span> <span class="s">"help"</span><span class="p">,</span> <span class="s">"copyright"</span><span class="p">,</span> <span class="s">"credits"</span> <span class="ow">or</span> <span class="s">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s">"s"</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x43</span><span class="p">)</span>
+<span class="s">'0'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s">"0"</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x5f</span><span class="p">)</span>
+<span class="s">'o'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s">"o"</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x30</span><span class="p">)</span>
+<span class="s">'_'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s">"_"</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x2b</span><span class="p">)</span>
+<span class="s">'t'</span></code></pre></figure>
+
+<p>값을 찾는 과정은 스스로 생각해보길 바란다. 첫 문자 “s” 만 찾는다면 다음 값을 찾을 수 있고, 값을 넣어도 맞지 않는다면 실제 디버깅을 통해서 값을 구할 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">root@ubuntu:/home/k3y6reak/Desktop# ./the
+INPUT: s0oo_the_end_is_zero_or_null?
+The Flag is HCAMP<span class="o">{</span>s0oo_the_end_is_zero_or_null?<span class="o">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">flag: HCAMP{s0oo_the_end_is_zero_or_null?}</code></p>
+
+      <br/>
+      <br/>
+      <!-- 블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-8115495896391807"
+          data-ad-slot=""
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Hackingcamp 2018 What is END?&amp;url=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_What_is_END/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_What_is_END/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
   
     
-    <h2 id="y2018" class="hr">2018</h2>
-    <ul class="related-posts">
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
     
-  
-  
+  />
 
 
-<li class="h4">
-  <a href="/ctfs/2018/09/07/Hackingcamp_What_is_END/" data-flip="title">
-    <span>Hackingcamp 2018 What is END?</span>
-  </a>
-  <small><time datetime="2018-09-07T15:48:00+09:00">
-    07 Sep
-  </time></small>
-</li>
+  
+  <div class="author-body-description">
+    <p>F1nd k3y, 6reak k3y!</p>
 
-  
+  </div>
+</div>
+</div>
 
-  
-  
-  
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+          
+          
+        
+        
+          
 
 
 <li class="h4">
@@ -202,15 +383,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <span>Hackingcamp 2018 eaJsy</span>
   </a>
   <small><time datetime="2018-09-07T15:33:00+09:00">
-    07 Sep
+    07 Sep 2018
   </time></small>
 </li>
 
-  
-
-  
-  
-  
+        
+      
+        
+        
+          
 
 
 <li class="h4">
@@ -218,20 +399,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <span>Hackingcamp 2018 JavaEasy</span>
   </a>
   <small><time datetime="2018-09-07T15:16:00+09:00">
-    07 Sep
+    07 Sep 2018
   </time></small>
 </li>
 
-  
-
-  
-  
-    </ul>
-    <h2 id="y2017" class="hr">2017</h2>
-    <ul class="related-posts">
-    
-  
-  
+        
+      
+        
+        
+          
 
 
 <li class="h4">
@@ -239,45 +415,31 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <span>WITHCON2017 crackme</span>
   </a>
   <small><time datetime="2017-11-08T13:15:00+09:00">
-    08 Nov
+    08 Nov 2017
   </time></small>
 </li>
 
-  
-
-  
-  
-  
-
-
-<li class="h4">
-  <a href="/ctfs/2017/08/07/sha2017_suspect_file1_100/" data-flip="title">
-    <span>SHA2017 Suspect File1 (100)</span>
-  </a>
-  <small><time datetime="2017-08-07T14:14:00+09:00">
-    07 Aug
-  </time></small>
-</li>
-
-  
-
-  
-  
-  
-
-
-<li class="h4">
-  <a href="/ctfs/2017/08/07/sha2017_asby_100/" data-flip="title">
-    <span>SHA2017 asby (100)</span>
-  </a>
-  <small><time datetime="2017-08-07T14:11:00+09:00">
-    07 Aug
-  </time></small>
-</li>
-
+        
+      
+    
   </ul>
+</aside>
 
 
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Hackingcamp 2018 What is END?",this.page.identifier="/ctfs/2018/09/07/Hackingcamp_What_is_END",this.page.url="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_What_is_END/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
 
       
 
@@ -547,7 +709,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <li>
       <input type="checkbox" id="list-item-4"/>
       <div  class="list-wrapper">
-      <a class="sidebar-nav-item active" href="/category/ctfs/">CTFs</a>
+      <a class="sidebar-nav-item" href="/category/ctfs/">CTFs</a>
        
     </div>
      <ul class="list-body">
