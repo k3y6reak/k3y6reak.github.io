@@ -30,7 +30,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="87b624932dd1910564c0104512a8a4eaab4b4dfc"/>
-<meta property="og:title" content="SHA2017 Suspect File1 (100)">
+<meta property="og:title" content="Hackingcamp 2018 JavaEasy">
 <meta property="og:type" content="article">
 
 
@@ -45,16 +45,14 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>SHA2017 Suspect File1 (100) &middot; k3y6reak</title>
+  <title>Hackingcamp 2018 JavaEasy &middot; k3y6reak</title>
 
 
 
-<meta name="description" content="
-문제
+<meta name="description" content="풀이
 
 ">
-<meta property="og:description" content="
-문제
+<meta property="og:description" content="풀이
 
 ">
 
@@ -63,17 +61,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/ctfs/2017/08/07/sha2017_suspect_file1_100/">
-<meta property="og:url" content="http://localhost:4000/ctfs/2017/08/07/sha2017_suspect_file1_100/">
+<link rel="canonical" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_JavaEasy/">
+<meta property="og:url" content="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_JavaEasy/">
 
 <link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/ctfs/2017/08/07/sha2017_asby_100/">
+  <link rel="prev" href="http://localhost:4000/wargame/2018/03/05/Easy_KeygenMe/">
 
 
-
-  <link rel="next" href="http://localhost:4000/technique/2017/08/07/Operators/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -160,16 +156,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
       
 
-<article id="post-ctfs/2017/08/07/sha2017_suspect_file1_100" class="post" role="article">
+<article id="post-ctfs/2018/09/07/Hackingcamp_JavaEasy" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        SHA2017 Suspect File1 (100)
+        Hackingcamp 2018 JavaEasy
       
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2017-08-07T14:14:00+09:00">07 Aug 2017</time>
+      <time datetime="2018-09-07T15:16:00+09:00">07 Sep 2018</time>
       
 
 
@@ -220,87 +216,128 @@ in <a href="/category/ctfs/" data-flip="title">CTFs</a>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <br/>
-      <p><br /><br /></p>
-<h3 id="문제">문제</h3>
+      <h2 id="풀이">풀이</h2>
 
-<p>Suspect File 1 (100)</p>
+<p>바이너리를 다운받아 파일을 확인하면 PE32 EXE 임을 확인할 수 있다.</p>
 
-<p>We found some software on our suspects development server, it looks like they created some different versions, are you able to crack the software?</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">file JavaEasy.exe
+JavaEasy.exe: PE32 executable <span class="o">(</span>GUI<span class="o">)</span> Intel 80386 <span class="o">(</span>stripped to external PDB<span class="o">)</span>, <span class="k">for </span>MS Windows</code></pre></figure>
 
-<p>Challenge created by the Digital and Biometric Traces division of the Netherlands Forensic Institute.</p>
+<p>파일 명에서 Java라고 힌트를 주고있고, 자바는 디컴파일이 가능하다는 것을 알아야한다.</p>
 
-<p><br /><br /></p>
-<h3 id="풀이">풀이</h3>
+<p>따라서, exe 파일에서 java 파일을 추출해야 한다.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">root@ubuntu:/home/k3y6reak/Desktop# ./100
-Sorry
-root@ubuntu:/home/k3y6reak/Desktop# ./100 a
-Sorry</code></pre></figure>
+<p><code class="highlighter-rouge">unzip</code>을 이용해 exe 파일을 압축해제하면 아래와 같이 class 파일을 얻을 수 있다.</p>
 
-<p>해당 바이너리를 실행하면 위와같이 Sorry만 출력한다.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">unzip JavaEasy.exe
+Archive:  JavaEasy.exe
+warning <span class="o">[</span>JavaEasy.exe]:  32256 extra bytes at beginning or within zipfile
+  <span class="o">(</span>attempting to process anyway<span class="o">)</span>
+  inflating: META-INF/MANIFEST.MF
+   creating: kr/
+   creating: kr/kshgroup/
+   creating: kr/kshgroup/easyjava/
+  inflating: kr/kshgroup/easyjava/EntryMain<span class="nv">$1</span>.class
+  inflating: kr/kshgroup/easyjava/EntryMain.class</code></pre></figure>
 
-<p>IDA를 이용해서 디컴파일하여 소스코드를 보게 되면 아래와 같이 do~while()로 시작하는 것을 알 수 있으며 v10 값이 <code class="highlighter-rouge">0xc9702e05</code>되어야만 Yes!를 출력한다.</p>
+<p>EntryMain.class 파일을 디컴파일하면 아래와 같이 소스코드를 확인 할 수 있다.</p>
 
-<figure class="highlight"><pre><code class="language-c" data-lang="c">	<span class="k">do</span><span class="p">{</span>
-		<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-			<span class="p">{</span>
-				<span class="p">...(</span><span class="err">생략</span><span class="p">)</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">v10</span> <span class="o">!=</span> <span class="mh">0xc9702e05</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">kr</span><span class="o">.</span><span class="na">kshgroup</span><span class="o">.</span><span class="na">easyjava</span><span class="o">;</span>
 
-<p>가장 처음 비교하는 부분인 <code class="highlighter-rouge">0x8048977</code>에 Breakpoint를 걸어두고 <code class="highlighter-rouge">r aaaaaaaaa</code>로 실행한 뒤 <code class="highlighter-rouge">finish</code> 명령을 계속해서 실행한다.</p>
+<span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Dimension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Font</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.KeyEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.KeyListener</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64.Encoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JLabel</span><span class="o">;</span>
 
-<figure class="highlight"><pre><code class="language-ida" data-lang="ida">.text:08048977                 cmp     eax, 96C8ACCAh
-.text:0804897C                 jg      short loc_8048990
-.text:0804897E                 cmp     eax, 8FD5472Dh
-.text:08048983                 jnz     short loc_8048977
-.text:08048985                 jmp     short loc_8048940</code></pre></figure>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EntryMain</span> <span class="kd">extends</span> <span class="n">JFrame</span>
+<span class="o">{</span>
+  <span class="kd">private</span> <span class="n">JLabel</span> <span class="n">j</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">max_len</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">input</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">encoded</span><span class="o">;</span>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[</span><span class="nt">----------------------------------registers-----------------------------------</span><span class="o">]</span>
-EAX: 0x5c4742c2
-EBX: 0x8048164 <span class="o">(</span>&lt;_init&gt;:	push   ebx<span class="o">)</span>
-ECX: 0x80ed5e8 <span class="nt">--</span><span class="o">&gt;</span> 0x0
-EDX: 0xe6cbc1fb
-ESI: 0x80ea0c4 <span class="nt">--</span><span class="o">&gt;</span> 0x8068270 <span class="o">(</span>&lt;__strcpy_sse2&gt;:	mov    edx,DWORD PTR <span class="o">[</span>esp+0x4]<span class="o">)</span>
-EDI: 0x46 <span class="o">(</span><span class="s1">'F'</span><span class="o">)</span>
-EBP: 0xffffd4f8 <span class="nt">--</span><span class="o">&gt;</span> 0x1000
-ESP: 0xffffd370 <span class="o">(</span><span class="s2">"flag{57201791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-EIP: 0x8048977 <span class="o">(</span>&lt;main+263&gt;:	cmp    eax,0x96c8acca<span class="o">)</span>
-EFLAGS: 0x246 <span class="o">(</span>carry PARITY adjust ZERO sign <span class="nb">trap </span>INTERRUPT direction overflow<span class="o">)</span>
-<span class="o">[</span><span class="nt">-------------------------------------code-------------------------------------</span><span class="o">]</span>
-   0x804896d &lt;main+253&gt;:	or     cl,al
-   0x804896f &lt;main+255&gt;:	mov    eax,0x6b8a9776
-   0x8048974 &lt;main+260&gt;:	cmovne eax,edx
-<span class="o">=&gt;</span> 0x8048977 &lt;main+263&gt;:	cmp    eax,0x96c8acca
-   0x804897c &lt;main+268&gt;:	jg     0x8048990 &lt;main+288&gt;
-   0x804897e &lt;main+270&gt;:	cmp    eax,0x8fd5472d
-   0x8048983 &lt;main+275&gt;:	jne    0x8048977 &lt;main+263&gt;
-   0x8048985 &lt;main+277&gt;:	jmp    0x8048940 &lt;main+208&gt;
-<span class="o">[</span><span class="nt">------------------------------------stack-------------------------------------</span><span class="o">]</span>
-0000| 0xffffd370 <span class="o">(</span><span class="s2">"flag{57201791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0004| 0xffffd374 <span class="o">(</span><span class="s2">"{57201791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0008| 0xffffd378 <span class="o">(</span><span class="s2">"01791ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0012| 0xffffd37c <span class="o">(</span><span class="s2">"1ea24f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0016| 0xffffd380 <span class="o">(</span><span class="s2">"4f3acd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0020| 0xffffd384 <span class="o">(</span><span class="s2">"cd852cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0024| 0xffffd388 <span class="o">(</span><span class="s2">"2cee3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-0028| 0xffffd38c <span class="o">(</span><span class="s2">"3271333a8}</span><span class="se">\0</span><span class="s2">02</span><span class="se">\0</span><span class="s2">02"</span><span class="o">)</span>
-<span class="o">[</span><span class="nt">------------------------------------------------------------------------------</span><span class="o">]</span>
-Legend: code, data, rodata, value
+  <span class="kd">public</span> <span class="nf">EntryMain</span><span class="o">()</span>
+  <span class="o">{</span>
+    <span class="n">Dimension</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">getScreenSize</span><span class="o">();</span>
 
-Breakpoint 1, 0x08048977 <span class="k">in </span>main <span class="o">()</span>
-gdb-peda<span class="err">$</span></code></pre></figure>
+    <span class="n">setTitle</span><span class="o">(</span><span class="s">"Easy Java!"</span><span class="o">);</span>
+    <span class="n">setBounds</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">d</span><span class="o">.</span><span class="na">width</span><span class="o">,</span> <span class="n">d</span><span class="o">.</span><span class="na">height</span><span class="o">);</span>
 
-<p><code class="highlighter-rouge">finish</code>명령을 계속해서 실행하면 위와같이 stack에 flag에 대한 정보가 나오게 된다.</p>
+    <span class="n">setBackground</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">root@ubuntu:/home/k3y6reak/Desktop# ./100 flag<span class="o">{</span>57201791ea24f3acd852cee3271333a8<span class="o">}</span>
-Yes!
-root@ubuntu:/home/k3y6reak/Desktop#</code></pre></figure>
+    <span class="k">this</span><span class="o">.</span><span class="na">j</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JLabel</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">setFont</span><span class="o">(</span><span class="k">new</span> <span class="n">Font</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">getFont</span><span class="o">().</span><span class="na">getName</span><span class="o">(),</span> <span class="k">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">getFont</span><span class="o">().</span><span class="na">getStyle</span><span class="o">(),</span> <span class="mi">30</span><span class="o">));</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">setLocation</span><span class="o">(</span><span class="n">d</span><span class="o">.</span><span class="na">width</span> <span class="o">/</span> <span class="mi">2</span><span class="o">,</span> <span class="n">d</span><span class="o">.</span><span class="na">height</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">setHorizontalAlignment</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
 
-<p>따라서 <code class="highlighter-rouge">flag{57201791ea24f3acd852cee3271333a8}</code>가 된다.</p>
+    <span class="n">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">j</span><span class="o">);</span>
+
+    <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+
+    <span class="n">setUndecorated</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="n">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+    <span class="n">addKeyListener</span><span class="o">(</span><span class="k">new</span> <span class="n">KeyListener</span><span class="o">()</span>
+    <span class="o">{</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">keyTyped</span><span class="o">(</span><span class="n">KeyEvent</span> <span class="n">e</span><span class="o">)</span>
+      <span class="o">{</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">keyReleased</span><span class="o">(</span><span class="n">KeyEvent</span> <span class="n">e</span><span class="o">)</span>
+      <span class="o">{</span>
+      <span class="o">}</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">keyPressed</span><span class="o">(</span><span class="n">KeyEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getKeyChar</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">input</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">encoded</span><span class="o">,</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[]</span> <span class="o">{</span> <span class="mi">83</span><span class="o">,</span> <span class="mi">69</span><span class="o">,</span> <span class="mi">78</span><span class="o">,</span> <span class="mi">66</span><span class="o">,</span> <span class="mi">84</span><span class="o">,</span> <span class="mi">86</span><span class="o">,</span> <span class="mi">66</span><span class="o">,</span> <span class="mi">55</span><span class="o">,</span> <span class="mi">82</span><span class="o">,</span> <span class="mi">86</span><span class="o">,</span> <span class="mi">112</span><span class="o">,</span> <span class="mi">102</span><span class="o">,</span> <span class="mi">83</span><span class="o">,</span> <span class="mi">109</span><span class="o">,</span> <span class="mi">70</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">89</span><span class="o">,</span> <span class="mi">86</span><span class="o">,</span> <span class="mi">57</span><span class="o">,</span> <span class="mi">68</span><span class="o">,</span> <span class="mi">98</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="mi">109</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="mi">87</span><span class="o">,</span> <span class="mi">86</span><span class="o">,</span> <span class="mi">102</span><span class="o">,</span> <span class="mi">86</span><span class="o">,</span> <span class="mi">68</span><span class="o">,</span> <span class="mi">70</span><span class="o">,</span> <span class="mi">116</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="mi">86</span><span class="o">,</span> <span class="mi">57</span><span class="o">,</span> <span class="mi">80</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">48</span><span class="o">,</span> <span class="mi">57</span><span class="o">,</span> <span class="mi">57</span> <span class="o">}))</span> <span class="o">{</span>
+            <span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Correct"</span><span class="o">);</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Wrong"</span><span class="o">);</span>
+            <span class="n">EntryMain</span><span class="o">.</span><span class="na">access</span><span class="err">$</span><span class="mo">002</span><span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+          <span class="o">}</span>
+          <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">Character</span><span class="o">.</span><span class="na">isLetterOrDigit</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">'_'</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">'{'</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">'}'</span><span class="o">))</span> <span class="o">{</span>
+          <span class="n">EntryMain</span><span class="o">.</span><span class="na">access</span><span class="err">$</span><span class="mo">002</span><span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">input</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
+          <span class="n">EntryMain</span><span class="o">.</span><span class="na">access</span><span class="err">$</span><span class="mi">102</span><span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encode</span><span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">input</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+          <span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">j</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">EntryMain</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">input</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+  <span class="o">{</span>
+    <span class="k">new</span> <span class="nf">EntryMain</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>위 코드에서 중요한 부분은 <code class="highlighter-rouge">keyPressed</code> 함수에서 키 입력시 base64로 인코딩을 한다는 것이며 하드코딩된 숫자와 일치하는지 확인한다.</p>
+
+<p><code class="highlighter-rouge">83, 69, 78, 66, 84, 86, 66, 55, 82, 86, 112, 102, 83, 109, 70, 50, 89, 86, 57, 68, 98, 50, 90, 109, 90, 87, 86, 102, 86, 68, 70, 116, 90, 86, 57, 80, 100, 48, 57, 57</code></p>
+
+<p>이 값을 문자열로 변환하여 base64로 디코딩하면 flag를 얻을 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="n">val</span> <span class="o">=</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">57</span>
+
+<span class="n">strings</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+    <span class="n">strings</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">flag: HCAMP{EZ_Java_Coffee_T1me_OwO}</code></p>
 
       <br/>
       <br/>
@@ -326,12 +363,12 @@ root@ubuntu:/home/k3y6reak/Desktop#</code></pre></figure>
   <div class="share">
       <h2>Share this post</h2>
       <div class="share-body">
-        <a href="http://twitter.com/share?text=SHA2017 Suspect File1 (100)&amp;url=http://localhost:4000/ctfs/2017/08/07/sha2017_suspect_file1_100/"
+        <a href="http://twitter.com/share?text=Hackingcamp 2018 JavaEasy&amp;url=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_JavaEasy/"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
             <span class="icon-twitter">
             </span>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/ctfs/2017/08/07/sha2017_suspect_file1_100/"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_JavaEasy/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
             <span class="icon-facebook">
             </span>
@@ -389,21 +426,8 @@ root@ubuntu:/home/k3y6reak/Desktop#</code></pre></figure>
       
       
         
-        
           
-
-
-<li class="h4">
-  <a href="/ctfs/2018/09/07/Hackingcamp_JavaEasy/" data-flip="title">
-    <span>Hackingcamp 2018 JavaEasy</span>
-  </a>
-  <small><time datetime="2018-09-07T15:16:00+09:00">
-    07 Sep 2018
-  </time></small>
-</li>
-
-        
-      
+          
         
         
           
@@ -421,8 +445,21 @@ root@ubuntu:/home/k3y6reak/Desktop#</code></pre></figure>
         
       
         
+        
           
-          
+
+
+<li class="h4">
+  <a href="/ctfs/2017/08/07/sha2017_suspect_file1_100/" data-flip="title">
+    <span>SHA2017 Suspect File1 (100)</span>
+  </a>
+  <small><time datetime="2017-08-07T14:14:00+09:00">
+    07 Aug 2017
+  </time></small>
+</li>
+
+        
+      
         
         
           
@@ -453,7 +490,7 @@ root@ubuntu:/home/k3y6reak/Desktop#</code></pre></figure>
   <div id="disqus_thread"></div>
 
   <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="SHA2017 Suspect File1 (100)",this.page.identifier="/ctfs/2017/08/07/sha2017_suspect_file1_100",this.page.url="http://localhost:4000/ctfs/2017/08/07/sha2017_suspect_file1_100/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Hackingcamp 2018 JavaEasy",this.page.identifier="/ctfs/2018/09/07/Hackingcamp_JavaEasy",this.page.url="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_JavaEasy/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
 
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
