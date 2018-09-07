@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="87b624932dd1910564c0104512a8a4eaab4b4dfc"/>
+<meta property="og:title" content="Hackingcamp 2018 I LOVE Registry">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>Hackingcamp 2018 I LOVE Registry &middot; k3y6reak</title>
+
+
+
+<meta name="description" content="풀이
+
+">
+<meta property="og:description" content="풀이
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/">
+<meta property="og:url" content="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/">
+
+<link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/">
+
+
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        Hackingcamp 2018 I LOVE Registry
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2018-09-07T16:46:00+09:00">07 Sep 2018</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/ctfs/" data-flip="title">CTFs</a>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-8115495896391807"
+    data-ad-slot=""
+    ></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+      <h2 id="풀이">풀이</h2>
+
+<p>바이너리를 다운받아 파일을 확인하면 PE32 EXE 임을 확인할 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">file LOVE_Registry.exe
+LOVE_Registry.exe: PE32 executable <span class="o">(</span>console<span class="o">)</span> Intel 80386, <span class="k">for </span>MS Windows</code></pre></figure>
+
+<p>IDA를 이용해 디컴파일을 하면 아래와 같은 코드를 확인할 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">strcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v15</span><span class="p">,</span> <span class="s">"C:</span><span class="se">\\</span><span class="s">Temp</span><span class="se">\\</span><span class="s">WELCOMEHACKINGCAMP2018"</span><span class="p">);</span>
+  <span class="n">sub_401E40</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v6</span><span class="p">);</span>
+  <span class="n">sub_4019D0</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v3</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">a1</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">v4</span> <span class="o">=</span> <span class="n">sub_401B50</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">access</span><span class="p">(</span><span class="s">"C:</span><span class="se">\\</span><span class="s">Temp"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+      <span class="n">mkdir</span><span class="p">(</span><span class="s">"C:</span><span class="se">\\</span><span class="s">Temp"</span><span class="p">);</span>
+    <span class="n">v7</span> <span class="o">=</span> <span class="n">mkdir</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v15</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">v7</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+      <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"fail!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"Success!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+      <span class="n">v14</span> <span class="o">=</span> <span class="n">sub_4012E0</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v6</span><span class="p">,</span> <span class="n">byte_405030</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">v9</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">byte_405028</span><span class="p">;</span>
+    <span class="n">v10</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)(</span><span class="n">a2</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="k">do</span>
+    <span class="p">{</span>
+      <span class="n">v13</span> <span class="o">=</span> <span class="o">*</span><span class="n">v10</span><span class="p">;</span>
+      <span class="n">v2</span> <span class="o">=</span> <span class="n">v13</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="o">*</span><span class="n">v9</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">v13</span> <span class="o">!=</span> <span class="o">*</span><span class="n">v9</span> <span class="p">)</span>
+        <span class="k">goto</span> <span class="n">LABEL_25</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">v13</span> <span class="p">)</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="n">v12</span> <span class="o">=</span> <span class="n">v10</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+      <span class="n">v2</span> <span class="o">=</span> <span class="n">v12</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)</span><span class="n">v9</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">v12</span> <span class="o">!=</span> <span class="n">v9</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+      <span class="p">{</span>
+<span class="n">LABEL_25</span><span class="o">:</span>
+        <span class="n">v8</span> <span class="o">=</span> <span class="o">-</span><span class="n">v2</span> <span class="o">|</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">goto</span> <span class="n">LABEL_18</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">v10</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="n">v9</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">v12</span> <span class="p">);</span>
+    <span class="n">v8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">LABEL_18</span><span class="o">:</span>
+    <span class="n">v5</span> <span class="o">=</span> <span class="n">v8</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">v8</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">MessageBoxA</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">byte_405038</span><span class="p">,</span> <span class="s">"error"</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"Welcome %s</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+      <span class="n">sub_4019F0</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v3</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">ms_exc</span><span class="p">.</span><span class="n">registration</span><span class="p">.</span><span class="n">TryLevel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">sub_401AE0</span><span class="p">();</span>
+    <span class="n">ms_exc</span><span class="p">.</span><span class="n">registration</span><span class="p">.</span><span class="n">TryLevel</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">remove</span><span class="p">(</span><span class="s">"C:</span><span class="se">\\</span><span class="s">Temp</span><span class="se">\\</span><span class="s">WELCOMEHACKINGCAMP2018"</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>코드를 살펴보면 <code class="highlighter-rouge">C:\\Temp\\WELCOMEHACKINGCAMP2018</code>에 디렉토리를 생성한다.
+또한 argc가 2가 되어야 하므로 매개변수를 받고 있다.</p>
+
+<p>디렉토리를 생성하는 부분은 별다른 영향이 없으므로 넘어가고 아래 코드 부분을 살펴보자.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+      <span class="n">v14</span> <span class="o">=</span> <span class="n">sub_4012E0</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v6</span><span class="p">,</span> <span class="n">byte_405030</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">sub_4012E0</code>함수가 v6과 byte_405030를 매개변수로 받고 있다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">char</span> <span class="kr">__stdcall</span> <span class="nf">sub_4012E0</span><span class="p">(</span><span class="kt">int</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">char</span> <span class="n">a2</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">byte_405028</span><span class="p">[</span><span class="n">dword_405444</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dword_405444</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">^</span> <span class="n">a2</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">dword_405444</span> <span class="o">&gt;=</span> <span class="mi">4</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="o">++</span><span class="n">dword_405444</span><span class="p">;</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>sub_4012E0에서 dword_405444 값이 1씩 증가하면서 a2와 xor 연산을한다.</p>
+
+<p>a2의 값은 byte_405030 값이므로 이 값을 확인해보면 아래와 같다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">.data:00405030 byte_405030     db <span class="s1">'v'</span>                  <span class="p">;</span> DATA XREF: sub_401C00+148↑r
+.data:00405031 aRfz            db <span class="s1">'rfz}'</span>,0</code></pre></figure>
+
+<p>즉, 1씩 증가하면서 5를 더하고 <code class="highlighter-rouge">vrfz}</code>를 차례로 xor 연산을 한다.</p>
+
+<p>이 값을 연산하면 <code class="highlighter-rouge">start</code>라는 문자열이 나타나며 실행하면 아래와 같이 실행된다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\L</span>OVERegistry&gt;LOVE_Registry.exe start
+fail!
+Welcome k3y6reak
+Registry World
+        <span class="o">[</span>0] Search
+        <span class="o">[</span>1] Enroll
+        <span class="o">[</span>2] Edit
+        <span class="o">[</span>3] Delete
+        <span class="o">[</span>5] Exit</code></pre></figure>
+
+<p>함수를 따라 들어가다보면 아래와 같이 switch-case문을 볼 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">__thiscall</span> <span class="nf">sub_401360</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">this</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a2</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// eax</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">v3</span><span class="p">;</span> <span class="c1">// [esp+4h] [ebp-4h]</span>
+
+  <span class="n">v3</span> <span class="o">=</span> <span class="n">this</span><span class="p">;</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">a2</span><span class="p">;</span>
+  <span class="k">switch</span> <span class="p">(</span> <span class="n">a2</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"Let's Search</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">sub_4013F0</span><span class="p">(</span><span class="n">v3</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">sub_401420</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">sub_401770</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">sub_401790</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
+      <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="k">case</span> <span class="mi">7</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">sub_4017B0</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="nl">default:</span>
+      <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>여기서 <code class="highlighter-rouge">sub_401420</code>함수로 들어가면 <code class="highlighter-rouge">HACKINGCAMP_Service.dll</code>를 호출하는 부분을 찾을 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">v15</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">v16</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">strcpy</span><span class="p">(</span>
+    <span class="n">v11</span><span class="p">,</span>
+    <span class="s">"/x48/x65/x6c/x6c/x6f/x20/x49/x20/x61/x6d/x20/x73/x6f/x72/x72/x79/x20/x54/x68/x69/x73/x20/x44/x75/x6d/x70/x20/x69/x73"</span>
+    <span class="s">"/x20/x46/x41/x4b/x45/x20/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65"</span>
+    <span class="s">"/x72/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65/x72"</span>
+    <span class="s">"/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e/x4d/x65/x72/x6f/x6e/x67/x7e"</span><span class="p">);</span>
+  <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Dst</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x4Fu</span><span class="p">);</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"HACKINGCAMP_Service.dll"</span><span class="p">,</span> <span class="s">"rb"</span><span class="p">);</span>
+  <span class="n">File</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">result</span> <span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="kt">FILE</span> <span class="o">*</span><span class="p">)</span><span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"not file</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">File</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fseek</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">ftell</span><span class="p">(</span><span class="n">File</span><span class="p">);</span>
+    <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"start offset = 0x%x</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"size = 0x%x</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">Memory</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mh">0x200u</span><span class="p">);</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">Memory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x200u</span><span class="p">);</span>
+    <span class="n">fseek</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">GetTempPathW</span><span class="p">(</span><span class="mh">0x104u</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">Buffer</span><span class="p">);</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">lstrlenW</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Buffer</span><span class="p">);</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="n">lstrlenW</span><span class="p">(</span><span class="s">L"dump.exe"</span><span class="p">)</span> <span class="o">+</span> <span class="n">v1</span><span class="p">;</span>
+    <span class="n">v9</span> <span class="o">=</span> <span class="s">L"dump.exe"</span><span class="p">;</span>
+    <span class="k">do</span>
+    <span class="p">{</span>
+      <span class="n">v3</span> <span class="o">=</span> <span class="o">*</span><span class="n">v9</span><span class="p">;</span>
+      <span class="o">++</span><span class="n">v9</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">v3</span> <span class="p">);</span>
+    <span class="n">v8</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">v13</span><span class="p">;</span>
+    <span class="k">do</span>
+    <span class="p">{</span>
+      <span class="n">v4</span> <span class="o">=</span> <span class="n">v8</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+      <span class="o">++</span><span class="n">v8</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">v4</span> <span class="p">);</span>
+    <span class="n">qmemcpy</span><span class="p">(</span><span class="n">v8</span><span class="p">,</span> <span class="s">L"dump.exe"</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">v9</span> <span class="o">-</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="s">L"dump.exe"</span><span class="p">);</span>
+    <span class="n">sub_4010B0</span><span class="p">(</span><span class="s">"user = %S</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">v6</span> <span class="o">=</span> <span class="n">wfopen</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Buffer</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">v6</span> <span class="p">)</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">"Created!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">puts</span><span class="p">(</span><span class="s">"NOT Created</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mh">0x1F4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+      <span class="n">sub_401070</span><span class="p">(</span><span class="n">v6</span><span class="p">,</span> <span class="s">"%c"</span><span class="p">,</span> <span class="n">v11</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">File</span><span class="p">);</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">v6</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">Memory</span><span class="p">);</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="kt">FILE</span> <span class="o">*</span><span class="p">)</span><span class="n">memset</span><span class="p">(</span><span class="n">Memory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0x83FFu</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">HACKINGCAMP_Service.dll</code> 파일을 열어 <code class="highlighter-rouge">fseek</code> 함수를 호출하게 된다. 친절하게 <code class="highlighter-rouge">start offset</code>과 <code class="highlighter-rouge">size</code> 그리고 <code class="highlighter-rouge">path</code>도 출력해 준다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\L</span>OVERegistry&gt;LOVE_Registry.exe start
+fail!
+Welcome k3y6reak
+Registry World
+        <span class="o">[</span>0] Search
+        <span class="o">[</span>1] Enroll
+        <span class="o">[</span>2] Edit
+        <span class="o">[</span>3] Delete
+        <span class="o">[</span>5] Exit
+1
+start offset <span class="o">=</span> 0x4b0
+size <span class="o">=</span> 0x83ff
+user <span class="o">=</span> C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\T</span>emp<span class="se">\d</span>ump.exe
+Created!</code></pre></figure>
+
+<p>dump.exe를 살펴보면 실제 exe 파일이 아니며, 단순 hex 값이 존재한다.</p>
+
+<p>그렇다면 확인해야하는 부분은 <code class="highlighter-rouge">HACKINGCAMP_Service.dll</code>에서 <code class="highlighter-rouge">offset</code>과 <code class="highlighter-rouge">size</code>를 알려주기 때문에 해당 부분만 가져와 파일을 생성한다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">00008350  30 20 30 30 20 30 30 20  30 30 20 30 30 20 30 30  |0 00 00 00 00 00|
+00008360  20 30 30 20 30 30 20 30  30 20 30 30 20 30 30 20  | 00 00 00 00 00 |
+00008370  30 30 20 30 30 20 30 30  20 30 30 20 30 30 20 30  |00 00 00 00 00 0|
+00008380  30 20 30 30 20 30 30 20  30 30 20 30 30 20 30 30  |0 00 00 00 00 00|
+00008390  20 30 30 20 30 30 20 30  30 20 30 30 20 30 30 20  | 00 00 00 00 00 |
+000083a0  30 30 20 30 30 20 30 30  20 30 30 20 30 30 20 30  |00 00 00 00 00 0|
+000083b0  30 20 30 30 20 34 30 20  30 30 20 30 30 20 30 30  |0 00 40 00 00 00|
+000083c0  20 30 30 20 30 30 20 30  30 20 30 30 20 42 38 20  | 00 00 00 00 B8 |
+000083d0  30 30 20 30 30 20 46 46  20 46 46 20 30 30 20 30  |00 00 FF FF 00 0|
+000083e0  30 20 30 30 20 30 34 20  30 30 20 30 30 20 30 30  |0 00 04 00 00 00|
+000083f0  20 30 33 20 30 30 20 39  30 20 35 41 20 34 44     | 03 00 90 5A 4D|</code></pre></figure>
+
+<p>마지막 부분을 살펴보면 <code class="highlighter-rouge">5A 4D</code>라는 것을 볼 수 있다. exe 파일에서 시그니처가 <code class="highlighter-rouge">4D 5A</code>라는 것을 알고 있다면 이 부분이 거꾸로 되어 있다는 것을 알 수 있다.</p>
+
+<p>이 부분을 거꾸로 파일을 생성하면 아래와 같은 파일을 얻을 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">file rev_dump
+rev_dump3: PE32+ executable <span class="o">(</span>console<span class="o">)</span> x86-64, <span class="k">for </span>MS Windows</code></pre></figure>
+
+<p>PE32+ EXE라는 것을 알 수 있으며 실행해보면 아래와 같은 문자열이 출력된다.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">C:<span class="se">\U</span>sers<span class="se">\k</span>3y6reak<span class="se">\D</span>esktop<span class="se">\L</span>OVERegistry&gt;rev_dump.exe
+HINT : DATA file</code></pre></figure>
+
+<p>처음 파일을 다운로드 받으면 DATA 파일이 존재하는데 이 파일과 관련이 있다는 것을 알 수 있다.</p>
+
+<p>rev_dump.exe를 IDA를 이용해 디컴파일하면 아래와 같다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">__int64</span> <span class="kr">__fastcall</span> <span class="nf">sub_140001070</span><span class="p">(</span><span class="n">__int64</span> <span class="n">a1</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">__int64</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// rdi</span>
+  <span class="kt">int</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// eax</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// ebx</span>
+
+  <span class="n">v1</span> <span class="o">=</span> <span class="n">a1</span><span class="p">;</span>
+  <span class="n">v2</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+  <span class="n">v3</span> <span class="o">=</span> <span class="n">v2</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span><span class="p">)(</span><span class="n">v2</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">sub_140001010</span><span class="p">(</span><span class="s">"time = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">v3</span><span class="p">);</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">7</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">9</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">11</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">13</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">15</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">17</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">19</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">21</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">23</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">25</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">27</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">29</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">31</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">33</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">35</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">37</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">39</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">_BYTE</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v1</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">41</span><span class="n">i64</span><span class="p">)</span> <span class="o">^=</span> <span class="n">v3</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">v1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>rev_dump.exe를 매개변수와 함께 실행하면 time은 14로 항상 고정이며 이 값과 홀수번째 인덱스와 xor연산을 하게된다.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">flag</span> <span class="o">=</span> <span class="s">"HMACPuR=S?szrw_^0}sgbbeQEcbkdjej_JazaQXJ}"</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">flag2</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flag</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">flag2</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">^</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">flag2</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="k">print</span> <span class="n">flag2</span></code></pre></figure>
+
+<p>위와 같이 python 코드를 작성해 실행하면 flag를 얻을 수 있다.</p>
+
+<p><code class="highlighter-rouge">flag: HCAMP{R3S1stry_P0ssible_Embedded_Data_XD}</code></p>
+
+      <br/>
+      <br/>
+      <!-- 블로그-하단-반응형 -->
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-8115495896391807"
+          data-ad-slot=""
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=Hackingcamp 2018 I LOVE Registry&amp;url=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>F1nd k3y, 6reak k3y!</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/" data-flip="title">
+    <span>Hackingcamp 2018 Yeeeeeeeee</span>
+  </a>
+  <small><time datetime="2018-09-07T16:10:00+09:00">
+    07 Sep 2018
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/ctfs/2018/09/07/Hackingcamp_What_is_END/" data-flip="title">
+    <span>Hackingcamp 2018 What is END?</span>
+  </a>
+  <small><time datetime="2018-09-07T15:48:00+09:00">
+    07 Sep 2018
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/ctfs/2018/09/07/Hackingcamp_eaJsy/" data-flip="title">
+    <span>Hackingcamp 2018 eaJsy</span>
+  </a>
+  <small><time datetime="2018-09-07T15:33:00+09:00">
+    07 Sep 2018
+  </time></small>
+</li>
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Hackingcamp 2018 I LOVE Registry",this.page.identifier="/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry",this.page.url="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2017. by k3y6reak</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://k3y6reak.github.io/">k3y6reak</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-8115495896391807"
+         data-ad-slot=""></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">k3y6reak</a></h1>
+        <p>F1nd k3y, 6reak k3y!</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/programming/">Programming</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-c/">C Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-cpp/">C++ Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-python/">Python Language</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/programming-ruby/">Ruby Language</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/technique/">High Level Technique</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-reversing/">Reversing</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-android/">Android</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-powershell/">Powershell</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-systemhacking/">System Hacking</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-shellcoding/">Shellcoding</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-webhacking/">Web Hacking</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowsforensic/">Windows Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-linuxforensic/">Linux Forensic</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/technique-windowssystem/">Windows System</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/wargame/">Wargame</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-reversing-kr/">reversing.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-wargame-kr/">wargame.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/wargame-pwnable-kr/">pwnable.kr</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ctfs/">CTFs</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/misc/">MISC</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="SaHong Pak"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>RebForPwn</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/k3y6reak">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:k3y6reak@naver.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://k3y6reak.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-109251496-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
