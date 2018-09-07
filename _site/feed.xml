@@ -6,9 +6,122 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 07 Sep 2018 16:04:28 +0900</pubDate>
-    <lastBuildDate>Fri, 07 Sep 2018 16:04:28 +0900</lastBuildDate>
+    <pubDate>Fri, 07 Sep 2018 16:28:22 +0900</pubDate>
+    <lastBuildDate>Fri, 07 Sep 2018 16:28:22 +0900</lastBuildDate>
     <generator>Jekyll v3.8.3</generator>
+    
+      <item>
+        <title>Hackingcamp 2018 Yeeeeeeeee</title>
+        <description>&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
+
+&lt;p&gt;바이너리를 다운받아 파일을 확인하면 PE32 EXE 임을 확인할 수 있다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;file Yeeeeeeeee.exe
+Yeeeeeeeee.exe: PE32 executable &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;console&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Intel 80386, &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;MS Windows&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;x86dbg를 이용해 분석을 하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;00411BB2&lt;/code&gt;에서 ESI, ESP를 비교하는데 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x27&lt;/code&gt;과 비교한다. 즉, 39자리를 입력해야 한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;00411A2C         | C7 85 3C FB FF FF  | MOV DWORD PTR SS:[EBP - 4C4], 120                |
+00411A36         | C7 85 40 FB FF FF  | MOV DWORD PTR SS:[EBP - 4C0], 10C                |
+00411A40         | C7 85 44 FB FF FF  | MOV DWORD PTR SS:[EBP - 4BC], 104                |
+00411A4A         | C7 85 48 FB FF FF  | MOV DWORD PTR SS:[EBP - 4B8], 134                |
+00411A54         | C7 85 4C FB FF FF  | MOV DWORD PTR SS:[EBP - 4B4], 140                |
+00411A5E         | C7 85 50 FB FF FF  | MOV DWORD PTR SS:[EBP - 4B0], 1EC                |
+00411A68         | C7 85 54 FB FF FF  | MOV DWORD PTR SS:[EBP - 4AC], CC                 |
+00411A72         | C7 85 58 FB FF FF  | MOV DWORD PTR SS:[EBP - 4A8], D0                 |
+00411A7C         | C7 85 5C FB FF FF  | MOV DWORD PTR SS:[EBP - 4A4], E0                 |
+00411A86         | C7 85 60 FB FF FF  | MOV DWORD PTR SS:[EBP - 4A0], 184                |
+00411A90         | C7 85 64 FB FF FF  | MOV DWORD PTR SS:[EBP - 49C], D0                 |
+00411A9A         | C7 85 68 FB FF FF  | MOV DWORD PTR SS:[EBP - 498], D0                 |
+00411AA4         | C7 85 6C FB FF FF  | MOV DWORD PTR SS:[EBP - 494], E0                 |
+00411AAE         | C7 85 70 FB FF FF  | MOV DWORD PTR SS:[EBP - 490], 184                |
+00411AB8         | C7 85 74 FB FF FF  | MOV DWORD PTR SS:[EBP - 48C], D4                 |
+00411AC2         | C7 85 78 FB FF FF  | MOV DWORD PTR SS:[EBP - 488], C4                 |
+00411ACC         | C7 85 7C FB FF FF  | MOV DWORD PTR SS:[EBP - 484], 190                |
+00411AD6         | C7 85 80 FB FF FF  | MOV DWORD PTR SS:[EBP - 480], C4                 |
+00411AE0         | C7 85 84 FB FF FF  | MOV DWORD PTR SS:[EBP - 47C], 194                |
+00411AEA         | C7 85 88 FB FF FF  | MOV DWORD PTR SS:[EBP - 478], C0                 |
+00411AF4         | C7 85 8C FB FF FF  | MOV DWORD PTR SS:[EBP - 474], 198                |
+00411AFE         | C7 85 90 FB FF FF  | MOV DWORD PTR SS:[EBP - 470], C0                 |
+00411B08         | C7 85 94 FB FF FF  | MOV DWORD PTR SS:[EBP - 46C], 198                |
+00411B12         | C7 85 98 FB FF FF  | MOV DWORD PTR SS:[EBP - 468], D4                 |
+00411B1C         | C7 85 9C FB FF FF  | MOV DWORD PTR SS:[EBP - 464], 194                |
+00411B26         | C7 85 A0 FB FF FF  | MOV DWORD PTR SS:[EBP - 460], 194                |
+00411B30         | C7 85 A4 FB FF FF  | MOV DWORD PTR SS:[EBP - 45C], 194                |
+00411B3A         | C7 85 A8 FB FF FF  | MOV DWORD PTR SS:[EBP - 458], D0                 |
+00411B44         | C7 85 AC FB FF FF  | MOV DWORD PTR SS:[EBP - 454], C8                 |
+00411B4E         | C7 85 B0 FB FF FF  | MOV DWORD PTR SS:[EBP - 450], CC                 |
+00411B58         | C7 85 B4 FB FF FF  | MOV DWORD PTR SS:[EBP - 44C], CC                 |
+00411B62         | C7 85 B8 FB FF FF  | MOV DWORD PTR SS:[EBP - 448], DC                 |
+00411B6C         | C7 85 BC FB FF FF  | MOV DWORD PTR SS:[EBP - 444], 190                |
+00411B76         | C7 85 C0 FB FF FF  | MOV DWORD PTR SS:[EBP - 440], C4                 |
+00411B80         | C7 85 C4 FB FF FF  | MOV DWORD PTR SS:[EBP - 43C], C8                 |
+00411B8A         | C7 85 C8 FB FF FF  | MOV DWORD PTR SS:[EBP - 438], 184                |
+00411B94         | C7 85 CC FB FF FF  | MOV DWORD PTR SS:[EBP - 434], 190                |
+00411B9E         | C7 85 D0 FB FF FF  | MOV DWORD PTR SS:[EBP - 430], 18C                |
+00411BA8         | C7 85 D4 FB FF FF  | MOV DWORD PTR SS:[EBP - 42C], 1F4                |
+00411BB2         | 83 7D E8 27        | CMP DWORD PTR SS:[EBP - 18], 27                  | 27:&lt;span class=&quot;s1&quot;&gt;'''&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이후 &lt;code class=&quot;highlighter-rouge&quot;&gt;HCAMP{&lt;/code&gt;는 하드코딩된 값을 직접 비교를 한다. 이 부분은 쉽게 찾을 수 있으므로 제외하고, 나머지 부분들을 검증해야하는데 위 코드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;mov&lt;/code&gt;를 이용해 값을 저장하고 있다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;00411D3D         | 8B 85 00 FB FF FF  | MOV EAX, DWORD PTR SS:[EBP - 500]                |
+00411D43         | 8B 8D 00 FB FF FF  | MOV ECX, DWORD PTR SS:[EBP - 500]                |
+00411D49         | 8B 94 85 E0 FB FF  | MOV EDX, DWORD PTR SS:[EBP + EAX &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 4 - 420]      |
+00411D50         | 3B 94 8D 3C FB FF  | CMP EDX, DWORD PTR SS:[EBP + ECX &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 4 - 4C4]      |&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 부분에서 입력한 값을 일정 연산을 통해 저장된 값과 비교를 한다. 그러면 입력한 값을 연산하는 부분을 찾아야 한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;00411CE1         | 03 85 18 FB FF FF  | ADD EAX, DWORD PTR SS:[EBP - 4E8]                |
+00411CE7         | 8A 08              | MOV CL, BYTE PTR DS:[EAX]                        |
+00411CE9         | 88 8D 0F FB FF FF  | MOV BYTE PTR SS:[EBP - 4F1], CL                  |
+00411CEF         | 6A 02              | PUSH 2                                           |
+00411CF1         | 0F BE 85 0F FB FF  | MOVSX EAX, BYTE PTR SS:[EBP - 4F1]               |
+00411CF8         | 50                 | PUSH EAX                                         |
+00411CF9         | E8 EA F6 FF FF     | CALL yeeeeeeeee.4113E8                           |&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;0x411cf9&lt;/code&gt; 에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;call 4113e8&lt;/code&gt;를 호출하게 된다. 이 함수를 찾아가면 &lt;code class=&quot;highlighter-rouge&quot;&gt;lrotl&lt;/code&gt; 함수를 실행하게된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;63022712         | 55                 | PUSH EBP                                         |
+63022713         | 8B EC              | MOV EBP, ESP                                     |
+63022715         | 8B 45 0C           | MOV EAX, DWORD PTR SS:[EBP + C]                  |
+63022718         | 83 E0 1F           | AND EAX, 1F                                      |
+6302271B         | 89 45 0C           | MOV DWORD PTR SS:[EBP + C], EAX                  |
+6302271E         | B9 20 00 00 00     | MOV ECX, 20                                      | 20:&lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt;
+63022723         | 2B 4D 0C           | SUB ECX, DWORD PTR SS:[EBP + C]                  |
+63022726         | 8B 55 08           | MOV EDX, DWORD PTR SS:[EBP + 8]                  | &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+8]:L&lt;span class=&quot;s2&quot;&gt;&quot;HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}&quot;&lt;/span&gt;
+63022729         | D3 EA              | SHR EDX, CL                                      |
+6302272B         | 8B 45 08           | MOV EAX, DWORD PTR SS:[EBP + 8]                  | &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+8]:L&lt;span class=&quot;s2&quot;&gt;&quot;HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}&quot;&lt;/span&gt;
+6302272E         | 8B 4D 0C           | MOV ECX, DWORD PTR SS:[EBP + C]                  |
+63022731         | D3 E0              | SHL EAX, CL                                      |
+63022733         | 0B D0              | OR EDX, EAX                                      |
+63022735         | 89 55 08           | MOV DWORD PTR SS:[EBP + 8], EDX                  | &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+8]:L&lt;span class=&quot;s2&quot;&gt;&quot;HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}&quot;&lt;/span&gt;
+63022738         | 8B 45 08           | MOV EAX, DWORD PTR SS:[EBP + 8]                  | &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ebp+8]:L&lt;span class=&quot;s2&quot;&gt;&quot;HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}&quot;&lt;/span&gt;
+6302273B         | 5D                 | POP EBP                                          |
+6302273C         | C3                 | RET                                              |&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 영역이 &lt;code class=&quot;highlighter-rouge&quot;&gt;lrotl&lt;/code&gt; 함수이며, 사용자가 입력한 값을 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x1E&lt;/code&gt;만큼 오른쪽으로 쉬프트 연산을 진행하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x2&lt;/code&gt;만큼 왼쪽으로 쉬프트 연산을 진행한다. 여기서 or 연산도 있지만 분석을 해보면 실제로 영향을 주는 부분은 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x2&lt;/code&gt; 만큼 왼쪽으로 쉬프트 연산만 하는 것과 다를바없다.&lt;/p&gt;
+
+&lt;p&gt;따라서 저장된 값이 0x2 만큼 왼쪽으로 쉬프트 연산이 된 값이므로 다시 오른쪽으로 0x2 만큼 쉬프트 연산을 하면 flag를 얻을 수 있다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;flag2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x120&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x10c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x104&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x134&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x140&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x1ec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xcc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xd0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xe0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x184&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xd0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xd0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xe0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x184&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xd4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x190&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x194&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x198&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x198&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xd4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x194&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x194&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x194&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xd0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xcc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xcc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xdc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x190&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0xc8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x184&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x190&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x18c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x1f4&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flag2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;flag: HCAMP{348a448a51d1e0f0f5eee42337d12adc}&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 07 Sep 2018 16:10:00 +0900</pubDate>
+        <link>http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/</link>
+        <guid isPermaLink="true">http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/</guid>
+        
+        
+        <category>ctfs</category>
+        
+      </item>
     
       <item>
         <title>Hackingcamp 2018 What is END?</title>
@@ -4484,114 +4597,6 @@ esp 	0xbffff146 	0xbffff146&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         <pubDate>Tue, 25 Jul 2017 10:05:00 +0900</pubDate>
         <link>http://localhost:4000/technique/2017/07/25/Save_Frame_Pointer_Overwrite/</link>
         <guid isPermaLink="true">http://localhost:4000/technique/2017/07/25/Save_Frame_Pointer_Overwrite/</guid>
-        
-        <category>systemhacking</category>
-        
-        
-        <category>technique</category>
-        
-      </item>
-    
-      <item>
-        <title>Buffer Overflow</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;개념&quot;&gt;개념&lt;/h3&gt;
-
-&lt;p&gt;Buffer Overflow (이하 bof)는 크기가 정해진 배열에 해당 크기 만큼 입력해야 하지만 &lt;code class=&quot;highlighter-rouge&quot;&gt;버퍼보다 큰 값&lt;/code&gt;
-을 넣을 수 있는 취약점을 말합니다.&lt;/p&gt;
-
-&lt;p&gt;예를들어, &lt;code class=&quot;highlighter-rouge&quot;&gt;char buf[10]&lt;/code&gt;로 선언했다면 buf는 총 10개의 공간을 갖게 됩니다. 하지만 프로그램이 실행 되면서 buf에 10개가 아닌 11개, 12개 혹은 그 이상의 값이 들어가는 것을 확인하지 않고 실행 하므로서 발생하는 취약점을 뜻 합니다.&lt;/p&gt;
-
-&lt;p&gt;그래서 bof는 stack corruption으로도 불립니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;설명&quot;&gt;설명&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 소스코드를 보면 buf라는 char 배열에 총 8개의 값을 넣을 수 있고, scanf를 이용해서 buf에 값을 넣어줍니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf()&lt;/code&gt;는 &lt;code class=&quot;highlighter-rouge&quot;&gt;크기 제한&lt;/code&gt;이 없기 때문에 해당 부분에서 취약점이 발생할 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdb-peda&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Dump of assembler code &lt;span class=&quot;k&quot;&gt;for function &lt;/span&gt;main:
-0x0804843d &amp;lt;+0&amp;gt;:	push	ebp
-0x0804843e &amp;lt;+1&amp;gt;:	mov 	ebp,esp
-0x08048440 &amp;lt;+3&amp;gt;:	sub 	esp,0x10
-0x08048443 &amp;lt;+6&amp;gt;:	lea 	eax,[ebp-0x8]
-0x08048446 &amp;lt;+9&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-0x0804844a &amp;lt;+13&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
-0x08048451 &amp;lt;+20&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;
-0x08048456 &amp;lt;+25&amp;gt;:	mov	eax,0x0
-0x0804845b &amp;lt;+30&amp;gt;:	leave
-0x0804845c &amp;lt;+31&amp;gt;:	ret
-End of assembler dump.&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;위 코드에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;push ebp&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;mov ebp,esp&lt;/code&gt;가 함수의 프롤로그가 되며, &lt;code class=&quot;highlighter-rouge&quot;&gt;leave&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ret&lt;/code&gt;이 함수의 에필로그가 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;0x08048446 &amp;lt;+9&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp+0x4],eax
-0x0804844a &amp;lt;+13&amp;gt;:	mov	DWORD PTR &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;esp], 0x80484f0
-0x08048451 &amp;lt;+20&amp;gt;:	call	0x80484330 &amp;lt;__isoc99_scanf@plt&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;스택 구조에 대해서 설명을 붙이자면 위 어셈블리 코드를 보면 scanf가 실행되기 전 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp+0x4&lt;/code&gt;에 값을 넣고 있는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scanf&lt;/code&gt;함수는 보통 &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf(&quot;%s&quot;, buf)&lt;/code&gt; 형태로 코드를 작성합니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;buf&lt;/code&gt;가 &lt;code class=&quot;highlighter-rouge&quot;&gt;인자 값&lt;/code&gt;이 되기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;esp+0x4&lt;/code&gt;에 값을 넣어주게 됩니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdb-peda&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;x/2wx &lt;span class=&quot;nv&quot;&gt;$esp&lt;/span&gt;
-0xbffff148:	0x080484f0	0xbffff150
-gdb-peda&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;x/s 0x80484f0
-0x80484f0:	&lt;span class=&quot;s2&quot;&gt;&quot;%s&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;esp 위치부터 2개가 값을 확인해 보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x80484f0&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;0xbffff150&lt;/code&gt;이 있습니다. scanf가 필요한 인자 값이 2개 이므로 각각 &lt;code class=&quot;highlighter-rouge&quot;&gt;%s&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;buf&lt;/code&gt;를 뜻하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;scanf를 실행한 뒤에 buf의 주소를 확인해 보면 값이 쌓여있는 것을 알 수 있습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdb-peda&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;x/10wx 0xbffff150
-0xbffff150:	0x34333231	0x00000000	0x00000000	0xb7e1fa83
-0xbffff160:	0x00000001	0xbffff1f4	0xbffff1fc	0xb7feccea
-0xbffff170:	0x00000001	0xbffff1f4&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1234&lt;/code&gt;라는 값을 입력했더니 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x34333231&lt;/code&gt;라는 값이 저장되었습니다. 1234라는 값이 각각 hex 값으로 저장된 것입니다. 하지만 ascii 코드를 살펴보면 4321 순으로 저장된 것을 볼 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;이는 &lt;code class=&quot;highlighter-rouge&quot;&gt;리틀엔디안과 빅엔디안&lt;/code&gt;차이에 따라서 결정됩니다.&lt;/p&gt;
-
-&lt;p&gt;코드를 하나씩 살펴보면서 값이 어떻게 저장되는지 확인해 봤습니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf&lt;/code&gt;함수에서 취약점이 발생한다고 했으니 어떻게 되는지 알아보도록 하겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdb-peda&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;x/4wx 0xbffff150
-0xbffff150:	0x34333231	0x38373635	0x00000000	0xb7e1fa83&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;이번에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;12345678&lt;/code&gt;을 입력했습니다. 위 스택을 살펴보면 &lt;code class=&quot;highlighter-rouge&quot;&gt;4321 8765&lt;/code&gt; 순으로 쌓인 것을 알 수 있으며 buf의 크기가 8인데 8자리를 모두 사용했습니다.&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;scanf 함수는 크기를 제한하지 않으므로&lt;/code&gt; 값을 더 입력해 보겠습니다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdb-peda&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;x/4wx 0xbffff150
-0xbffff150:	0x34333231	0x38373635	0x32313039	0x36353433&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;값을 더 입력했더니 뒤에 존재했던 값들이 모두 덮어 씌워졌습니다.&lt;/p&gt;
-
-&lt;p&gt;이 상태에서 프로그램을 진행 시키면 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x36353433 in ?? ()&lt;/code&gt; 과 같이 나타납니다. 이 말은 &lt;code class=&quot;highlighter-rouge&quot;&gt;0x36353433 주소로 이동&lt;/code&gt;을 했다는 것 입니다.&lt;/p&gt;
-
-&lt;p&gt;이제 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;Save Frame Pointer&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;Return&lt;/code&gt;을 알아야 합니다.&lt;/p&gt;
-
-&lt;p&gt;Save Frame Pointer는 &lt;code class=&quot;highlighter-rouge&quot;&gt;이전함수에서의 ebp 값을 저장&lt;/code&gt;해 둡니다. 해당 함수가 실행되고 난 후에 다시 돌아가야 할 때 이 값을 기준으로 돌아가게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;Return은 해당 주소로 이동하는 것입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/system_hacking/bof/stack.png&quot; alt=&quot;stack&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Stack의 구조는 위와 같이 이루어져 있기 때문에 앞서 값을 넘치게 입력했을 경우 0x36353433로 이동하게 된 것입니다.&lt;/p&gt;
-
-&lt;p&gt;이러한 방법으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;RET 값을 조작해서 system 함수를 호출하거나 프로그램 상에서 호출되지 않는 함수에도 접근이 가능&lt;/code&gt;하게 됩니다.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 24 Jul 2017 15:03:00 +0900</pubDate>
-        <link>http://localhost:4000/technique/2017/07/24/Buffer_OverFlow/</link>
-        <guid isPermaLink="true">http://localhost:4000/technique/2017/07/24/Buffer_OverFlow/</guid>
         
         <category>systemhacking</category>
         

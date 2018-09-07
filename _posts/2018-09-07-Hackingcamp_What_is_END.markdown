@@ -16,7 +16,6 @@ file theend.dms
 theend.dms: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=3a818b70bc51d9d32a21154a640333386b9807ee, stripped
 {% endhighlight %}
 
-
 IDA를 이용해 확인하면 값을 입력받기 전에 아래와 같이 값을 저장한다.
 
 {% highlight asm %}
