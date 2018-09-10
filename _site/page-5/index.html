@@ -30,7 +30,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="87b624932dd1910564c0104512a8a4eaab4b4dfc"/>
-<meta property="og:title" content="Hackingcamp 2018 Yeeeeeeeee">
+<meta property="og:title" content="Home">
 <meta property="og:type" content="article">
 
 
@@ -45,15 +45,13 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>Hackingcamp 2018 Yeeeeeeeee &middot; k3y6reak</title>
+  <title>Home &middot; k3y6reak</title>
 
 
 
-<meta name="description" content="풀이
-
+<meta name="description" content="RebForPwn
 ">
-<meta property="og:description" content="풀이
-
+<meta property="og:description" content="RebForPwn
 ">
 
 
@@ -61,17 +59,13 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/">
-<meta property="og:url" content="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/">
+<link rel="canonical" href="http://localhost:4000/page-5/">
+<meta property="og:url" content="http://localhost:4000/page-5/">
 
 <link rel="alternate" type="application/atom+xml" title="k3y6reak Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_What_is_END/">
 
-
-
-  <link rel="next" href="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -157,17 +151,18 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
   <div class="fade-in">
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
       
+  
 
-<article id="post-ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee" class="post" role="article">
+<article id="post-technique/2017/07/24/Buffer_OverFlow" class="post mb6" role="article">
   <header>
     <h1 class="post-title">
-      
-        Hackingcamp 2018 Yeeeeeeeee
-      
+      <a href="/technique/2017/07/24/Buffer_OverFlow/" data-flip="title">
+        Buffer Overflow
+      </a>
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2018-09-07T16:10:00+09:00">07 Sep 2018</time>
+      <time datetime="2017-07-24T15:03:00+09:00">24 Jul 2017</time>
       
 
 
@@ -178,7 +173,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-in <a href="/category/ctfs/" data-flip="title">CTFs</a>
+in <a href="/category/technique/" data-flip="title">High Level Technique</a>
 
       
 
@@ -190,7 +185,7 @@ in <a href="/category/ctfs/" data-flip="title">CTFs</a>
 
 
 
-
+on <a href="/tag/technique-systemhacking/" data-flip="title">System Hacking</a>
 
     </p>
 
@@ -203,279 +198,35 @@ in <a href="/category/ctfs/" data-flip="title">CTFs</a>
 
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
-    <div class="markdown-body">
+    <p><br /><br /></p>
+<h3 id="개념">개념</h3>
 
 
-<style>
-.myAd1190 { display:block; width:98%; height: 280px; }
-@media(min-width: 600px) { .myAd1190 { display: none; } }
-</style>
-<ins class="adsbygoogle myAd1190"
-    data-ad-client="ca-pub-8115495896391807"
-    data-ad-slot=""
-    ></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<br/>
-      <h2 id="풀이">풀이</h2>
-
-<p>바이너리를 다운받아 파일을 확인하면 PE32 EXE 임을 확인할 수 있다.</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">file Yeeeeeeeee.exe
-Yeeeeeeeee.exe: PE32 executable <span class="o">(</span>console<span class="o">)</span> Intel 80386, <span class="k">for </span>MS Windows</code></pre></figure>
-
-<p>x86dbg를 이용해 분석을 하면 <code class="highlighter-rouge">00411BB2</code>에서 ESI, ESP를 비교하는데 <code class="highlighter-rouge">0x27</code>과 비교한다. 즉, 39자리를 입력해야 한다.</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">00411A2C         | C7 85 3C FB FF FF  | MOV DWORD PTR SS:[EBP - 4C4], 120                |
-00411A36         | C7 85 40 FB FF FF  | MOV DWORD PTR SS:[EBP - 4C0], 10C                |
-00411A40         | C7 85 44 FB FF FF  | MOV DWORD PTR SS:[EBP - 4BC], 104                |
-00411A4A         | C7 85 48 FB FF FF  | MOV DWORD PTR SS:[EBP - 4B8], 134                |
-00411A54         | C7 85 4C FB FF FF  | MOV DWORD PTR SS:[EBP - 4B4], 140                |
-00411A5E         | C7 85 50 FB FF FF  | MOV DWORD PTR SS:[EBP - 4B0], 1EC                |
-00411A68         | C7 85 54 FB FF FF  | MOV DWORD PTR SS:[EBP - 4AC], CC                 |
-00411A72         | C7 85 58 FB FF FF  | MOV DWORD PTR SS:[EBP - 4A8], D0                 |
-00411A7C         | C7 85 5C FB FF FF  | MOV DWORD PTR SS:[EBP - 4A4], E0                 |
-00411A86         | C7 85 60 FB FF FF  | MOV DWORD PTR SS:[EBP - 4A0], 184                |
-00411A90         | C7 85 64 FB FF FF  | MOV DWORD PTR SS:[EBP - 49C], D0                 |
-00411A9A         | C7 85 68 FB FF FF  | MOV DWORD PTR SS:[EBP - 498], D0                 |
-00411AA4         | C7 85 6C FB FF FF  | MOV DWORD PTR SS:[EBP - 494], E0                 |
-00411AAE         | C7 85 70 FB FF FF  | MOV DWORD PTR SS:[EBP - 490], 184                |
-00411AB8         | C7 85 74 FB FF FF  | MOV DWORD PTR SS:[EBP - 48C], D4                 |
-00411AC2         | C7 85 78 FB FF FF  | MOV DWORD PTR SS:[EBP - 488], C4                 |
-00411ACC         | C7 85 7C FB FF FF  | MOV DWORD PTR SS:[EBP - 484], 190                |
-00411AD6         | C7 85 80 FB FF FF  | MOV DWORD PTR SS:[EBP - 480], C4                 |
-00411AE0         | C7 85 84 FB FF FF  | MOV DWORD PTR SS:[EBP - 47C], 194                |
-00411AEA         | C7 85 88 FB FF FF  | MOV DWORD PTR SS:[EBP - 478], C0                 |
-00411AF4         | C7 85 8C FB FF FF  | MOV DWORD PTR SS:[EBP - 474], 198                |
-00411AFE         | C7 85 90 FB FF FF  | MOV DWORD PTR SS:[EBP - 470], C0                 |
-00411B08         | C7 85 94 FB FF FF  | MOV DWORD PTR SS:[EBP - 46C], 198                |
-00411B12         | C7 85 98 FB FF FF  | MOV DWORD PTR SS:[EBP - 468], D4                 |
-00411B1C         | C7 85 9C FB FF FF  | MOV DWORD PTR SS:[EBP - 464], 194                |
-00411B26         | C7 85 A0 FB FF FF  | MOV DWORD PTR SS:[EBP - 460], 194                |
-00411B30         | C7 85 A4 FB FF FF  | MOV DWORD PTR SS:[EBP - 45C], 194                |
-00411B3A         | C7 85 A8 FB FF FF  | MOV DWORD PTR SS:[EBP - 458], D0                 |
-00411B44         | C7 85 AC FB FF FF  | MOV DWORD PTR SS:[EBP - 454], C8                 |
-00411B4E         | C7 85 B0 FB FF FF  | MOV DWORD PTR SS:[EBP - 450], CC                 |
-00411B58         | C7 85 B4 FB FF FF  | MOV DWORD PTR SS:[EBP - 44C], CC                 |
-00411B62         | C7 85 B8 FB FF FF  | MOV DWORD PTR SS:[EBP - 448], DC                 |
-00411B6C         | C7 85 BC FB FF FF  | MOV DWORD PTR SS:[EBP - 444], 190                |
-00411B76         | C7 85 C0 FB FF FF  | MOV DWORD PTR SS:[EBP - 440], C4                 |
-00411B80         | C7 85 C4 FB FF FF  | MOV DWORD PTR SS:[EBP - 43C], C8                 |
-00411B8A         | C7 85 C8 FB FF FF  | MOV DWORD PTR SS:[EBP - 438], 184                |
-00411B94         | C7 85 CC FB FF FF  | MOV DWORD PTR SS:[EBP - 434], 190                |
-00411B9E         | C7 85 D0 FB FF FF  | MOV DWORD PTR SS:[EBP - 430], 18C                |
-00411BA8         | C7 85 D4 FB FF FF  | MOV DWORD PTR SS:[EBP - 42C], 1F4                |
-00411BB2         | 83 7D E8 27        | CMP DWORD PTR SS:[EBP - 18], 27                  | 27:<span class="s1">'''</span></code></pre></figure>
-
-<p>이후 <code class="highlighter-rouge">HCAMP{</code>는 하드코딩된 값을 직접 비교를 한다. 이 부분은 쉽게 찾을 수 있으므로 제외하고, 나머지 부분들을 검증해야하는데 위 코드에서 <code class="highlighter-rouge">mov</code>를 이용해 값을 저장하고 있다.</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">00411D3D         | 8B 85 00 FB FF FF  | MOV EAX, DWORD PTR SS:[EBP - 500]                |
-00411D43         | 8B 8D 00 FB FF FF  | MOV ECX, DWORD PTR SS:[EBP - 500]                |
-00411D49         | 8B 94 85 E0 FB FF  | MOV EDX, DWORD PTR SS:[EBP + EAX <span class="k">*</span> 4 - 420]      |
-00411D50         | 3B 94 8D 3C FB FF  | CMP EDX, DWORD PTR SS:[EBP + ECX <span class="k">*</span> 4 - 4C4]      |</code></pre></figure>
-
-<p>위 부분에서 입력한 값을 일정 연산을 통해 저장된 값과 비교를 한다. 그러면 입력한 값을 연산하는 부분을 찾아야 한다.</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">00411CE1         | 03 85 18 FB FF FF  | ADD EAX, DWORD PTR SS:[EBP - 4E8]                |
-00411CE7         | 8A 08              | MOV CL, BYTE PTR DS:[EAX]                        |
-00411CE9         | 88 8D 0F FB FF FF  | MOV BYTE PTR SS:[EBP - 4F1], CL                  |
-00411CEF         | 6A 02              | PUSH 2                                           |
-00411CF1         | 0F BE 85 0F FB FF  | MOVSX EAX, BYTE PTR SS:[EBP - 4F1]               |
-00411CF8         | 50                 | PUSH EAX                                         |
-00411CF9         | E8 EA F6 FF FF     | CALL yeeeeeeeee.4113E8                           |</code></pre></figure>
-
-<p><code class="highlighter-rouge">0x411cf9</code> 에서 <code class="highlighter-rouge">call 4113e8</code>를 호출하게 된다. 이 함수를 찾아가면 <code class="highlighter-rouge">lrotl</code> 함수를 실행하게된다.</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">63022712         | 55                 | PUSH EBP                                         |
-63022713         | 8B EC              | MOV EBP, ESP                                     |
-63022715         | 8B 45 0C           | MOV EAX, DWORD PTR SS:[EBP + C]                  |
-63022718         | 83 E0 1F           | AND EAX, 1F                                      |
-6302271B         | 89 45 0C           | MOV DWORD PTR SS:[EBP + C], EAX                  |
-6302271E         | B9 20 00 00 00     | MOV ECX, 20                                      | 20:<span class="s1">' '</span>
-63022723         | 2B 4D 0C           | SUB ECX, DWORD PTR SS:[EBP + C]                  |
-63022726         | 8B 55 08           | MOV EDX, DWORD PTR SS:[EBP + 8]                  | <span class="o">[</span>ebp+8]:L<span class="s2">"HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}"</span>
-63022729         | D3 EA              | SHR EDX, CL                                      |
-6302272B         | 8B 45 08           | MOV EAX, DWORD PTR SS:[EBP + 8]                  | <span class="o">[</span>ebp+8]:L<span class="s2">"HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}"</span>
-6302272E         | 8B 4D 0C           | MOV ECX, DWORD PTR SS:[EBP + C]                  |
-63022731         | D3 E0              | SHL EAX, CL                                      |
-63022733         | 0B D0              | OR EDX, EAX                                      |
-63022735         | 89 55 08           | MOV DWORD PTR SS:[EBP + 8], EDX                  | <span class="o">[</span>ebp+8]:L<span class="s2">"HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}"</span>
-63022738         | 8B 45 08           | MOV EAX, DWORD PTR SS:[EBP + 8]                  | <span class="o">[</span>ebp+8]:L<span class="s2">"HCAMP{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}"</span>
-6302273B         | 5D                 | POP EBP                                          |
-6302273C         | C3                 | RET                                              |</code></pre></figure>
-
-<p>위 영역이 <code class="highlighter-rouge">lrotl</code> 함수이며, 사용자가 입력한 값을 <code class="highlighter-rouge">0x1E</code>만큼 오른쪽으로 쉬프트 연산을 진행하고 <code class="highlighter-rouge">0x2</code>만큼 왼쪽으로 쉬프트 연산을 진행한다. 여기서 or 연산도 있지만 분석을 해보면 실제로 영향을 주는 부분은 <code class="highlighter-rouge">0x2</code> 만큼 왼쪽으로 쉬프트 연산만 하는 것과 다를바없다.</p>
-
-<p>따라서 저장된 값이 0x2 만큼 왼쪽으로 쉬프트 연산이 된 값이므로 다시 오른쪽으로 0x2 만큼 쉬프트 연산을 하면 flag를 얻을 수 있다.</p>
-
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">flag2</span> <span class="o">=</span> <span class="mh">0x120</span><span class="p">,</span> <span class="mh">0x10c</span><span class="p">,</span> <span class="mh">0x104</span><span class="p">,</span> <span class="mh">0x134</span><span class="p">,</span> <span class="mh">0x140</span><span class="p">,</span> <span class="mh">0x1ec</span><span class="p">,</span> <span class="mh">0xcc</span><span class="p">,</span> <span class="mh">0xd0</span><span class="p">,</span> <span class="mh">0xe0</span><span class="p">,</span> <span class="mh">0x184</span><span class="p">,</span> <span class="mh">0xd0</span><span class="p">,</span> <span class="mh">0xd0</span><span class="p">,</span> <span class="mh">0xe0</span><span class="p">,</span> <span class="mh">0x184</span><span class="p">,</span> <span class="mh">0xd4</span><span class="p">,</span> <span class="mh">0xc4</span><span class="p">,</span> <span class="mh">0x190</span><span class="p">,</span> <span class="mh">0xc4</span><span class="p">,</span> <span class="mh">0x194</span><span class="p">,</span> <span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0x198</span><span class="p">,</span> <span class="mh">0xc0</span><span class="p">,</span> <span class="mh">0x198</span><span class="p">,</span> <span class="mh">0xd4</span><span class="p">,</span> <span class="mh">0x194</span><span class="p">,</span> <span class="mh">0x194</span><span class="p">,</span> <span class="mh">0x194</span><span class="p">,</span> <span class="mh">0xd0</span><span class="p">,</span> <span class="mh">0xc8</span><span class="p">,</span> <span class="mh">0xcc</span><span class="p">,</span> <span class="mh">0xcc</span><span class="p">,</span> <span class="mh">0xdc</span><span class="p">,</span> <span class="mh">0x190</span><span class="p">,</span> <span class="mh">0xc4</span><span class="p">,</span> <span class="mh">0xc8</span><span class="p">,</span> <span class="mh">0x184</span><span class="p">,</span> <span class="mh">0x190</span><span class="p">,</span> <span class="mh">0x18c</span><span class="p">,</span> <span class="mh">0x1f4</span>
-
-<span class="n">flag</span> <span class="o">=</span> <span class="s">""</span>
-
-<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">flag2</span><span class="p">:</span>
-    <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">f</span> <span class="o">&gt;&gt;</span> <span class="mh">0x2</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">flag</span></code></pre></figure>
-
-<p><code class="highlighter-rouge">flag: HCAMP{348a448a51d1e0f0f5eee42337d12adc}</code></p>
-
-      <br/>
-      <br/>
-      <!-- 블로그-하단-반응형 -->
-      <ins class="adsbygoogle"
-          style="display:block; width:100%; height:300px;"
-          data-ad-client="ca-pub-8115495896391807"
-          data-ad-slot=""
-          data-ad-format="auto"></ins>
-      <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-    </div>
-    <script>
-
-    </script>
+    <p class="read-more"><a class="heading" href="/technique/2017/07/24/Buffer_OverFlow/" data-flip="title">Continue reading </a></p>
   
 
 </article>
 
-  <hr class="dingbat" />
-
-  <div class="share">
-      <h2>Share this post</h2>
-      <div class="share-body">
-        <a href="http://twitter.com/share?text=Hackingcamp 2018 Yeeeeeeeee&amp;url=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/"
-    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-            <span class="icon-twitter">
-            </span>
-        </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/"
-    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-            <span class="icon-facebook">
-            </span>
-        </a>
-    </div>
-  </div>
-  <br/>
 
 
 
-
-
-
-  <aside class="author" role="complementary">
-    <div class="author">
-  <h2 class="page-title hr">
-    About
-  </h2>
-<div class="author-body">
-  
-    
-  
-
-  
-
-  <img
-    src="/assets/img/me.jpeg"
-    class="me"
-    alt="SaHong Pak"
-    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
-    
-  />
-
-
-  
-  <div class="author-body-description">
-    <p>F1nd k3y, 6reak k3y!</p>
-
-  </div>
-</div>
-</div>
-
-  </aside>
-
-
-
-
-
-<aside class="related" role="complementary">
-  <h2 class="hr">Related Posts</h2>
-
-  <ul class="related-posts">
-    
+<h2 class="sr-only">Pagination</h2>
+<nav class="pagination heading" role="navigation">
+  <ul>
+    <li class="pagination-item older" >
       
+        <span>Older</span>
       
+    </li>
+    <li class="pagination-item newer" >
       
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/ctfs/2018/09/10/Hackingcamp_HWP_Malware_Custom/" data-flip="title">
-    <span>Hackingcamp 2018 HWP Malware Custom</span>
-  </a>
-  <small><time datetime="2018-09-10T13:27:00+09:00">
-    10 Sep 2018
-  </time></small>
-</li>
-
-        
+        <a rel="prev" href="/page-4/">Newer</a>
       
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/ctfs/2018/09/07/Hackingcamp_I_LOVE_Registry/" data-flip="title">
-    <span>Hackingcamp 2018 I LOVE Registry</span>
-  </a>
-  <small><time datetime="2018-09-07T16:46:00+09:00">
-    07 Sep 2018
-  </time></small>
-</li>
-
-        
-      
-        
-          
-          
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/ctfs/2018/09/07/Hackingcamp_What_is_END/" data-flip="title">
-    <span>Hackingcamp 2018 What is END?</span>
-  </a>
-  <small><time datetime="2018-09-07T15:48:00+09:00">
-    07 Sep 2018
-  </time></small>
-</li>
-
-        
-      
-    
+    </li>
   </ul>
-</aside>
+</nav>
 
 
-
-      
-        <aside class="comments" role="complementary">
-  <h2>Comments</h2>
-  <hr/>
-
-  <div id="disqus_thread"></div>
-
-  <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="Hackingcamp 2018 Yeeeeeeeee",this.page.identifier="/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee",this.page.url="http://localhost:4000/ctfs/2018/09/07/Hackingcamp_Yeeeeeeeee/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//k3y6reak.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
-
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-</aside>
 
       
 
