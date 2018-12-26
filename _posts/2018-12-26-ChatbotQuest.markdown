@@ -7,7 +7,6 @@ categories: ['misc']
 comments: true
 ---
 
-<br/><br/>
 # Python Error Solution Bot
 
 광주_3_박사홍 / https://github.com/k3y6reak/PESB
