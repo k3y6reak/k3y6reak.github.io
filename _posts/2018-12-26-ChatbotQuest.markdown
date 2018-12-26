@@ -10,6 +10,8 @@ comments: true
 <br/><br/>
 # Python Error Solution Bot
 
+광주_3_박사홍 / https://github.com/k3y6reak/PESB
+
 ## I. 스펙(Speicification)
 구현된 어플리케이션의 주요 기능.
 
