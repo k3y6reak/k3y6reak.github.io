@@ -4,6 +4,7 @@ title:  "R과 R Studio 설치하기"
 subtitle: "R과 R Studio를 설치하고 기본 문법에 대해 알아봅시다."
 date:   2019-05-28 14:00:00 +0900
 categories: ['programming']
+tags: r
 comments: true
 ---
 
@@ -30,4 +31,3 @@ R과 R Studio는 [CRAN](https://cran.r-project.org/)에서 받을 수 있습니�
 > 1/0
  [1] Inf
 ```
-
