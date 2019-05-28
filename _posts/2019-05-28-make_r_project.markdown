@@ -10,7 +10,7 @@ comments: true
 
 ### 프로젝트 생성
 R Studio에서 오른쪽 상단의 `Porject` 를 클릭하면 메뉴가 나타나며 `New Proejct`를 클릭하여 프로젝트를 생성할 수 있습니다.
-![new_project](/img/r/project/new_proejct.png)
+![new_project](/img/r/project/new_project.png)
 
 그러면 하단의 그림처럼 3가지 방식이 나타나게 됩니다. `New Directory`는 새로운 프로젝트 생성 시 사용하며, `Existing Directory`는 기존 프로젝트가 있는 경우, `Version Control`은 Git과 같은 버전관리 시 사용하게 됩니다.
 ![create_project](/img/r/project/create_project.png)
