@@ -13,7 +13,9 @@ order: 10
 팀: RebForPwn
 
 ## 소속
-차세대 보안리더 양성 프로그램 (Best of the Best) 7기 보안제품개발 트랙 교육생 (2018.07-)
+삼성 청년 소프트웨어 아카데미(SSAFY) 1기 교육생 (2018.12-)
+
+차세대 보안리더 양성 프로그램 (Best of the Best) 7기 보안제품개발 트랙 교육생 (2018.07 - 2019.03)
 
 조선대학교 정보전산원 인터넷 침해사고 대응팀장 (2017)
 
@@ -32,7 +34,7 @@ Social Engineering
 Pwnable
 
 ## 사용언어
-C Python Ruby Go
+C Python Ruby Go Java
 
 ## Wargame
 reversing.kr (Rank 33)
@@ -54,3 +56,4 @@ noe.systems (Rank 2)
 
 ## References
 - [조선대 ‘해킹방어대회’ 장려상](http://www.kjdaily.com/read.php3?aid=1522577304434447062)
+- [특허 - 실시간 최신 악성코드 및 침해 진단 서비스 제공 방법(제 10-19686633호)](http://kportal.kipris.or.kr/kportal/search/total_search.do)
