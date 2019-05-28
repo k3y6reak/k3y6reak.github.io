@@ -290,5 +290,5 @@ Registered S3 methods overwritten by 'ggplot2':
 > qplot(x)
 ```
 
-위와 같이 코드를 작성하면 R Studio의 하단에 그래프가 나타나게 됩니다.
+위와 같이 코드를 작성하면 R Studio의 하단에 그래프가 나타나게 됩니다. 
 ![qplot](/img/r/project/qplot.png)
