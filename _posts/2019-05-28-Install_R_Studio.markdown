@@ -31,3 +31,4 @@ R과 R Studio는 [CRAN](https://cran.r-project.org/)에서 받을 수 있습니�
 > 1/0
  [1] Inf
 ```
+
