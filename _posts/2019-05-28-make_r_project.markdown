@@ -8,287 +8,174 @@ tags: R
 comments: true
 ---
 
-### 프로젝트 생성
-R Studio에서 오른쪽 상단의 `Porject` 를 클릭하면 메뉴가 나타나며 `New Proejct`를 클릭하여 프로젝트를 생성할 수 있습니다.
-![new_project](/img/r/project/new_project.png)
+### 데이터 프레임
+가장 많이 사용하는 형태이며, 행과 열로 구성되어 있습니다. 데이터베이스에 대해 공부해 보셨다면 쉽게 이해할 수 있습니다.
 
-그러면 하단의 그림처럼 3가지 방식이 나타나게 됩니다. `New Directory`는 새로운 프로젝트 생성 시 사용하며, `Existing Directory`는 기존 프로젝트가 있는 경우, `Version Control`은 Git과 같은 버전관리 시 사용하게 됩니다.
-![create_project](/img/r/project/create_project.png)
+아래 표와 같은 형태를 데이터 프레임이라 합니다.
 
-New Directory 선택 후 새로운 프로젝트를 선택하면 아래와 같이 해당 프로젝트의 이름, 경로를 설정할 수 있습니다. 각 내용을 설정 후 `Create Project` 버튼을 눌러 새로운 프로젝트를 생성할 수 있습니다.
-![set_project](/img/r/project/set_project.png)
+| 이름 | 영어 | 수학 |
+| ---- |:----:| ---:|
+| AAA | 80 | 90 |
+| BBB | 70 | 80 |
+| CCC | 60 | 70 |
 
+실제 코드를 작성하여 데이터 분석이 진행되므로 행과 열을 구분할 필요가 있습니다. 행(가로)는 특정 한 사람의 정보를 뜻하게 되며, 열(세로)는 하나의 속성이 됩니다.
 
+위 표에서는 3개의 행, 3개의 열이 존재하는 것입니다.
 
-### 변수
-변수는 쉽게 `변하는 수`라 생각하면 좋습니다. 보통 다른 언어들은 `a = 1`과 같이 equal을 사용하는 반면 R은 `a <- 1`을 사용합니다. 여기서 `a`가 변수 명이 되며 `a <- 1`과 같은 식을 실행했다면 a라는 이름의 변수가 1이라는 값을 갖게 되는 것입니다.
+단순하게 영어의 평균점수, 수학의 평균점수 등 간단한 데이터를 추출하는데 있어서 행(가로)의 개수가 많아져도 별다른 문제가 발생하지 않습니다. 이때는 데이터를 처리하는 속도가 중요하게 됩니다.
+반면, 열(세로)가 많아지는 경우에는 각 속성들의 관계를 분석하게 된다면 분석 방법에 따라 결과가 나타나게 됩니다.
+
+### 데이터 프레임 만들기
+이제 직접 데이터 프레임을 만들어 보겠습니다.
 
 ```r
-> a <- 1
-> a
-[1] 1
-> b <- 2
-> a + b
-[1] 3
->
+> eng = c(80, 70, 60)
+> math = c(90, 80, 70)
+> df_test = data.frame(eng, math)
+> df_test
+  eng math
+1  80   90
+2  70   80
+3  60   70
 ```
 
-위 코드는 a에는 1이라는 값을 넣어두고 b에는 2를 넣어 둔 후 a와 b를 더한 값을 계산하는 코드입니다.
+위와 같이 eng 속성에는 80, 70, 60 점에 대한 내용이 들어가며, math 속성에는 90, 80, 70 점에 대한 내용이 들어가게 됩니다. 단순히 값을 저장하는 것은 변수를 선언하여 값을 설정하는 것 뿐이지만 더 나아가, df_test 변수에는 `data.frame`을 이용하여 eng와 math를 하나의 데이터 프레임으로 만들어 주게 됩니다.
 
-여러개의 값을 하나의 변수에 넣고자 하는 경우 (타 언어에서는 리스트, 배열 등으로 불림) R에서 c 함수를 사용하게 됩니다. 이는 combine의 약자입니다.
+여기서 df_test에 존재하는 영어점수들의 평균을 구해봅시다.
 
 ```r
-> var1 <- c(1, 2, 3)
-> var1
-[1] 1 2 3
-> var2 = c("1", 2, 3)
-> var2
-[1] "1" "2" "3"
+> mean(df_test.eng)
+Error in mean(df_test.eng) : object 'df_test.eng' not found
+> mean(df_test$eng)
+[1] 70
 ```
 
-var1에 c 함수를 이용하여 숫자 1, 2, 3을 저장하는 코드와 var2에는 문자 "1"과 숫자 2, 3을 저장하는 코드입니다.
+위와 같이 코드를 작성하면 df_test에 있는 eng 점수들에 대한 평균값이 출력되게 됩니다. 기타 다른 프로그래밍 언어를 학습하셨던 분들이라면 `.`을 이용하여 접근을 많이 하셨을텐데 R 에서는 `$`로 접근하게 됩니다.
 
-숫자들끼리 저장하는 경우 모두 숫자로 저장되지만 중간에 문자가 포함된 경우에는 모두 문자로 처리되는 것을 확인할 수 있습니다.
 
-또한 <- 대신 =을 사용해도 가능하네요.
+### 엑셀파일 사용하기
+외부 데이터를 사용하기 위해서 특정 파일을 R로 읽어, 값을 분석하여 출력하게 됩니다.
+[Do_it_쉽게_배우는_R_데이터_분석](https://github.com/youngwoos/Doit_R/#4)에서 엑셀 파일을 받을 수 있습니다.
+
+해당 엑셀 파일에는 id, class, math, english, science 총 5개 속성이 있습니다.
+
+R에서 엑셀 데이터를 읽어오기 위해서 먼저 `install.packages("readxl")`을 이용해 설치합니다.
+그 후 `libary(readxl)`로 readxl을 사용할 준비를 합니다.
+
+다운로드 받은 엑셀 파일을 현재 프로젝트에 넣어줍니다.
 
 ```r
-> var3 = c(1:10)
-> var3
- [1]  1  2  3  4  5  6  7  8  9 10
+> install.packages("readxl")
+> library(readxl)
+> df_test = read_excel("excel_exam.xlsx")
+> df_test
+# A tibble: 20 x 5
+      id class  math english science
+   <dbl> <dbl> <dbl>   <dbl>   <dbl>
+ 1     1     1    50      98      50
+ 2     2     1    60      97      60
+ 3     3     1    45      86      78
+ 4     4     1    30      98      58
+ 5     5     2    25      80      65
+ 6     6     2    50      89      98
+ 7     7     2    80      90      45
+ 8     8     2    90      78      25
+ 9     9     3    20      98      15
+10    10     3    50      98      45
+11    11     3    65      65      65
+12    12     3    45      85      32
+13    13     4    46      98      65
+14    14     4    48      87      12
+15    15     4    75      56      78
+16    16     4    58      98      65
+17    17     5    65      68      98
+18    18     5    80      78      90
+19    19     5    89      68      87
+20    20     5    78      83      58
+```
+위와 같이 에러가 발생하지 않고 잘 출력이 된 것을 확인할 수 있습니다.
+
+해당 엑셀 파일의 데이터를 가져왔으니, 영어점수 평균, 과학점수 평균, 수학점수 평균을 구해봅시다.
+```r
+> mean(df_test$math)
+[1] 57.45
+> mean(df_test$english)
+[1] 84.9
+> mean(df_test$science)
+[1] 59.45
 ```
 
-위 코드 중 var3에 `c(1:10)` 을 확인할 수 있을텐데 이것은 1부터 10까지의 수를 var3에 저장하는 것을 말합니다.
+하지만 모든 데이터가 형식에 맞춰 구성된 것은 아닙니다. 특정 엑셀 파일은 id, class, math 등과 같이 구분하지 않고 점수만 저장된 경우라면 R은 최상단의 값을 이름이라 생각하게 됩니다.
 
-c 함수 대신 seq 함수도 동일한 기능을 제공합니다. 다만 c 함수에서는 연속적인 수를 넣기 위해 `:`를 사용했다면 seq는 `,`를 사용합니다.
-seq 함수에서는 `by` 파라미터를 이용하여 간격을 줄 수도 있습니다.
-```r
-> var1 = c(1:10)
-> var2 = seq(1, 10)
-> var1
- [1]  1  2  3  4  5  6  7  8  9 10
-> var2
- [1]  1  2  3  4  5  6  7  8  9 10
-> var3 = seq(1, 10, by=3)
-> var3
-[1]  1  4  7 10
- ```
+따라서, `read_excel("엑셀파일명", col_names = F)`와 같이 col_names를 이용하면 해당 이름을 넣어줄 수 있습니다. 여기서 col_names에 F 라는 값이 있는데 이는 `boolean(참, 거짓)` 타입으로 T, F로 설정할 수 있습니다. T는 열 이름을 가져오는 것이며, F는 가져오지 않습니다.
+
+또한 엑셀에 sheet가 여러개라면 `read_excel("엑셀파일명, sheet=2)`와 같이 sheet 번호를 지정하여 사용할 수 있습니다.
 
 
-### 함수
-위 변수 설명에서 c, seq 두 가지 간단한 함수도 살펴보았습니다. 여기서는 mean(), max(), min(), paste()에 대해서 알아보겠습니다.
+### CSV 파일 사용하기
+csv는 엑셀 파일과 동일하게 사용할 수 있습니다. 다만, csv는 R의 기본 내장함수가 존재하므로 `read.csv()`를 이용하여 읽을 수 있습니다. 해당 csv 파일도 상단의 엑셀 파일과 같은 사이트에서 받을 수 있습니다.
 
 ```r
-> var1 = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-> mean(var1)
-[1] 5.5
-> max(var1)
-[1] 10
-> min(var1)
-[1] 1
+> df_test = read.csv("csv_exam.csv")
+> df_test
+   id class math english science
+1   1     1   50      98      50
+2   2     1   60      97      60
+3   3     1   45      86      78
+4   4     1   30      98      58
+5   5     2   25      80      65
+6   6     2   50      89      98
+7   7     2   80      90      45
+8   8     2   90      78      25
+9   9     3   20      98      15
+10 10     3   50      98      45
+11 11     3   65      65      65
+12 12     3   45      85      32
+13 13     4   46      98      65
+14 14     4   48      87      12
+15 15     4   75      56      78
+16 16     4   58      98      65
+17 17     5   65      68      98
+18 18     5   80      78      90
+19 19     5   89      68      87
+20 20     5   78      83      58
 ```
 
-mean() 함수는 해당 수들의 평균을 계산하여 출력합니다. 1부터 10까지의 평균 5.5를 출력해주며, max는 해당 수들의 최대값을 출력하고 min은 최소값을 출력합니다.
+### csv 파일로 저장하기
+특정 데이터를 이용하여 적절한 정보로 가공했다면 이를 저장할 경우가 생기기 마련입니다.
+이때, `write.csv(데이터 프레임, file = 파일명)`을 이용하여 파일을 저장할 수 있습니다.
 
 ```r
-> str1 = c("h", "e", "l", "l", "o")
-> str1
-[1] "h" "e" "l" "l" "o"
-> paste(str1, collapse=",")
-[1] "h,e,l,l,o"
-> paste(str1, collapse="")
-[1] "hello"
+> write.csv(df_test, file="df_test.csv")
+> df_test2 = read.csv("df_test.csv")
+> df_test2
+    X id class math english science
+1   1  1     1   50      98      50
+2   2  2     1   60      97      60
+3   3  3     1   45      86      78
+4   4  4     1   30      98      58
+5   5  5     2   25      80      65
+6   6  6     2   50      89      98
+7   7  7     2   80      90      45
+8   8  8     2   90      78      25
+9   9  9     3   20      98      15
+10 10 10     3   50      98      45
+11 11 11     3   65      65      65
+12 12 12     3   45      85      32
+13 13 13     4   46      98      65
+14 14 14     4   48      87      12
+15 15 15     4   75      56      78
+16 16 16     4   58      98      65
+17 17 17     5   65      68      98
+18 18 18     5   80      78      90
+19 19 19     5   89      68      87
+20 20 20     5   78      83      58
 ```
 
-str1에는 h, e, l, l, o 각 5개의 문자가 저장되어 있습니다. 이 문자들을 paste() 함수를 이용하여 붙일 수 있는데, `collapse` 파라미터를 이용하여 해당 문자를 넣어 붙일 수 있습니다. 
+여기서 RData(R 전용 데이터)로 저장하고 싶을 때는 `save(데이터 프레임, file=파일명.rda)`로 가능합니다. 읽어 올때는 `load(파일명.rda)`로 가능합니다.
 
+중간에 해당 데이터 프레임의 정보를 제거할 때는 `rm(데이터 프레임)`으로 삭제할 수 있습니다.
 
-### 패키지
-R에서 그래프, 텍스트 데이터 분석, 머신러닝 알고리즘 구현 등 다양한 기능을 사용하기 위한 함수들이 존재합니다. 하지만 이런 함수들을 사용하기 위해서는 해당 함수가 포함된 패키지를 설치해야 합니다. 패키지를 설치하기 위해서는 아래와 같이 `install.packages("ggplot2")를 입력합니다.
+특히 rda파일을 읽어올 때는 저장할 때 사용한 데이터 프레임에 자동으로 들어가게 됩니다.
 
-```r
-> install.packages("ggplot2")
-WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
-
-https://cran.rstudio.com/bin/windows/Rtools/
-Installing package into ‘C:/Users/student/Documents/R/win-library/3.6’
-(as ‘lib’ is unspecified)
-also installing the dependencies ‘backports’, ‘zeallot’, ‘glue’, ‘magrittr’, ‘stringi’, ‘colorspace’, ‘assertthat’, ‘utf8’, ‘vctrs’, ‘Rcpp’, ‘stringr’, ‘labeling’, ‘munsell’, ‘R6’, ‘RColorBrewer’, ‘cli’, ‘crayon’, ‘fansi’, ‘pillar’, ‘pkgconfig’, ‘digest’, ‘gtable’, ‘lazyeval’, ‘plyr’, ‘reshape2’, ‘rlang’, ‘scales’, ‘tibble’, ‘viridisLite’, ‘withr’
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/backports_1.1.4.zip'
-Content type 'application/zip' length 66791 bytes (65 KB)
-downloaded 65 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/zeallot_0.1.0.zip'
-Content type 'application/zip' length 62173 bytes (60 KB)
-downloaded 60 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/glue_1.3.1.zip'
-Content type 'application/zip' length 173348 bytes (169 KB)
-downloaded 169 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/magrittr_1.5.zip'
-Content type 'application/zip' length 158182 bytes (154 KB)
-downloaded 154 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/stringi_1.4.3.zip'
-Content type 'application/zip' length 15298362 bytes (14.6 MB)
-downloaded 14.6 MB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/colorspace_1.4-1.zip'
-Content type 'application/zip' length 2551203 bytes (2.4 MB)
-downloaded 2.4 MB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/assertthat_0.2.1.zip'
-Content type 'application/zip' length 55060 bytes (53 KB)
-downloaded 53 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/utf8_1.1.4.zip'
-Content type 'application/zip' length 214971 bytes (209 KB)
-downloaded 209 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/vctrs_0.1.0.zip'
-Content type 'application/zip' length 621784 bytes (607 KB)
-downloaded 607 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/Rcpp_1.0.1.zip'
-Content type 'application/zip' length 4494964 bytes (4.3 MB)
-downloaded 4.3 MB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/stringr_1.4.0.zip'
-Content type 'application/zip' length 216937 bytes (211 KB)
-downloaded 211 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/labeling_0.3.zip'
-Content type 'application/zip' length 62860 bytes (61 KB)
-downloaded 61 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/munsell_0.5.0.zip'
-Content type 'application/zip' length 245391 bytes (239 KB)
-downloaded 239 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/R6_2.4.0.zip'
-Content type 'application/zip' length 58828 bytes (57 KB)
-downloaded 57 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/RColorBrewer_1.1-2.zip'
-Content type 'application/zip' length 55572 bytes (54 KB)
-downloaded 54 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/cli_1.1.0.zip'
-Content type 'application/zip' length 176543 bytes (172 KB)
-downloaded 172 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/crayon_1.3.4.zip'
-Content type 'application/zip' length 749378 bytes (731 KB)
-downloaded 731 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/fansi_0.4.0.zip'
-Content type 'application/zip' length 221289 bytes (216 KB)
-downloaded 216 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/pillar_1.4.0.zip'
-Content type 'application/zip' length 181105 bytes (176 KB)
-downloaded 176 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/pkgconfig_2.0.2.zip'
-Content type 'application/zip' length 22298 bytes (21 KB)
-downloaded 21 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/digest_0.6.19.zip'
-Content type 'application/zip' length 211466 bytes (206 KB)
-downloaded 206 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gtable_0.3.0.zip'
-Content type 'application/zip' length 434255 bytes (424 KB)
-downloaded 424 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/lazyeval_0.2.2.zip'
-Content type 'application/zip' length 172487 bytes (168 KB)
-downloaded 168 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/plyr_1.8.4.zip'
-Content type 'application/zip' length 1302273 bytes (1.2 MB)
-downloaded 1.2 MB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/reshape2_1.4.3.zip'
-Content type 'application/zip' length 627584 bytes (612 KB)
-downloaded 612 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/rlang_0.3.4.zip'
-Content type 'application/zip' length 1089110 bytes (1.0 MB)
-downloaded 1.0 MB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/scales_1.0.0.zip'
-Content type 'application/zip' length 1072570 bytes (1.0 MB)
-downloaded 1.0 MB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/tibble_2.1.1.zip'
-Content type 'application/zip' length 338274 bytes (330 KB)
-downloaded 330 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/viridisLite_0.3.0.zip'
-Content type 'application/zip' length 60694 bytes (59 KB)
-downloaded 59 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/withr_2.1.2.zip'
-Content type 'application/zip' length 152043 bytes (148 KB)
-downloaded 148 KB
-
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/ggplot2_3.1.1.zip'
-Content type 'application/zip' length 3637902 bytes (3.5 MB)
-downloaded 3.5 MB
-
-package ‘backports’ successfully unpacked and MD5 sums checked
-package ‘zeallot’ successfully unpacked and MD5 sums checked
-package ‘glue’ successfully unpacked and MD5 sums checked
-package ‘magrittr’ successfully unpacked and MD5 sums checked
-package ‘stringi’ successfully unpacked and MD5 sums checked
-package ‘colorspace’ successfully unpacked and MD5 sums checked
-package ‘assertthat’ successfully unpacked and MD5 sums checked
-package ‘utf8’ successfully unpacked and MD5 sums checked
-package ‘vctrs’ successfully unpacked and MD5 sums checked
-package ‘Rcpp’ successfully unpacked and MD5 sums checked
-package ‘stringr’ successfully unpacked and MD5 sums checked
-package ‘labeling’ successfully unpacked and MD5 sums checked
-package ‘munsell’ successfully unpacked and MD5 sums checked
-package ‘R6’ successfully unpacked and MD5 sums checked
-package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
-package ‘cli’ successfully unpacked and MD5 sums checked
-package ‘crayon’ successfully unpacked and MD5 sums checked
-package ‘fansi’ successfully unpacked and MD5 sums checked
-package ‘pillar’ successfully unpacked and MD5 sums checked
-package ‘pkgconfig’ successfully unpacked and MD5 sums checked
-package ‘digest’ successfully unpacked and MD5 sums checked
-package ‘gtable’ successfully unpacked and MD5 sums checked
-package ‘lazyeval’ successfully unpacked and MD5 sums checked
-package ‘plyr’ successfully unpacked and MD5 sums checked
-package ‘reshape2’ successfully unpacked and MD5 sums checked
-package ‘rlang’ successfully unpacked and MD5 sums checked
-package ‘scales’ successfully unpacked and MD5 sums checked
-package ‘tibble’ successfully unpacked and MD5 sums checked
-package ‘viridisLite’ successfully unpacked and MD5 sums checked
-package ‘withr’ successfully unpacked and MD5 sums checked
-package ‘ggplot2’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-	C:\Users\student\AppData\Local\Temp\RtmpUveCMr\downloaded_packages
-```
-
-위와 같이 설치 기록들이 나타나면서 패키지를 설치할 수 있습니다.
-
-해당 패키지를 사용하고 싶은 경우 library() 함수를 사용하면 됩니다.
-
-```r
-> library(ggplot2)
-Registered S3 methods overwritten by 'ggplot2':
-  method         from 
-  [.quosures     rlang
-  c.quosures     rlang
-  print.quosures rlang
-> x = c("a", "a", "b", "c")
-> qplot(x)
-```
-
-위와 같이 코드를 작성하면 R Studio의 하단에 그래프가 나타나게 됩니다. 
-![qplot](/img/r/project/qplot.png)
