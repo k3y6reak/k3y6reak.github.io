@@ -1,0 +1,75 @@
+---
+layout: post
+title:  "변수명 바꾸기, 추가 변수 만들기"
+subtitle: "데이터 프레임의 변수 명을 변경하고 추가 변수를 만들어 봅시다."
+date:   2019-05-29 14:50:00 +0900
+categories: ['programming']
+tags: R
+comments: true
+---
+
+### 변수명 바꾸기
+먼저 dplyr 패키지를 사용해야 하므로, install.packages("dplyr")를 이용하여 설치한 후 사용할 수 있도록 library(dplyr)를 실행해 줍니다.
+
+```r
+install.package("dplyr")
+library("dplyr")
+```
+
+그 후 테스트를 진행하기 위해 아래와 같이 코드를 작성합니다.
+```r
+> df_test1 = data.frame(var1 = c(1,2,3), var2=c(4,5,6))
+> df_test1
+  var1 var2
+1    1    4
+2    2    5
+3    3    6
+```
+
+여기서 var1, var2를 각각 v1, v2로 변경해보겠습니다.
+```r
+> df_test1 = rename(df_test1, v1 = var1, v2 = var2)
+> df_test1
+  v1 v2
+1  1  4
+2  2  5
+3  3  6
+```
+
+`rename()` 함수를 이용해서 var1, var2를 각각 v1, v2로 변경된 것을 확인할 수 있습니다.
+
+### 추가 변수 생성
+
+| 이름 | 영어 | 수학 |
+|:----:|:----:|:---:|
+| AAA | 80 | 90 |
+| BBB | 70 | 80 |
+| CCC | 60 | 70 |
+
+위와 같은 데이터가 있을 때 수학 옆에 평균이라는 속성을 만들어서 값을 구하고, 이를 파일로 저장하는 것을 해보겠습니다.
+
+```r
+> eng = c(80, 70, 60)
+> math = c(90, 80, 70)
+
+> df_test = data.frame(eng, math)
+> df_test
+  eng math
+1  80   90
+2  70   80
+3  60   70
+> (df_test$eng + df_test$math) / 2
+[1] 85 75 65
+
+> df_test$avg = (df_test$eng + df_test$math) / 2
+> df_test
+  eng math avg
+1  80   90  85
+2  70   80  75
+3  60   70  65
+```
+
+위 코드에서 eng, math에 각 점수를 넣어 데이터 프레임으로 생성합니다. 그 후 영어와 수학의 평균을 구하는 식을 작성하여 그 결과를 확인해 봅니다.
+
+추가 변수를 만들기 위해서 `데이터프레임_속성명 = 값` 형식을 사용하여 추가할 수 있습니다.
+
