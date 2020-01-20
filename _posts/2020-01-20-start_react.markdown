@@ -77,5 +77,5 @@ To create a production build, use yarn build.
 
 위와 같이 주소가 나타난다면 정상적으로 서버가 실행 된 것입니다.
 
-[react_main_page](http://)
+[react_main_page](https://github.com/k3y6reak/k3y6reak.github.io/blob/master/img/react/start_react/start_react.png?raw=true)
 
