@@ -8,6 +8,14 @@ tags: React
 comments: true
 ---
 
+### Node.js 설치
+
+React, Vue와 같은 웹 프레임워크를 사용하려면 Node.js가 필요합니다. 
+
+[node.js](https://nodejs.org/ko/download/) 에서 자신의 운영체제에 맞게 설치를 합니다.
+
+
+
 ### Yarn 설치
 
 yarn은 javascript 패키지 관리 도구입니다. React, Vue 등 웹 프레임워크를 개발하고 필요한 모듈을 설치하고 관리하는데 사용됩니다.
