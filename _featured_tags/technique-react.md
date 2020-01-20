@@ -1,7 +1,7 @@
 ---
 layout: tag-blog
 title: React
-slug: react
+slug: React
 category: technique
 menu: false
 order: 2
