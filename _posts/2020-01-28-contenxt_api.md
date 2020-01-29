@@ -200,4 +200,3 @@ export default ColorBox;
 앞서 Provider에서 value로 값을 보낸 데이터를 Consumer에서는 value로 받아 style을 적용시켰습니다.
 
 이렇게 다른 컴포넌트에서 쉽게 사용이 가능합니다.
-
